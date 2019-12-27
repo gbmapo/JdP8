@@ -1,0 +1,5 @@
+name: 'Association'
+type: module
+description: 'To manage members and persons of the association'
+core: 8.x
+package: 'Association'

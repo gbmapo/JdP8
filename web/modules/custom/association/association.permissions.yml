@@ -1,0 +1,43 @@
+# -------------------------------------------------------------------
+add member entities:
+  title: 'Create new Member entities'
+
+administer member entities:
+  title: 'Administer Member entities'
+  description: 'Allow to access the administration form to configure Member entities.'
+  restrict access: true
+
+delete member entities:
+  title: 'Delete Member entities'
+
+edit member entities:
+  title: 'Edit Member entities'
+
+view member entities:
+  title: 'View Member entities'
+
+# -------------------------------------------------------------------
+add person entities:
+  title: 'Create new Person entities'
+
+administer person entities:
+  title: 'Administer Person entities'
+  description: 'Allow to access the administration form to configure Person entities.'
+  restrict access: true
+
+delete person entities:
+  title: 'Delete Person entities'
+
+edit person entities:
+  title: 'Edit Person entities'
+
+view person entities:
+  title: 'View Person entities'
+
+# -------------------------------------------------------------------
+administer membership:
+  title: 'Administer Membership'
+  restrict access: true
+
+renew membership:
+  title: 'Renew Membership'

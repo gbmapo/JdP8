@@ -1,0 +1,185 @@
+<?php
+
+/**
+ * @file
+ * Contains shared.module.
+ */
+
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_help().
+ */
+function shared_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Main module help for the shared module.
+    case 'help.page.shared':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Functions shared with others modules') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function shared_theme()
+{
+  return [
+    'shared' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable)
+{
+
+  if ($definition->get('entity_type') == 'contact_message' && $definition->get('field_name') == 'field_recipient') {
+    $allowedValues = $definition->getSetting('allowed_values');
+    if (count($allowedValues) == 0) {
+      $mail = \Drupal::config('system.site')->get('mail');
+      $allowedValues = [];
+      $allowedValues[$mail] = 'Association';
+    }
+    return $allowedValues;
+  }
+
+}
+
+function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state)
+{
+
+  $form['field_recipient']['widget']['#title'] = t('Choose a topic for your message');
+  $form['actions']['preview']['#access'] = FALSE;
+
+}
+
+
+function shared_mail_alter(&$message)
+{
+
+  if (isset($message['id']) && $message['id'] == 'contact_page_mail') {
+    $contact_message = $message['params']['contact_message'];
+    $recipient = $contact_message->get('field_recipient')->getString();
+    $message['to'] = $recipient;
+  }
+
+}
+
+
+function shared_views_plugins_field_alter(array &$plugins)
+{
+
+  $plugins['custom']['class'] = 'Drupal\shared\Plugin\views\field\CustomToken';
+
+}
+
+function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
+
+  if ($form_id == 'views_form_association_persons_page_2') {
+    $views_send_to_name = 'nothing_pos_2';
+  } elseif (substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_') {
+    $views_send_to_name = 'designation_pos_3';
+    $form_id = 'views_form_amap_contracts_subscriptions_page_1_';
+  } else {
+  }
+
+  switch ($form_id) {
+    case 'views_form_amap_contracts_subscriptions_page_1_':
+    case 'views_form_association_persons_page_2':
+//       if (array_key_exists('from', $form) && !array_key_exists('message', $form)) {
+//       }
+
+      switch ($form_state->get('step')) {
+
+        case 'views_form_views_form':
+          break;
+
+        case 'views_send_config_form':
+          $person = \Drupal::entityTypeManager()->getStorage('person')->load(\Drupal::currentUser()->id());
+          $sNomPrenom = $person->label();
+          $sMail = $person->get('email')->getString();
+          $aFromName = array(
+            0 => '<Veuillez choisir une valeur dans la liste>',
+            1 => $sNomPrenom,
+            2 => 'Le Jardin de Poissy',
+            3 => 'L\'AMAP du Jardin de Poissy',
+            4 => 'Le Grenier à SEL'
+          );
+          $form['from']['views_send_from_name_bis'] = array(
+            '#attributes' => array(
+              'onchange' => 'hasChanged(this)'
+            ),
+            '#type' => 'select',
+            '#options' => $aFromName,
+            '#default_value' => 0,
+            '#required' => TRUE,
+            '#weight' => -99
+          );
+          $form['from']['views_send_from_name'] = array(
+            '#attributes' => array(
+              'id' => 'edit-views-send-from-name'
+            ),
+            '#type' => 'hidden',
+          );
+          $form['from']['views_send_from_mail'] = array(
+            '#attributes' => array(
+              'readonly' => 'readonly'
+            ),
+            '#type' => 'textfield',
+            '#default_value' => '',
+          );
+          $form['from']['views_send_from_mail_currentuser'] = array(
+            '#attributes' => array(
+              'id' => 'edit-views-send-from-mail-currentuser'
+            ),
+            '#type' => 'hidden',
+            '#maxlength' => 255,
+            '#default_value' => $sMail
+          );
+          $form['to']['#type'] = 'hidden';
+          $form['to']['views_send_to_name']['#default_value'] = $views_send_to_name;
+          $form['to']['views_send_to_mail']['#default_value'] = 'email_pos_4';
+          $form['mail']['views_send_subject'] = array(
+            '#type' => 'textfield',
+            '#maxlength' => 255,
+            '#title' => t('Subject'),
+            '#default_value' => '',
+            '#required' => TRUE,
+          );
+          $form['mail']['views_send_message'] = array(
+            '#type' => 'text_format',
+            '#format' => "plain_text",
+            '#rows' => 10,
+            '#title' => t('Message'),
+            '#default_value' => '',
+            '#required' => TRUE,
+          );
+          $form['mail']['token']['#type'] = 'hidden';
+          $form['additional']['#type'] = 'hidden';
+          $form['views_send_remember']['#type'] = 'hidden';
+          $form['#attached']['library'][] = 'shared/masscontact';
+          break;
+
+        case 'views_send_confirm_form':
+          $form['headers']['#type'] = 'hidden';
+          break;
+
+        default:
+      }
+      break;
+
+    default:
+
+  }
+
+}

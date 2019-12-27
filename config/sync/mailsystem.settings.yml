@@ -7,6 +7,17 @@ _core:
 langcode: fr
 modules:
   swiftmailer: {  }
+  association:
+    membershipfirstemail:
+      formatter: swiftmailer
+      sender: swiftmailer
+    membershipreminderemail:
+      formatter: swiftmailer
+      sender: swiftmailer
   user:
     none:
       formatter: php_mail
+  views_send:
+    direct:
+      formatter: mime_mail
+      sender: php_mail

@@ -1,0 +1,31 @@
+# -------------------------------------------------------------------
+association.membership_showMembership:
+  path: '/association/showMembership'
+  defaults:
+    _controller: '\Drupal\association\Controller\MembershipController::showMembership'
+    _title: 'Membership'
+  requirements:
+    _access: 'TRUE'
+
+association.membership_download:
+  path: '/association/membership/download/{member}'
+  defaults:
+    _controller: '\Drupal\association\Controller\MembershipController::download'
+  requirements:
+    _permission: 'renew membership'
+
+association.membership_settings:
+  path: '/association/membership/settings'
+  defaults:
+    _form: '\Drupal\association\Form\MembershipSettings'
+    _title: 'Membership'
+  requirements:
+    _permission: 'administer membership'
+
+# -------------------------------------------------------------------
+association.export_membersformaps:
+  path: '/association/export_membersformaps'
+  defaults:
+    _controller: '\Drupal\association\Controller\MembersAndPersonsController::export_membersformaps'
+  requirements:
+    _permission: 'add member entities'

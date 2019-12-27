@@ -1,0 +1,14 @@
+uuid: 150072d5-12d9-4d07-8513-463924862942
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.contact_for_member
+  module:
+    - user
+id: user_add_role_action.contact_for_member
+label: 'Ajouter le rôle Contact pour adhérent aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: contact_for_member

@@ -1,0 +1,16 @@
+{
+  "name": "drupal/association",
+  "type": "drupal-module",
+  "description": "To manage members and persons of the association",
+  "keywords": [
+    "Drupal"
+  ],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/association",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/association",
+    "source": "http://cgit.drupalcode.org/association"
+  },
+  "require": {}
+}

@@ -1,0 +1,13 @@
+# -------------------------------------------------------------------
+entity.member.add_form:
+  route_name: entity.member.add_form
+  title: 'Add Member'
+  appears_on:
+    - entity.member.collection
+
+# -------------------------------------------------------------------
+entity.person.add_form:
+  route_name: entity.person.add_form
+  title: 'Add Person'
+  appears_on:
+    - entity.person.collection

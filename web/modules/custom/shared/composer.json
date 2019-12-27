@@ -1,0 +1,14 @@
+{
+  "name": "drupal/shared",
+  "type": "drupal-module",
+  "description": "Functions shared with others modules",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/shared",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/shared",
+    "source": "http://cgit.drupalcode.org/shared"
+  },
+  "require": { }
+}

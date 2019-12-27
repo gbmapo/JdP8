@@ -1,0 +1,31 @@
+# -------------------------------------------------------------------
+# Member menu items definition
+# -------------------------------------------------------------------
+entity.member.collection:
+  title: 'Member list'
+  route_name: entity.member.collection
+  description: 'List Member entities'
+  parent: system.admin_structure
+  weight: 100
+
+member.admin.structure.settings:
+  title: 'Member settings'
+  description: 'Configure Member entities'
+  route_name: member.settings
+  parent: system.admin_structure
+
+# -------------------------------------------------------------------
+# Person menu items definition
+# -------------------------------------------------------------------
+entity.person.collection:
+  title: 'Person list'
+  route_name: entity.person.collection
+  description: 'List Person entities'
+  parent: system.admin_structure
+  weight: 100
+
+person.admin.structure.settings:
+  title: 'Person settings'
+  description: 'Configure Person entities'
+  route_name: person.settings
+  parent: system.admin_structure

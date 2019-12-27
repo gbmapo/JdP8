@@ -1,0 +1,13 @@
+langcode: fr
+status: true
+dependencies:
+  module:
+    - association
+  enforced:
+    module:
+      - association
+id: contact_for_member
+label: 'Contact pour adhérent'
+weight: -8
+is_admin: null
+permissions: {  }

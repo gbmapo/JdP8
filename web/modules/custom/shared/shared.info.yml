@@ -1,0 +1,5 @@
+name: 'Shared'
+type: module
+description: 'Functions shared with others modules'
+core: 8.x
+package: 'Association'

@@ -1,0 +1,15 @@
+uuid: b5f1ad00-2d49-43a4-bfb0-43ee94cefbdb
+langcode: fr
+status: true
+dependencies:
+  enforced:
+    module:
+      - association
+_core:
+  default_config_hash: Uy_eMKRWC2PbjWU-lg5PDJnUKDiKmsN28HawEVJ2JcQ
+id: contact_for_member
+label: 'Contact pour adhérent'
+weight: -8
+is_admin: null
+permissions:
+  - 'renew membership'

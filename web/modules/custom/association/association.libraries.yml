@@ -1,0 +1,29 @@
+LoM:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/ahover.css: {}
+  js:
+    js/LoM.js: {}
+  dependencies:
+    - core/jquery
+    - shared/shared
+
+LoP:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/ahover.css: {}
+  js:
+    js/LoP.js: {}
+  dependencies:
+    - core/jquery
+    - shared/shared
+
+handlemembership:
+  version: 1.x
+  header: true
+  js:
+    js/handlemembership.js: {}
