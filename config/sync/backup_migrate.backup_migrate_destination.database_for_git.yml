@@ -1,0 +1,10 @@
+uuid: c834d479-417f-4831-aa6b-2e9021995a02
+langcode: en
+status: true
+dependencies: {  }
+id: database_for_git
+label: 'Database for Git'
+type: Directory
+config:
+  name: 'Database for Git'
+  directory: ../config/database

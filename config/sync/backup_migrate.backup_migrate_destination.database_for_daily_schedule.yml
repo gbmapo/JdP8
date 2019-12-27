@@ -1,0 +1,10 @@
+uuid: 3abc63e6-5a0b-405a-a385-782b0652faf0
+langcode: en
+status: true
+dependencies: {  }
+id: database_for_daily_schedule
+label: 'Database for Daily Schedule'
+type: Directory
+config:
+  name: 'Database for Daily Schedule'
+  directory: 'private://backup_migrate'

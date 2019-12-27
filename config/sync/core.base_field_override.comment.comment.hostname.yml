@@ -1,0 +1,18 @@
+uuid: a527ec5c-6e91-4823-b25c-1b89dd07e715
+langcode: fr
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+id: comment.comment.hostname
+field_name: hostname
+entity_type: comment
+bundle: comment
+label: 'Nom d''hôte'
+description: 'Le nom de domaine de l''auteur du commentaire.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\comment\Entity\Comment::getDefaultHostname'
+settings: {  }
+field_type: string
