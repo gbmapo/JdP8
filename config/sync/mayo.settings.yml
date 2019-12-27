@@ -1,0 +1,90 @@
+features:
+  comment_user_picture: false
+  comment_user_verification: false
+  favicon: true
+  logo: true
+  name: true
+  node_user_picture: false
+  slogan: true
+shortcut_module_link: false
+base_font_size: 87.5%
+base_font_family: '1'
+base_custom_font_family: 'Helvetica, Arial, sans-serif'
+heading_font_family: '1'
+heading_custom_font_family: 'Helvetica, Arial, sans-serif'
+base_vmargin: 14px
+page_width: 90%
+page_margin: 10px
+layout_style: '1'
+round_corners: rc-0
+header_searchbox: 0
+header_fontsizer: 0
+header_border_width: 1px
+searchbox_size: '13'
+header_bg_file: ''
+header_bg_alignment: 'top left'
+header_watermark: '0'
+menubar_style: '1'
+menubar_background: 0
+menubar_bg_value: ''
+bigscreen_sidebar_layout_style: true
+bigscreen_sidebar_first_width: 25%
+bigscreen_sidebar_second_width: 25%
+dark_messages: 0
+global_default_layout: smalltouch-portrait
+iphone-land: false
+iphone-port: false
+ipad-port: false
+ipad-landscape: false
+standard-pc: true
+bigscreen_layout: three_col_grail
+bigscreen_page_unit: '%'
+bigscreen_sidebar_unit: '%'
+bigscreen_max_width_unit: px
+bigscreen_page_width: '90'
+bigscreen_sidebar_first: '25'
+bigscreen_sidebar_second: '25'
+bigscreen_set_max_width: true
+bigscreen_max_width: 1140
+bigscreen_media_query: 'only screen and (min-width:1025px)'
+tablet_landscape_layout: three_col_grail
+tablet_landscape_page_unit: '%'
+tablet_landscape_sidebar_unit: '%'
+tablet_landscape_page_width: '90'
+tablet_landscape_sidebar_first: '20'
+tablet_landscape_sidebar_second: '20'
+tablet_landscape_media_query: 'only screen and (min-width:769px) and (max-width:1024px)'
+tablet_portrait_layout: one_col_vert
+tablet_portrait_page_unit: '%'
+tablet_portrait_sidebar_unit: '%'
+tablet_portrait_page_width: '90'
+tablet_portrait_sidebar_first: '50'
+tablet_portrait_sidebar_second: '50'
+tablet_portrait_media_query: 'only screen and (min-width:481px) and (max-width:768px)'
+smalltouch_landscape_layout: one_col_vert
+smalltouch_landscape_page_unit: '%'
+smalltouch_landscape_sidebar_unit: '%'
+smalltouch_landscape_page_width: '100'
+smalltouch_landscape_sidebar_first: '50'
+smalltouch_landscape_sidebar_second: '50'
+smalltouch_landscape_media_query: 'only screen and (min-width:321px) and (max-width:480px)'
+smalltouch_portrait_layout: one_col_stack
+smalltouch_portrait_page_unit: '%'
+smalltouch_portrait_sidebar_unit: '%'
+smalltouch_portrait_page_width: '100'
+smalltouch_portrait_sidebar_first: '100'
+smalltouch_portrait_sidebar_second: '100'
+smalltouch_portrait_media_query: 'only screen and (max-width:320px)'
+global_default_layout_toggle: false
+global_files_path: public_files
+_core:
+  default_config_hash: tAvYdy-eEYdIyHtLi6r_fzinADh8QRKNnJRG4QC47ug
+langcode: fr
+theme_mayo_files_directory: 'public://mayo/mayo_files'
+logo:
+  use_default: false
+  path: 'public://images/logo.jpg'
+favicon:
+  use_default: true
+note: ''
+header_bg: ''

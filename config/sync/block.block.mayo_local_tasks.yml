@@ -1,0 +1,22 @@
+uuid: f359087a-1791-44eb-a2a5-d260a3f0c7d8
+langcode: fr
+status: true
+dependencies:
+  theme:
+    - mayo
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: mayo_local_tasks
+theme: mayo
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Onglets
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }
