@@ -382,6 +382,7 @@ display:
         header: false
         title: false
         access: false
+        empty: false
       row:
         type: fields
         options:
@@ -1222,6 +1223,20 @@ display:
           role:
             secretary: secretary
             administrator: administrator
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'Aucune personne à afficher !'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

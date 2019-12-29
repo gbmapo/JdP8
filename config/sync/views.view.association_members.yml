@@ -177,6 +177,7 @@ display:
         fields: false
         sorts: false
         access: false
+        empty: false
       style:
         type: table
         options:
@@ -1424,6 +1425,18 @@ display:
             secretary: secretary
             administrator: administrator
       display_description: ''
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'Aucun adhérent à afficher.'
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:

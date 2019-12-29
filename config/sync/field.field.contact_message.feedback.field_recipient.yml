@@ -1,0 +1,21 @@
+uuid: 370ced87-25cb-4af9-9385-787660b59f6c
+langcode: fr
+status: true
+dependencies:
+  config:
+    - contact.form.feedback
+    - field.storage.contact_message.field_recipient
+  module:
+    - options
+id: contact_message.feedback.field_recipient
+field_name: field_recipient
+entity_type: contact_message
+bundle: feedback
+label: Destinataire
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

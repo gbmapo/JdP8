@@ -1,0 +1,25 @@
+uuid: a9633e44-a0e2-4aa8-b6c0-20853d6d1630
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rank
+    - node.type.faq
+id: node.faq.field_rank
+field_name: field_rank
+entity_type: node
+bundle: faq
+label: Rank
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 999
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

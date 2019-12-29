@@ -1,0 +1,21 @@
+uuid: 62fc863b-843d-4b68-b422-75324a8302e1
+langcode: fr
+status: true
+dependencies:
+  module:
+    - contact
+    - options
+id: contact_message.field_recipient
+field_name: field_recipient
+entity_type: contact_message
+type: list_string
+settings:
+  allowed_values: {  }
+  allowed_values_function: shared_allowed_values_function
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

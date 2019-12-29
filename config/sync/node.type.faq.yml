@@ -1,0 +1,17 @@
+uuid: f9e383ff-ead7-42ae-92d7-4f07efca2d3d
+langcode: fr
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: FAQ
+type: faq
+description: 'Foire Aux Questions'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

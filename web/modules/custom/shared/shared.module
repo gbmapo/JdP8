@@ -39,6 +39,17 @@ function shared_theme()
   ];
 }
 
+
+/**
+ * How do I programmatically update the allowed values of a list field?
+ * You have to add a function to the field settings.
+ * This is not in the field UI, so you have to export the configuration and
+ * change the field in field.storage.node.field_recipient.yml
+ * type: list_string
+ * settings:
+ *   allowed_values: {  }
+ *   allowed_values_function: 'mymodule_allowed_values_function'
+ */
 function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable)
 {
 
