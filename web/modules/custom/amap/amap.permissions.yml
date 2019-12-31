@@ -1,0 +1,99 @@
+# ---------------------------------------------------------
+# Contract type -------------------------------------------
+# ---------------------------------------------------------
+add contract type entities:
+  title: 'Create new Contract type entities'
+
+administer contract type entities:
+  title: 'Administer Contract type entities'
+  description: 'Allow to access the administration form to configure Contract type entities.'
+  restrict access: true
+
+delete contract type entities:
+  title: 'Delete Contract type entities'
+
+edit contract type entities:
+  title: 'Edit Contract type entities'
+
+view contract type entities:
+  title: 'View Contract type entities'
+
+# ---------------------------------------------------------
+# Contract ------------------------------------------------
+# ---------------------------------------------------------
+add contract entities:
+  title: 'Create new Contract entities'
+
+administer contract entities:
+  title: 'Administer Contract entities'
+  description: 'Allow to access the administration form to configure Contract entities.'
+  restrict access: true
+
+delete contract entities:
+  title: 'Delete Contract entities'
+
+edit contract entities:
+  title: 'Edit Contract entities'
+
+view contract entities:
+  title: 'View Contract entities'
+
+# ---------------------------------------------------------
+# Contract subscription -----------------------------------
+# ---------------------------------------------------------
+add contract subscription entities:
+  title: 'Create new Contract subscription entities'
+
+administer contract subscription entities:
+  title: 'Administer Contract subscription entities'
+  description: 'Allow to access the administration form to configure Contract subscription entities.'
+  restrict access: true
+
+delete contract subscription entities:
+  title: 'Delete Contract subscription entities'
+
+edit contract subscription entities:
+  title: 'Edit Contract subscription entities'
+
+view contract subscription entities:
+  title: 'View Contract subscription entities'
+
+# ---------------------------------------------------------
+# Distribution date ---------------------------------------
+# ---------------------------------------------------------
+add distribution date entities:
+  title: 'Create new Distribution date entities'
+
+administer distribution date entities:
+  title: 'Administer Distribution date entities'
+  description: 'Allow to access the administration form to configure Distribution date entities.'
+  restrict access: true
+
+delete distribution date entities:
+  title: 'Delete Distribution date entities'
+
+edit distribution date entities:
+  title: 'Edit Distribution date entities'
+
+view distribution date entities:
+  title: 'View Distribution date entities'
+
+# ---------------------------------------------------------
+# Distribution inscription --------------------------------
+# ---------------------------------------------------------
+add distribution inscription entities:
+  title: 'Create new Distribution inscription entities'
+
+administer distribution inscription entities:
+  title: 'Administer Distribution inscription entities'
+  description: 'Allow to access the administration form to configure Distribution inscription entities.'
+  restrict access: true
+
+delete distribution inscription entities:
+  title: 'Delete Distribution inscription entities'
+
+edit distribution inscription entities:
+  title: 'Edit Distribution inscription entities'
+
+view distribution inscription entities:
+  title: 'View Distribution inscription entities'

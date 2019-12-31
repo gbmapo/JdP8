@@ -1,0 +1,22 @@
+{#
+/**
+ * @file distribution_inscription.html.twig
+ * Default theme implementation to present Distribution inscription data.
+ *
+ * This template is used when viewing Distribution inscription pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_distribution_inscription()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('distribution_inscription') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

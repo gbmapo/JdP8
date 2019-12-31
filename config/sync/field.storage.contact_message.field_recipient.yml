@@ -10,7 +10,43 @@ field_name: field_recipient
 entity_type: contact_message
 type: list_string
 settings:
-  allowed_values: {  }
+  allowed_values:
+    -
+      value: amap@lejardindepoissy.org
+      label: AMAP
+    -
+      value: 'Brioche <elodie.chorin@xyz.com>'
+      label: 'AMAP Brioche'
+    -
+      value: 'Champignons <helene.vidalis@xyz.com>'
+      label: 'AMAP Champignons'
+    -
+      value: 'Jus de pommes Hutrel <pommesduhutrel@xyz.com>'
+      label: 'AMAP Jus de pommes Hutrel'
+    -
+      value: 'Légumes <jeannine@xyz.com>'
+      label: 'AMAP Légumes'
+    -
+      value: 'Lentilles Épeautre <isabelletauty@xyz.com>'
+      label: 'AMAP Lentilles Épeautre'
+    -
+      value: 'Pommes de terre <jeannine@xyz.com>'
+      label: 'AMAP Pommes de terre'
+    -
+      value: 'Pommes-Poires <eric.falzon@free.fr>'
+      label: 'AMAP Pommes-Poires'
+    -
+      value: 'Porc <isabelletauty@xyz.com>'
+      label: 'AMAP Porc'
+    -
+      value: 'Produits laitiers (Vache) <eric.falzon@free.fr>'
+      label: 'AMAP Produits laitiers (Vache)'
+    -
+      value: 'Terrines <isabelletauty@xyz.com>'
+      label: 'AMAP Terrines'
+    -
+      value: 'Œufs <florence.loup@xyz.com>'
+      label: 'AMAP Œufs'
   allowed_values_function: shared_allowed_values_function
 module: options
 locked: false

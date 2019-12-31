@@ -1,0 +1,14 @@
+uuid: 978b6055-45b5-48e7-83f4-2920c03ce86d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_of_contract
+  module:
+    - user
+id: user_add_role_action.referent_of_contract
+label: 'Ajouter le rôle Référent de contrat aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: referent_of_contract

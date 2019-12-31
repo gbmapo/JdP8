@@ -1,0 +1,23 @@
+langcode: fr
+status: true
+dependencies:
+  module:
+    - amap
+  enforced:
+    module:
+      - amap
+id: referent_of_contract
+label: 'Référent de contrat'
+weight: -5
+is_admin: false
+permissions:
+  - 'add contract entities'
+  - 'add contract subscription entities'
+  - 'delete contract entities'
+  - 'delete contract subscription entities'
+  - 'edit contract entities'
+  - 'edit contract subscription entities'
+  - 'mass mailing with views_send'
+  - 'view contract entities'
+  - 'view contract subscription entities'
+  - 'view contract type entities'

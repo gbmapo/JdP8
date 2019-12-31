@@ -1,0 +1,14 @@
+uuid: 4343dcaf-ed74-410b-b600-d0545c7c4a20
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_of_distribution
+  module:
+    - user
+id: user_add_role_action.referent_of_distribution
+label: 'Ajouter le rôle Référent de distribution aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: referent_of_distribution

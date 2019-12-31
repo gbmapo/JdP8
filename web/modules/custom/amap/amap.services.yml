@@ -1,0 +1,4 @@
+services:
+  listenrolments:
+    class: Drupal\amap\ListEnrolments
+    arguments: []

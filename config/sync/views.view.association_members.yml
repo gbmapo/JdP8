@@ -1426,17 +1426,19 @@ display:
             administrator: administrator
       display_description: ''
       empty:
-        area_text_custom:
-          id: area_text_custom
+        area:
+          id: area
           table: views
-          field: area_text_custom
+          field: area
           relationship: none
           group_type: group
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'Aucun adhérent à afficher.'
-          plugin_id: text_custom
+          content:
+            value: 'Aucun adhérent à afficher.'
+            format: full_html
+          plugin_id: text
     cache_metadata:
       max-age: -1
       contexts:

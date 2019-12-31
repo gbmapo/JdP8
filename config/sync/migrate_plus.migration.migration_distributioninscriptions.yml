@@ -1,0 +1,32 @@
+uuid: 1681f228-ea70-4e63-87a1-bee5aa2579b0
+langcode: en
+status: true
+dependencies: {  }
+id: migration_distributioninscriptions
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: null
+label: 'Distribution Inscription migration from CSV'
+source:
+  plugin: csv
+  path: /Users/efalzon/Sites/JdP8/config/migration_DistributionInscriptions.csv
+  delimiter: ;
+  enclosure: '"'
+  header_row_count: 1
+  ids:
+    - id
+process:
+  id: id
+  distributiondate_id: ddate
+  amapien_id: pid
+  role: irole
+  owner_id:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:distribution_inscription'
+migration_dependencies:
+  required: {  }
+  optional: {  }

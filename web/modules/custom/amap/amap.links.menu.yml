@@ -1,0 +1,79 @@
+# ---------------------------------------------------------
+# Contract type menu items definition
+# ---------------------------------------------------------
+entity.contract_type.collection:
+  title: 'Contract type list'
+  route_name: entity.contract_type.collection
+  description: 'List Contract type entities'
+  parent: system.admin_structure
+  weight: 100
+
+contract_type.admin.structure.settings:
+  title: 'Contract type settings'
+  description: 'Configure Contract type entities'
+  route_name: contract_type.settings
+  parent: system.admin_structure
+
+# ---------------------------------------------------------
+# Contract menu items definition
+# ---------------------------------------------------------
+entity.contract.collection:
+  title: 'Contract list'
+  route_name: entity.contract.collection
+  description: 'List Contract entities'
+  parent: system.admin_structure
+  weight: 100
+
+contract.admin.structure.settings:
+  title: 'Contract settings'
+  description: 'Configure Contract entities'
+  route_name: contract.settings
+  parent: system.admin_structure
+
+# ---------------------------------------------------------
+# Contract subscription menu items definition
+# ---------------------------------------------------------
+entity.contract_subscription.collection:
+  title: 'Contract subscription list'
+  route_name: entity.contract_subscription.collection
+  description: 'List Contract subscription entities'
+  parent: system.admin_structure
+  weight: 100
+
+contract_subscription.admin.structure.settings:
+  title: 'Contract subscription settings'
+  description: 'Configure Contract subscription entities'
+  route_name: contract_subscription.settings
+  parent: system.admin_structure
+
+# ---------------------------------------------------------
+# Distribution date menu items definition
+# ---------------------------------------------------------
+entity.distribution_date.collection:
+  title: 'Distribution date list'
+  route_name: entity.distribution_date.collection
+  description: 'List Distribution date entities'
+  parent: system.admin_structure
+  weight: 100
+
+distribution_date.admin.structure.settings:
+  title: 'Distribution date settings'
+  description: 'Configure Distribution date entities'
+  route_name: distribution_date.settings
+  parent: system.admin_structure
+
+# ---------------------------------------------------------
+# Distribution inscription menu items definition
+# ---------------------------------------------------------
+entity.distribution_inscription.collection:
+  title: 'Distribution inscription list'
+  route_name: entity.distribution_inscription.collection
+  description: 'List Distribution inscription entities'
+  parent: system.admin_structure
+  weight: 100
+
+distribution_inscription.admin.structure.settings:
+  title: 'Distribution inscription settings'
+  description: 'Configure Distribution inscription entities'
+  route_name: distribution_inscription.settings
+  parent: system.admin_structure

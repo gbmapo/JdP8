@@ -1,0 +1,467 @@
+<?php
+
+/**
+ * @file
+ * Contains amap.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\user\Entity\User;
+use Drupal\views\ViewExecutable;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+const AMAP_AMAPIEN_PER_DISTRIBUTION = 4;
+const AMAP_RESERVE_PER_DISTRIBUTION = 1;
+const AMAP_REFERENT_PER_DISTRIBUTION = 1;
+
+function amap_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Main module help for the amap module.
+    case 'help.page.amap':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Pour handle l\'AMAP du Jardin de Poissy.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function amap_theme()
+{
+  return [
+    'amap' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+function amap_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE)
+{
+
+  \Drupal::moduleHandler()->loadInclude('amap', 'inc', 'amap.allowed.values');
+
+  if ($definition['entity_type'] == 'distribution_inscription') {
+    switch ($definition['field_name']) {
+      case 'role':
+        return amap_distribution_inscription_role();
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+function amap_link_alter(&$variables)
+{
+  if ($variables['text'] == 'Nos producteurs') {
+    $variables['options']['attributes'] = ['target' => '_blank'];
+  }
+}
+
+function amap_entity_insert(EntityInterface $entity)
+{
+  $mode = 'insert';
+  switch ($entity->getEntityType()->id()) {
+    case "contract":
+      _handleContractFiles($entity, $mode);
+      _setReferentOfContract($entity);
+      break;
+    case "contract_subscription":
+      _handleContractSubscriptionFiles($entity, $mode);
+      break;
+    default:
+  }
+}
+
+function amap_entity_update(EntityInterface $entity)
+{
+  $mode = 'update';
+  switch ($entity->getEntityType()->id()) {
+    case "contract":
+      _handleContractFiles($entity, $mode);
+      _setReferentOfContract($entity);
+      break;
+    case "contract_subscription":
+      _handleContractSubscriptionFiles($entity, $mode);
+      break;
+    default:
+  }
+}
+
+function amap_entity_delete(EntityInterface $entity)
+{
+  $mode = 'delete';
+  switch ($entity->getEntityType()->id()) {
+    case "contract":
+      $id = $entity->id();
+      $result = \Drupal::entityQuery('contract_subscription')
+        ->condition('contract_id', $id, '=')
+        ->execute();
+      foreach ($result as $key => $value) {
+        $entity = \Drupal::entityTypeManager()->getStorage('contract_subscription')->load($value);
+        $entity->delete();
+      }
+      _handleContractFiles($entity, $mode);
+      _setReferentOfContract($entity);
+      break;
+
+    case "contract_subscription":
+      _handleContractSubscriptionFiles($entity, $mode);
+      break;
+
+    default:
+  }
+}
+
+function amap_file_download($uri)
+{
+
+  $pathinfo = pathinfo($uri);
+  if ($pathinfo['extension'] != 'pdf') {
+    $sFileName = \Drupal::service('file_system')->basename($uri);
+    return array(
+      'Content-disposition' => 'attachment; filename="' . $sFileName . '"',
+    );
+  }
+
+}
+
+
+function amap_views_pre_view(ViewExecutable $view, $display_id, array &$args)
+{
+  switch ($view->id()) {
+    case 'amap_contracts_subscriptions':
+      switch ($display_id) {
+        case 'rest_export_1':
+          $sContract = $view->args['0'];
+          $oContract = \Drupal::entityTypeManager()->getStorage('contract')->load($sContract);
+          $sContractType = $oContract->get('type')->getString();
+          $aContractType = _detail_contract_type($sContractType);
+          $iNumberOfQuantities = $aContractType[1];
+          $aContractExportHeader = $aContractType[3];
+
+          $fields = $view->display_handler->getOption('fields');
+          $s01 = 'quantity01';
+          $sMin = 'quantity' . sprintf("%02d", $iNumberOfQuantities + 1);
+          $sMax = 'quantity' . sprintf("%02d", count($fields));
+          foreach ($fields as $key => $value) {
+            if ($key >= $s01 && $key < $sMin) {
+              // Remplacer le nom des champs quantity concernés par ce type de contrat
+              $i = (int)str_replace("quantity", "", $key);
+              $newLabel = $aContractExportHeader[$i - 1];
+              $view->setHandlerOption($view->current_display, 'field', $key, 'label', $newLabel);
+            } elseif ($key >= $sMin && $key <= $sMax) {
+              // Supprimer les champs quantity non concernés par ce type de contrat
+              $view->removeHandler($view->current_display, 'field', $value['field']);
+            } else {
+            }
+          }
+          break;
+        default:
+      }
+      break;
+    case 'amap_distributions':
+      switch ($display_id) {
+        case 'page_1':
+          _list_distribution_products($aProducts, $sMin, $sMax);
+          $fields = $view->display_handler->getOption('fields');
+          foreach ($fields as $key => $value) {
+            if ($key >= $sMin && $key <= $sMax) {
+              // Remplacer le nom des champs product
+              $i = (int)str_replace("product", "", $key);
+              $newLabel = $aProducts[$i];
+              $view->setHandlerOption($view->current_display, 'field', $key, 'label', $newLabel);
+            } elseif ($key > $sMax && $key <= 'product99') {
+              // Supprimer les champs product en trop
+              $view->removeHandler($view->current_display, 'field', $value['field']);
+            } else {
+            }
+          }
+          break;
+        default:
+      }
+      break;
+    default:
+  }
+}
+
+function amap_views_pre_render(ViewExecutable $view)
+{
+
+  switch ($view->id()) {
+    case 'amap_calendrier_des_distributions':
+      switch ($display_id) {
+        case 'page_1':
+          $view->element['#attached']['library'][] = 'amap/amap';
+          break;
+        default:
+      }
+      break;
+    default:
+  }
+
+}
+
+function _detail_contract_type($sContractType)
+{
+
+  $oContractType = \Drupal::entityTypeManager()->getStorage('contract_type')->load($sContractType);
+  $name = $oContractType->name->value;
+  $numberofquantities = $oContractType->numberofquantities->value;
+
+  $aContractTypeHeader = explode('£', $oContractType->get('formheader')->getString());
+  $iMax = count($aContractTypeHeader);
+  for ($i = 0; $i < $iMax; $i++) {
+    if (strpos($aContractTypeHeader[$i], '|')) {
+      $aTemp2 = explode('|', $aContractTypeHeader[$i]);
+      $aContractTypeHeader[$i] = array(
+        'data' => $aTemp2[0],
+        'colspan' => $aTemp2[1],
+      );
+    }
+  }
+  $aContractExportHeader = explode('£', $oContractType->get('exportheader')->getString());
+
+  return array($name, $numberofquantities, $aContractTypeHeader, $aContractExportHeader);
+
+}
+
+function _export_amap_CSV($view, $page, $contract)
+{
+
+  $view = \Drupal\views\Views::getView($view);
+  $view->setDisplay($page);
+  $path = $view->getPath();
+
+  $sFileName = str_replace("cid", $contract, $path);
+  $view->setArguments([$contract]);
+
+  $data = $view->preview($page)['#markup'];
+  file_unmanaged_save_data($data, 'private://contracts/' . $sFileName, FILE_EXISTS_REPLACE);
+
+}
+
+function _handleContractFiles(EntityInterface $entity, $mode)
+{
+  switch ($mode) {
+    case 'insert':
+    case 'update':
+      $sTemp = 'Contract-' . $entity->id() . '-' . str_replace("-", "", $entity->startdate->value);
+      $file1Id = $entity->get('file1')->target_id;
+      if ($file1Id != 0) {
+        $file1 = file_load($file1Id);
+        $uri1 = $file1->uri->value;
+        $filename1 = $file1->filename->value;
+        $pathinfo = pathinfo($uri1);
+        $filename1new = $sTemp . '.' . $pathinfo['extension'];
+        $uri1new = str_replace($pathinfo['basename'], $filename1new, $uri1);
+        $file1->setFilename($filename1new);
+        $file1->setFileUri($uri1new);
+        $file1->save();
+        rename($uri1, $uri1new);
+      }
+      $file2Id = $entity->get('file2')->target_id;
+      if ($file2Id != 0) {
+        $file2 = file_load($file2Id);
+        $uri2 = $file2->uri->value;
+        $filename2 = $file2->filename->value;
+        $pathinfo = pathinfo($uri2);
+        $filename2new = $sTemp . '.pdf';
+        $uri2new = str_replace($pathinfo['basename'], $filename2new, $uri2);
+        $file2->setFilename($filename2new);
+        $file2->setFileUri($uri2new);
+        $file2->save();
+        rename($uri2, $uri2new);
+      }
+      break;
+    case 'delete':
+      break;
+    default:
+  }
+
+}
+
+function _handleContractSubscriptionFiles(EntityInterface $entity, $mode)
+{
+  switch ($mode) {
+    case 'insert':
+    case 'update':
+      $fileId = $entity->get('file')->target_id;
+      if ($fileId != 0) {
+        $file = file_load($fileId);
+        $uri = $file->uri->value;
+        $filename = $file->filename->value;
+        $pathinfo = pathinfo($uri);
+        $directory = 'private://contracts/subscriptions/' . $entity->contract_id->target_id;
+        file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+        $filenamenew = $entity->member_id->target_id . '.' . $pathinfo['extension'];
+        $urinew = $directory . '/' . $filenamenew;
+        rename($uri, $urinew);
+//      $result = file_move($file, $urinew, FILE_EXISTS_REPLACE);
+        $file->setFilename($filenamenew);
+        $file->setFileUri($urinew);
+        $file->save();
+      }
+      break;
+    case 'delete':
+      break;
+    default:
+  }
+
+}
+
+function _setReferentOfContract(EntityInterface $entity)
+{
+
+  $ids = \Drupal::entityQuery('user')
+    ->condition('roles', 'referent_of_contract')
+    ->execute();
+  $users = User::loadMultiple($ids);
+  foreach ($users as $user) {
+    $user->removeRole('referent_of_contract');
+    $user->save();
+  }
+
+  $prefix = 'AMAP';
+  $fieldStorage = \Drupal\field\Entity\FieldStorageConfig::loadByName('contact_message', 'field_recipient');
+  $allowedValues = $fieldStorage->getSetting('allowed_values');
+  foreach ($allowedValues as $key => $value) {
+    if (strncmp($value, $prefix, strlen($prefix)) == 0) {
+      unset($allowedValues[$key]);
+    }
+  }
+  $allowedValues['amap@lejardindepoissy.org'] = 'AMAP';
+
+  $database = \Drupal::database();
+  $query = $database->select('contract', 'co');
+  $query->leftJoin('contract_type', 'ct', 'ct.id = co.type');
+  $query->leftJoin('users_field_data', 'us', 'us.uid = co.referent_id');
+  $query->fields('ct', ['displayedname']);
+  $query->fields('us', ['uid', 'mail']);
+  $query->orderBy('displayedname', 'ASC');
+  $query->distinct();
+  $results = $query->execute();
+  foreach ($results as $result) {
+    $user = User::load($result->uid);
+    $user->addRole('referent_of_contract');
+    $user->save();
+    $temp = $result->displayedname . ' <' . $result->mail . '>';
+    $allowedValues[$temp] = $prefix . ' ' . $result->displayedname;
+  }
+
+  $fieldStorage->setSetting('allowed_values', $allowedValues);
+  $fieldStorage->save();
+
+}
+
+function _list_distribution_products(&$aProducts, &$sMin, &$sMax)
+{
+  \Drupal::moduleHandler()->loadInclude('amap', 'inc', 'amap.allowed.values');
+  $aProducts = amap_distribution_products();
+  $sMin = 'product01';
+  $sMax = 'product' . sprintf("%02d", count($aProducts));
+}
+
+function amap_cron()
+{
+
+// ----------------------------------------------------------------------------
+// Envoi du courriel 'Rappel pour les étourdis'
+// ----------------------------------------------------------------------------
+  $dNextEmailForStupids = \Drupal::state()->get('amap.NextEmailForStupids', '');
+  $dToday = date('Y-m-d H:i:s');
+  if ($dToday > $dNextEmailForStupids) {
+    _sendEmailForStupids();
+  } else {
+    \Drupal::logger('amap')->info('email \'Rappel pour les étourdis\': nothing to do.');
+  }
+
+}
+
+function _sendEmailForStupids()
+{
+
+  $aD = array();
+  $aR = array();
+  $aX = array();
+  $sTo = "";
+
+  $sNextWednesday = strftime("%Y-%m-%d", strtotime("next Wednesday", strtotime("Yesterday")));
+  $database = \Drupal::database();
+  $query = $database->select('distribution_date', 'amdd');
+  $query->leftJoin('distribution_inscription', 'amdi', 'amdi.distributiondate_id = amdd.id');
+  $query->leftJoin('person', 'ap', 'ap.id = amdi.amapien_id');
+  $query->fields('amdd', ['id', 'distributiondate', 'numberofproducts'])
+    ->fields('amdi', ['id', 'distributiondate_id', 'amapien_id', 'role'])
+    ->fields('ap', ['id', 'lastname', 'firstname', 'cellphone', 'email'])
+    ->condition('numberofproducts', 0, '>')
+    ->condition('distributiondate', $sNextWednesday, '=')
+    ->orderBy('role', 'ASC')
+    ->orderBy('lastname', 'ASC')
+    ->orderBy('firstname', 'ASC');
+  $results = $query->execute();
+  foreach ($results as $key => $result) {
+    $sCellphone = $result->cellphone;
+    $sTemp = $result->firstname . " " . $result->lastname . " (" . $sCellphone;
+    switch ($result->role) {
+      case "D":
+        $aD[] = $sTemp . ")";
+        break;
+      case "R":
+        $aR[] = $sTemp . ")";
+        break;
+      case "X":
+        $aX[] = $sTemp . ")";
+        break;
+      default:
+    }
+    $sTo .= $result->email . ", ";
+  }
+  $sD = implode(", ", $aD);
+  $sR = implode(", ", $aR);
+  $sX = implode(", ", $aX);
+  setlocale(LC_TIME, "fr_FR.UTF-8");
+  $sNextWednesday = strftime("%A %d %B %Y", strtotime("next Wednesday", strtotime("Yesterday")));
+  $params = array($sNextWednesday, $sD, $sR, $sX);
+
+//                            MailManager::mail($module, $key,             $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
+  \Drupal::service('plugin.manager.mail')->mail('amap', 'emailforstupids', $sTo, 'fr', $params);
+
+  $sNextMonday = strftime("%Y-%m-%d %H:%M:%S", strtotime("next Monday"));
+  \Drupal::state()->set('amap.NextEmailForStupids', $sNextMonday);
+
+  \Drupal::logger('amap')->info('email \'Rappel pour les étourdis\' : sent.');
+}
+
+function amap_mail($key, &$message, $params)
+{
+
+  $sFrom = 'amap@lejardindepoissy.org';
+  $message['from'] = $sFrom;
+  $message['headers'] = array(
+    'Content-Type' => 'text/html',
+    'bcc' => $sFrom,
+    'From' => $sFrom,
+    'Sender' => $sFrom,
+    'Return-Path' => $sFrom,
+  );
+  switch ($key) {
+    case 'emailforstupids':
+      $message['subject'] = '[L\'AMAP du Jardin de Poissy] Distribution du ' . $params[0] . ' - Rappel pour les étourdis';
+      $sBody = "<b>" . $params[0] . "</b> :";
+      $sBody .= "<br>Sont charg&eacute;s de la <i>Distribution</i> : " . $params[1];
+      $sBody .= "<br><i>est Rempla&ccedil;ant</i> : " . $params[2];
+      $sBody .= "<br><i>est R&eacute;f&eacute;rent</i> : " . $params[3];
+      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
+      break;
+  }
+}
+

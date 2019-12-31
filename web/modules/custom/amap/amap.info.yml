@@ -1,0 +1,7 @@
+name: 'AMAP'
+type: module
+description: 'Pour gérer l''AMAP du Jardin de Poissy.'
+core: 8.x
+package: 'Association'
+dependencies:
+  - association

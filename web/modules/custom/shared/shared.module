@@ -55,9 +55,8 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 
   if ($definition->get('entity_type') == 'contact_message' && $definition->get('field_name') == 'field_recipient') {
     $allowedValues = $definition->getSetting('allowed_values');
-    if (count($allowedValues) == 0) {
-      $mail = \Drupal::config('system.site')->get('mail');
-      $allowedValues = [];
+    $mail = \Drupal::config('system.site')->get('mail');
+    if (!array_key_exists($mail, $allowedValues)) {
       $allowedValues[$mail] = 'Association';
     }
     return $allowedValues;

@@ -1,0 +1,14 @@
+uuid: 05f5f5c4-dbc1-4a83-b2fb-e5810d85aa67
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_of_distribution
+  module:
+    - user
+id: user_remove_role_action.referent_of_distribution
+label: 'Enlever le rôle Référent de distribution des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: referent_of_distribution

@@ -1,0 +1,50 @@
+table.sticky-enabled {
+    text-align: left;
+}
+
+table.sticky-header {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    BACKGROUND-COLOR: #F4FCE6;
+}
+
+tr:nth-child(odd) {
+    BACKGROUND-COLOR: #FFFFFF;
+}
+
+tr.distrib0 td {
+    BACKGROUND-COLOR: #FF0000 !important;
+}
+
+tr.distrib- {
+    display: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#subscriptions .form-number {
+    width: 40px;
+}
+
+td#subscriptions .form-number {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+table#calendarofdistributions {
+    text-align: center;
+}
+
+table#planningofdistributions {
+    text-align: left;
+}

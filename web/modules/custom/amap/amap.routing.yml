@@ -1,0 +1,55 @@
+# -------------------------------------------------------------------
+amap.contracts:
+  path: '/amap/showContracts'
+  defaults:
+    _controller: '\Drupal\amap\Controller\ContractsController::showContracts'
+    _title: 'Contracts'
+  requirements:
+    _access: 'TRUE'
+
+# -------------------------------------------------------------------
+amap.contract_subscription_table_form:
+  path: '/amap/contract/subscribe/{contract}'
+  defaults:
+    _form: '\Drupal\amap\Form\ContractSubscriptionTableForm'
+    _title: 'Enter subscriptions'
+  requirements:
+    _access: 'TRUE'
+
+# -------------------------------------------------------------------
+amap.export_subscriptions:
+  path: '/amap/contract/export/{contract}'
+  defaults:
+    _controller: '\Drupal\amap\Controller\ContractsController::export_subscriptions'
+    _title: 'Export Subscriptions'
+  requirements:
+    _permission: 'add contract subscription entities'
+
+# -------------------------------------------------------------------
+amap.distribution_date_table_form:
+  path: '/amap/editCalendar'
+  defaults:
+    _form: '\Drupal\amap\Form\DistributionDateTableForm'
+    _title: 'Update Calendar'
+  requirements:
+    _role: referent_of_contract
+
+# -------------------------------------------------------------------
+amap.distribution_inscription_many_form:
+  path: '/amap/signupForPlanningMany'
+  defaults:
+    _form: '\Drupal\amap\Form\DistributionInscriptionManyForm'
+    #   _title: 'Sign up for  Planning'
+    _title_callback: '\Drupal\amap\Controller\TitleController::titleMany'
+  requirements:
+    _permission: 'edit distribution inscription entities'
+
+# -------------------------------------------------------------------
+amap.distribution_inscription_one_form:
+  path: '/amap/signupForPlanningOne'
+  defaults:
+    _form: '\Drupal\amap\Form\DistributionInscriptionOneForm'
+    #   _title: 'Sign up for  Planning'
+    _title_callback: '\Drupal\amap\Controller\TitleController::titleOne'
+  requirements:
+    _permission: 'edit distribution inscription entities'

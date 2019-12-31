@@ -1,0 +1,29 @@
+entity.contract_type.add_form:
+  route_name: entity.contract_type.add_form
+  title: 'Add Contract type'
+  appears_on:
+    - entity.contract_type.collection
+
+entity.contract.add_form:
+  route_name: entity.contract.add_form
+  title: 'Add Contract'
+  appears_on:
+    - entity.contract.collection
+
+entity.contract_subscription.add_form:
+  route_name: entity.contract_subscription.add_form
+  title: 'Add Contract subscription'
+  appears_on:
+    - entity.contract_subscription.collection
+
+entity.distribution_date.add_form:
+  route_name: entity.distribution_date.add_form
+  title: 'Add Distribution date'
+  appears_on:
+    - entity.distribution_date.collection
+
+entity.distribution_inscription.add_form:
+  route_name: entity.distribution_inscription.add_form
+  title: 'Add Distribution inscription'
+  appears_on:
+    - entity.distribution_inscription.collection

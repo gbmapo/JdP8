@@ -1,0 +1,35 @@
+uuid: 9164995e-79cb-4e07-8e84-9daaf6ad0dfb
+langcode: en
+status: true
+dependencies: {  }
+id: migration_contracts
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: null
+label: 'Contract migration from CSV'
+source:
+  plugin: csv
+  path: /Users/efalzon/Sites/JdP8/config/migration_Contracts.csv
+  delimiter: ;
+  enclosure: '"'
+  header_row_count: 1
+  ids:
+    - id
+process:
+  id: id
+  type: type
+  name: name
+  startdate: startdate
+  enddate: enddate
+  referent_id: referent_id
+  isvisible: isvisible
+  owner_id:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:contract'
+migration_dependencies:
+  required: {  }
+  optional: {  }

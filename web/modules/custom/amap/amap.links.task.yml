@@ -1,0 +1,134 @@
+# ---------------------------------------------------------
+# Contract type routing definition
+# ---------------------------------------------------------
+contract_type.settings_tab:
+  route_name: contract_type.settings
+  title: 'Settings'
+  base_route: contract_type.settings
+
+entity.contract_type.canonical:
+  route_name: entity.contract_type.canonical
+  base_route: entity.contract_type.canonical
+  title: 'View'
+
+entity.contract_type.edit_form:
+  route_name: entity.contract_type.edit_form
+  base_route: entity.contract_type.canonical
+  title: 'Edit'
+
+entity.contract_type.delete_form:
+  route_name:  entity.contract_type.delete_form
+  base_route:  entity.contract_type.canonical
+  title: Delete
+  weight: 10
+
+# ---------------------------------------------------------
+# Contract routing definition
+# ---------------------------------------------------------
+contract.settings_tab:
+  route_name: contract.settings
+  title: 'Settings'
+  base_route: contract.settings
+
+entity.contract.canonical:
+  route_name: entity.contract.canonical
+  base_route: entity.contract.canonical
+  title: 'View'
+
+entity.contract.edit_form:
+  route_name: entity.contract.edit_form
+  base_route: entity.contract.canonical
+  title: 'Edit'
+
+entity.contract.delete_form:
+  route_name:  entity.contract.delete_form
+  base_route:  entity.contract.canonical
+  title: Delete
+  weight: 10
+
+# ---------------------------------------------------------
+# Contract subscription routing definition
+# ---------------------------------------------------------
+contract_subscription.settings_tab:
+  route_name: contract_subscription.settings
+  title: 'Settings'
+  base_route: contract_subscription.settings
+
+entity.contract_subscription.canonical:
+  route_name: entity.contract_subscription.canonical
+  base_route: entity.contract_subscription.canonical
+  title: 'View'
+
+entity.contract_subscription.edit_form:
+  route_name: entity.contract_subscription.edit_form
+  base_route: entity.contract_subscription.canonical
+  title: 'Edit'
+
+entity.contract_subscription.delete_form:
+  route_name:  entity.contract_subscription.delete_form
+  base_route:  entity.contract_subscription.canonical
+  title: Delete
+  weight: 10
+
+# ---------------------------------------------------------
+# Distribution date routing definition
+# ---------------------------------------------------------
+distribution_date.settings_tab:
+  route_name: distribution_date.settings
+  title: 'Settings'
+  base_route: distribution_date.settings
+
+entity.distribution_date.canonical:
+  route_name: entity.distribution_date.canonical
+  base_route: entity.distribution_date.canonical
+  title: 'View'
+
+entity.distribution_date.edit_form:
+  route_name: entity.distribution_date.edit_form
+  base_route: entity.distribution_date.canonical
+  title: 'Edit'
+
+entity.distribution_date.delete_form:
+  route_name:  entity.distribution_date.delete_form
+  base_route:  entity.distribution_date.canonical
+  title: Delete
+  weight: 10
+
+#amap.???: created by Views
+#  title: 'Calendrier des distributions'
+#  route_name: view.amap_distributions.page_1
+#  base_route: view.amap_distributions.page_1
+amap.distribution_date_table_form:
+  title: 'Update Calendar'
+  route_name: amap.distribution_date_table_form
+  base_route: view.amap_distributions.page_1
+  weight: 10
+amap.distribution_inscription_many_form:
+  title: 'Sign up for Planning'
+  route_name: amap.distribution_inscription_many_form
+  base_route: view.amap_distributions.page_1
+  weight: 20
+
+# ---------------------------------------------------------
+# Distribution inscription routing definition
+# ---------------------------------------------------------
+distribution_inscription.settings_tab:
+  route_name: distribution_inscription.settings
+  title: 'Settings'
+  base_route: distribution_inscription.settings
+
+entity.distribution_inscription.canonical:
+  route_name: entity.distribution_inscription.canonical
+  base_route: entity.distribution_inscription.canonical
+  title: 'View'
+
+entity.distribution_inscription.edit_form:
+  route_name: entity.distribution_inscription.edit_form
+  base_route: entity.distribution_inscription.canonical
+  title: 'Edit'
+
+entity.distribution_inscription.delete_form:
+  route_name:  entity.distribution_inscription.delete_form
+  base_route:  entity.distribution_inscription.canonical
+  title: Delete
+  weight: 10

@@ -1,0 +1,14 @@
+uuid: a6e55516-45ef-4f03-a908-e9399eb91860
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_of_contract
+  module:
+    - user
+id: user_remove_role_action.referent_of_contract
+label: 'Enlever le rôle Référent de contrat des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: referent_of_contract

@@ -1,0 +1,9 @@
+amap:
+  version: 1.x
+  css:
+    theme:
+      css/amap.css: {}
+  js:
+    js/amap.js: {}
+  dependencies:
+    - core/drupalSettings
