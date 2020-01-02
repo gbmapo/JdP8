@@ -1,0 +1,52 @@
+# -------------------------------------------------------------------
+add service category entities:
+  title: 'Create new Service category entities'
+
+administer service category entities:
+  title: 'Administer Service category entities'
+  description: 'Allow to access the administration form to configure Service category entities.'
+  restrict access: true
+
+delete service category entities:
+  title: 'Delete Service category entities'
+
+edit service category entities:
+  title: 'Edit Service category entities'
+
+view service category entities:
+  title: 'View Service category entities'
+
+# -------------------------------------------------------------------
+add service entities:
+  title: 'Create new Service entities'
+
+administer service entities:
+  title: 'Administer Service entities'
+  description: 'Allow to access the administration form to configure Service entities.'
+  restrict access: true
+
+delete service entities:
+  title: 'Delete Service entities'
+
+edit service entities:
+  title: 'Edit Service entities'
+
+view service entities:
+  title: 'View Service entities'
+# -------------------------------------------------------------------
+add exchange entities:
+  title: 'Create new Exchange entities'
+
+administer exchange entities:
+  title: 'Administer Exchange entities'
+  description: 'Allow to access the administration form to configure Exchange entities.'
+  restrict access: true
+
+delete exchange entities:
+  title: 'Delete Exchange entities'
+
+edit exchange entities:
+  title: 'Edit Exchange entities'
+
+view exchange entities:
+  title: 'View Exchange entities'

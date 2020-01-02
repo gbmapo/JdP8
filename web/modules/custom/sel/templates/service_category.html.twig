@@ -1,0 +1,22 @@
+{#
+/**
+ * @file service_category.html.twig
+ * Default theme implementation to present Service category data.
+ *
+ * This template is used when viewing Service category pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_service_category()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('service_category') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

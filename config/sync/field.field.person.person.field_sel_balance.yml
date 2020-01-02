@@ -1,0 +1,29 @@
+uuid: 9f3dac9e-e161-4525-bbd5-6a5ccafa58ec
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.person.field_sel_balance
+  enforced:
+    module:
+      - sel
+  module:
+    - association
+_core:
+  default_config_hash: 1-pGOgs1IAagdGFLH7zL2gN4JxcpISNCwIfSNooVk1U
+id: person.person.field_sel_balance
+field_name: field_sel_balance
+entity_type: person
+bundle: person
+label: Solde
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

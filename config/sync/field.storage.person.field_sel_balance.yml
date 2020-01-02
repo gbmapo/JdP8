@@ -1,0 +1,25 @@
+uuid: b61dda1c-3123-4dac-acac-02286da4ce29
+langcode: fr
+status: true
+dependencies:
+  enforced:
+    module:
+      - sel
+  module:
+    - association
+_core:
+  default_config_hash: 40FulPKD_iNHccNep3fkSLM2EKwbth8TZ5Fihzz9CpY
+id: person.field_sel_balance
+field_name: field_sel_balance
+entity_type: person
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

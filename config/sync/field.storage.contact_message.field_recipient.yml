@@ -47,6 +47,9 @@ settings:
     -
       value: 'Œufs <florence.loup@xyz.com>'
       label: 'AMAP Œufs'
+    -
+      value: sel@lejardindepoissy.org
+      label: SÉL
   allowed_values_function: shared_allowed_values_function
 module: options
 locked: false

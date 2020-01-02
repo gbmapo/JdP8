@@ -9,6 +9,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   color: 0
+  colorbox: 0
   comment: 0
   config: 0
   config_translation: 0
@@ -46,6 +47,7 @@ module:
   rdf: 0
   rest: 0
   search: 0
+  sel: 0
   serialization: 0
   shared: 0
   shortcut: 0

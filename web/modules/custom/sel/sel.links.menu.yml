@@ -1,0 +1,47 @@
+# -------------------------------------------------------------------
+# Service category menu items definition
+# -------------------------------------------------------------------
+entity.service_category.collection:
+  title: 'Service category list'
+  route_name: entity.service_category.collection
+  description: 'List Service category entities'
+  parent: system.admin_structure
+  weight: 100
+
+service_category.admin.structure.settings:
+  title: 'Service category settings'
+  description: 'Configure Service category entities'
+  route_name: service_category.settings
+  parent: system.admin_structure
+
+# -------------------------------------------------------------------
+# Service menu items definition
+# -------------------------------------------------------------------
+entity.service.collection:
+  title: 'Service list'
+  route_name: entity.service.collection
+  description: 'List Service entities'
+  parent: system.admin_structure
+  weight: 100
+
+service.admin.structure.settings:
+  title: 'Service settings'
+  description: 'Configure Service entities'
+  route_name: service.settings
+  parent: system.admin_structure
+
+# -------------------------------------------------------------------
+# Exchange menu items definition
+# -------------------------------------------------------------------
+entity.exchange.collection:
+  title: 'Exchange list'
+  route_name: entity.exchange.collection
+  description: 'List Exchange entities'
+  parent: system.admin_structure
+  weight: 100
+
+exchange.admin.structure.settings:
+  title: 'Exchange settings'
+  description: 'Configure Exchange entities'
+  route_name: exchange.settings
+  parent: system.admin_structure

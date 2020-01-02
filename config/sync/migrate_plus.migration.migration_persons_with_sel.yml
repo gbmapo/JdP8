@@ -27,6 +27,8 @@ process:
   isactive: isactive
   member_id: member_id
   user_id: user_id
+  field_sel_balance: balance
+  field_sel_isseliste: isseliste
   owner_id:
     plugin: default_value
     default_value: 1

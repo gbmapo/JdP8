@@ -1,0 +1,20 @@
+langcode: fr
+status: true
+dependencies:
+  enforced:
+    module:
+      - sel
+id: seliste
+label: SÉListe
+weight: -7
+is_admin: null
+permissions:
+  - 'add exchange entities'
+  - 'add service entities'
+  - 'delete exchange entities'
+  - 'delete service entities'
+  - 'edit exchange entities'
+  - 'edit service entities'
+  - 'view exchange entities'
+  - 'view service category entities'
+  - 'view service entities'

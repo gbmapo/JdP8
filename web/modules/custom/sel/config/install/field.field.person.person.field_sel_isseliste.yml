@@ -1,0 +1,26 @@
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.person.field_sel_isseliste
+  module:
+    - association
+  enforced:
+    module:
+      - sel
+id: person.person.field_sel_isseliste
+field_name: field_sel_isseliste
+entity_type: person
+bundle: person
+label: 'SÉListe ?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Oui
+  off_label: Non
+field_type: boolean

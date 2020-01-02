@@ -1,0 +1,8 @@
+div[class^="visibleforuser"] {
+    padding-top: 7px;
+    padding-bottom: 5px;
+}
+
+div[class$="visibleforuser"] {
+    display: none;
+}

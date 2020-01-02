@@ -1,0 +1,958 @@
+id;date;from_seliste_id;to_seliste_id;exchange;value
+1;2010-02-20;43;56;"Un couica";25
+2;2010-02-24;43;45;"Une boite à grenouilles";25
+3;2010-03-06;56;43;"Prêt d'une perceuse";15
+4;2010-03-09;42;43;"Prêt de livres de recettes";25
+5;2010-03-14;42;43;"Livre de cuisine";50
+6;2010-03-23;45;42;"Prêt de livres du docteur Kousmine";25
+7;2010-03-30;43;54;"Prêt de livre";15
+8;2010-04-03;43;56;"Prêt de livre (Là-bas si j'y suis de Daniel Mermet)";10
+9;2010-04-20;45;42;"Prêt d'un nettoyeur haute pression";150
+10;2010-05-02;94;56;"Véritable recette du Tiramisu";5
+11;2010-05-02;81;56;"Prêt de livre pour dessin";10
+31;2010-07-14;43;45;"Prêt de 3 livres";30
+30;2010-07-23;11;94;"Prêt de l'intégrale de 'Le cri du peuple' par Tardi et Vautrin (4 volumes)";20
+32;2010-07-03;74;58;"soins à chat pendant les vacances";50
+33;2010-07-24;43;45;"Coussin blanc écru";15
+34;2010-08-08;103;11;"Ramassage du courrier";5
+35;2010-08-11;103;11;"Ramassage du courrier";5
+36;2010-08-19;103;11;"Ramassage du courrier";5
+37;2010-09-05;43;45;"Coussin blanc écru (un deuxième)";15
+38;2010-07-01;124;43;"Pret decapeur thermique";75
+40;2010-10-17;41;80;"Copie de VHS vers un support DVD";25
+41;2010-10-18;80;136;"Présence pour réception de colis ";25
+42;2010-11-28;43;94;"coffret CD";130
+59;2010-11-28;103;45;"2 verres";10
+44;2010-11-28;43;59;"trepied photo";50
+45;2010-11-28;42;43;"chemise";10
+46;2010-11-28;42;59;"1 pull";15
+47;2010-11-28;81;94;" 2 livres";20
+48;2010-11-28;94;45;"Carnet de musique";15
+49;2010-11-28;81;94;" 3 revues Psychologie  ";20
+50;2010-11-28;59;42;"5 BD";75
+51;2010-11-28;59;45;"livres enfant";10
+52;2010-11-28;59;45;"1 matelas bébé";10
+53;2010-11-28;59;91;"livres";20
+54;2010-11-28;59;58;"rollers enfant";20
+55;2010-11-28;59;87;"labo photo";50
+56;2010-11-28;45;150;"1 bidon 5 litres vide";5
+57;2010-11-26;45;42;"Cours de couture";25
+58;2010-11-28;11;150;"Prêt du tome 1 de 'Les passagers du vent' par François Bourgeon";5
+60;2010-11-28;41;87;"Puzzle Franklin";10
+61;2010-11-28;87;58;"Pyjama enfant";10
+62;2010-11-28;87;45;"Assiettes";5
+63;2010-11-28;41;54;"Méthode de langue";25
+64;2010-11-30;42;45;"vêtements";160
+65;2010-11-30;42;41;"vêtements";25
+66;2010-12-01;42;121;"vêtements";60
+68;2010-11-28;91;45;"pot à fleur";5
+69;2010-11-28;91;42;"2 livres";10
+70;2010-11-28;91;59;"2 bouées de plongée";15
+71;2011-01-05;103;45;"VERRES  A VIN";20
+72;2010-11-28;11;90;"Switch réseau";150
+73;2011-01-12;11;150;"Prêt des tomes 2 à 7 de 'Les passagers du vent' par François Bourgeon";30
+74;2011-03-19;45;42;"Prêt d'un nettoyeur haute pression";125
+75;2011-06-10;11;94;"Réparation du PC de Maria";100
+76;2011-08-23;103;11;"Ramassage du courrier  4 fois";20
+77;2011-08-23;103;45;"Arrosage du jardin 4 fois";40
+78;2011-12-04;194;45;"Prêt de CD";25
+80;2012-01-01;11;42;"Aide à installation HIFI";100
+81;2012-01-01;42;11;"Invitation à déjeuner";100
+82;2012-01-19;157;11;"Références peintre en batiment";15
+83;2012-01-20;80;11;"Références peintre en batiment";15
+84;2012-02-04;48;11;"Aide au changement de roue sur ma remorque porte-bateau";60
+85;2012-02-23;43;94;"aide installation d'une imprimante";5
+86;2012-03-21;11;56;"Impression en urgence";50
+87;2012-04-07;11;70;"Prêt du tome 1 de 'Golden City' - Pecqueur, Malfin et Schelle";5
+88;2012-04-07;11;56;"Prêt du tome 1 de 'Le cri du peuple' par Tardi et Vautrin";5
+89;2012-04-07;11;56;"Prêt de 'The Look Of Love' - Diana Krall";10
+90;2012-04-07;11;70;"Prêt de 'Rencontre du troisième type' - Steven Spielberg";15
+91;2012-04-07;11;87;"Prêt de 'eXistenZ' - David Cronenberg";15
+92;2012-04-07;11;87;"Prêt de 'Erin Brockovich' - Steven Soderbergh";15
+93;2012-04-07;11;87;"Prêt de 'Hyperion' - Dan Simmons";15
+94;2012-04-07;11;70;"Prêt de 'Memento' - Christopher Nolan";15
+95;2012-04-07;94;11;"Prêt de 'Le lièvre de Vatanen' - Arto Paasilinna";15
+96;2012-04-07;82;45;"Prêt de 'Noël Chants traditionnels'";10
+97;2012-04-07;81;45;"Prêt de 'Courrier du corps' - Thérèse Bertherat et Carol Bernstein";10
+98;2012-04-07;70;45;"Prêt de 'XX1' - N° 1 Hiver 2008";10
+104;2012-04-07;47;82;"Prêt L'alimentation de la troisième médecine";10
+103;2012-04-07;82;217;"Vente Raconte moi les dieux de l'Olympe";25
+101;2012-04-07;82;47;"Prêt Le sabotage amoureux de Nathalie Nothomb";10
+102;2012-04-07;82;87;"Vente Distraire les enfants par Ferrette";5
+116;2012-04-08;43;81;"Prêt CD Gospel";10
+117;2012-04-08;81;94;"3 Cours de yoga";90
+113;2012-04-07;43;82;"Prêt CD Lambaréné";10
+120;2012-04-08;43;70;"Prêt livres: "Chroniques de St Francisco"";10
+119;2012-04-08;81;120;"3 Cours de yoga";90
+121;2012-04-08;151;70;"prêt livre:"24 H de la vie d'une femme"Stephan Zveig";10
+122;2012-04-08;43;70;"prêt BD:"SOS Bonheur"de Griffo et Van Hamme";10
+123;2012-04-08;94;70;"prêt DVD:trilogie "Le seigneur des anneaux"";30
+124;2012-04-08;121;70;"Prêt livre :"Mange ta soupe d'abord"";10
+125;2012-04-08;179;70;"Prêt livres:"La cuisine saine des 4 saisons"Les desserts sains des 4 saisons"Le plat unique des 4 saisons"les céréales au menu"";40
+126;2012-04-07;56;43;"Prêt d'un essai de Bourdieu";10
+127;2012-04-19;11;70;"Prêt des tomes 2 à 8 de 'Golden City' - Pecqueur, Malfin et Schelle";35
+128;2012-04-21;87;43;"Prêt d'une perceuse";10
+129;2012-05-01;121;157;"Prêt du livre "Mange ta soupe d'abord"";10
+130;2012-05-02;43;70;"Prêt 2 tomes Chroniques de SF";20
+132;2012-05-04;178;81;"prêt de KAPLAS  ";50
+133;2012-05-04;120;81;"prêt de legos";50
+134;2012-05-04;179;81;"prêt de DUPLOS";50
+135;2012-05-31;124;42;"prêt de DVD";10
+136;2012-05-31;42;204;"livraison du panier de l'amap à domicile au mois de juin";75
+137;2012-05-31;204;42;"cours de tricot";75
+138;2012-06-12;124;210;"série DVD sur ecoute";10
+139;2012-06-12;210;124;"serie DVD mad men 4";10
+140;2012-06-12;94;80;"garde d'enfants";540
+141;2012-07-10;214;42;"rhubarbe";15
+142;2012-07-18;11;124;"Prêt de 'eXistenZ' - David Cronenberg";15
+143;2012-07-21;11;180;"Prêt d'une échelle";150
+144;2012-07-25;90;87;"1 Pain bio";25
+147;2012-08-18;103;11;"3 arrosages et ramassages de courrier";30
+148;2012-08-21;94;43;"Nourrissage de chat (6x)";60
+149;2012-08-27;124;42;"pret de DVD sur écoute";10
+150;2012-08-27;42;124;"prêt d'une machine à  faire les pâtes";10
+151;2012-08-27;204;42;"aide en tricot";75
+152;2012-08-27;42;214;"prise du panier";15
+153;2012-08-27;124;42;"prêt de DVD mad men saison 3";10
+154;2012-09-13;124;210;"pret DVD";10
+155;2012-09-13;210;124;"pret DVD";10
+156;2012-08-07;70;179;"Prêt de 2 romans "le liève de vatanen" et "les déferlantes"";20
+157;2012-09-25;124;210;"Prêt minisérie Mildred Pierce";10
+158;2012-09-09;210;42;"Prêt série Mad M'en saison 4";10
+159;2012-09-16;179;11;"Prêt d'une remorque";500
+160;2012-10-24;43;124;"pret jeu de tarot";5
+161;2012-10-28;210;42;"prêt de engrenage saison 3";10
+162;2012-11-08;42;43;"don de noix";50
+163;2012-11-13;179;94;"jeux de société pour enfants";25
+164;2012-11-25;87;90;"Jeux DS";50
+165;2012-12-05;120;94;"branches pour réaliser un arbre de Noël";5
+166;2012-12-05;81;94;"terre pour planter arbre de Noël";5
+168;2012-11-24;78;81;"ELAGAGE  DE  DEUX  TILLEULS";90
+169;2013-01-05;94;179;"Jeux "Croque Carottes"";10
+170;2013-01-28;43;245;"Remplacement d'une chasse  d'eau.";60
+171;2013-01-30;80;94;"aide pour accrocher des tableaux";300
+172;2013-02-13;253;11;"Prêt de 3 BD (Blake et Mortimer)";15
+173;2013-02-28;124;70;"un dvd prété";10
+174;2013-02-28;124;42;"un dvd preté";10
+176;2013-03-16;179;94;"prêt de jeux societe enfants";25
+177;2013-03-16;11;124;"Prêt des tomes 1 à 5 de 'Les tours de 'Bois-Maury' par Hermann";25
+178;2013-03-22;81;103;"Furet";10
+179;2013-03-28;179;81;"Don d'une poussette canne";40
+180;2013-04-06;11;253;"Prêt de l'intégrale des Mondes d'Aldébaran de Leo (Aldébaran, Bételgeuse, Antarès, Survivants - Anomalies quantiques)";80
+181;2013-04-10;81;179;"Garde d'enfant";90
+182;2013-04-29;81;94;"travaux couture";60
+183;2013-05-06;81;120;"accompagnement à Roissy";180
+184;2013-05-12;81;120;"couture";120
+185;2013-05-16;42;124;"récupération et livraison du panier";10
+186;2013-05-16;42;124;"don de deux tuniques";70
+187;2013-05-25;81;103;"plante";5
+188;2013-05-25;179;103;"plante";5
+189;2013-05-25;87;45;"Livre Avions en origami";5
+190;2013-05-25;87;81;"BD l'Afrique de Zigomar";10
+191;2013-05-25;87;43;"DVD la vie des autres";10
+192;2013-05-25;45;87;"Sweat shirt noir à capuche";5
+193;2013-05-25;81;87;"Livre sur la science";10
+194;2013-05-25;81;87;"Sciences et vie";5
+195;2013-05-25;81;87;"Livre : fabrication du papier";5
+196;2013-05-25;43;81;"pret CD 2 titre";5
+197;2013-05-25;245;43;"Pret DVD";10
+199;2013-05-25;103;70;"2 paniers osier";10
+200;2013-04-25;94;11;"Transport à l'aéroport Charles de Gaulle";120
+201;2013-05-25;263;45;"Prêt de « Just Kids » de Patti Smith";5
+202;2013-05-25;45;81;"Quatre T-shirts";20
+203;2013-05-25;45;81;"Une plante";5
+204;2013-05-25;81;45;"Un plant de sauge et un plant d'aneth";10
+205;2013-05-25;179;45;"Un plant de  mûrier";5
+206;2012-11-30;94;45;"Prêt de ciseaux à cranter";5
+207;2013-05-20;103;11;"Ramassage du courrier pendant nos vacances";20
+208;2013-05-29;245;210;"Rédaction CV et lettres motivation";100
+209;2013-05-30;70;179;"Livre de recettes "Je cuisine les fanes"";10
+210;2013-06-02;124;210;"Pret DVD série downton abbey";10
+211;2013-06-02;124;42;"Pret DVD serie game of thrones";10
+212;2013-06-02;124;70;"pret DVD série Trémé 2";10
+213;2013-06-07;124;103;"reception d'un colis";10
+214;2013-06-07;124;259;"prise de panier";10
+215;2013-05-25;70;245;"Prêt livre "Suskvan Island"";10
+216;2013-05-25;70;245;"Prêt livre "Le cercle des amateurs d'épluchures de patates"";10
+217;2013-05-25;70;81;"Prêt revue XXI n°18";10
+218;2013-05-25;245;70;"prêt livre "Corps et âme" de Frank Conroy";10
+219;2013-05-25;245;70;"Prêt livre "Le jeu de l'ange" de Carlos Ruiz Zafon";10
+220;2013-06-09;120;90;"Garde d'enfants";90
+221;2013-06-09;90;81;"Prêt Livres enfants";10
+222;2013-06-16;210;42;"prêt de 5 saisons de séries (Dexter et Revenants)";50
+223;2013-06-16;210;70;"initiation à la marche nordique";10
+224;2013-06-26;124;179;"pret dvd game of thrones 1";10
+225;2013-06-26;124;42;"pret dvd breaking bad 1";10
+226;2013-05-25;217;263;"Plante Aloe Vera";10
+227;2013-07-10;42;90;"donne un lit pin massif 90X190 avec tiroir en dessous";250
+228;2013-07-15;90;120;"oeufs";12
+229;2013-07-25;90;74;"Panier AMAP";30
+230;2013-08-05;124;42;"2 series DVD boss/bbad2";20
+231;2013-08-06;43;124;"pret livre";10
+232;2013-04-21;210;11;"Garde de notre chien Nestor";440
+233;2013-05-20;11;210;"3 paniers (légumes, pain, œufs)";440
+234;2013-06-16;210;11;"Garde de notre chien Nestor";180
+235;2013-08-14;124;179;"prêt dvd games of thrones 2";10
+236;2013-08-29;84;245;"Prêt perforateur";30
+237;2013-08-30;81;43;"ourlets pantalon";60
+238;2013-09-01;124;82;"pret décapeuse";25
+239;2013-09-01;124;259;"prise de panier";10
+240;2013-09-22;43;45;"Don meuble casier";20
+241;2013-09-23;42;81;"prêt d'un portant";20
+242;2013-09-29;259;194;"Don d'un demi-panier du 2 et du 9 octobre";30
+243;2013-09-29;210;42;"prêt de la saison 5 de Mad Men et de la saison 1 de The wire";20
+244;2013-09-29;42;210;"prêt du Hors-Sèrie Le Monde spécial Séries";10
+245;2013-09-29;43;179;"Prêt jeu Tantrix";10
+246;2013-09-29;120;179;"Prêt jeu Hanabi";10
+248;2013-10-26;245;148;"Atelier cuisine";36
+249;2013-10-26;245;43;"atelier cuisine";36
+250;2013-10-26;245;94;"atelier cuisine";36
+251;2013-10-28;120;245;"Atelier cuisine";36
+252;2013-10-28;245;120;"cuisine";72
+253;2013-10-29;120;78;"jardinage";90
+254;2013-10-29;42;88;"don d'une étagère billy";50
+255;2013-10-29;42;81;"don d'un VTC femme";80
+256;2013-10-30;282;94;"aide à démènagement frigo";90
+257;2013-10-30;42;245;"Don vélo homme";80
+258;2013-11-01;59;42;" cours d'allemand (2h)";120
+259;2013-11-02;59;42;"cours d'allemand 1h";60
+260;2013-11-06;194;79;"Prêt d'un Vaporetto";25
+261;2013-11-14;81;179;"Prêt livre enfant";10
+262;2013-11-15;81;179;"Garde d'enfant";150
+263;2013-11-23;124;177;"Prêt de cartons";10
+264;2013-11-23;59;42;"cours d'allemand 1/2 heure";30
+265;2013-11-20;276;262;"revue Alternatives Economiques";5
+266;2013-11-23;45;43;"Atelier deco Noel";10
+267;2013-11-26;120;43;"Atelier deco Noel";10
+268;2013-11-26;81;43;"Atelier deco Noel";10
+269;2013-11-29;120;94;"atelier Noël + prêt d'un diable";15
+270;2013-11-29;81;94;"atelier déco noël";10
+271;2013-11-29;45;94;"atelier déco noël";10
+275;2013-11-30;56;209;"dépannage imprimante";60
+273;2013-11-30;56;54;"don d'un velo enfant";50
+276;2013-12-01;45;103;"atelier deco noel";10
+277;2013-12-01;81;103;"Atelier deco noel";10
+278;2013-12-01;120;103;"Atelier deco noel";10
+279;2013-12-04;177;45;"Don d'une lampe de luminothérapie";30
+280;2013-12-05;94;120;"Don de Chapeau !";30
+281;2013-12-07;226;262;"Initiation au logiciel PAO Scribus pour créer flyer";60
+282;2013-11-13;284;287;"prêt d'un portant pour vêtements";50
+283;2013-11-28;81;87;"Garde d'enfants";60
+284;2013-10-26;245;220;"cours de cuisine ";36
+285;2013-12-19;80;94;"prêt d'une valise ";60
+286;2013-12-22;287;284;"modification de manches sur corsage (couture)";20
+287;2013-12-23;287;82;"prêt de verrines";30
+288;2014-01-05;90;120;"Don de 1/2 canapé";100
+289;2014-01-05;90;78;"Don de 1/2 canapé";100
+290;2014-01-09;284;287;"pret d'un chauffage d'appoint";10
+291;2014-01-09;87;82;"Migration de site internet";120
+292;2014-01-09;124;148;"Prêt de BD";5
+293;2013-11-29;45;70;"atelier déco Noêl";10
+294;2013-11-29;120;70;"atelier déco Noêl";10
+295;2013-11-29;81;70;"atelier déco Noêl";10
+296;2014-01-13;59;284;"traduction d'un texte pour un site internet";15
+297;2014-01-18;59;42;"cours d'allemand (1h15)";75
+298;2013-11-29;120;59;"atelier déco noël";15
+299;2013-11-29;81;59;"atelier déco noël";15
+300;2013-11-30;139;79;"don de cartons de déménagement toutes tailles et papier emballage";90
+301;2013-11-29;45;73;"atelier déco noel";10
+302;2014-01-11;74;256;"montage bibliothèques";120
+303;2014-01-29;47;284;"rebouchage fissure";80
+304;2014-02-02;42;59;"aide aux devoirs";80
+305;2014-01-25;11;263;"Prêt d'une visseuse/dévisseuse";15
+306;2014-02-05;81;287;"Prêt de chauffage";10
+307;2014-01-31;59;42;"cours d'allemand";90
+308;2014-02-07;59;42;"cours d'allemand";90
+309;2014-02-08;124;148;"3 tomes bd";10
+310;2014-02-12;42;59;"aide aux devoirs";50
+311;2014-02-15;47;259;"Apprentissage du filage de la laine";180
+312;2014-02-21;124;42;"pret 2 série dvd";20
+313;2014-02-21;42;124;"pret livres de cuisine";20
+314;2014-02-22;220;94;"initiation au massage de pieds";13
+315;2014-02-22;81;94;"unitiation yoga";13
+316;2014-02-22;220;287;"massage des pieds";13
+317;2014-02-22;81;287;"initiation au yoga";13
+318;2014-02-22;81;103;"initiation au yoga";13
+319;2014-02-22;220;43;"Initiation Massage des pieds";13
+320;2014-02-23;81;43;"Initiation au yoga";13
+321;2014-02-26;276;287;"pain complet";15
+322;2014-02-28;103;124;"porte vélo";25
+323;2014-02-28;43;124;"don porte velo";25
+325;2014-03-01;47;81;"siège auto";60
+326;2014-02-15;59;42;"cours d'allemand";60
+327;2013-11-23;45;11;"Atelier décorations de Noël";10
+328;2013-11-23;81;11;"Atelier décorations de Noël";10
+329;2014-02-22;220;45;"Massage";13
+330;2014-02-22;81;45;"Yoga";13
+331;2014-01-25;263;45;"Prêt revue";10
+332;2014-03-09;180;179;"Prêt d'une voiture";100
+339;2014-03-10;124;148;"4 tomes bd";10
+340;2014-03-17;284;239;"co_voiturage";10
+341;2014-02-02;94;81;"chapeau de fourrure";20
+388;2014-04-19;94;43;"Pret magazine Kaizen";5
+343;2014-03-04;78;81;"coupe d'arbres";120
+625;2016-04-22;124;59;"garde maya ";50
+345;2014-03-22;210;42;"prêt de 6 saisons de séries";60
+346;2014-03-25;81;179;"Accueil et accompagnement à l'école";40
+347;2014-03-26;81;220;"cours YOGA";30
+349;2014-03-25;59;56;"aide à mise en page";60
+350;2014-03-29;151;45;"2 livres enfants";4
+351;2014-03-29;217;45;"T-shirt noir Domios";5
+352;2014-03-29;217;90;"T-shirt gris";5
+353;2014-03-29;90;84;"Jeu enfant (Cube)";30
+354;2014-03-30;90;70;"ballon tissu ABC pour bébé";10
+355;2014-03-30;90;43;"1/2 Jeu SpacePoker";10
+356;2014-03-30;90;103;"1/2 Jeu SpacePoker";10
+357;2014-03-30;59;90;"Jeu labyrinthe";10
+358;2014-03-30;59;90;"Jeu corps humain";10
+359;2014-03-30;45;90;"Pied Laurier";20
+360;2014-03-30;45;90;"2 Pousses jasmin d'hiver";20
+361;2014-03-29;45;59;"violettes";30
+362;2014-03-30;209;90;"T shirt enfant";5
+363;2014-03-30;120;90;"BD titeuf";5
+364;2014-03-29;45;103;"magnifique plante vivace";5
+365;2014-03-30;284;103;"framboisier";5
+366;2014-03-30;43;245;"pret 3 livre";15
+367;2014-03-30;43;209;"pret cd ";5
+368;2014-03-30;284;43;"framboisier";5
+369;2014-03-30;45;43;"plante vivace";5
+370;2014-03-29;45;70;"Grand plant de framboisier";25
+371;2014-03-29;45;70;"Plant de violettes";10
+372;2014-03-29;59;45;"Jeu de Memory";10
+375;2014-03-30;45;74;"plantes";30
+376;2014-03-30;120;78;"Plante";5
+377;2014-03-30;120;78;"erreur";5
+378;2014-03-30;45;120;"plante";5
+379;2014-03-30;94;43;"livre";15
+380;2014-03-29;11;90;"Prêt du DVD 'Minority Report'";15
+381;2014-03-31;45;284;"don de plante";10
+384;2014-04-07;282;287;"Couture sur rideaux";20
+383;2014-04-07;276;209;"don salopette ski ado";25
+385;2014-04-07;287;282;"Couture sur rideaux";40
+401;2014-05-10;81;287;"offre de pousses d'escholtzias";10
+389;2014-03-30;45;209;"Jasmin";10
+390;2014-03-30;45;151;"Muguet";10
+391;2014-03-30;45;210;"Menthe et laurier";20
+392;2014-04-16;180;11;"Références maçon";15
+393;2014-04-25;42;56;"cours";262
+394;2014-04-28;59;209;"prêt d'un livre";10
+398;2014-03-30;59;245;"don d'un livre";10
+397;2014-05-03;56;78;"aide informatique";200
+403;2014-05-14;90;239;"offre de pousses d'Althéa";10
+402;2014-05-14;81;90;"offre de pousses d'escholtzias";10
+404;2014-05-17;124;179;"pret game of thrones 3";10
+405;2014-05-17;124;148;"pret 4 tomes BD";10
+406;2014-06-11;239;59;"Offre pain special bio (distribution du mercredi à la Maison quartier du Clos d'Arcy) : 11 et 18 juin";40
+407;2014-05-22;81;239;"offre de pousses d'escholtzias et de delphiniums";20
+408;2014-06-25;239;81;"Offre pain spécial bio (distribution Maison quartier Clos d'Arcy) le 25 juin";20
+409;2014-05-23;284;81;"prêt d'une trottinette   ou d'un vélo 3 ans pour la période 28 juin au  5 juillet";20
+626;2016-04-26;179;94;"prêt de jeux enfants";15
+627;2016-05-01;81;348;"un saturateur d'humidité";15
+411;2014-05-23;120;81;"prêt d'une tondeuse à gazon";300
+412;2014-04-22;84;245;"prêt de perforateur ";30
+413;2014-05-27;320;94;"visite historique de Poissy";10
+414;2014-06-01;239;82;"500g de pleurotes";20
+415;2014-06-04;94;131;"Livre";25
+416;2014-06-18;179;124;"pret d'une paire de sacoches à vélo pour un voyage de 10 jours";80
+417;2014-06-26;253;226;"Prêt vidéo projecteur";10
+418;2014-06-18;318;87;"Pain + 1/2 panier légumes";30
+419;2014-06-13;282;11;"Transport à l'aéroport Charles de Gaulle";120
+420;2014-07-07;94;259;"prêt 3 magazines Kaizen";15
+421;2014-07-08;124;88;"pret 6 cd livres audio";20
+422;2014-07-10;124;59;"prise en charge du hamster pendant les vacances";150
+423;2014-05-24;320;11;"Visite commentée de Poissy";10
+424;2014-05-24;320;45;"Visite commentée de Poissy";10
+425;2014-07-13;320;103;"Visite de poissy";10
+426;2014-05-24;320;43;"Visite commentée de Poissy";10
+429;2014-07-19;320;56;"visite très enrichissante de Poissy";10
+428;2014-07-14;320;239;"Poissy, d'un siècle à l'autre";10
+430;2014-07-19;320;42;"visite poissy";10
+431;2014-07-24;87;42;"1 velo btwin adulte";50
+433;2014-07-24;42;59;"vase";10
+434;2014-08-24;253;59;"Arrosage et courier";90
+622;2016-04-11;90;74;"Réhausseur auto pour enfant ";20
+437;2014-08-29;43;324;"Repérage 2h balade Berges de Seine Août";120
+439;2014-08-30;324;42;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+440;2014-08-30;324;56;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+441;2014-08-30;324;78;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+442;2014-08-30;324;120;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+443;2014-08-30;324;84;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+444;2014-08-30;324;226;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+445;2014-08-30;324;94;"Balade Berges de Seine (Rencontre Mensuelle Août)";30
+446;2014-09-10;43;209;"pret 3 livres";6
+449;2014-10-16;329;264;"Je donne des grains de kéfir";10
+448;2014-09-17;267;74;"chaussures fillette";40
+450;2014-10-25;210;324;"Balade Champignons et Châtaignes (Rencontre Mensuelle Octobre)";5
+451;2014-10-25;264;324;"Balade Champignons et Châtaignes (Rencontre Mensuelle Octobre)";60
+452;2014-09-27;11;324;"Jeux de société (Rencontre Mensuelle Septembre)";5
+453;2014-10-31;11;124;"Prêt d'un scarificateur";120
+454;2014-11-07;43;329;"Pèse personne";30
+455;2014-11-08;103;43;"1/2 pese personne";15
+457;2014-11-07;210;42;"un billet pour Blues en Seine";15
+462;2014-12-20;309;287;"pret de menottes";5
+459;2014-12-04;282;94;"Allez-retour Poissy aéroport CDG";120
+460;2014-12-13;124;42;"pret saison 6 mad men";10
+461;2014-11-29;45;324;"Repas d’automne partagé (Rencontre Mensuelle Novembre)";60
+463;2014-12-29;209;90;"prêt de ponceuse";30
+464;2015-01-12;124;59;"garde maya le hamster ";100
+465;2015-01-12;90;80;"Don livres enfants";75
+466;2015-01-05;94;309;"Recette et préparation d'un tiramisu";30
+468;2015-01-19;120;94;"couverture livre";60
+469;2015-01-21;90;309;"Don de livres pour enfants";80
+470;2015-01-10;88;220;"Table de salon";120
+471;2015-01-25;103;43;"Pull";10
+472;2015-02-02;103;94;"recette pain ";30
+473;2015-02-09;124;70;"DVD treme";10
+474;2015-02-13;94;282;"Prêt d'un exemplaire revue culturelle Italie";5
+475;2015-02-14;282;82;"échange crochet torchons ";10
+477;2015-02-14;43;282;"jeu ";15
+478;2015-02-14;11;282;"Automobile miniature Tintin ";10
+480;2015-02-14;287;11;"Journal des demoiselles";30
+481;2015-02-14;287;11;"Plat rond cristal et métal argenté";30
+482;2015-02-14;287;11;"Corbeille à pain métal argenté";20
+483;2015-02-14;264;74;"sonnette vélo";10
+484;2015-02-14;287;337;"échange d'un livre";30
+485;2015-02-15;287;81;"carafe";30
+487;2015-02-15;264;81;"document Bayeux";20
+489;2015-02-15;43;81;"jeu";10
+490;2015-02-14;318;43;"pantalon";20
+491;2015-02-14;81;43;"classeurs et transparents";54
+492;2015-02-19;264;45;"cadre";20
+493;2015-02-20;256;287;"imprimante";100
+494;2015-02-14;11;324;"Repas de saison + BLÉ (Rencontre Mensuelle Février)";30
+495;2015-02-14;318;45;"Pull à col roulé";10
+496;2015-02-26;309;318;"Assistance BLE";15
+497;2015-02-26;318;282;"Chemise";15
+498;2015-02-26;318;82;"Pull, chemise";25
+499;2015-03-06;318;287;"2 bicyclettes";450
+500;2015-03-10;318;273;"Bicyclette";100
+503;2015-03-21;282;239;"Covoiturage aller/retour Poissy/Houilles";15
+502;2015-03-18;81;273;"don d'une  chaise haute  bébé";40
+504;2015-03-28;80;273;"Donne une chaise haute";40
+505;2015-03-30;318;226;"Don de 6 numéros de la revue "Silence"";20
+506;2015-04-07;120;124;"pret pulvérisateur";30
+507;2015-04-03;94;282;"Contact Italie route des SEL";30
+508;2015-04-12;120;82;"taille de tilleul";60
+509;2015-04-10;282;11;"Allez-retour Poissy aéroport CDG";180
+510;2015-04-13;282;45;"Allez-retour Poissy aéroport CDG";180
+511;2015-04-11;264;324;"Promenade et cueillette de muguet (Rencontre Mensuelle Avril)";120
+512;2015-04-20;177;245;"Don plaque de cuisson";40
+513;2015-04-18;287;282;"Travaux couture";200
+514;2015-04-24;103;11;"Panier en osier";20
+515;2015-05-02;94;314;"nettoyage des vitres";60
+516;2015-05-03;348;124;"Don d'une bouture de passiflore";10
+517;2015-05-03;74;177;"Nourrir le chat";45
+518;2015-03-14;74;324;"Randonnée en forêt de St Germain (Rencontre Mensuelle Mars)";120
+519;2015-05-05;94;273;"préparation d'un curry de poulet";60
+520;2015-05-15;177;74;"Don de vêtements enfant ";15
+521;2015-05-13;276;90;"12 oeufs frais";20
+523;2015-05-21;42;353;"BLÉ InterSEL du 21 mai 2015";20
+524;2015-05-21;353;70;"BLÉ InterSEL du 21 mai 2015";20
+525;2015-05-21;353;309;"BLÉ InterSEL du 21 mai 2015";50
+526;2015-05-21;43;353;"BLÉ InterSEL du 21 mai 2015";40
+527;2015-05-21;353;336;"BLÉ InterSEL du 21 mai 2015";20
+528;2015-05-21;45;353;"BLÉ InterSEL du 21 mai 2015";90
+529;2015-05-21;78;353;"BLÉ InterSEL du 21 mai 2015";10
+530;2015-05-21;103;353;"BLÉ InterSEL du 21 mai 2015";80
+531;2015-05-21;353;84;"BLÉ InterSEL du 21 mai 2015";20
+532;2015-05-21;230;353;"BLÉ InterSEL du 21 mai 2015";130
+533;2015-05-21;353;94;"BLÉ InterSEL du 21 mai 2015";20
+534;2015-02-08;43;353;"BLE InterSEL du 8 février 2015";375
+535;2015-02-08;103;353;"BLE InterSEL du 8 février 2015";40
+536;2015-05-25;177;348;"Don d'une plaque de cuisson";30
+537;2015-05-30;120;94;"tirelire";10
+538;2015-06-19;43;347;"pret livre";10
+539;2015-06-23;334;226;"Verre pour lombricomposteur";30
+540;2015-07-26;90;273;"siège bébé vélo";30
+541;2015-08-03;345;348;"Don d'un guide touristique";10
+542;2015-08-12;124;59;"garde de maya 10 jours";40
+543;2015-09-01;345;124;"rangement à suspendre pour penderie";10
+544;2015-09-01;345;124;"Pots de confiture vides";5
+545;2015-09-16;59;209;"imprimante laser";150
+546;2015-09-19;226;345;"Boucles d'oreille";10
+547;2015-09-19;45;345;"Plante à bouturer";5
+548;2015-09-19;345;45;"Jupe à pois";20
+549;2015-09-19;226;43;"livre";10
+550;2015-09-19;371;45;"Livre enfant";5
+551;2015-09-19;226;371;"Serre tête";5
+552;2015-09-20;345;371;"Bracelet";5
+553;2015-09-21;226;45;"divers accessoires / bijoux";30
+554;2015-09-21;226;245;"Kafka sur le rivage";10
+555;2015-09-21;345;226;"Divers : vêtements, thé, boucles d'oreilles, filtre robinet, patère";65
+556;2015-09-23;43;371;"Prêt de livre";20
+557;2015-09-30;280;345;"prêt étiqueteuse";10
+558;2015-10-13;124;179;"Prêt DVD";10
+559;2015-10-15;264;287;"noix";15
+560;2015-10-16;264;47;"noix";15
+561;2015-10-17;264;43;"noix";15
+562;2015-09-19;45;70;"Tunique marron";30
+563;2015-09-19;45;245;"Plante grasse";3
+564;2015-09-19;220;45;"Livre enfant";2
+565;2015-10-30;314;120;"demenagement";60
+566;2015-10-30;11;120;"Déménagement";60
+567;2015-10-30;45;120;"demenagement";60
+623;2016-04-16;390;81;"transport d'encombrants dans remorque";120
+569;2015-10-30;82;120;"demenagement";60
+570;2015-10-30;94;120;"demenagement";60
+571;2015-10-30;226;220;"Blé ";20
+572;2015-11-01;74;314;"Déménagement Denise";60
+573;2015-06-13;94;324;"Atelier Bien-Être (Rencontre Mensuelle Juin)";60
+574;2015-06-13;226;324;"Atelier Bien-Être (Rencontre Mensuelle Juin)";60
+576;2015-12-08;264;287;"noix";15
+577;2015-12-08;264;287;"legos";20
+578;2015-12-09;381;81;"dépannage modem";60
+579;2015-12-09;43;345;"pret germoir";5
+580;2015-12-09;103;345;"pret germoir";5
+581;2015-12-18;371;384;"Transport sur Paris ";60
+582;2016-01-02;94;81;"garde de chat";250
+583;2016-01-06;287;318;"prêt de thermos";10
+584;2016-01-09;345;103;"Diffuseur d'huiles essentielles";15
+585;2016-01-09;345;45;"Mélanges d'huiles essentielles";5
+586;2016-01-09;103;345;"5 boîtes";10
+587;2016-01-09;59;345;"Cache-coeur, boucles d'oreilles et bague";20
+588;2016-01-09;59;45;"Vêtements et bijoux ";15
+589;2016-01-09;103;45;"Verrines";15
+590;2016-01-09;59;11;"Deux livres audio pour enfants ";10
+591;2016-01-09;11;324;"BLÉ + Galette des Rois (Rencontre Mensuelle Janvier)";60
+592;2016-01-10;59;103;"livre enfants";10
+593;2016-01-09;59;371;"Livres";30
+594;2016-01-09;103;371;"Pots";22
+595;2016-01-09;59;43;"1 livre enfant";5
+596;2016-01-06;282;384;"Transport à Neuilly s/Seine";120
+597;2016-01-17;347;345;"conseils sur le lombricompostage";15
+624;2016-04-18;81;384;"Accompagnement à un RV médical à Paris";180
+598;2016-01-25;84;81;"Dépannage chauffage";150
+602;2016-01-16;277;43;"Prêt de perceuse et de jeu de mèches ";50
+606;2016-01-16;11;43;"Prêt d'une râpe";10
+607;2016-02-21;43;318;"Laisse chat";10
+608;2016-02-21;318;43;"Casque vélo";10
+609;2016-02-25;390;345;"aller chercher les paniers Amap le 23 mars";10
+610;2016-02-27;47;384;"soin";15
+611;2016-02-27;345;390;"Paniers de l'Amap du 23 mars";70
+612;2016-03-06;348;45;"Table et chaises de jardin";50
+613;2016-03-07;74;318;"Garde de chat";100
+614;2016-03-12;320;318;"Aide informatique";200
+615;2016-03-18;47;384;"soin : hypnose";30
+616;2016-03-17;282;11;"Allez-retour Poissy aéroport CDG";180
+617;2016-03-07;282;45;"Allez-retour Poissy aéroport CDG";120
+618;2016-03-29;11;405;"Prêt d'une perceuse ";20
+619;2016-03-30;348;287;"Don d'une bouture de passiflore";10
+620;2016-04-06;345;371;"Prêt de livre Les Néo Paysans";5
+599;2016-02-04;11;81;"Coordonnées d'un peintre";20
+601;2016-02-13;81;43;"coupons de tissus";60
+628;2016-05-03;81;43;"livres ";60
+629;2016-05-12;43;371;"pret livre";10
+630;2016-05-14;43;318;"Changer chambre à air roue arrière vélo ";30
+631;2016-05-18;282;94;"bricolage";30
+632;2016-05-24;371;318;"Gravure CD";150
+633;2016-05-17;245;45;"Prêt de machine à coudre";60
+634;2016-05-31;47;384;"assistance chez le notaire";60
+635;2016-06-06;11;43;"Prêt d'une perceuse";20
+636;2016-06-08;287;345;"Conseil d'un dentiste";5
+637;2016-06-08;282;318;"Prêt de bras forts";40
+638;2016-06-11;318;43;"boite de gésiers + 2 pains glaciere";40
+639;2016-06-11;103;282;"Grande photo encadrée ";60
+640;2016-06-11;318;282;"petit objet art de la table";25
+641;2016-06-11;318;371;"Jeu oeufs décoration";1
+642;2016-06-11;318;45;"3 objets cuisine";20
+643;2016-06-03;318;45;"Pots en verre";5
+646;2016-06-20;371;345;"conseils dentistes";5
+645;2016-06-18;11;318;"Prêt d'un guide sur la Finlande";20
+647;2016-06-18;43;348;"Prêt d'un livre";5
+648;2016-06-27;11;124;"Prêt d'une ponceuse";30
+649;2016-07-14;345;371;"Prêt d'un livre de cuisine";5
+654;2016-07-22;74;318;"Catsitting et arrosage";180
+653;2016-07-20;408;345;"prêt d'un appareil de mesure de la consommation électrique";20
+652;2016-07-20;43;345;"Prêt d'un guide de Madagascar";5
+655;2016-08-03;318;82;"Offre d'un  sac de croquettes pour chat.";30
+656;2016-08-05;318;94;"prêt secateurs";20
+657;2016-08-11;345;239;"Prêt d'une lampe de luminothérapie";40
+660;2016-08-17;371;43;"Baies de goji";5
+659;2016-08-18;371;103;"baie de godjii";5
+661;2016-07-09;11;324;"Jeux d'extérieur + pique-nique (Rencontre Mensuelle Juillet)";60
+662;2016-08-27;56;59;"Arrosage";50
+663;2016-08-16;81;59;"Arrosage";40
+664;2016-08-07;59;82;"Prêt d'une perceuse";10
+665;2016-08-31;318;390;"Articles de papeterie";50
+666;2016-08-31;45;124;"Prêt d'un mölkky";30
+667;2016-09-05;124;59;"garde maya 3 semaines";50
+668;2016-09-10;318;371;"Matériel à dessin";50
+669;2016-09-11;318;94;"Matériel de peinture";30
+670;2016-09-11;318;81;"Articles pour peinture d'art";80
+671;2016-09-12;56;347;"Rouleau pour gazon";10
+672;2016-09-13;318;282;"Chevalet peinture et petits outils";170
+673;2016-09-17;82;43;"caillebottis";100
+674;2016-09-17;82;103;"don de 22 caillebotis";100
+675;2016-09-19;371;384;"Accompagnement RDV sur Paris";135
+676;2016-09-19;384;371;"Prêt livre Martin Luther King";35
+677;2016-09-17;318;11;"Prêt d'un barnum";30
+678;2016-09-20;11;318;"Prêt de deux tréteaux";30
+680;2016-09-27;282;287;"Prêt disqueuse";20
+681;2016-10-02;11;103;"Prêt d'une scie sauteuse";10
+682;2016-10-02;11;43;"Prêt d'une scie sauteuse";10
+683;2016-10-04;318;84;"Don de croquettes pour chat";10
+684;2016-10-05;287;412;"conseil pour un peintre";5
+685;2016-10-06;287;371;"Contact pour four à porcelaine";5
+686;2016-10-10;59;81;"prêt d'un arrangeur";50
+687;2016-10-12;287;387;"impression de contrat";10
+698;2016-10-12;318;357;"Pots de confitures";30
+689;2016-10-12;309;357;"Don de pots de confiture";5
+690;2016-10-17;264;94;"retour aeroport";210
+691;2016-10-19;84;163;"Réparation de chasse d'eau.";15
+692;2016-10-23;11;103;"Prêt de pelles";10
+693;2016-10-23;11;43;"Prêt de pelles";10
+694;2016-10-23;84;163;"réparation chasse d'eau";40
+695;2016-10-23;56;345;"Prêt d'un guide de Marseille";5
+696;2016-11-01;84;163;"problème de chasse d'eau ";30
+697;2016-11-06;318;59;"Entrées pour salon gastronomique plus verres de dégustation";15
+699;2016-10-23;318;320;"prêt d'un tabouret";5
+700;2016-11-17;318;345;"Livre de cuisine";10
+701;2016-11-17;103;345;"Livre de cuisine";30
+703;2016-11-17;345;84;"serre-pantalon";1
+704;2016-11-17;345;70;"bottes";20
+705;2016-11-17;387;427;"topinambours";5
+706;2016-11-17;387;264;"topinambours";5
+707;2016-11-17;387;43;"topinambours";5
+708;2016-11-17;43;387;"livre d'attac, la nature n'a pas de prix";5
+709;2016-11-17;318;387;"invitation et deux verres";10
+710;2016-11-17;345;43;"2 livres";10
+711;2016-11-17;43;94;"livre";5
+712;2016-11-17;43;45;"pot + coupons tissu";2
+713;2016-11-18;94;70;"sac";20
+716;2016-11-18;94;264;"metrage de lin";50
+717;2016-11-18;287;70;"porte photos métal";5
+718;2016-11-17;45;318;"Boutures";3
+719;2016-11-17;318;70;"Livre de cuisine";3
+720;2016-11-18;318;309;"Verres à bière Leffe";13
+721;2016-11-18;318;45;"Cadre";10
+722;2016-11-18;264;45;"Chouette et boîte à musique";8
+723;2016-11-18;45;264;"Boutures";5
+724;2016-11-19;318;353;"BLÉ InterSEL du samedi 19 novembre 2016 à Cergy Pontoise";540
+725;2016-11-17;318;84;"Recettes de cuisine";4
+726;2016-11-18;371;45;"Coupe légume / fruits";5
+727;2016-11-22;318;124;"invitation et un verre";10
+728;2016-12-08;282;384;"Accompagnement à RDV hospitalier à Paris";315
+729;2016-12-11;264;318;"Noix";20
+730;2016-12-12;320;309;"Prêt de deux valises cabine ";10
+731;2016-12-12;320;84;"Prêt de deux valises cabine";10
+732;2016-12-14;318;371;"Don de combinaison de ski";100
+733;2016-12-22;84;163;"bricolage , changement de joint";20
+734;2017-01-20;287;163;"prêt d'un pistolet à colle";30
+735;2017-01-25;345;371;"Prêt d'huiles essentielles";20
+736;2017-01-28;94;345;"Impression";5
+737;2017-02-03;412;287;"Prêt  de la saison 4 de Downton  Abbey";10
+738;2017-02-05;11;103;"Prêt d'une perceuse";20
+739;2017-02-06;309;318;"Don de cartons ";30
+740;2017-02-09;256;320;"confection de deux petits rideaux";120
+741;2017-02-12;103;45;"Machine à pain";50
+742;2017-02-12;103;11;"Machine à pain";50
+743;2017-02-12;43;94;"pret duvet";10
+744;2017-02-14;11;345;"Prêt d'une perceuse et d'une scie";30
+745;2017-02-22;94;163;"boites de rangement";30
+746;2017-03-03;11;124;"Prêt d'un scarificateur électrique";120
+747;2017-02-28;417;384;"Déplacement en voiture de poissy à Paris et des paris à poissy ";300
+748;2017-03-04;287;318;"prêt d'une cafetière électrique";20
+749;2017-03-04;347;417;"Lombrics et conseils de compost ";30
+750;2017-03-04;408;318;"Prêt d'une cafetière";20
+751;2017-03-06;412;287;"prêt de DVD Downton Abbey saison 5";10
+752;2017-03-10;417;347;"Transport sacs de granulés";25
+753;2017-03-14;347;371;"Prêt livre cosmétiques et produits ménagers à fabriquer";10
+754;2017-03-15;357;273;"bandes dessinées";50
+755;2017-03-15;59;348;"Topinambour";5
+756;2017-03-18;179;348;"Boutures plantes";5
+757;2017-03-18;353;74;"Achat jeu enfant";30
+758;2017-03-18;163;353;"livres ";100
+759;2017-03-18;45;353;"BLÉ InterSÉLs";320
+760;2017-03-18;353;43;"livres/framboisiers";20
+761;2017-03-19;256;273;"17 albums de BD neufs donnés ";120
+762;2017-03-19;353;435;"Théière";30
+763;2017-03-18;264;353;"inter ble";50
+764;2017-04-01;179;45;"Bouture mûrier";10
+765;2017-04-01;210;282;"Prêt table et chaises pliantes";20
+766;2017-04-06;357;348;"Pied de mélisse et de myosotis";15
+767;2017-03-18;94;353;"InterSEL ";140
+768;2017-04-20;282;384;"Accompagnement à RDV médical au Chesnay";120
+769;2017-03-03;381;163;"Vente vélo";60
+770;2017-04-23;381;43;"Récupération de données PC";150
+771;2017-04-24;282;384;"Accompagnement à RDV hospitalier à Poissy";30
+772;2017-05-05;371;348;"Don de moulin à légumes";20
+773;2017-05-05;357;371;"Don de plants de fraises bio";10
+774;2017-05-10;103;345;"prêt d'un guide de Budapest";5
+775;2017-05-12;74;384;"récupérer résultat médicaux";60
+776;2017-05-24;357;348;"fraisiers";10
+777;2017-06-06;371;318;"Cartons de déménagements";20
+778;2017-06-29;81;94;"couture";60
+779;2017-07-05;318;81;"Don de coupons de tissu";60
+780;2017-07-07;318;309;"Pouf géant";100
+784;2017-07-09;103;324;"Repérage vélo pour rencontre SEL du 15/07";90
+783;2017-07-09;43;324;"repérage balade vélo SEL juillet ";90
+785;2017-07-18;94;318;"Arrosage";50
+786;2017-07-18;74;318;"Catsitting + arrosage";200
+787;2017-07-19;427;239;"Arrosage des plantes sur balcons";300
+788;2017-07-19;11;387;"Prêt de câbles de recharge";20
+789;2017-07-24;43;318;"Déménagement";600
+790;2017-07-24;84;318;"Déménagement";600
+791;2017-07-23;59;81;"arrosage";90
+793;2017-07-29;318;94;"housses coussins / parfum";50
+794;2017-08-03;70;163;"montage de vélo";60
+797;2017-08-05;94;384;"aide à la personne";170
+798;2017-08-05;318;81;"Don de coupons de tissu et livres";120
+799;2017-08-19;163;59;"arrosage jardin ";185
+800;2017-08-24;94;150;"livraison panier amap";30
+801;2017-08-25;11;94;"Dépannage informatique";40
+802;2017-08-23;318;282;"Un couteau lame céramique";80
+803;2017-08-26;282;345;"prêt d'un GPS";100
+804;2017-08-26;103;318;"Catsitting + arrosage";100
+805;2017-08-30;318;402;"Don de housse de couette + coupon de tissu";70
+806;2017-08-23;81;220;"Pain distribution fin aout";30
+807;2017-09-05;282;384;"aide à la personne, transport";270
+808;2017-09-06;371;81;"Prêt de livre sur les huiles essentielles";5
+809;2017-09-13;318;433;"Don d'appareil";40
+810;2017-09-18;318;446;"coffret massage ";20
+811;2017-09-21;70;253;"Prêt de 2 barnums";150
+812;2017-10-04;287;318;"don de tissu";10
+813;2017-10-11;287;325;"pret de poussette";30
+814;2017-10-14;446;371;"Livres + élastiques";40
+815;2017-10-14;353;11;"BLÉ InterSEL du 14 octobre 2017";120
+816;2017-10-14;353;45;"BLÉ InterSEL du 14 octobre 2017";460
+817;2017-10-14;371;446;"Serpentins";10
+846;2018-01-10;124;318;"Prêt de 2 sacs de couchage";50
+819;2017-10-14;264;353;" vente";30
+820;2017-10-18;81;282;"Petit travail de couture";60
+847;2018-01-07;11;474;"Prêt d'une scie circulaire";30
+822;2017-10-17;353;371;"BLE 17.10";120
+852;2018-01-12;318;43;"pret diable";50
+850;2018-01-02;42;253;"Don d'un lampadaire";60
+825;2017-10-30;347;443;"garde de mon petit chien";50
+826;2017-10-21;220;74;"Prêt bottes enfant";20
+849;2018-01-14;81;256;"Prêt de machine à coudre";80
+830;2017-11-02;384;124;"pret machine à coudre 4 semaines";100
+829;2017-11-02;264;371;"Noix";20
+831;2017-11-03;264;84;"Echange de noix ";10
+832;2017-11-07;371;74;"Jeux enfants";20
+834;2017-12-02;347;443;"garde de mon petit chien durant 5  jours";200
+835;2017-12-03;43;282;"pret livre";10
+836;2017-12-04;43;345;"Prêt livre";10
+837;2017-12-06;461;348;"Séances de sophrologie";60
+851;2018-01-14;348;81;"Don de safran";40
+839;2017-12-08;11;94;"Support informatique (utilisation de VLC, utilisation de Zimbra)";50
+840;2017-12-14;287;345;"affutage de couteaux";10
+841;2017-12-09;43;324;"preparation atelier danses folks";120
+845;2018-01-08;282;417;"Bricolage";100
+843;2017-12-20;345;43;"pret livre";10
+844;2018-01-05;70;84;"Garde de Lucie";400
+854;2018-01-13;43;353;"BLÉ InterSEL de Cergy Pontoise";480
+855;2018-01-13;103;353;"BLÉ InterSEL de Cergy Pontoise";440
+856;2018-01-19;282;94;"réglage chasse d'eau";30
+858;2018-01-19;371;443;"Garde de chien";100
+859;2018-01-20;282;384;"accompagnement";200
+860;2018-01-20;163;371;"boites en métal de rangement";40
+861;2018-01-20;163;446;"cantine en fer";80
+862;2018-01-24;371;345;"Don de 4 chaises";250
+863;2018-02-03;318;70;"Crédence et vinaigrier";200
+864;2018-02-05;43;318;"Catsitting + arrosage";350
+865;2018-02-17;45;353;"BLÉ InterSEL de la Forêt de l'Hautil";160
+866;2018-02-15;318;43;"pret diable";40
+867;2018-02-17;103;353;"BLÉ InterSEL de la Forêt de l'Hautil";255
+868;2018-02-23;45;318;"Prêt de pelle / râteau";40
+869;2018-03-01;81;282;"travaux de couture";100
+870;2018-03-03;371;81;"Don de pots pour peinture";10
+871;2018-02-17;43;353;"BLÉ InterSEL de la Forêt de l'Hautil";175
+872;2018-03-05;163;446;"cantines";150
+873;2018-03-07;43;318;"Catsitting + arrosage";150
+874;2018-03-09;287;282;"Travail de couture";180
+875;2018-03-17;81;371;"Prêt de déguisement";5
+876;2018-03-18;348;81;"Petits pots de confiture";10
+877;2018-03-19;320;324;"Visite de la Collégiale (Rencontre Mensuelle mars 2018)";90
+878;2018-03-21;59;94;"poste radio";30
+879;2018-03-26;57;324;"Yoga du rire (Rencontre Mensuelle février 2018)";60
+880;2018-03-27;318;417;"tajine";100
+882;2018-03-27;318;446;"Tajine";30
+883;2018-03-27;474;239;"Création d'un tableau Excel T'Dyn";120
+884;2018-03-26;282;384;"Transport accompagnement ";180
+885;2018-03-31;381;82;"Réparation vélo";50
+886;2018-04-12;163;57;"prêt d'une décolleuse";300
+887;2018-04-15;318;103;"Méditation";50
+888;2018-04-15;318;43;"Méditation ";50
+889;2018-04-19;70;314;"Don circuit voitures";40
+890;2018-05-01;345;94;"don de 3 livres";30
+891;2018-04-07;94;324;"Organisation Rencontre Mensuelle du 7 avril 2018";90
+892;2018-05-03;345;150;"Don de 3 livres";30
+893;2018-05-03;81;345;"Prêt d'une bâche";60
+894;2018-05-02;282;81;"Prêt nettoyeur HP ";90
+895;2018-05-05;318;43;"Meditation";50
+896;2018-05-05;318;103;"Méditation";50
+897;2018-05-07;131;239;"Panier bio";90
+898;2018-05-07;11;94;"Réinstallation de Norton Antivirus";60
+899;2018-04-28;353;371;"Logement pour AG Community Forge";120
+900;2018-05-12;45;324;"Découverte du parc du Peuple de l'herbe (Rencontre Mensuelle mai 2018)";240
+901;2018-05-12;11;318;"Prêt d'une perceuse à percussion et d'un forêt béton de 16 mm ";30
+902;2018-05-13;318;103;"Meditation";50
+903;2018-05-13;318;43;"Meditation";50
+904;2018-05-15;70;318;"Transport vélo";150
+905;2018-05-20;239;345;"prêt d'un escabeau";30
+906;2018-05-24;446;412;"Autour de la table / Le concerto des phalanges / Haïkus en naissance ;)";50
+907;2018-05-27;318;43;"Meditation";50
+908;2018-05-27;318;103;"Méditation";50
+909;2018-05-23;318;273;"Donne petite armoire";30
+910;2018-05-28;318;348;"Rouleau de Velleda";5
+911;2018-05-22;318;84;"Co-voiturage pour Les Mureaux";5
+912;2018-05-30;474;264;"cadre";20
+913;2018-06-01;318;481;"Rouleau de film bulle";10
+914;2018-06-03;282;239;"Prêt destructeur papier ";30
+915;2018-06-03;337;56;"Don écran plat PC";100
+916;2018-05-29;443;371;"Garde d'enfants";100
+920;2018-06-21;94;318;"Transport à Vernouillet";60
+918;2018-06-17;318;103;"Meditation";50
+919;2018-06-17;318;43;"Meditation";50
+922;2018-06-22;124;81;"pret d'une table pliante";30
+923;2018-06-24;318;43;"Meditation";50
+924;2018-06-24;318;103;"Méditation";50
+925;2018-06-26;287;309;"prêt de table pliante";30
+926;2018-06-26;439;94;"service";1
+927;2018-06-27;412;384;"Aide à la personne";150
+928;2018-06-23;282;309;"prêt d'une table pliante";30
+929;2018-07-01;318;43;"Méditation";50
+930;2018-07-01;318;103;"meditation";50
+931;2018-07-08;318;103;"Méditation";50
+932;2018-07-08;318;43;"Meditation";50
+933;2018-07-14;81;282;"travaux de couture";600
+934;2018-04-07;439;324;"Organisation Rencontre Mensuelle du 7 avril 2018";90
+935;2018-07-25;345;74;"produits laitiers vache";50
+936;2018-07-29;381;43;"Réinstallation pc";240
+937;2018-08-02;81;412;"Arrosage";60
+938;2018-07-18;74;11;"Arrosage du jardin";150
+939;2018-07-18;74;45;"Arrosage du jardin";150
+940;2018-08-05;412;81;"Arrosage";120
+941;2018-08-05;345;81;"Transport canapé";60
+942;2018-08-06;94;318;"Arrosage";50
+943;2018-08-15;43;45;"Livre";30
+944;2018-08-16;245;253;"don d'une table de jardin";100
+946;2018-08-16;45;210;"Boutures";40
+947;2018-08-14;11;124;"« rip » de DVDs";180
+951;2018-08-04;43;324;"repérage Ile Nancy";150
+950;2018-08-17;381;43;"réinstallation pc";240
+952;2018-08-17;45;318;"Catsitting + arrosage";105
+956;2018-08-29;318;210;"Don de bouture";5
+954;2018-08-21;11;417;"Prêt d'un engin de jardinage";120
+957;2018-08-15;74;59;"arrosage du jardin pendant + de 2 semaines";200
+959;2018-08-31;81;371;"Arrosage de plantes";60
+960;2018-08-31;59;253;"don de 5 guides Gallimard";25
+961;2018-09-04;11;318;"Prêt d'une ponceuse vibrante";30
+962;2018-09-06;163;230;"donne plat en terre avec couvercle .Romertofp";50
+968;2018-09-09;494;345;"Vers pour lombricompost";30
+964;2018-09-06;11;345;"Prêt d'un niveau à bulles";10
+969;2018-09-14;314;57;"Garde de chaton pendant l'été";60
+970;2018-09-15;59;74;"jeux d'enfants";300
+971;2018-09-20;489;371;"Don de graines de kéfir";10
+972;2018-10-03;345;84;"Bouture de plante ";10
+973;2018-10-06;371;353;"BLE intersel Carrières-sous-Poissy";210
+974;2018-10-06;103;353;"BLE Intersel Carrieres sous Poissy";140
+975;2018-10-30;43;256;"prêt de livre Mai 68";5
+976;2018-11-08;504;318;"Prêt de pouf";10
+977;2018-11-07;264;371;"Don de noix";60
+978;2018-11-10;81;45;"Prêt vélo";50
+979;2018-11-14;56;287;"remise en route d'un scanner";60
+980;2018-11-22;282;384;"Transport pour rdv médical";150
+981;2018-11-25;81;43;"pret furet";30
+982;2018-12-04;11;94;"Réparation messagerie électronique";30
+983;2018-12-05;230;124;"pret d'un extracteur à jus";40
+984;2018-12-08;124;287;"don de 5 tickets bateau mouche";40
+985;2018-12-19;43;74;"Don d'un livre";15
+986;2018-12-20;494;318;"Prêt d'aiguilles à tricoter n° 10";5
+987;2018-12-08;324;264;"couronne de noel";60
+988;2018-12-25;446;273;"art postal";50
+989;2018-12-31;325;490;"Don 2 places pour musée du Louvre";30
+990;2019-01-12;124;446;"Prêt agrafeuse";30
+991;2019-01-12;230;318;"Prêt de yaourtière";20
+992;2018-12-10;84;381;"Prêt d’un perforateur ";50
+993;2019-01-11;282;94;"Travaux sur circuit d'eau";30
+994;2018-12-30;71;11;"Prêt d'un couscoussier";60
+995;2019-01-18;56;11;"Écran pour ordinateur de bureau";180
+996;2019-01-21;287;371;"Don de tissu";10
+997;2019-01-23;282;220;"Bricolage - explication pour réalisation enduits";70
+998;2019-01-23;489;220;"conseils pour réparation machine  à laver";10
+999;2019-01-23;345;220;"conseils pour réparation machine  à laver";5
+1000;2019-01-23;380;264;"Donne trottinette 1er age";40
+1001;2019-01-24;371;345;"Bidon de lessive vide";5
+1002;2019-01-26;282;318;"Installation plaque induction";100
+1003;2019-01-27;124;81;"pret BD";10
+1004;2019-02-01;446;380;"Besoin d'un coupe-carrelage";30
+1005;2019-02-10;45;324;"Atelier masques, rencontre mensuelle février 2019";300
+1006;2019-02-11;163;446;"prêt furet (merci, évier débouché !!)";10
+1007;2019-02-12;84;163;"transport d'un fauteuil";20
+1008;2019-02-05;94;163;"garde de chat";75
+1009;2019-02-23;124;81;"pret bd";20
+1010;2019-02-09;324;264;"conn masquefectio";60
+1011;2019-02-27;345;43;"Prêt de livre";10
+1012;2019-03-04;320;264;"perruque";5
+1013;2019-03-06;287;163;"prêt d'un pistolet à colle";20
+1014;2019-03-07;124;318;"Prêt livre";10
+1015;2019-03-15;81;282;"Travail couture";50
+1016;2019-03-17;446;412;"cave pour scooter ";100
+1017;2019-03-20;371;287;"don de chutes de papier peint";10
+1018;2019-03-20;11;239;"Don de 6 revues Sciences et Avenir";60
+1019;2019-04-01;47;282;"Infos verbales soins de soi";50
+1020;2019-04-03;124;282;"Prêt de documents touristiques";50
+1021;2019-04-10;345;45;"3 boutures";30
+1025;2019-05-02;282;81;"Karcher";100
+1023;2019-04-10;264;371;"Prêt d'un entonnoir";20
+1024;2019-04-17;11;371;"Prêt de tente";120
+1026;2019-05-02;81;239;"Orhan Pamuk La femme aux cheveux roux";10
+1027;2019-05-02;337;318;"Prêt ciseaux à cranter";30
+1028;2019-05-15;11;239;"Don de 2 revues Sciences et Avenir";20
+1029;2019-05-19;81;345;"prêt de livre";10
+1030;2019-05-20;103;230;"GPS";100
+1031;2019-05-17;253;74;"Lit futon (tatami et matelas) 1 personne";75
+1032;2019-05-28;253;230;"Lit futon (tatami et matelas) 2 personnes";150
+1033;2019-06-06;103;74;"Meuble";20
+1034;2019-06-06;43;74;"meuble";20
+1035;2019-06-16;318;103;"Pret diable";10
+1036;2019-06-15;318;43;"pret diable";10
+1037;2019-06-19;11;510;"Prêt d'un rabot";15
+1038;2019-06-28;287;371;"Don de chaussures de marche";10
+1039;2019-07-01;287;345;"Prêt d'une valise";30
+1040;2019-06-26;11;124;"Prêt d'un mölkky";15
+1041;2019-06-15;11;324;"Prépration Rencontre Mensuelle de juin 2019";60
+1042;2019-06-15;45;324;"Prépration Rencontre Mensuelle de juin 2019";60
+1043;2019-06-19;43;353;"BLÉ InterSÉL à Cergy";270
+1044;2019-06-19;103;353;"BLÉ InterSÉL à Cergy";270
+1050;2019-08-07;412;59;"Arrosage du jardin ";300
+1046;2019-07-22;345;390;"retrait de produits à l'amap";10
+1047;2019-07-30;318;45;"Arrosage";150
+1048;2019-07-30;318;11;"Arrosage";150
+1049;2019-07-31;348;45;"Molleton";15
+1051;2019-08-13;345;489;"Matelas pneumatique";30
+1052;2019-08-18;94;163;"co voiturage";40
+1053;2019-08-27;84;163;"changement de régulateur solaire";100
+1054;2019-08-27;345;45;"Dé à jouer";5
+1055;2019-09-08;81;282;"Accompagnement Roissy";120
+1056;2019-09-10;318;45;"Accompagnement Aéroport CDG";75
+1057;2019-09-10;318;11;"Accompagnement Aéroport CDG";75
+1058;2019-09-12;59;412;"Don d'aspirateur sans sac";200
+1059;2019-09-11;59;81;"Don d'un livre";50
+1060;2019-09-14;59;446;"des prunes du jardin :)";10
+1061;2019-09-16;494;452;"Prêt bêche de jardin";10
+1062;2019-09-22;282;11;"Accompagnement aéroport domicile";60
+1063;2019-09-22;282;45;"Accompagnement aéroport domicile";60
+1064;2019-10-02;314;371;"Don de mouchoirs en tissu";15
+1065;2019-09-25;11;239;"Don de 3 revues Sciences et Avenir";30
+1083;2019-12-18;345;150;"petits flacons";5
+1067;2019-09-28;84;390;"prêt d'une boite de clés à cliquets";10
+1068;2019-09-25;264;348;"Marjolaine";2
+1069;2019-10-06;43;74;"meuble à tiroirs";30
+1070;2019-10-05;348;74;"boutons";5
+1071;2019-10-14;287;150;"don de deux fauteuils roulants pliants";300
+1072;2019-10-13;11;245;"Aide à la pose d'un meuble";30
+1073;2019-10-13;45;245;"Aide à la pose d'un meuble";30
+1074;2019-10-16;264;371;"Noix";50
+1075;2019-10-23;245;43;"Prêt adaptateur prise";10
+1084;2019-11-20;345;504;"paniers de légumes";120
+1085;2019-10-25;318;11;"Accompagnement Aéroport CDG";50
+1078;2019-11-16;371;324;"Préparation rencontre mensuelle de novembre";120
+1079;2019-11-18;45;220;"pret d'un rotofil";40
+1080;2019-11-19;94;446;"jeu croque carotte";20
+1081;2019-12-08;103;273;"yaourtiere";35
+1082;2019-12-08;59;74;"livres et jeux enfants";200
+1086;2019-10-25;318;45;"Accompagnement Aéroport CDG";50
+1087;2019-12-31;417;253;"Fauteuil avec pouf";150

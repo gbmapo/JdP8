@@ -1,0 +1,14 @@
+{
+  "name": "drupal/sel",
+  "type": "drupal-module",
+  "description": "Pour gérer le Grenier à SÉL (services, échanges, etc.)",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/sel",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/sel",
+    "source": "http://cgit.drupalcode.org/sel"
+  },
+  "require": { }
+}

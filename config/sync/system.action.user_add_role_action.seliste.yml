@@ -1,0 +1,14 @@
+uuid: efdd4830-a37f-4bd5-9ed0-8b7173c498a6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.seliste
+  module:
+    - user
+id: user_add_role_action.seliste
+label: 'Ajouter le rôle SÉListe aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: seliste

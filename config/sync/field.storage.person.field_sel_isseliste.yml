@@ -1,0 +1,23 @@
+uuid: e105e545-0c0a-44a5-a7a5-a9d652404de7
+langcode: fr
+status: true
+dependencies:
+  enforced:
+    module:
+      - sel
+  module:
+    - association
+_core:
+  default_config_hash: WgXMa2epeC0m5XwbkTYEo1hW_ZdqDafwT6NeqNt5l3E
+id: person.field_sel_isseliste
+field_name: field_sel_isseliste
+entity_type: person
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

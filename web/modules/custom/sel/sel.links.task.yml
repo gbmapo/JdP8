@@ -1,0 +1,72 @@
+# -------------------------------------------------------------------
+# Service category routing definition
+# -------------------------------------------------------------------
+service_category.settings_tab:
+  route_name: service_category.settings
+  title: 'Settings'
+  base_route: service_category.settings
+
+entity.service_category.canonical:
+  route_name: entity.service_category.canonical
+  base_route: entity.service_category.canonical
+  title: 'View'
+
+entity.service_category.edit_form:
+  route_name: entity.service_category.edit_form
+  base_route: entity.service_category.canonical
+  title: 'Edit'
+
+entity.service_category.delete_form:
+  route_name:  entity.service_category.delete_form
+  base_route:  entity.service_category.canonical
+  title: Delete
+  weight: 10
+
+# -------------------------------------------------------------------
+# Service routing definition
+# -------------------------------------------------------------------
+service.settings_tab:
+  route_name: service.settings
+  title: 'Settings'
+  base_route: service.settings
+
+entity.service.canonical:
+  route_name: entity.service.canonical
+  base_route: entity.service.canonical
+  title: 'View'
+
+entity.service.edit_form:
+  route_name: entity.service.edit_form
+  base_route: entity.service.canonical
+  title: 'Edit'
+
+entity.service.delete_form:
+  route_name:  entity.service.delete_form
+  base_route:  entity.service.canonical
+  title: Delete
+  weight: 10
+
+# -------------------------------------------------------------------
+# Exchange routing definition
+# -------------------------------------------------------------------
+exchange.settings_tab:
+  route_name: exchange.settings
+  title: 'Settings'
+  base_route: exchange.settings
+
+entity.exchange.canonical:
+  route_name: entity.exchange.canonical
+  base_route: entity.exchange.canonical
+  title: 'View'
+
+entity.exchange.edit_form:
+  route_name: entity.exchange.edit_form
+  base_route: entity.exchange.canonical
+  title: 'Edit'
+
+entity.exchange.delete_form:
+  route_name:  entity.exchange.delete_form
+  base_route:  entity.exchange.canonical
+  title: Delete
+  weight: 10
+

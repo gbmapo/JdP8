@@ -1,0 +1,23 @@
+uuid: b6683414-1295-4f2d-b5b2-fd7dc8bf5440
+langcode: fr
+status: true
+dependencies:
+  enforced:
+    module:
+      - sel
+_core:
+  default_config_hash: R8jA_Kw0KxkrywkHYbYfava4RUy58qvD2-0LDz6LbvM
+id: seliste
+label: SÉListe
+weight: -8
+is_admin: null
+permissions:
+  - 'add exchange entities'
+  - 'add service entities'
+  - 'delete exchange entities'
+  - 'delete service entities'
+  - 'edit exchange entities'
+  - 'edit service entities'
+  - 'view exchange entities'
+  - 'view service category entities'
+  - 'view service entities'

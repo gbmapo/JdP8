@@ -1,0 +1,7 @@
+name: 'SEL'
+type: module
+description: 'Pour gérer le Grenier à SÉL (services, échanges, etc.)'
+core: 8.x
+package: 'Association'
+dependencies:
+  - association

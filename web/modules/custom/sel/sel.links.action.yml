@@ -1,0 +1,19 @@
+# -------------------------------------------------------------------
+entity.service_category.add_form:
+  route_name: entity.service_category.add_form
+  title: 'Add Service category'
+  appears_on:
+    - entity.service_category.collection
+
+# -------------------------------------------------------------------
+entity.service.add_form:
+  route_name: entity.service.add_form
+  title: 'Add Service'
+  appears_on:
+    - entity.service.collection
+# -------------------------------------------------------------------
+entity.exchange.add_form:
+  route_name: entity.exchange.add_form
+  title: 'Add Exchange'
+  appears_on:
+    - entity.exchange.collection

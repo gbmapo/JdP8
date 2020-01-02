@@ -1,0 +1,15 @@
+sel:
+  version: 1.x
+  css:
+    theme:
+      css/sel.css: {}
+
+echange:
+  version: 1.x
+  js:
+      js/echange.js: {}
+
+person:
+  version: 1.x
+  js:
+      js/person.js: {}

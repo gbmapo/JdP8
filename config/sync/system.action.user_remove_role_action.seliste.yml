@@ -1,0 +1,14 @@
+uuid: f4d5000d-09cc-49b7-98df-0ed53f6201bb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.seliste
+  module:
+    - user
+id: user_remove_role_action.seliste
+label: 'Enlever le rôle SÉListe des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: seliste

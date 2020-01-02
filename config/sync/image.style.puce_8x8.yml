@@ -1,0 +1,14 @@
+uuid: 3ddcd2ad-3172-4832-9dd1-1a57187b5598
+langcode: fr
+status: true
+dependencies: {  }
+name: puce_8x8
+label: 'Puce (8x8) '
+effects:
+  7975eeb4-563f-46b0-bc0f-90fcba13f973:
+    uuid: 7975eeb4-563f-46b0-bc0f-90fcba13f973
+    id: image_resize
+    weight: 1
+    data:
+      width: 8
+      height: 8
