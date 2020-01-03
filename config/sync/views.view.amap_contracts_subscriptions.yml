@@ -230,6 +230,7 @@ display:
         relationships: false
         title: false
         empty: false
+        sorts: false
       row:
         type: fields
         options:
@@ -676,6 +677,21 @@ display:
             value: 'Aucun souscripteur pour le moment.'
             format: plain_text
           plugin_id: text
+      sorts:
+        lastname:
+          id: lastname
+          table: person
+          field: lastname
+          relationship: contact_id
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: person
+          entity_field: lastname
+          plugin_id: standard
     cache_metadata:
       max-age: 0
       contexts:

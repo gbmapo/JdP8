@@ -15,49 +15,73 @@ settings:
     rows:
       -
         -
+          name: Text
+          items:
+            - SpecialChar
+            - PasteText
+            - PasteFromWord
+        -
           name: Formatting
           items:
             - Bold
             - Italic
+            - Underline
             - Strike
             - Superscript
             - Subscript
             - '-'
             - RemoveFormat
         -
-          name: Linking
+          name: Justify
           items:
-            - DrupalLink
-            - DrupalUnlink
+            - JustifyCenter
+            - JustifyLeft
+            - JustifyRight
+            - JustifyBlock
+            - Outdent
+            - Indent
         -
           name: Lists
           items:
             - BulletedList
             - NumberedList
         -
+          name: Linking
+          items:
+            - DrupalLink
+            - ImceLink
+            - DrupalUnlink
+        -
           name: Media
           items:
             - Blockquote
             - DrupalImage
+            - ImceImage
             - Table
             - HorizontalRule
         -
           name: 'Block Formatting'
           items:
             - Format
+            - Styles
         -
           name: Tools
           items:
             - ShowBlocks
             - Source
+            - Undo
+            - Redo
+            - Maximize
   plugins:
     stylescombo:
       styles: ''
+    language:
+      language_list: un
 image_upload:
   status: true
   scheme: public
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: 0
-    height: 0
+    width: null
+    height: null

@@ -3,7 +3,7 @@ name: 'Le Jardin de Poissy'
 mail: contact@lejardindepoissy.org
 slogan: ''
 page:
-  403: ''
+  403: /contact
   404: ''
   front: /node/1
 admin_compact_mode: false

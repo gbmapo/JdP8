@@ -1,0 +1,50 @@
+uuid: 02984b06-c94b-4b0f-9bbc-46316a9933ef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.evenement.body
+    - field.field.node.evenement.field_event_date_end
+    - field.field.node.evenement.field_event_date_start
+    - field.field.node.evenement.field_gallery
+    - image.style.thumbnail_cropped_100_75_
+    - node.type.evenement
+  module:
+    - colorbox
+    - text
+    - user
+id: node.evenement.default
+targetEntityType: node
+bundle: evenement
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_gallery:
+    weight: 1
+    label: above
+    settings:
+      colorbox_node_style: thumbnail_cropped_100_75_
+      colorbox_node_style_first: ''
+      colorbox_image_style: ''
+      colorbox_gallery: post
+      colorbox_gallery_custom: ''
+      colorbox_caption: auto
+      colorbox_caption_custom: ''
+    third_party_settings: {  }
+    type: colorbox
+    region: content
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_event_date_end: true
+  field_event_date_start: true
+  langcode: true

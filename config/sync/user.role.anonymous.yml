@@ -16,3 +16,4 @@ permissions:
   - 'use text format restricted_html'
   - 'view contract entities'
   - 'view contract type entities'
+  - 'view service category entities'
