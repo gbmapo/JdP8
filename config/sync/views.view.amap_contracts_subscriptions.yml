@@ -707,7 +707,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: contract-cid-export.csv
+      path: Contract-cid-export.csv
       style:
         type: serializer
         options:
@@ -2823,6 +2823,7 @@ display:
         fields: false
         arguments: false
         relationships: false
+        sorts: false
       arguments:
         contract_id:
           id: contract_id
@@ -2877,6 +2878,7 @@ display:
         type: none
         options:
           offset: 0
+      sorts: {  }
     cache_metadata:
       max-age: -1
       contexts:

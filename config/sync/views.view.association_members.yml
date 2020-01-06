@@ -211,7 +211,7 @@ display:
             id:
               sortable: false
               default_sort_order: asc
-              align: ''
+              align: views-align-right
               separator: ''
               empty_column: false
               responsive: ''
@@ -357,7 +357,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<BR><a href=\"/association/member/add\" title=\"Ajouter un adhérent\" class=\"form-submit\">Ajouter</a>&nbsp;<a href=\"/association/export_membersformaps\" title=\"Télécharger pour Google Maps\" class=\"form-submit\">Télécharger</a>\r\n"
+            value: "<BR>\r\n<a href=\"/association/member/add\" title=\"Ajouter un adhérent\" class=\"form-submit\">Ajouter</a>&nbsp;\r\n<a href=\"/association/export_membersformaps\" title=\"Télécharger pour Google Maps\" class=\"form-submit\">Télécharger</a>&nbsp;\r\n<a href=\"/association/import_members\" title=\"Importer les statuts\" class=\"form-submit\">Importer</a>\r\n"
             format: full_html
           plugin_id: text
       fields:
@@ -368,8 +368,8 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Identifiant (ID)'
-          exclude: true
+          label: Id
+          exclude: false
           alter:
             alter_text: false
             text: ''

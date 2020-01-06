@@ -227,6 +227,9 @@ class ContractSubscriptionTableForm extends FormBase
       }
 
     }
+
+    _export_amap_CSV('amap_contracts_subscriptions', 'rest_export_1', $args[0]);
+
     $form_state->setRedirect('amap.contracts');
   }
 

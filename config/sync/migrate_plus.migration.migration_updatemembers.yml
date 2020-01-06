@@ -1,0 +1,28 @@
+uuid: 760e71b0-ca0f-4bb1-99e6-ed308d1fe6d1
+langcode: en
+status: true
+dependencies: {  }
+id: migration_updatemembers
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: null
+label: 'Update Member from CSV'
+source:
+  plugin: csv
+  track_changes: true
+  path: sites/default/files/_private/migration_UpdateMembers.csv
+  delimiter: ;
+  header_row_count: 1
+  ids:
+    - id
+process:
+  id: id
+  status: status
+  enddate: enddate
+destination:
+  plugin: 'entity:member'
+migration_dependencies:
+  required: {  }
+  optional: {  }

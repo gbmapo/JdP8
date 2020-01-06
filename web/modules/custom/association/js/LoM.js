@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
         "order": [],
         "paging": false,
         "columnDefs": [{
-            "targets": [1, 3, 7],
+            "targets": [0, 2, 4, 8, 9],
             "orderable": false
         }],
         orderCellsTop: true,
@@ -39,7 +39,7 @@ jQuery(document).ready(function ($) {
             footer: false
         },
         initComplete: function () {
-            this.api().columns([4, 5, 6]).every(function (i) {
+            this.api().columns([5, 6, 7]).every(function (i) {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo($("#listofmembers thead tr:eq(1) th").eq(column.index()).empty())
@@ -53,13 +53,13 @@ jQuery(document).ready(function ($) {
                     });
 
                 switch (i) {
-                    case 4:
+                    case 5:
                         column.data().unique().sort().each(function (d, j) {
                             select.append('<option value="' + d + '">' + d + '</option>')
                         });
                         break;
-                    case 5:
                     case 6:
+                    case 7:
                         column.data().unique().sort(function (a, b) {
                             return moment(a, "MM/YYYY").unix() - moment(b, "MM/YYYY").unix();
                         }).each(function (d, j) {

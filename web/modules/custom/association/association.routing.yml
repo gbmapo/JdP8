@@ -29,3 +29,13 @@ association.export_membersformaps:
     _controller: '\Drupal\association\Controller\MembersAndPersonsController::export_membersformaps'
   requirements:
     _permission: 'add member entities'
+
+association.import_members:
+  path: '/association/import_members'
+  defaults:
+    _form: '\Drupal\association\Form\MemberImportStatus'
+    _title: 'MemberImportStatus'
+  requirements:
+    _permission: 'add member entities'
+
+# -------------------------------------------------------------------

@@ -12,44 +12,59 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: sel@lejardindepoissy.org
+      label: SÉL
+    -
       value: amap@lejardindepoissy.org
       label: AMAP
     -
-      value: 'Brioche <elodie.chorin@xyz.com>'
+      value: 'Brioche <elodie.chorin@hotmail.fr>'
       label: 'AMAP Brioche'
     -
-      value: 'Champignons <helene.vidalis@xyz.com>'
+      value: 'Champignons <helene.vidalis@gmail.com>'
       label: 'AMAP Champignons'
     -
-      value: 'Jus de pommes Hutrel <pommesduhutrel@xyz.com>'
+      value: 'Farine <charpcel@hotmail.com>'
+      label: 'AMAP Farine'
+    -
+      value: 'Jus de pommes Hutrel <pommesduhutrel@gmail.com>'
       label: 'AMAP Jus de pommes Hutrel'
     -
-      value: 'Légumes <jeannine@xyz.com>'
+      value: 'Légumes <jeannine@massiaux.net>'
       label: 'AMAP Légumes'
     -
-      value: 'Lentilles Épeautre <isabelletauty@xyz.com>'
+      value: 'Lentilles Épeautre <isabelletauty@hotmail.fr>'
       label: 'AMAP Lentilles Épeautre'
     -
-      value: 'Pommes de terre <jeannine@xyz.com>'
+      value: 'Miel <dominique.falzon@free.fr>'
+      label: 'AMAP Miel'
+    -
+      value: 'Pain <elodie.chorin@hotmail.fr>'
+      label: 'AMAP Pain'
+    -
+      value: 'Pommes de terre <jeannine@massiaux.net>'
       label: 'AMAP Pommes de terre'
     -
       value: 'Pommes-Poires <eric.falzon@free.fr>'
       label: 'AMAP Pommes-Poires'
     -
-      value: 'Porc <isabelletauty@xyz.com>'
+      value: 'Porc <isabelletauty@hotmail.fr>'
       label: 'AMAP Porc'
+    -
+      value: 'Produits laitiers (Brebis) <pascal.cavillot@gmail.com>'
+      label: 'AMAP Produits laitiers (Brebis)'
     -
       value: 'Produits laitiers (Vache) <eric.falzon@free.fr>'
       label: 'AMAP Produits laitiers (Vache)'
     -
-      value: 'Terrines <isabelletauty@xyz.com>'
+      value: 'Terrines <isabelletauty@hotmail.fr>'
       label: 'AMAP Terrines'
     -
-      value: 'Œufs <florence.loup@xyz.com>'
-      label: 'AMAP Œufs'
+      value: 'Volaille <lrolland78@gmail.com>'
+      label: 'AMAP Volaille'
     -
-      value: sel@lejardindepoissy.org
-      label: SÉL
+      value: 'Œufs <florence.loup@ntymail.com>'
+      label: 'AMAP Œufs'
   allowed_values_function: shared_allowed_values_function
 module: options
 locked: false

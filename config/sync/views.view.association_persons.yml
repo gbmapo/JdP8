@@ -6,7 +6,9 @@ dependencies:
     - user.role.administrator
     - user.role.authenticated
     - user.role.contact_for_member
+    - user.role.referent_of_contract
     - user.role.secretary
+    - user.role.seliste
   module:
     - association
     - csv_serialization
@@ -73,7 +75,7 @@ display:
           inline:
             lastname: lastname
             firstname: firstname
-          separator: ''
+          separator: ' '
           hide_empty: false
       fields:
         lastname:
