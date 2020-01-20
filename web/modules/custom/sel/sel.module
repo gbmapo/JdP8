@@ -71,6 +71,7 @@ function sel_cron()
   $database = \Drupal::database();
   $query = $database->select('service', 'se');
   $query->fields('se', ['id', 'duedate', 'status'])
+    ->condition('status', 1, '=')
     ->condition('duedate', $dToday, '<');
   $results = $query->execute();
   $iNumber = 0;
@@ -318,6 +319,13 @@ function sel_views_pre_render(ViewExecutable $view)
 {
   switch ($view->id()) {
     case 'sel_services':
+      switch ($view->current_display) {
+        case 'page_1':
+          $view->element['#attached']['library'][] = 'sel/LoS';
+          break;
+        default:
+      }
+      break;
     case 'sel_echanges':
       switch ($view->current_display) {
         case 'page_1':

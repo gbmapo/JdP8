@@ -157,40 +157,40 @@ class ContractType extends ContentEntityBase implements ContractTypeInterface
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
-    $fields['formheader'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Header'))
+    $fields['formheader'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Header for Form'))
       ->setSettings([
-        'max_length' => 255,
+        'max_length' => 1024,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'string_long',
         'weight' => $weight,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
+        'type' => 'string_textarea',
         'weight' => $weight,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
-    $fields['exportheader'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Header'))
+    $fields['exportheader'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Header for Form'))
       ->setSettings([
-        'max_length' => 255,
+        'max_length' => 1024,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'string',
+        'type' => 'string_long',
         'weight' => $weight,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
+        'type' => 'string_textarea',
         'weight' => $weight,
       ])
       ->setDisplayConfigurable('form', TRUE)

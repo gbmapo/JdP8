@@ -1,0 +1,14 @@
+uuid: 08723f6f-2428-4bfa-86c4-e98587741b7d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.amapien
+  module:
+    - user
+id: retirer_le_role_amapien_aux_utilisateurs_selectionnes_
+label: 'Retirer le rôle AMAPien aux utilisateurs sélectionnés.'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: amapien

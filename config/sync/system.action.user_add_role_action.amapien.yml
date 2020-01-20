@@ -1,0 +1,14 @@
+uuid: 3ad9b68d-930d-4a79-9b64-cec4789fc5aa
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.amapien
+  module:
+    - user
+id: user_add_role_action.amapien
+label: 'Ajouter le rôle AMAPien aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: amapien

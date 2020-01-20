@@ -9,6 +9,8 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\field\Entity\FieldStorageConfig;
+use \Drupal\node\NodeInterface;
+use \Drupal\Core\Session\AccountInterface;
 
 /**
  * Implements hook_help().
@@ -192,4 +194,18 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
   }
 
+}
+
+function shared_node_access(NodeInterface $node, $op, AccountInterface $account) {
+
+   if ($node->type->target_id == 'evenement' && $op == 'view') {
+      $tags = $node->get('field_tags')->referencedEntities();
+      foreach ($tags as $tag) {
+        if ($tag->tid->value == 7) { //7=Private
+          if ($account->id() == 0) {
+            return \Drupal\Core\Access\AccessResult::forbidden();
+          }
+        }
+      }
+   }
 }

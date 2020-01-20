@@ -21,6 +21,9 @@ settings:
       value: 'Brioche <elodie.chorin@hotmail.fr>'
       label: 'AMAP Brioche'
     -
+      value: 'Bœuf <cecile.chevalier@laposte.net>'
+      label: 'AMAP Bœuf'
+    -
       value: 'Champignons <helene.vidalis@gmail.com>'
       label: 'AMAP Champignons'
     -

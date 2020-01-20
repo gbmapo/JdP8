@@ -9,6 +9,6 @@ _core:
   default_config_hash: CnR_iGXSBTMrqsBbl52_jH531uxtYZcQ8KQqp6Qr4bU
 id: referent_of_distribution
 label: 'Référent de distribution'
-weight: -6
+weight: -5
 is_admin: false
 permissions: {  }

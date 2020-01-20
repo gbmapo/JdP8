@@ -9,7 +9,7 @@ _core:
   default_config_hash: Uy_eMKRWC2PbjWU-lg5PDJnUKDiKmsN28HawEVJ2JcQ
 id: contact_for_member
 label: 'Contact pour adhérent'
-weight: -7
+weight: -6
 is_admin: null
 permissions:
   - 'renew membership'

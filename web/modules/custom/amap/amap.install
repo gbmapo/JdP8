@@ -1,0 +1,90 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_update_N() on Module AMAP Update # 8001.
+ */
+function amap_update_8001(&$sandbox)
+{
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $bundle_of = 'contract_type';
+
+  $storage = $entity_type_manager->getStorage($bundle_of);
+  $bundle_definition = $entity_type_manager->getDefinition($bundle_of);
+//Sometimes the primary key isn't 'id'. e.g. 'eid' or 'item_id'.
+  $id_key = $bundle_definition->getKey('id');
+//If there is no data table defined then use the base table.
+  $table_name = $storage->getDataTable() ?: $storage->getBaseTable();
+  $database = \Drupal::database();
+  $definition_manager = \Drupal::entityDefinitionUpdateManager();
+
+//Store the existing values.
+  $header_values = $database->select($table_name)
+    ->fields($table_name, [$id_key, 'formheader', 'exportheader'])
+    ->execute()
+    ->fetchAllAssoc($id_key);
+
+//Clear out the values.
+  $database->update($table_name)
+    ->fields(['formheader' => NULL, 'exportheader' => NULL])
+    ->execute();
+
+//Uninstall the field.
+  $field_storage_definition = $definition_manager->getFieldStorageDefinition('formheader', $bundle_of);
+  $definition_manager->uninstallFieldStorageDefinition($field_storage_definition);
+  $field_storage_definition = $definition_manager->getFieldStorageDefinition('exportheader', $bundle_of);
+  $definition_manager->uninstallFieldStorageDefinition($field_storage_definition);
+
+//Create a new field definition.
+  $new_formheader = BaseFieldDefinition::create('string_long')
+    ->setLabel(t('Header for Form'))
+    ->setSettings([
+      'max_length' => 1024,
+      'text_processing' => 0,
+    ])
+    ->setDefaultValue('')
+    ->setDisplayOptions('view', [
+      'label' => 'above',
+      'type' => 'string_long',
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'string_textarea',
+    ])
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayConfigurable('view', TRUE);
+
+  $new_exportheader = BaseFieldDefinition::create('string_long')
+    ->setLabel(t('Header for Export'))
+    ->setSettings([
+      'max_length' => 1024,
+      'text_processing' => 0,
+    ])
+    ->setDefaultValue('')
+    ->setDisplayOptions('view', [
+      'label' => 'above',
+      'type' => 'string_long',
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'string_textarea',
+    ])
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayConfigurable('view', TRUE);
+
+//Install the new definition.
+  $definition_manager->installFieldStorageDefinition('formheader', $bundle_of, $bundle_of, $new_formheader);
+  $definition_manager->installFieldStorageDefinition('exportheader', $bundle_of, $bundle_of, $new_exportheader);
+
+//Restore the values.
+  foreach ($header_values as $id => $value) {
+    $database->update($table_name)
+      ->fields(['formheader' => $value->formheader, 'exportheader' => $value->exportheader])
+      ->condition($id_key, $id)
+      ->execute();
+  }
+
+  drupal_flush_all_caches();
+
+  \Drupal::messenger()->addMessage('Module AMAP Update # 8001 was executed successfully.');
+
+}

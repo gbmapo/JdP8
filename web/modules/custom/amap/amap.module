@@ -72,7 +72,7 @@ function amap_entity_insert(EntityInterface $entity)
   switch ($entity->getEntityType()->id()) {
     case "contract":
       _handleContractFiles($entity, $mode);
-      _setReferentOfContract($entity);
+      _setReferentOfContract();
       break;
     case "contract_subscription":
       _handleContractSubscriptionFiles($entity, $mode);
@@ -87,7 +87,7 @@ function amap_entity_update(EntityInterface $entity)
   switch ($entity->getEntityType()->id()) {
     case "contract":
       _handleContractFiles($entity, $mode);
-      _setReferentOfContract($entity);
+      _setReferentOfContract();
       break;
     case "contract_subscription":
       _handleContractSubscriptionFiles($entity, $mode);
@@ -110,7 +110,7 @@ function amap_entity_delete(EntityInterface $entity)
         $entity->delete();
       }
       _handleContractFiles($entity, $mode);
-      _setReferentOfContract($entity);
+      _setReferentOfContract();
       break;
 
     case "contract_subscription":
@@ -318,7 +318,7 @@ function _handleContractSubscriptionFiles(EntityInterface $entity, $mode)
 
 }
 
-function _setReferentOfContract(EntityInterface $entity)
+function _setReferentOfContract()
 {
 
   $ids = \Drupal::entityQuery('user')
@@ -362,6 +362,37 @@ function _setReferentOfContract(EntityInterface $entity)
 
 }
 
+function _setAmapien()
+{
+
+  $ids = \Drupal::entityQuery('user')
+    ->condition('roles', 'amapien')
+    ->execute();
+  $users = User::loadMultiple($ids);
+  foreach ($users as $user) {
+    $user->removeRole('amapien');
+    $user->save();
+  }
+
+  $sToday = strftime("%Y-%m-%d");
+  $database = \Drupal::database();
+  $query = $database->select('contract_subscription', 'cs');
+  $query->leftJoin('contract', 'ct', 'ct.id = cs.contract_id');
+  $query->leftJoin('member', 'me', 'me.id = cs.member_id');
+  $query->leftJoin('users_field_data', 'us', 'us.uid = me.contact_id');
+  $query->fields('us', ['uid']);
+  $query->condition('ct.startdate', $sToday, '<=');
+  $query->condition('ct.enddate', $sToday, '>=');
+  $query->distinct();
+  $results = $query->execute();
+  foreach ($results as $result) {
+    $user = User::load($result->uid);
+    $user->addRole('amapien');
+    $user->save();
+  }
+
+}
+
 function _list_distribution_products(&$aProducts, &$sMin, &$sMax)
 {
   \Drupal::moduleHandler()->loadInclude('amap', 'inc', 'amap.allowed.values');
@@ -383,6 +414,11 @@ function amap_cron()
   } else {
     \Drupal::logger('amap')->info('email \'Rappel pour les étourdis\': nothing to do.');
   }
+
+// ----------------------------------------------------------------------------
+// Mise à jour de la liste des AMAPiens
+// ----------------------------------------------------------------------------
+  _setAmapien();
 
 }
 

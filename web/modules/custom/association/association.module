@@ -11,6 +11,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\views\ViewExecutable;
+use Drupal\user\Entity\User;
 
 /**
  * Implements hook_help().
@@ -152,3 +153,84 @@ function _export_association_CSV($view, $page)
   file_unmanaged_save_data($data, 'private://' . $path, FILE_EXISTS_REPLACE);
 
 }
+
+function association_entity_insert(EntityInterface $entity)
+{
+  $mode = 'insert';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      break;
+    case "person":
+      break;
+    default:
+  }
+  _export_association($entityType);
+}
+
+function association_entity_update(EntityInterface $entity)
+{
+  $mode = 'update';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      if ($entity->status->value == 0) {
+        // List all Persons for this Member
+        $id = $entity->id->value;
+        $database = \Drupal::database();
+        $query = $database->select('person', 'ap');
+        $query->fields('ap', ['id', 'member_id'])
+          ->condition('member_id', $id, '=');
+        $results = $query->execute();
+        // Inactive all these Persons and the corresponding Users
+        $storage = \Drupal::entityTypeManager()->getStorage('person');
+        foreach ($results as $key => $result) {
+          $person = $storage->load($result->id);
+          $user = User::load($person->user_id->target_id);
+          $person->set("isactive", 0);
+          $person->set("member_id", "");
+          if ($person->iscontact->value) {
+            $person->set("iscontact", 0);
+            $user->removeRole('contact_for_member');
+          }
+          $user->set("status", 0);
+          $user->save();
+          $person->save();
+        }
+      }
+      break;
+    case "person":
+      break;
+    default:
+  }
+  _export_association($entityType);
+}
+
+function association_entity_delete(EntityInterface $entity)
+{
+  $mode = 'delete';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      break;
+    case "person":
+      break;
+    default:
+  }
+  _export_association($entityType);
+}
+
+function _export_association($entityType)
+{
+  switch ($entityType) {
+    case "member":
+      _export_association_CSV('association_members', 'rest_export_1');
+      break;
+    case "person":
+    _export_association_CSV('association_persons', 'rest_export_1');
+      break;
+    default:
+  }
+  _export_association_CSV('association_members_and_persons', 'rest_export_1');
+}
+

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.evenement.field_event_date_end
     - field.field.node.evenement.field_event_date_start
     - field.field.node.evenement.field_gallery
+    - field.field.node.evenement.field_tags
     - image.style.thumbnail
     - node.type.evenement
   module:
@@ -54,6 +55,16 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_tags:
+    weight: 125
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   langcode:
     type: language_select

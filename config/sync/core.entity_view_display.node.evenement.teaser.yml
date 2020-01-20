@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.evenement.field_event_date_end
     - field.field.node.evenement.field_event_date_start
     - field.field.node.evenement.field_gallery
+    - field.field.node.evenement.field_tags
     - node.type.evenement
   module:
     - text
@@ -34,4 +35,5 @@ hidden:
   field_event_date_end: true
   field_event_date_start: true
   field_gallery: true
+  field_tags: true
   langcode: true

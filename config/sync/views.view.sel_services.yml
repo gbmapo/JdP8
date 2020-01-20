@@ -927,7 +927,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: '/user/{{ owner_id__target_id }}/contact'
+            path: '/association/person/{{ owner_id__target_id }}/view'
             absolute: false
             external: false
             replace_spaces: false
@@ -2026,7 +2026,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: '/user/{{ owner_id__target_id }}/contact'
+            path: '/association/person/{{ owner_id__target_id }}/view'
             absolute: false
             external: false
             replace_spaces: false

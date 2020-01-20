@@ -1,0 +1,26 @@
+A {
+    COLOR: #000000;
+    TEXT-DECORATION: none;
+}
+
+A SPAN {
+    DISPLAY: none;
+}
+
+A:HOVER {
+    POSITION: relative;
+}
+
+A:HOVER SPAN {
+    DISPLAY: block;
+    POSITION: absolute;
+    TOP: 20px;
+    LEFT: -150px;
+    WIDTH: 150px;
+    PADDING: 5px;
+    TEXT-ALIGN: left;
+    TEXT-DECORATION: none;
+    BACKGROUND-COLOR: #000;
+    COLOR: #FFF;
+    BORDER: 1px solid #FFF;
+}

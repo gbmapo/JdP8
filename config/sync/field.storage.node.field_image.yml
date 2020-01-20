@@ -13,9 +13,9 @@ field_name: field_image
 entity_type: node
 type: image
 settings:
-  uri_scheme: public
+  uri_scheme: private
   default_image:
-    uuid: null
+    uuid: ''
     alt: ''
     title: ''
     width: null
@@ -25,7 +25,7 @@ settings:
   display_default: false
 module: image
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes:
   target_id:

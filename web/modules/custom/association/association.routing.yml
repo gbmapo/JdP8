@@ -39,3 +39,11 @@ association.import_members:
     _permission: 'add member entities'
 
 # -------------------------------------------------------------------
+# -------------------------------------------------------------------
+association.default_form:
+  path: '/association/form/default'
+  defaults:
+    _form: '\Drupal\association\Form\DefaultForm'
+    _title: 'DefaultForm'
+  requirements:
+    _access: 'TRUE'

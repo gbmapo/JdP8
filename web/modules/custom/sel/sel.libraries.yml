@@ -13,3 +13,15 @@ person:
   version: 1.x
   js:
       js/person.js: {}
+
+LoS:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/ahover.css: {}
+  js:
+    js/LoS.js: {}
+  dependencies:
+    - core/jquery
+    - shared/shared

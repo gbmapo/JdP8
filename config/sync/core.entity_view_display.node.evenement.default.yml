@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.evenement.field_event_date_end
     - field.field.node.evenement.field_event_date_start
     - field.field.node.evenement.field_gallery
+    - field.field.node.evenement.field_tags
     - image.style.thumbnail_cropped_100_75_
     - node.type.evenement
   module:
@@ -47,4 +48,5 @@ content:
 hidden:
   field_event_date_end: true
   field_event_date_start: true
+  field_tags: true
   langcode: true

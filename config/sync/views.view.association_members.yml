@@ -178,6 +178,7 @@ display:
         sorts: false
         access: false
         empty: false
+        relationships: false
       style:
         type: table
         options:
@@ -1141,14 +1142,14 @@ display:
           entity_type: member
           entity_field: comment
           plugin_id: field
-        contact_id:
-          id: contact_id
-          table: member
-          field: contact_id
-          relationship: none
+        id_1:
+          id: id_1
+          table: person
+          field: id
+          relationship: contact_id
           group_type: group
           admin_label: ''
-          label: Contact
+          label: 'Identifiant (ID)'
           exclude: true
           alter:
             alter_text: false
@@ -1204,8 +1205,8 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: member
-          entity_field: contact_id
+          entity_type: person
+          entity_field: id
           plugin_id: field
         nothing:
           id: nothing
@@ -1365,9 +1366,9 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if contact_id != \"\" %}\r\n<img src=\"/sites/default/files/images/user-green.gif\" title=\"Modifierle contact\">\r\n{% endif %}"
+            text: "{% if id_1 != \"\" %}\r\n<img src=\"/sites/default/files/images/user-green.gif\" title=\"Modifier le contact\">\r\n{% endif %}"
             make_link: true
-            path: '/association/person/{{ contact_id }}'
+            path: '/association/person/{{ id_1 }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -1439,6 +1440,17 @@ display:
             value: 'Aucun adhérent à afficher.'
             format: full_html
           plugin_id: text
+      relationships:
+        contact_id:
+          id: contact_id
+          table: member
+          field: contact_id
+          relationship: none
+          group_type: group
+          admin_label: Contact
+          required: false
+          entity_type: member
+          plugin_id: standard
     cache_metadata:
       max-age: -1
       contexts:

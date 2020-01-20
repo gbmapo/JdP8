@@ -954,7 +954,7 @@ display:
         description: ''
         expanded: false
         parent: 'menu_link_content:43480f7f-ee50-4ca5-848c-24e19705c961'
-        weight: -49
+        weight: 32
         context: '0'
         menu_name: mysuperfishmenu
       title: SÉListes

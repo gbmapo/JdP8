@@ -34,15 +34,12 @@ class MemberDeleteForm extends ContentEntityDeleteForm
       if ($person->iscontact->value) {
         $person->set("iscontact", 0);
         $usertemp = User::load($result->id);
-        $usertemp->removeRole('contact_pour_adherent');
+        $usertemp->removeRole('contact_for_member');
         $usertemp->save();
       }
       $person->save();
     }
     $entity->delete();
-
-    _export_association_CSV('association_members', 'rest_export_1');
-    _export_association_CSV('association_members_and_persons', 'rest_export_1');
 
     $form_state->setRedirect('view.association_members.page_1');
     \Drupal::messenger()->addMessage($this->getDeletionMessage());

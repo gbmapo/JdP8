@@ -345,7 +345,7 @@ class Member extends ContentEntityBase implements MemberInterface
       ->setSetting('datetime_type', 'date')
       ->setDefaultValue(array(0 => array(
         'default_date_type' => 'now',
-        'default_date' => '2050-12-31',
+        'default_date' => '2037-12-31',
       )))
       ->setDisplayOptions('view', array(
         'label' => 'above',

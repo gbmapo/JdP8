@@ -1,6 +1,9 @@
 abs_urls: false
 admin_theme: false
 roles_profiles:
+  secretary:
+    public: admin
+    private: admin
   administrator:
     public: admin
     private: admin

@@ -45,6 +45,7 @@ class ContractSubscriptionTableForm extends FormBase
       '#sticky' => TRUE,
       '#responsive' => TRUE,
       '#id' => 'subscriptions',
+      '#quantities' => $iNumberOfQuantities,
     );
 
     $form['subscriptions']['#header'] = array('member' => t('Member'),);
@@ -181,7 +182,7 @@ class ContractSubscriptionTableForm extends FormBase
   {
     $args = $form_state->getBuildInfo()['args'];
     $storage = \Drupal::entityTypeManager()->getStorage('contract_subscription');
-    $iNumberOfQuantities = count($form['subscriptions']['#header']) - 4; // 4 = colonnes 'member', 'sharedwith', 'comment', 'file'
+    $iNumberOfQuantities = $form['subscriptions']['#quantities'];
 
     foreach ($form_state->getValue('subscriptions') as $key => $value) {
       $sQuantities = "";

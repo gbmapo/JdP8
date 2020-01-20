@@ -68,7 +68,7 @@ display:
           collapsible: 1
           animated: none
           animation_time: '300'
-          heightStyle: auto
+          heightStyle: content
           event: click
           use_header_icons: 1
           icon_header: ui-icon-triangle-1-e

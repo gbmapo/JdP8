@@ -91,6 +91,8 @@ class MemberImportStatus extends FormBase {
       $executable = new MigrateExecutable($migration, new MigrateMessage());
       $executable->import();
 
+      $file->delete();
+
     }
 
     $form_state->setRedirect('view.association_members.page_1');

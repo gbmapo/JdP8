@@ -47,9 +47,6 @@ class MemberForm extends ContentEntityForm
         ]));
     }
 
-    _export_association_CSV('association_members', 'rest_export_1');
-    _export_association_CSV('association_members_and_persons', 'rest_export_1');
-
     $form_state->setRedirect('view.association_members.page_1');
 
   }
