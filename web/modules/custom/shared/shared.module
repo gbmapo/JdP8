@@ -108,8 +108,6 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
   switch ($form_id) {
     case 'views_form_amap_contracts_subscriptions_page_1_':
     case 'views_form_association_persons_page_2':
-//       if (array_key_exists('from', $form) && !array_key_exists('message', $form)) {
-//       }
 
       switch ($form_state->get('step')) {
 
@@ -198,14 +196,24 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
 function shared_node_access(NodeInterface $node, $op, AccountInterface $account) {
 
-   if ($node->type->target_id == 'evenement' && $op == 'view') {
+  switch ($node->type->target_id) {
+    case 'article':
+    case 'page':
+    case 'evenement':
       $tags = $node->get('field_tags')->referencedEntities();
       foreach ($tags as $tag) {
-        if ($tag->tid->value == 7) { //7=Private
-          if ($account->id() == 0) {
+        if ($tag->tid->value == 7) { // 7=Privé
+          if ($account->isAnonymous()) {
             return \Drupal\Core\Access\AccessResult::forbidden();
+          } else {
+            return \Drupal\Core\Access\AccessResult::allowed();
           }
         }
       }
-   }
+      break;
+    default:
+
+}
+
+
 }

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - user.role.administrator
+    - user.role.amapien
     - user.role.authenticated
     - user.role.contact_for_member
     - user.role.referent_of_contract
@@ -1256,6 +1257,60 @@ display:
       display_extenders: {  }
       path: association/sendemails
       filters:
+        status:
+          id: status
+          table: member
+          field: status
+          relationship: member_id
+          group_type: group
+          admin_label: ''
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: '3'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: status_op
+            label: État
+            description: ''
+            use_operator: false
+            operator: status_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: status
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              seliste: '0'
+              amapien: '0'
+              contact_for_member: '0'
+              referent_of_distribution: '0'
+              referent_of_contract: '0'
+              secretary: '0'
+              administrator: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: member
+          entity_field: status
+          plugin_id: numeric
         isactive:
           id: isactive
           table: person
@@ -1306,6 +1361,7 @@ display:
           operator: or
           value:
             seliste: seliste
+            amapien: amapien
             contact_for_member: contact_for_member
             referent_of_distribution: referent_of_distribution
             referent_of_contract: referent_of_contract
@@ -1327,6 +1383,7 @@ display:
               authenticated: authenticated
               anonymous: '0'
               seliste: '0'
+              amapien: '0'
               contact_for_member: '0'
               referent_of_distribution: '0'
               referent_of_contract: '0'

@@ -9,11 +9,11 @@ function association_member_country()
 function association_member_status()
 {
   $values = [
-    0 => 'Ancien',
-    1 => 'Non renouvelée',
-    2 => 'En attente',
-    3 => 'Renouvelée',
-    4 => 'Actif',
+    0 => 'Ancien adhérent',
+    1 => 'Adhésion non renouvelée',
+    2 => 'Adhésion en attente',
+    3 => 'Adhésion renouvelée',
+    4 => 'Adhérent actif',
   ];
   return $values;
 }

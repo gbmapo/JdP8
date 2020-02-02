@@ -1,0 +1,30 @@
+uuid: 4968fdba-bf20-4911-a54e-c963e75fa9ef
+langcode: fr
+status: true
+dependencies:
+  config:
+    - views.view.calendar
+  module:
+    - system
+    - views
+  theme:
+    - mayo
+id: views_block__calendar_block_1
+theme: mayo
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_block:calendar-block_1'
+settings:
+  id: 'views_block:calendar-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: "/amap/contract/subscribe/*\r\n/amap/distributions\r\n/amap/editCalendar"
+    negate: true
+    context_mapping: {  }

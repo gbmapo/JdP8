@@ -40,10 +40,10 @@ association.import_members:
 
 # -------------------------------------------------------------------
 # -------------------------------------------------------------------
-association.default_form:
-  path: '/association/form/default'
+association.membership2:
+  path: '/association/membership2'
   defaults:
-    _form: '\Drupal\association\Form\DefaultForm'
-    _title: 'DefaultForm'
+    _form: '\Drupal\association\Form\Membership2'
+    _title: 'Membership2'
   requirements:
     _access: 'TRUE'

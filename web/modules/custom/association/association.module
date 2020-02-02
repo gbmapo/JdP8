@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\user\Entity\User;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
@@ -222,6 +223,7 @@ function association_entity_delete(EntityInterface $entity)
 
 function _export_association($entityType)
 {
+
   switch ($entityType) {
     case "member":
       _export_association_CSV('association_members', 'rest_export_1');
@@ -234,3 +236,25 @@ function _export_association($entityType)
   _export_association_CSV('association_members_and_persons', 'rest_export_1');
 }
 
+function association_menu_local_tasks_alter(&$data, $route_name) {
+
+  $oCurrentUser = \Drupal::currentUser();
+  switch ($route_name) {
+    case 'view.association_members_and_persons.page_1':
+    case 'view.association_members.page_1':
+    case 'view.association_persons.page_1':
+      if ($oCurrentUser->hasPermission('administer users')) {
+        $data['tabs'][0]['association.people'] = [
+          '#theme' => 'menu_local_task',
+          '#link' => [
+            'title' => t('Users'),
+            'url' => Url::fromRoute('entity.user.collection'),
+          ],
+          '#weight' => 4,
+        ];
+      }
+      break;
+    default:
+  }
+
+}

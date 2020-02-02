@@ -28,7 +28,7 @@ content:
     region: content
   field_gallery:
     weight: 1
-    label: above
+    label: visually_hidden
     settings:
       colorbox_node_style: thumbnail_cropped_100_75_
       colorbox_node_style_first: ''
