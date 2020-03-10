@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.evenement.field_event_date_start
     - field.field.node.evenement.field_gallery
     - field.field.node.evenement.field_tags
-    - image.style.thumbnail_cropped_100_75_
+    - image.style.vignette_carree_100x100
     - node.type.evenement
   module:
     - colorbox
@@ -30,7 +30,7 @@ content:
     weight: 1
     label: visually_hidden
     settings:
-      colorbox_node_style: thumbnail_cropped_100_75_
+      colorbox_node_style: vignette_carree_100x100
       colorbox_node_style_first: ''
       colorbox_image_style: ''
       colorbox_gallery: post

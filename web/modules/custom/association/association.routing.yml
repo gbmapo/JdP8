@@ -1,19 +1,4 @@
 # -------------------------------------------------------------------
-association.membership_showMembership:
-  path: '/association/showMembership'
-  defaults:
-    _controller: '\Drupal\association\Controller\MembershipController::showMembership'
-    _title: 'Membership'
-  requirements:
-    _access: 'TRUE'
-
-association.membership_download:
-  path: '/association/membership/download/{member}'
-  defaults:
-    _controller: '\Drupal\association\Controller\MembershipController::download'
-  requirements:
-    _permission: 'renew membership'
-
 association.membership_settings:
   path: '/association/membership/settings'
   defaults:
@@ -21,6 +6,53 @@ association.membership_settings:
     _title: 'Membership'
   requirements:
     _permission: 'administer membership'
+
+association.membership0:
+  path: '/association/membership0'
+  defaults:
+    _form: '\Drupal\association\Form\Multistep\MembershipStep0'
+    _title: 'Membership'
+  requirements:
+    _access: 'TRUE'
+
+#association.membership_download:
+#  path: '/association/membership/download/{member}'
+#  defaults:
+#    _controller: '\Drupal\association\Controller\MembershipController::download'
+#  requirements:
+#    _permission: 'renew membership'
+#
+association.membership1:
+  path: '/association/membership1'
+  defaults:
+    _form: '\Drupal\association\Form\Multistep\MembershipStep1'
+    _title: 'Membership - Step 1/3'
+  requirements:
+    _access: 'TRUE'
+
+association.membership2:
+  path: '/association/membership2'
+  defaults:
+    _form: '\Drupal\association\Form\Multistep\MembershipStep2'
+    _title: 'Membership - Step 2/3'
+  requirements:
+    _access: 'TRUE'
+
+association.membership3:
+  path: '/association/membership3'
+  defaults:
+    _form: '\Drupal\association\Form\Multistep\MembershipStep3'
+    _title: 'Membership - Step 3/3'
+  requirements:
+    _access: 'TRUE'
+
+association.membership4:
+  path: '/association/membership4'
+  defaults:
+    _form: '\Drupal\association\Form\Multistep\MembershipStep4'
+    _title: 'Membership - Online Payment'
+  requirements:
+    _access: 'TRUE'
 
 # -------------------------------------------------------------------
 association.export_membersformaps:
@@ -39,11 +71,3 @@ association.import_members:
     _permission: 'add member entities'
 
 # -------------------------------------------------------------------
-# -------------------------------------------------------------------
-association.membership2:
-  path: '/association/membership2'
-  defaults:
-    _form: '\Drupal\association\Form\Membership2'
-    _title: 'Membership2'
-  requirements:
-    _access: 'TRUE'

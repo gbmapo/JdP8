@@ -8,7 +8,8 @@ dependencies:
     - taxonomy.vocabulary.tags
     - user.role.authenticated
   content:
-    - 'taxonomy_term:tags:29aaebef-eae6-4908-be14-1a4f9bf0423c'
+    - 'taxonomy_term:tags:dbe9965a-c26f-43a8-84e7-5e4b07b89626'
+    - 'taxonomy_term:tags:df3aad26-6b08-455e-af5f-514e72c00d60'
   module:
     - node
     - taxonomy
@@ -133,7 +134,7 @@ display:
           group_column: target_id
           group_columns: {  }
           group_rows: true
-          delta_limit: 0
+          delta_limit: 1
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
@@ -211,7 +212,8 @@ display:
           admin_label: ''
           operator: or
           value:
-            6: 6
+            5: 5
+            4: 4
           group: 1
           exposed: false
           expose:

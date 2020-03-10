@@ -14,6 +14,7 @@ function association_member_status()
     2 => 'Adhésion en attente',
     3 => 'Adhésion renouvelée',
     4 => 'Adhérent actif',
+    5 => 'Adhérent internet',
   ];
   return $values;
 }

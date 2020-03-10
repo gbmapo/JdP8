@@ -102,7 +102,7 @@ function sel_cron()
   if ($dToday > $dNextEmailForNewServices) {
     _sendEmailForServicesExtraction('emailfornewservices');
   } else {
-    \Drupal::logger('sel')->info('Courriel \'Derniers ajouts au Catalogue de Services\' : rien à faire.');
+    \Drupal::logger('sel')->info('Derniers ajouts au Catalogue de Services : rien à faire.');
   }
 
 // ----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ function _sendEmailForServicesExtraction($sCase)
 
 //                            MailManager::mail($module,$key,  $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
   \Drupal::service('plugin.manager.mail')->mail('sel', $sCase, $sTo, 'fr', $aParams);
-  $sNextWeek = strftime("%Y-%m-%d %H:%M:%S", strtotime("+ 1 week"));
+  $sNextWeek = strftime("%Y-%m-%d", strtotime("+ 1 week"));
   \Drupal::state()->set($aParams[2], $sNextWeek);
   \Drupal::logger('sel')->info($aParams[3]);
 

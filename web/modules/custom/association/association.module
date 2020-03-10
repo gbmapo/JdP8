@@ -17,8 +17,7 @@ use Drupal\Core\Url;
 /**
  * Implements hook_help().
  */
-function association_help($route_name, RouteMatchInterface $route_match)
-{
+function association_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the association module.
     case 'help.page.association':
@@ -34,19 +33,22 @@ function association_help($route_name, RouteMatchInterface $route_match)
 /**
  * Implements hook_theme().
  */
-function association_theme()
-{
+function association_theme() {
   return [
-    'association' => [
+    'association'      => [
       'render element' => 'children',
+    ],
+    'membership_step3' => [
+      'render element' => 'form',
+      'template'       => 'membership-step3',
     ],
   ];
 }
 
-function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE)
-{
+function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE) {
 
-  \Drupal::moduleHandler()->loadInclude('association', 'inc', 'association.allowed.values');
+  \Drupal::moduleHandler()
+    ->loadInclude('association', 'inc', 'association.allowed.values');
 
   if ($definition['entity_type'] == 'member') {
     switch ($definition['field_name']) {
@@ -62,8 +64,7 @@ function association_allowed_values_function(FieldStorageDefinitionInterface $de
   }
 }
 
-function association_views_pre_render(ViewExecutable $view)
-{
+function association_views_pre_render(ViewExecutable $view) {
 
   switch ($view->id()) {
     case 'association_members':
@@ -87,27 +88,19 @@ function association_views_pre_render(ViewExecutable $view)
 
 }
 
-/**
- * Implements hook_form_alter() on behalf of association.module.
- */
-function association_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
 
-  if ($form_id == 'membership') {
-    $form['#attached']['library'][] = 'association/handlemembership';
-  }
-}
+function _setListOfRecipients($status = 4) {
 
-function _setListOfRecipients($status = 4)
-{
-
-  $sBcc = '';
+  $sBcc     = '';
   $database = \Drupal::database();
-  $query = $database->select('member', 'am');
+  $query    = $database->select('member', 'am');
   $query->leftJoin('person', 'ap', 'ap.id = am.contact_id');
-  $query->fields('am', ['id', 'status'])
-    ->fields('ap', ['id', 'lastname', 'firstname', 'email'])
-    ->condition('status', $status, '=');
+  $query->fields('am', ['id', 'status'])->fields('ap', [
+    'id',
+    'lastname',
+    'firstname',
+    'email',
+  ])->condition('status', $status, '=');
   $results = $query->execute();
   foreach ($results as $key => $result) {
     $sBcc .= $result->email . ", ";
@@ -116,35 +109,33 @@ function _setListOfRecipients($status = 4)
 
 }
 
-function association_mail($key, &$message, $aParams)
-{
+function association_mail($key, &$message, $aParams) {
 
   $sFrom = \Drupal::config('system.site')->get('mail');
 
-  $message['from'] = $sFrom;
-  $message['headers'] = array(
+  $message['from']    = $sFrom;
+  $message['headers'] = [
     'Content-Type' => 'text/html',
-    'bcc' => $aParams[0],
-    'From' => $sFrom,
-    'Sender' => $sFrom,
-    'Return-Path' => '',
-  );
+    'bcc'          => $aParams[0],
+    'From'         => $sFrom,
+    'Sender'       => $sFrom,
+    'Return-Path'  => '',
+  ];
   switch ($key) {
     case 'membershipfirstemail':
       $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion';
-      $sBody = "<b>" . $aParams[1] . "</b>";
-      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
+      $sBody              = "<b>" . $aParams[1] . "</b>";
+      $message['body'][]  = check_markup(nl2br($sBody), 'full_html');
       break;
     case 'membershipreminderemail':
       $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion - Relance ' . $aParams[2];
-      $sBody = "<b>" . $aParams[1] . "</b>";
-      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
+      $sBody              = "<b>" . $aParams[1] . "</b>";
+      $message['body'][]  = check_markup(nl2br($sBody), 'full_html');
       break;
   }
 }
 
-function _export_association_CSV($view, $page)
-{
+function _export_association_CSV($view, $page) {
 
   $view = \Drupal\views\Views::getView($view);
   $view->setDisplay($page);
@@ -155,9 +146,8 @@ function _export_association_CSV($view, $page)
 
 }
 
-function association_entity_insert(EntityInterface $entity)
-{
-  $mode = 'insert';
+function association_entity_insert(EntityInterface $entity) {
+  $mode       = 'insert';
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
@@ -169,47 +159,50 @@ function association_entity_insert(EntityInterface $entity)
   _export_association($entityType);
 }
 
-function association_entity_update(EntityInterface $entity)
-{
-  $mode = 'update';
+function association_entity_update(EntityInterface $entity) {
+  $mode       = 'update';
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
       if ($entity->status->value == 0) {
         // List all Persons for this Member
-        $id = $entity->id->value;
+        $id       = $entity->id->value;
         $database = \Drupal::database();
-        $query = $database->select('person', 'ap');
+        $query    = $database->select('person', 'ap');
         $query->fields('ap', ['id', 'member_id'])
           ->condition('member_id', $id, '=');
         $results = $query->execute();
-        // Inactive all these Persons and the corresponding Users
+        // Inactive all these Persons
         $storage = \Drupal::entityTypeManager()->getStorage('person');
         foreach ($results as $key => $result) {
           $person = $storage->load($result->id);
-          $user = User::load($person->user_id->target_id);
-          $person->set("isactive", 0);
-          $person->set("member_id", "");
           if ($person->iscontact->value) {
             $person->set("iscontact", 0);
-            $user->removeRole('contact_for_member');
           }
-          $user->set("status", 0);
-          $user->save();
+          $person->set("isactive", 0);
+          $person->set("member_id", "");
           $person->save();
         }
       }
       break;
     case "person":
+      if ($entity->isactive->value == 0) {
+        // Inactive the corresponding User
+        $user = User::load($entity->user_id->target_id);
+        if ($entity->iscontact->value == 0) {
+          $user->removeRole('contact_for_member');
+        }
+        $user->set("status", 0);
+        $user->save();
+      }
       break;
     default:
   }
   _export_association($entityType);
 }
 
-function association_entity_delete(EntityInterface $entity)
-{
-  $mode = 'delete';
+function association_entity_delete(EntityInterface $entity) {
+  $mode       = 'delete';
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
@@ -221,15 +214,14 @@ function association_entity_delete(EntityInterface $entity)
   _export_association($entityType);
 }
 
-function _export_association($entityType)
-{
+function _export_association($entityType) {
 
   switch ($entityType) {
     case "member":
       _export_association_CSV('association_members', 'rest_export_1');
       break;
     case "person":
-    _export_association_CSV('association_persons', 'rest_export_1');
+      _export_association_CSV('association_persons', 'rest_export_1');
       break;
     default:
   }
@@ -245,10 +237,10 @@ function association_menu_local_tasks_alter(&$data, $route_name) {
     case 'view.association_persons.page_1':
       if ($oCurrentUser->hasPermission('administer users')) {
         $data['tabs'][0]['association.people'] = [
-          '#theme' => 'menu_local_task',
-          '#link' => [
+          '#theme'  => 'menu_local_task',
+          '#link'   => [
             'title' => t('Users'),
-            'url' => Url::fromRoute('entity.user.collection'),
+            'url'   => Url::fromRoute('entity.user.collection'),
           ],
           '#weight' => 4,
         ];

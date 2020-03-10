@@ -14,7 +14,7 @@ amap.contract_subscription_table_form:
     _form: '\Drupal\amap\Form\ContractSubscriptionTableForm'
     _title: 'Enter subscriptions'
   requirements:
-    _role: referent_of_contract
+    _permission: 'add contract subscription entities'
 
 # -------------------------------------------------------------------
 amap.export_subscriptions:
@@ -32,7 +32,7 @@ amap.distribution_date_table_form:
     _form: '\Drupal\amap\Form\DistributionDateTableForm'
     _title: 'Update Calendar'
   requirements:
-    _role: referent_of_contract
+    _permission: 'edit distribution date entities'
 
 # -------------------------------------------------------------------
 amap.distribution_inscription_many_form:

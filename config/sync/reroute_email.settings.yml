@@ -1,0 +1,9 @@
+enable: true
+description: false
+message: false
+mailkeys: ''
+_core:
+  default_config_hash: FWyW0pDoSvPRtqOVlIbk4PxTLiS9S_Ng7zS1JOflWVE
+langcode: fr
+address: dev@lejardindepoissy.org
+whitelist: 'eric.falzon@free.fr,dominique.falzon@free.fr'

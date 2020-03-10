@@ -122,7 +122,8 @@ class ContractSubscriptionTableForm extends FormBase
         $form['subscriptions'][$key][$sTemp] = array(
           '#type' => 'number',
           '#min' => 0.00,
-          '#step' => 0.50,
+          '#max' => 99.95,
+          '#step' => 0.05,
           '#default_value' => $value->$sTemp,
         );
       }

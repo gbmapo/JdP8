@@ -1,0 +1,202 @@
+<form{{ attributes }}> {{ form.form_build_id }} {{ form.form_token }} {{ form.form_id }}
+
+  <style>
+    table tr td {padding: 0px 4px;}
+  </style>
+
+  <div>
+    Je, soussigné(e)
+    <span style="color: #0000ff;">{{ form.person1 }}</span>
+    déclare vouloir adhérer à l’association « <b>Le Jardin de Poissy</b> » sous la désignation suivante :
+    <span style="color: #0000ff;">{{ form.member }}</span>
+    Je souhaite qu’une autre personne me soit associée :
+    <span style="color: #0000ff;">{{ form.person2 }}</span>
+    <br>
+    Je communique mes coordonnées (adresse et téléphone) :
+    <span style="color: #0000ff;">{{ form.address }}</span>
+
+    <br>
+    <input type="checkbox" id="edit-statutes" name="statutes" class="form-checkbox required" required="required">
+    <label for="edit-statutes">
+	<span style="font-weight: normal;">
+	Je m’engage à respecter les statuts disponibles sur le site de l’association.
+	</span>
+    </label>
+
+    <br>
+    <br>
+    <input type="checkbox" id="edit-authorization" name="authorization" class="form-checkbox required"
+           required="required">
+    <label for="edit-authorization">
+	<span style="font-weight: normal;">
+	J’autorise l’association à utiliser mes coordonnées à des fins de communication interne et je m’engage à ne pas utiliser les coordonnées des autres adhérents à des fins personnelles, notamment commerciales, ou dans un but qui serait contraire aux statuts de l’association.
+	</span>
+    </label>
+
+    <br>
+    <br>
+    Souhaite(nt) faire partie du Grenier à SÉL : {{ form.sel }}
+
+    {% if form.anonymous['#value'][0] == 'Y' %}
+      <br>
+      <input type="checkbox" id="edit-amap" name="amap" class="form-checkbox">
+      <label for="edit-amap" class="option">
+	<span style="font-weight: normal;">
+	Je souhaite faire partie de l’AMAP
+	</span>
+      </label>
+
+      <div id="edit-amap-commitments"
+           class="js-form-item form-item js-form-type-item form-item-amap-commitments js-form-item-amap-commitments form-no-label"
+           data-drupal-states="{&quot;visible&quot;:{&quot;:input[name=\u0022amap\u0022]&quot;:{&quot;checked&quot;:true}}}"
+           style="font-weight: normal; margin-left: 20px;">
+        - j’accepte l’éventualité d’être sur liste d’attente. <br>
+        - je suis intéressé.e par les paniers suivants (ceci est purement informatif et ne m’engage en rien) : <br>
+        <table border="0" style="width: 500px; margin-left:10px;">
+          <tbody>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_legumes }}</td>
+            <td> legumes</td>
+            <td>{{ form.amap_fruits }}</td>
+            <td> fruits</td>
+            <td>{{ form.amap_pain }}</td>
+            <td> pain</td>
+          </tr>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_viandedebœuf }}</td>
+            <td> viande de bœuf</td>
+            <td>{{ form.amap_œufs }}</td>
+            <td> œufs</td>
+            <td>{{ form.amap_volaille }}</td>
+            <td> volaille</td>
+          </tr>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_champignons }}</td>
+            <td> champignons</td>
+            <td>{{ form.amap_lentilles }}</td>
+            <td> lentilles</td>
+            <td>{{ form.amap_viandedeporc }}</td>
+            <td> viande de porc</td>
+          </tr>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_produitslaitiersvache }}</td>
+            <td> produits laitiers vache</td>
+            <td>{{ form.amap_pommesdeterre }}</td>
+            <td> pommes de terre</td>
+            <td>{{ form.amap_produitslaitiersbrebis }}</td>
+            <td> produits laitiers brebis</td>
+          </tr>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_farine }}</td>
+            <td> farine</td>
+            <td>{{ form.amap_miel }}</td>
+            <td> miel</td>
+            <td>{{ form.amap_jusdepomme }}</td>
+            <td> jus de pomme</td>
+          </tr>
+          </tbody>
+        </table>
+        <div
+          class="js-form-item form-item js-form-type-checkbox form-item-amap-subscription js-form-item-amap-subscription form-no-label"
+          style="">
+          <input data-drupal-selector="edit-amap-contract" type="checkbox" id="edit-amap-contract" name="amap_contract"
+                 class="form-checkbox"
+                 data-drupal-states="{&quot;required&quot;:{&quot;:input[name=\u0022amap\u0022]&quot;:{&quot;checked&quot;:true}}}">
+          Si je souscris à au moins un panier (quel que soit le contrat), <br>
+          <div style="margin-left: 20px;">
+            - je m’engage à participer aux distributions <br>
+            - je m’engage à assister aux ateliers pédagogiques sur les lieux de production en fonction des besoins
+          </div>
+        </div>
+      </div>
+      <br>
+    {% endif %}
+
+    <br>
+    L’adhésion à l’association est formalisée par une cotisation ayant pour objet de couvrir les frais de
+    fonctionnement. Son montant pour une année civile (du 1er janvier au 31 décembre) est de 24&nbsp;€. Il est
+    dégressif, à raison de 2&nbsp;€ par mois écoulé depuis le 1er janvier :
+    <table border="2" cellpadding="2" cellspacing="2" style="width: 500px; margin-left:auto; margin-right:auto;">
+      <thead>
+      <tr>
+        <th colspan="6" scope="col">Date d’inscription -&gt; Cotisation jusqu’au 31 décembre</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="text-align: center;">
+        <td>Jan : 24 €</td>
+        <td>Fév : 22 €</td>
+        <td>Mar : 20 €</td>
+        <td>Avr : 18 €</td>
+        <td>Mai : 16 €</td>
+        <td>Juin : 14 €</td>
+      </tr>
+      <tr style="text-align: center;">
+        <td>Juil : 12 €</td>
+        <td>Aoû : 10 €</td>
+        <td>Sep : 8 €</td>
+        <td>Oct : 6 €</td>
+        <td>Nov : 4 €</td>
+        <td>Déc : 2 €</td>
+      </tr>
+      </tbody>
+    </table>
+
+    {{ form.payment }}
+
+    <div id="edit-paymentchk"
+         class="js-form-item form-item js-form-type-item form-item-paymentchk js-form-item-paymentchk form-no-label"
+         data-drupal-states="{&quot;visible&quot;:{&quot;:input[name=\u0022payment\u0022]&quot;:{&quot;value&quot;:0}}}"
+         style="">
+      Votre chèque doit être envoyé à :<br>
+      <table style="width: auto;">
+        <tr>
+          <td style="padding: 0px 6px;">Le Jardin de Poissy</td>
+        </tr>
+        <tr>
+          <td>28 bis boulevard Victor Hugo</td>
+        </tr>
+        <tr>
+          <td>78300 Poissy</td>
+        </tr>
+      </table>
+      Ne pas oublier d’indiquer votre désignation d’adhérent (<span
+        style="color: #0000ff;">{{ form.member['#markup'] }}</span>) au verso.
+    </div>
+    <div id="edit-paymenttfr"
+         class="js-form-item form-item js-form-type-item form-item-paymenttfr js-form-item-paymenttfr form-no-label"
+         data-drupal-states="{&quot;visible&quot;:{&quot;:input[name=\u0022payment\u0022]&quot;:{&quot;value&quot;:1}}}"
+         style="">
+      Compte à utiliser pour votre virement : <br>
+      <table style="width: auto;">
+        <tr>
+          <td>Titulaire</td>
+          <td>Le Jardin de Poissy</td>
+        </tr>
+        <tr>
+          <td>RIB</td>
+          <td>20041 01012 6701481J033 71</td>
+        </tr>
+        <tr>
+          <td>IBAN</td>
+          <td>FR19 2004 1010 1267 0148 1J03 371</td>
+        </tr>
+        <tr>
+          <td>BIC</td>
+          <td>PSSTFRPPSCE</td>
+        </tr>
+      </table>
+      Ne pas oublier d’indiquer votre désignation d’adhérent (<span
+        style="color: #0000ff;">{{ form.member['#markup'] }}</span>) dans le commentaire destiné au bénéficiaire.
+    </div>
+    <div id="edit-paymentcrd"
+         class="js-form-item form-item js-form-type-item form-item-paymentcrd js-form-item-paymentcrd form-no-label"
+         data-drupal-states="{&quot;visible&quot;:{&quot;:input[name=\u0022payment\u0022]&quot;:{&quot;value&quot;:2}}}"
+         style="">
+      Après la soumission de ce formulaire, vous serez redirigé vers le processus de paiement en ligne.
+    </div>
+
+    {# Renders the rest of the form #} {{ form | without('person1', 'member', 'person2', 'address', 'sel', 'amap', 'amap_legumes', 'amap_fruits', 'amap_pain', 'amap_viandedebœuf', 'amap_œufs', 'amap_volaille', 'amap_champignons', 'amap_lentilles', 'amap_viandedeporc', 'amap_produitslaitiersvache', 'amap_pommesdeterre', 'amap_produitslaitiersbrebis', 'amap_farine', 'amap_miel', 'amap_jusdepomme', 'contract', 'payment') }}
+
+
+  </div>

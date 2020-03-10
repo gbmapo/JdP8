@@ -21,9 +21,3 @@ LoP:
   dependencies:
     - core/jquery
     - shared/shared
-
-handlemembership:
-  version: 1.x
-  header: true
-  js:
-    js/handlemembership.js: {}

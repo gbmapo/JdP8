@@ -18,6 +18,7 @@ permissions:
   - 'delete contract subscription entities'
   - 'edit contract entities'
   - 'edit contract subscription entities'
+  - 'edit distribution date entities'
   - 'mass mailing with views_send'
   - 'view contract entities'
   - 'view contract subscription entities'

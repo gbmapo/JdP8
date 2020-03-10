@@ -15,8 +15,7 @@ use \Drupal\Core\Session\AccountInterface;
 /**
  * Implements hook_help().
  */
-function shared_help($route_name, RouteMatchInterface $route_match)
-{
+function shared_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the shared module.
     case 'help.page.shared':
@@ -32,8 +31,7 @@ function shared_help($route_name, RouteMatchInterface $route_match)
 /**
  * Implements hook_theme().
  */
-function shared_theme()
-{
+function shared_theme() {
   return [
     'shared' => [
       'render element' => 'children',
@@ -52,12 +50,11 @@ function shared_theme()
  *   allowed_values: {  }
  *   allowed_values_function: 'mymodule_allowed_values_function'
  */
-function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable)
-{
+function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
 
   if ($definition->get('entity_type') == 'contact_message' && $definition->get('field_name') == 'field_recipient') {
     $allowedValues = $definition->getSetting('allowed_values');
-    $mail = \Drupal::config('system.site')->get('mail');
+    $mail          = \Drupal::config('system.site')->get('mail');
     if (!array_key_exists($mail, $allowedValues)) {
       $allowedValues[$mail] = 'Association';
     }
@@ -66,43 +63,55 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 
 }
 
-function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state)
-{
+function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state) {
 
   $form['field_recipient']['widget']['#title'] = t('Choose a topic for your message');
-  $form['actions']['preview']['#access'] = FALSE;
+  $form['actions']['preview']['#access']       = FALSE;
 
 }
 
 
-function shared_mail_alter(&$message)
-{
+function shared_mail_alter(&$message) {
 
-  if (isset($message['id']) && $message['id'] == 'contact_page_mail') {
-    $contact_message = $message['params']['contact_message'];
-    $recipient = $contact_message->get('field_recipient')->getString();
-    $message['to'] = $recipient;
+  switch ($message['id']) {
+
+    case "contact_page_mail":
+      $contact_message = $message['params']['contact_message'];
+      $recipient       = $contact_message->get('field_recipient')->getString();
+      $message['to']   = $recipient;
+      break;
+    //----------------------------------------------------------------------
+    case "user_register_admin_created":
+      $bcc                       = \Drupal::config('system.site')->get('mail');
+      $message['headers']['Bcc'] = $bcc;
+      break;
+    case "user_password_reset":
+    case "user_register_no_approval_required":
+    case "user_register_pending_approval":
+    case "user_status_activated":
+    case "user_status_blocked":
+    case "user_status_deleted":
+      break;
   }
 
 }
 
-
-function shared_views_plugins_field_alter(array &$plugins)
-{
+function shared_views_plugins_field_alter(array &$plugins) {
 
   $plugins['custom']['class'] = 'Drupal\shared\Plugin\views\field\CustomToken';
 
 }
 
-function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
+function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
   if ($form_id == 'views_form_association_persons_page_2') {
     $views_send_to_name = 'nothing_pos_2';
-  } elseif (substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_') {
+  }
+  elseif (substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_') {
     $views_send_to_name = 'designation_pos_3';
-    $form_id = 'views_form_amap_contracts_subscriptions_page_1_';
-  } else {
+    $form_id            = 'views_form_amap_contracts_subscriptions_page_1_';
+  }
+  else {
   }
 
   switch ($form_id) {
@@ -115,69 +124,72 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
           break;
 
         case 'views_send_config_form':
-          $person = \Drupal::entityTypeManager()->getStorage('person')->load(\Drupal::currentUser()->id());
-          $sNomPrenom = $person->label();
-          $sMail = $person->get('email')->getString();
-          $aFromName = array(
+          $person                                             = \Drupal::entityTypeManager()
+            ->getStorage('person')
+            ->load(\Drupal::currentUser()->id());
+          $sNomPrenom                                         = $person->label();
+          $sMail                                              = $person->get('email')
+            ->getString();
+          $aFromName                                          = [
             0 => '<Veuillez choisir une valeur dans la liste>',
             1 => $sNomPrenom,
             2 => 'Le Jardin de Poissy',
             3 => 'L\'AMAP du Jardin de Poissy',
-            4 => 'Le Grenier à SEL'
-          );
-          $form['from']['views_send_from_name_bis'] = array(
-            '#attributes' => array(
-              'onchange' => 'hasChanged(this)'
-            ),
-            '#type' => 'select',
-            '#options' => $aFromName,
+            4 => 'Le Grenier à SEL',
+          ];
+          $form['from']['views_send_from_name_bis']           = [
+            '#attributes'    => [
+              'onchange' => 'hasChanged(this)',
+            ],
+            '#type'          => 'select',
+            '#options'       => $aFromName,
             '#default_value' => 0,
-            '#required' => TRUE,
-            '#weight' => -99
-          );
-          $form['from']['views_send_from_name'] = array(
-            '#attributes' => array(
-              'id' => 'edit-views-send-from-name'
-            ),
-            '#type' => 'hidden',
-          );
-          $form['from']['views_send_from_mail'] = array(
-            '#attributes' => array(
-              'readonly' => 'readonly'
-            ),
-            '#type' => 'textfield',
+            '#required'      => TRUE,
+            '#weight'        => -99,
+          ];
+          $form['from']['views_send_from_name']               = [
+            '#attributes' => [
+              'id' => 'edit-views-send-from-name',
+            ],
+            '#type'       => 'hidden',
+          ];
+          $form['from']['views_send_from_mail']               = [
+            '#attributes'    => [
+              'readonly' => 'readonly',
+            ],
+            '#type'          => 'textfield',
             '#default_value' => '',
-          );
-          $form['from']['views_send_from_mail_currentuser'] = array(
-            '#attributes' => array(
-              'id' => 'edit-views-send-from-mail-currentuser'
-            ),
-            '#type' => 'hidden',
-            '#maxlength' => 255,
-            '#default_value' => $sMail
-          );
-          $form['to']['#type'] = 'hidden';
+          ];
+          $form['from']['views_send_from_mail_currentuser']   = [
+            '#attributes'    => [
+              'id' => 'edit-views-send-from-mail-currentuser',
+            ],
+            '#type'          => 'hidden',
+            '#maxlength'     => 255,
+            '#default_value' => $sMail,
+          ];
+          $form['to']['#type']                                = 'hidden';
           $form['to']['views_send_to_name']['#default_value'] = $views_send_to_name;
           $form['to']['views_send_to_mail']['#default_value'] = 'email_pos_4';
-          $form['mail']['views_send_subject'] = array(
-            '#type' => 'textfield',
-            '#maxlength' => 255,
-            '#title' => t('Subject'),
+          $form['mail']['views_send_subject']                 = [
+            '#type'          => 'textfield',
+            '#maxlength'     => 255,
+            '#title'         => t('Subject'),
             '#default_value' => '',
-            '#required' => TRUE,
-          );
-          $form['mail']['views_send_message'] = array(
-            '#type' => 'text_format',
-            '#format' => "plain_text",
-            '#rows' => 10,
-            '#title' => t('Message'),
+            '#required'      => TRUE,
+          ];
+          $form['mail']['views_send_message']                 = [
+            '#type'          => 'text_format',
+            '#format'        => "plain_text",
+            '#rows'          => 10,
+            '#title'         => t('Message'),
             '#default_value' => '',
-            '#required' => TRUE,
-          );
-          $form['mail']['token']['#type'] = 'hidden';
-          $form['additional']['#type'] = 'hidden';
-          $form['views_send_remember']['#type'] = 'hidden';
-          $form['#attached']['library'][] = 'shared/masscontact';
+            '#required'      => TRUE,
+          ];
+          $form['mail']['token']['#type']                     = 'hidden';
+          $form['additional']['#type']                        = 'hidden';
+          $form['views_send_remember']['#type']               = 'hidden';
+          $form['#attached']['library'][]                     = 'shared/masscontact';
           break;
 
         case 'views_send_confirm_form':
@@ -200,20 +212,21 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
     case 'article':
     case 'page':
     case 'evenement':
-      $tags = $node->get('field_tags')->referencedEntities();
-      foreach ($tags as $tag) {
-        if ($tag->tid->value == 7) { // 7=Privé
-          if ($account->isAnonymous()) {
-            return \Drupal\Core\Access\AccessResult::forbidden();
-          } else {
-            return \Drupal\Core\Access\AccessResult::allowed();
+      if ($op == 'view') {
+        $tags = $node->get('field_tags')->referencedEntities();
+        foreach ($tags as $tag) {
+          if ($tag->tid->value == 7) { // 7=Privé
+            if ($account->isAnonymous()) {
+              return \Drupal\Core\Access\AccessResult::forbidden();
+            }
+            else {
+              return \Drupal\Core\Access\AccessResult::allowed();
+            }
           }
         }
       }
       break;
     default:
-
-}
-
+  }
 
 }
