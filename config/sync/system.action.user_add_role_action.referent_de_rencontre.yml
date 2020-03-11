@@ -1,0 +1,14 @@
+uuid: af287cf7-6ef2-4e18-83a6-84120d4ac1d2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_de_rencontre
+  module:
+    - user
+id: user_add_role_action.referent_de_rencontre
+label: 'Ajouter le rôle Référent de Rencontre aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: referent_de_rencontre

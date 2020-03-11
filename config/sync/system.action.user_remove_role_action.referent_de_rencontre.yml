@@ -1,0 +1,14 @@
+uuid: a99e3066-fb0f-4868-b54d-6bc15eca2563
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.referent_de_rencontre
+  module:
+    - user
+id: user_remove_role_action.referent_de_rencontre
+label: 'Enlever le rôle Référent de Rencontre des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: referent_de_rencontre
