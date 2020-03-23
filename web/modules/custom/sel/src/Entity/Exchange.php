@@ -167,7 +167,7 @@ class Exchange extends ContentEntityBase implements ExchangeInterface
     $weight++;
     $fields['from_seliste_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Giver'))
-      ->setDescription(t('Le SÉListe qui a rendu le service (qui reçoit les graines)'))
+      ->setDescription(t('SÉListe who receives seeds'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'views')
       ->setSetting('handler_settings', [
@@ -190,7 +190,7 @@ class Exchange extends ContentEntityBase implements ExchangeInterface
     $weight++;
     $fields['to_seliste_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Beneficiary'))
-      ->setDescription(t('Le SÉListe qui a bénéficié du service (qui donne les graines)'))
+      ->setDescription(t('SÉListe who gives seeds'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'views')
       ->setSetting('handler_settings', [
@@ -212,8 +212,7 @@ class Exchange extends ContentEntityBase implements ExchangeInterface
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['exchange'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Échange'))
-//    ->setDescription(t('Service rendu ou objet échangé'))
+      ->setLabel(t('Exchange'))
       ->setSettings([
         'max_length' => 255,
         'text_processing' => 0,

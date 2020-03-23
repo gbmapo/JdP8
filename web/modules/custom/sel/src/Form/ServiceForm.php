@@ -58,15 +58,15 @@ class ServiceForm extends ContentEntityForm
       //Pas de contrôle si le service n'est pas publié
     } else {
       if ($sDueDate <= $sToday) {
-        $form_state->setErrorByName('duedate', $this->t('La date limite doit être dans le futur.'));
+        $form_state->setErrorByName('duedate', $this->t('Due date must be in the future.'));
       } else {
         if ($values['isurgent']['value'] == 1) {
           if ($sDueDate > $sIn2Weeks) {
-            $form_state->setErrorByName('duedate', $this->t('Là, ce n\'est plus tout à fait urgent !<BR>Veuillez changer la date limite ou décocher \'Urgent\'.'));
+            $form_state->setErrorByName('duedate', $this->t('It is no longer quite urgent!<BR>Please change the due date or uncheck \'Urgent\'.'));
           }
         } else {
           if ($sDueDate > $sIn3Months) {
-            $form_state->setErrorByName('duedate', $this->t('La validité ne peut pas dépasser trois mois !'));
+            $form_state->setErrorByName('duedate', $this->t('Validity period cannot exceed three months!'));
           }
         }
       }

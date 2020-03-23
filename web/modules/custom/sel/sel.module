@@ -21,7 +21,7 @@ function sel_help($route_name, RouteMatchInterface $route_match)
     case 'help.page.sel':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('To handle le Grenier à SÉL (services, exchanges, etc.)') . '</p>';
+      $output .= '<p>' . t('To manage the Grenier à SÉL (services, exchanges, etc.)') . '</p>';
       return $output;
 
     default:
@@ -81,7 +81,7 @@ function sel_cron()
     $entity->save();
     $iNumber++;
   }
-  \Drupal::logger('sel')->info('Nombre de services périmés nettoyés : @number.', ['@number' => $iNumber]);
+  \Drupal::logger('sel')->info('Number of cleaned out-of-date services: @number.', ['@number' => $iNumber]);
 
 // ----------------------------------------------------------------------------
 // Envoi d'un extrait par catégorie du Catalogue de Services
@@ -91,7 +91,7 @@ function sel_cron()
   if ($dToday > $dNextEmailForServicesPerCategory) {
     _sendEmailForServicesExtraction('emailforservicespercategory');
   } else {
-    \Drupal::logger('sel')->info('Extraction des services par catégorie : rien à faire.');
+    \Drupal::logger('sel')->info('Extraction of services per category: nothing to do.');
   }
 
 // ----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ function sel_cron()
   if ($dToday > $dNextEmailForNewServices) {
     _sendEmailForServicesExtraction('emailfornewservices');
   } else {
-    \Drupal::logger('sel')->info('Derniers ajouts au Catalogue de Services : rien à faire.');
+    \Drupal::logger('sel')->info('Last additions to Catalog of Services: nothing to do.');
   }
 
 // ----------------------------------------------------------------------------
@@ -125,7 +125,7 @@ function _sendEmailForUrgentService($sSeliste, $sAction, $sDueDate)
 //                            MailManager::mail($module, $key,                  $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
   \Drupal::service('plugin.manager.mail')->mail('sel', 'emailforurgentservice', $sTo, 'fr', $aParams);
 
-  \Drupal::logger('sel')->info('Service urgent : Courriel envoyé.');
+  \Drupal::logger('sel')->info('Urgent service: Email sent.');
 
 }
 
@@ -163,14 +163,14 @@ function _sendEmailForServicesExtraction($sCase)
       $sCategory = \Drupal::entityManager()->getStorage('service_category')->load($iCategory)->name->value;
       $view = views_embed_view('sel_services', 'embed_1', $iCategory);
       $view = \Drupal::service('renderer')->render($view);
-      $aParams = array($sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction des services par catégorie : Courriel envoyé.', $sCategory);
+      $aParams = array($sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction of services per category: Email sent.', $sCategory);
       break;
     case 'emailfornewservices':
       $query = \Drupal::entityQuery('service_category');
       $dLastExtractionDate = strftime("%Y-%m-%d", strtotime("- 1 week", strtotime(\Drupal::state()->get('sel.NextEmailForNewServices'))));
       $view = views_embed_view('sel_services', 'embed_2', $dLastExtractionDate);
       $view = \Drupal::service('renderer')->render($view);
-      $aParams = array($sBcc, $view, 'sel.NextEmailForNewServices', 'Derniers ajouts au Catalogue de Services : Courriel envoyé.');
+      $aParams = array($sBcc, $view, 'sel.NextEmailForNewServices', 'Last additions to Catalog of Services : Email sent.');
       break;
   }
 
@@ -201,7 +201,7 @@ function _sendEmailForExchange($aParams)
   //                          MailManager::mail($module, $key,             $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
   \Drupal::service('plugin.manager.mail')->mail('sel', 'emailforexchange', $sTo, 'fr', $aParams);
 
-  \Drupal::logger('sel')->info('Échange : Courriel envoyé.');
+  \Drupal::logger('sel')->info('Exchange : Email sent.');
 
 }
 

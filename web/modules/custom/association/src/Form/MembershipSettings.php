@@ -174,9 +174,9 @@ class MembershipSettings extends FormBase {
           $iNumber++;
         }
         \Drupal::logger('association')
-          ->info($this->t('Renew membership: Period has been opened.'));
+          ->info('Renew membership: Period has been opened.');
         \Drupal::logger('association')
-          ->info($this->t('Renew membership: Number of members: @number.', ['@number' => $iNumber]));
+          ->info('Renew membership: Number of members: @number.', ['@number' => $iNumber]);
         $sMessage = $this->t('Renew membership: Period has been opened.');
         break;
 
@@ -191,7 +191,7 @@ class MembershipSettings extends FormBase {
           \Drupal::service('plugin.manager.mail')
             ->mail('association', 'membershipfirstemail', $sTo, 'fr', $aParams);
           \Drupal::logger('association')
-            ->info($this->t('Renew membership: First email has been sent.'));
+            ->info('Renew membership: First email has been sent.');
           $sMessage = $this->t('Renew membership: First email has been sent.');
         }
         break;
@@ -209,7 +209,7 @@ class MembershipSettings extends FormBase {
           \Drupal::service('plugin.manager.mail')
             ->mail('association', 'membershipreminderemail', $sTo, 'fr', $aParams);
           \Drupal::logger('association')
-            ->info($this->t('Renew membership: Reminder email @number has been sent.', ['@number' => $rpReminder]));
+            ->info('Renew membership: Reminder email @number has been sent.', ['@number' => $rpReminder]);
           $sMessage = $this->t('Renew membership: Reminder email @number has been sent.', ['@number' => $rpReminder]);
         }
         break;
@@ -259,10 +259,10 @@ class MembershipSettings extends FormBase {
       $role->delete();
 
       \Drupal::logger('association')
-        ->info($this->t('Renew membership: Period has been closed.'));
+        ->info('Renew membership: Period has been closed.');
       $sMessage = $this->t('Renew membership: Period has been closed.');
       \Drupal::logger('association')
-        ->info($this->t('Renew membership: Number of members: @number.', ['@number' => $iNumber]));
+        ->info('Renew membership: Number of members: @number.', ['@number' => $iNumber]);
     }
 
     $config->save();

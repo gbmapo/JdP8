@@ -26,7 +26,7 @@ function amap_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.amap':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Pour handle l\'AMAP du Jardin de Poissy.') . '</p>';
+      $output .= '<p>' . t('To manage the AMAP of the Jardin de Poissy.') . '</p>';
       return $output;
 
     default:

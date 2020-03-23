@@ -1,0 +1,624 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/association/association.module: n/a
+#  modules/custom/association/association.info.yml: n/a
+#  modules/custom/association/association.links.action.yml: n/a
+#  modules/custom/association/association.links.menu.yml: n/a
+#  modules/custom/association/association.links.task.yml: n/a
+#  modules/custom/association/association.routing.yml: n/a
+#  modules/custom/association/association.permissions.yml: n/a
+#  modules/custom/association/src/MemberListBuilder.php: n/a
+#  modules/custom/association/src/Entity/Member.php: n/a
+#  modules/custom/association/src/Form/Multistep/MembershipStep2.php: n/a
+#  modules/custom/association/src/PersonListBuilder.php: n/a
+#  modules/custom/association/src/Entity/Person.php: n/a
+#  modules/custom/association/src/Form/Multistep/MembershipStep1.php: n/a
+#  modules/custom/association/src/Entity/MemberViewsData.php: n/a
+#  modules/custom/association/src/Form/MemberDeleteForm.php: n/a
+#  modules/custom/association/src/Form/MemberForm.php: n/a
+#  modules/custom/association/src/Form/MemberImportStatus.php: n/a
+#  modules/custom/association/src/Form/MembershipSettings.php: n/a
+#  modules/custom/association/src/Form/Multistep/MembershipFormBase.php: n/a
+#  modules/custom/association/src/Form/Multistep/MembershipStep0.php: n/a
+#  modules/custom/association/src/Form/PersonDeleteForm.php: n/a
+#  modules/custom/association/src/Form/PersonForm.php: n/a
+#  modules/custom/association/src/Form/Multistep/MembershipStep3.php: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Association (8.x)\n"
+"POT-Creation-Date: 2020-03-21 11:05+0000\n"
+"PO-Revision-Date: 2020-03-21 15:07+0100\n"
+"Language-Team: nOzlAf\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: fr_FR\n"
+
+#: modules/custom/association/association.module:25
+msgid "About"
+msgstr "À propos de"
+
+#: modules/custom/association/association.module:26
+#: modules/custom/association/association.info.yml:0
+msgid "To manage members and persons of the association"
+msgstr "Pour gérer les adhérents et les personnes de l’association"
+
+#: modules/custom/association/association.module:243
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: modules/custom/association/association.info.yml:0;0
+msgid "Association"
+msgstr "Association"
+
+#: modules/custom/association/association.links.action.yml:0
+msgid "Add Member"
+msgstr "Ajouter un adhérent"
+
+#: modules/custom/association/association.links.action.yml:0
+msgid "Add Person"
+msgstr "Ajouter une personne"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Member list"
+msgstr "Liste des adhérents"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Member settings"
+msgstr "Paramètres Adhérent"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Person list"
+msgstr "Liste des personnes"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Person settings"
+msgstr "Paramètres Personne"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "List Member entities"
+msgstr "Lister les entités Adhérent"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Configure Member entities"
+msgstr "Configurer les entités Adhérent"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "List Person entities"
+msgstr "Lister les entités Personne"
+
+#: modules/custom/association/association.links.menu.yml:0
+msgid "Configure Person entities"
+msgstr "Configurer les entités Personne"
+
+#: modules/custom/association/association.links.task.yml:0;0;0
+msgid "Settings"
+msgstr "Paramètres"
+
+#: modules/custom/association/association.links.task.yml:0;0
+msgid "View"
+msgstr "Voir"
+
+#: modules/custom/association/association.links.task.yml:0;0
+msgid "Edit"
+msgstr "Éditer"
+
+#: modules/custom/association/association.links.task.yml:0;0
+msgid "Delete"
+msgstr "Supprimer"
+
+#: modules/custom/association/association.links.task.yml:0
+#: modules/custom/association/association.routing.yml:0;0
+msgid "Membership"
+msgstr "Adhésion"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Create new Member entities"
+msgstr "Créer de nouvelles entités Adhérent"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Administer Member entities"
+msgstr "Administrer les entités Adhérent"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Allow to access the administration form to configure Member entities."
+msgstr ""
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Delete Member entities"
+msgstr "Supprimer les entités Adhérent"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Edit Member entities"
+msgstr "Éditer les entités Adhérent"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "View Member entities"
+msgstr "Voir les entités Adhérent"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Create new Person entities"
+msgstr "Créer de nouvelles entités Personne"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Administer Person entities"
+msgstr "Administrer les entités Personne"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Allow to access the administration form to configure Person entities."
+msgstr ""
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Delete Person entities"
+msgstr "Supprimer les entités Personne"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Edit Person entities"
+msgstr "Éditer les entités Personne"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "View Person entities"
+msgstr "Voir les entités Personne"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Administer Membership"
+msgstr "Administrer les adhésions"
+
+#: modules/custom/association/association.permissions.yml:0
+msgid "Renew Membership"
+msgstr "Renouvellement d'adhésion"
+
+#: modules/custom/association/association.routing.yml:0
+msgid "Membership - Step 1/3"
+msgstr "Adhésion - Étape 1/3"
+
+#: modules/custom/association/association.routing.yml:0
+msgid "Membership - Step 2/3"
+msgstr "Adhésion - Étape 2/3"
+
+#: modules/custom/association/association.routing.yml:0
+msgid "Membership - Step 3/3"
+msgstr "Adhésion - Étape 3/3"
+
+#: modules/custom/association/association.routing.yml:0
+msgid "Membership - Online Payment"
+msgstr "Adhésion - Paiement en ligne"
+
+#: modules/custom/association/association.routing.yml:0
+msgid "MemberImportStatus"
+msgstr "Importer les statuts"
+
+#: modules/custom/association/src/MemberListBuilder.php:23
+msgid "Member ID"
+msgstr "Id Adhérent"
+
+#: modules/custom/association/src/MemberListBuilder.php:24
+#: modules/custom/association/src/Entity/Member.php:149
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:28
+msgid "Designation"
+msgstr "Désignation"
+
+#: modules/custom/association/src/MemberListBuilder.php:25
+#: modules/custom/association/src/Entity/Member.php:309
+msgid "Status"
+msgstr "État"
+
+#: modules/custom/association/src/PersonListBuilder.php:23
+msgid "Person ID"
+msgstr "Id Personne"
+
+#: modules/custom/association/src/PersonListBuilder.php:24
+#: modules/custom/association/src/Entity/Person.php:159
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:32;80
+msgid "Last Name"
+msgstr "Nom"
+
+#: modules/custom/association/src/PersonListBuilder.php:25
+#: modules/custom/association/src/Entity/Person.php:180
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:41;88
+msgid "First Name"
+msgstr "Prénom"
+
+#: modules/custom/association/src/Entity/Member.php:170
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:42
+msgid "Address supplement"
+msgstr "Complément d'adresse"
+
+#: modules/custom/association/src/Entity/Member.php:190
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:50
+msgid "Street"
+msgstr "Rue"
+
+#: modules/custom/association/src/Entity/Member.php:210
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:59
+msgid "Postal Code"
+msgstr "Code Postal"
+
+#: modules/custom/association/src/Entity/Member.php:230
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:68
+msgid "City"
+msgstr "Ville"
+
+#: modules/custom/association/src/Entity/Member.php:272
+msgid "Country"
+msgstr "Pays"
+
+#: modules/custom/association/src/Entity/Member.php:289
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:77
+msgid "Phone"
+msgstr "Téléphone"
+
+#: modules/custom/association/src/Entity/Member.php:326
+msgid "Membership Start Date"
+msgstr "Date de début d'adhésion"
+
+#: modules/custom/association/src/Entity/Member.php:344
+msgid "Membership End Date"
+msgstr "Date de fin d'adhésion"
+
+#: modules/custom/association/src/Entity/Member.php:362
+#: modules/custom/association/src/Entity/MemberViewsData.php:28;29
+msgid "Contact"
+msgstr "Contact"
+
+#: modules/custom/association/src/Entity/Member.php:370
+#: modules/custom/association/src/Entity/Person.php:315
+msgid "Comment"
+msgstr "Commentaire"
+
+#: modules/custom/association/src/Entity/Member.php:389
+#: modules/custom/association/src/Entity/Person.php:334
+msgid "Authored by"
+msgstr ""
+
+#: modules/custom/association/src/Entity/Member.php:396
+#: modules/custom/association/src/Entity/Person.php:341
+msgid "Created"
+msgstr "Date de création"
+
+#: modules/custom/association/src/Entity/Member.php:397
+#: modules/custom/association/src/Entity/Person.php:342
+msgid "The time that the entity was created."
+msgstr ""
+
+#: modules/custom/association/src/Entity/Member.php:400
+#: modules/custom/association/src/Entity/Person.php:345
+msgid "Changed"
+msgstr "Date de modification"
+
+#: modules/custom/association/src/Entity/Member.php:401
+#: modules/custom/association/src/Entity/Person.php:346
+msgid "The time that the entity was last edited."
+msgstr ""
+
+#: modules/custom/association/src/Entity/Member.php:12
+#: modules/custom/association/src/Entity/Person.php:272
+msgid "Member"
+msgstr "Adhérent"
+
+#: modules/custom/association/src/Entity/MemberViewsData.php:23
+msgid "Contact Id"
+msgstr "Id Contact"
+
+#: modules/custom/association/src/Entity/Person.php:201
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:59;104
+msgid "Cellphone"
+msgstr "Portable"
+
+#: modules/custom/association/src/Entity/Person.php:221
+msgid "Email Address"
+msgstr "Adresse courriel"
+
+#: modules/custom/association/src/Entity/Person.php:232
+msgid "Contact?"
+msgstr "Contact ?"
+
+#: modules/custom/association/src/Entity/Person.php:252
+msgid "Active?"
+msgstr "Active ?"
+
+#: modules/custom/association/src/Entity/Person.php:293
+msgid "User"
+msgstr "Utilisateur"
+
+#: modules/custom/association/src/Entity/Person.php:12
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:27;75
+msgid "Person"
+msgstr "Personne"
+
+#: modules/custom/association/src/Form/MemberDeleteForm.php:51
+msgid "Are you sure you want to delete member « %label »?"
+msgstr "Êtes-vous certain(e) de vouloir supprimer l’adhérent « %label » ?"
+
+#: modules/custom/association/src/Form/MemberDeleteForm.php:64
+msgid "Member « %label » has been deleted."
+msgstr "L’adhérent « %label » a été supprimé."
+
+#: modules/custom/association/src/Form/MemberForm.php:39
+msgid "Member « %label » has been added."
+msgstr "L'adhérent « %label » a été ajouté."
+
+#: modules/custom/association/src/Form/MemberForm.php:45
+msgid "Member « %label » has been updated."
+msgstr "L'adhérent « %label » a été mis à jour."
+
+#: modules/custom/association/src/Form/MemberImportStatus.php:34
+msgid "File to import"
+msgstr "Fichier à importer"
+
+#: modules/custom/association/src/Form/MemberImportStatus.php:35
+msgid "Select the file to import"
+msgstr "Choisir le fichier à importer"
+
+#: modules/custom/association/src/Form/MemberImportStatus.php:42
+#: modules/custom/association/src/Form/MembershipSettings.php:101
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:153
+msgid "Submit"
+msgstr "Soumettre"
+
+#: modules/custom/association/src/Form/MemberImportStatus.php:49
+msgid "Cancel"
+msgstr "Annuler"
+
+#: modules/custom/association/src/Form/MemberImportStatus.php:65
+msgid "Please select a file."
+msgstr "Choisir le fichier à importer."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:41
+msgid "Choose year and open renewal period."
+msgstr "Choisir l'année et ouvrir la période de renouvellement."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:52
+msgid "The renewal period has been opened for year « %year »."
+msgstr "La période de renouvellement a été ouverte pour l'année « %year »."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:59
+msgid "Do you want to send the first email?"
+msgstr "Voulez-vous envoyer le premier courriel ?"
+
+#: modules/custom/association/src/Form/MembershipSettings.php:61;82;92
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:105
+msgid "No"
+msgstr "Non"
+
+#: modules/custom/association/src/Form/MembershipSettings.php:62;83;93
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:106
+msgid "Yes"
+msgstr "Oui"
+
+#: modules/custom/association/src/Form/MembershipSettings.php:69
+msgid "The first email has been sent."
+msgstr "Le premier courriel a été envoyé."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:75
+msgid ""
+"The reminder email has been sent (total number of reminders: %reminders)."
+msgstr ""
+"Le courriel de relance a été envoyé (nombre total de relances : %reminders)."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:80
+msgid "Do you want to send the reminder email?"
+msgstr "Voulez-vous envoyer le courriel de relance ?"
+
+#: modules/custom/association/src/Form/MembershipSettings.php:90
+msgid "Do you want to close the renewal period?"
+msgstr "Voulez-vous fermer la période de renouvellement ?"
+
+#: modules/custom/association/src/Form/MembershipSettings.php:119
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:139
+msgid "Please choose one option."
+msgstr "Veuillez choisir une option."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:180;177
+msgid "Renew membership: Period has been opened."
+msgstr "Renouvellement d'adhésion : la période a été ouverte."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:195;194
+msgid "Renew membership: First email has been sent."
+msgstr "Renouvellement d'adhésion : le premier courriel a été envoyé."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:213;212
+msgid "Renew membership: Reminder email @number has been sent."
+msgstr ""
+"Renouvellement d'adhésion : le courriel de relance @number a été envoyé."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:218
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:350
+msgid "Renew membership: Unexpected case."
+msgstr "Renouvellement d'adhésion : cas non prévu."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:243
+msgid "Status changed when Renew Membership period was closed."
+msgstr ""
+"État modifié à la fermeture de la période de renouvellement d'adhésion."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:263;262
+msgid "Renew membership: Period has been closed."
+msgstr "Renouvellement d'adhésion : la période a été fermée."
+
+#: modules/custom/association/src/Form/MembershipSettings.php:179;265
+msgid "Renew membership: Number of members: @number."
+msgstr "Renouvellement d'adhésion : nombre d'adhérents : @number."
+
+#: modules/custom/association/src/Form/PersonDeleteForm.php:47
+msgid "Are you sure you want to delete person « %label »?"
+msgstr "Êtes-vous certain(e) de vouloir supprimer la personne « %label » ?"
+
+#: modules/custom/association/src/Form/PersonDeleteForm.php:60
+msgid "Person « %label » has been deleted."
+msgstr "La personne « %label » a été supprimée."
+
+#: modules/custom/association/src/Form/PersonForm.php:44
+msgid ""
+"This user is already associated to another person.<BR>Please choose another "
+"user."
+msgstr ""
+"Cet utilisateur est déjà associé à une autre personne.<BR>Veuillez choisir "
+"une autre utilisateur."
+
+#: modules/custom/association/src/Form/PersonForm.php:109
+msgid "Person « %label » has been added."
+msgstr "La personne « %label » a été ajoutée."
+
+#: modules/custom/association/src/Form/PersonForm.php:115
+msgid "Person « %label » has been updated."
+msgstr "La personne « %label » a été mise à jour."
+
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:334
+msgid "membership request"
+msgstr "demande d’adhésion"
+
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:335;347
+msgid ""
+"Your @str has been registered.<BR>It will be effective after reception of "
+"your payment."
+msgstr ""
+"Votre @str a été enregistrée.<BR>Elle sera effective après réception de "
+"votre paiement."
+
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:337
+msgid "An email has been sent with your login information."
+msgstr "Un courriel a été envoyé avec vos informations de connexion."
+
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:343
+msgid "Your wish has been recorded."
+msgstr "Votre souhait a été enregistré."
+
+#: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:346
+msgid "membership renewal request"
+msgstr "demande de renouvellement d’adhésion"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:27
+msgid "enter"
+msgstr "entrer"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:28;112
+msgid ""
+"After submitting this form, you will be redirected to the membership process "
+"where you can @str your personal information then choose your subscription "
+"payment mode."
+msgstr ""
+"Après la soumission de ce formulaire, vous serez redirigé vers le processus "
+"d'adhésion où vous pourrez @str vos informations personnelles puis choisir "
+"le mode de paiement de votre cotisation."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:40
+msgid "correct, if needed,"
+msgstr "corriger, si nécessaire,"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:48
+msgid "There is currently no renewal period opened."
+msgstr "Il n'y a pas de période de renouvellement ouverte actuellement."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:53
+msgid ""
+"You're not allowed to renew membership. Only the person(s) associated to the "
+"member is(are) allowed to do it."
+msgstr ""
+"Vous n'êtes pas autorisé(e) à renouveler l'adhésion. Seule(s) la(les) "
+"personne(s) associée(s) à l'adhérent le peu(ven)t."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:76
+msgid ""
+"The member «&nbsp;%member&nbsp;» has already renewed his membership to the "
+"association <I>Le Jardin de Poissy</I> for year « %year »."
+msgstr ""
+"L'adhérent «&nbsp;%member&nbsp;» a déjà renouvelé son adhésion à "
+"l'association <I>Le Jardin de Poissy</I> pour l'année « %year »."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:88
+msgid ""
+"Here’s your wish as recorded. You can change it as many times as you like: "
+"only the last change will be taken into account.<BR><BR>"
+msgstr ""
+"Voici votre souhait tel qu'il a été enregistré.<BR>Vous pouvez le modifier "
+"autant de fois que vous le voulez : seule la dernière modification sera "
+"prise en compte.<BR><BR>"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep0.php:90
+msgid ""
+"I, the undersigned «&nbsp;%person&nbsp;», representing the member «&nbsp;"
+"%member&nbsp;», wishes to renew my membership to the association <I>Le "
+"Jardin de Poissy</I> for year « %year »."
+msgstr ""
+"Je, soussigné «&nbsp;%person&nbsp;», représentant l’adhérent «&nbsp;"
+"%member&nbsp;», souhaite renouveler mon adhésion à l’association <B>Le "
+"Jardin de Poissy</B> pour l’année « %year »."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:27
+msgid "(Contact)"
+msgstr "(Contact)"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:50;96
+msgid "Email"
+msgstr "Courriel"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:68;112
+msgid "I wish to be SÉListe"
+msgstr "Je souhaite être SÉListe"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:119
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:85
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:133
+msgid "Previous"
+msgstr "Précédent"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:127
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:93
+msgid "Next"
+msgstr "Suivant"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:147
+msgid ""
+"If one of the fields Lastname, Firstname, Email, Cellphone is filled, the "
+"others must be filled too."
+msgstr ""
+"Si un des champs Nom, Prénom, Courriel, Portable est renseigné, les autres "
+"doivent l'être aussi."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:191
+msgid "here"
+msgstr "ici"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep1.php:193
+msgid ""
+"This email is already registered for « %user ».<BR>If you are already a "
+"member, please log in %link."
+msgstr ""
+"Ce courriel est déjà enregistré pour « %user ».<BR>Si vous êtes déjà "
+"adhérent, veuillez vous connecter %link."
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep2.php:36
+msgid "Address"
+msgstr "Adresse"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:111
+msgid "Subscription Payment Mode"
+msgstr "Mode de paiement de la cotisation"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:113
+msgid "by check"
+msgstr "par chèque"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:114
+msgid "by bank transfer"
+msgstr "par virement bancaire"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:115
+msgid "by card"
+msgstr "par carte bancaire"
+
+#: modules/custom/association/src/Form/Multistep/MembershipStep3.php:120
+msgid ""
+"After submitting this form, you will be redirected to the online payment "
+"process."
+msgstr ""
+"Après la soumission de ce formulaire, vous serez redirigé vers le processus "
+"de paiement en ligne."

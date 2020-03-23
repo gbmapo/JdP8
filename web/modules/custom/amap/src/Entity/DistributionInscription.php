@@ -146,7 +146,7 @@ class DistributionInscription extends ContentEntityBase implements DistributionI
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['amapien_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('AMAPien ID '))
+      ->setLabel(t('AMAPien ID'))
       ->setSetting('target_type', 'person')
       ->setDisplayOptions('view', array(
         'weight' => $weight,

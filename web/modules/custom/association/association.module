@@ -222,6 +222,7 @@ function _export_association($entityType) {
       break;
     case "person":
       _export_association_CSV('association_persons', 'rest_export_1');
+      _export_association_CSV('association_persons', 'rest_export_2');
       break;
     default:
   }

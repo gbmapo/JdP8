@@ -11,6 +11,8 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\field\Entity\FieldStorageConfig;
 use \Drupal\node\NodeInterface;
 use \Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Implements hook_help().
@@ -212,6 +214,7 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
     case 'article':
     case 'page':
     case 'evenement':
+
       if ($op == 'view') {
         $tags = $node->get('field_tags')->referencedEntities();
         foreach ($tags as $tag) {

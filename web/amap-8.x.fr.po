@@ -1,0 +1,819 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/amap/amap.module: n/a
+#  modules/custom/amap/amap.install: n/a
+#  modules/custom/amap/src/Entity/ContractType.php: n/a
+#  modules/custom/amap/amap.info.yml: n/a
+#  modules/custom/amap/amap.links.action.yml: n/a
+#  modules/custom/amap/amap.links.menu.yml: n/a
+#  modules/custom/amap/amap.links.task.yml: n/a
+#  modules/custom/amap/amap.routing.yml: n/a
+#  modules/custom/amap/amap.permissions.yml: n/a
+#  modules/custom/amap/src/ContractListBuilder.php: n/a
+#  modules/custom/amap/src/ContractSubscriptionListBuilder.php: n/a
+#  modules/custom/amap/src/ContractTypeListBuilder.php: n/a
+#  modules/custom/amap/src/Entity/Contract.php: n/a
+#  modules/custom/amap/src/DistributionDateListBuilder.php: n/a
+#  modules/custom/amap/src/DistributionInscriptionListBuilder.php: n/a
+#  modules/custom/amap/src/Entity/DistributionDate.php: n/a
+#  modules/custom/amap/src/Entity/DistributionInscription.php: n/a
+#  modules/custom/amap/src/Controller/TitleController.php: n/a
+#  modules/custom/amap/src/Entity/ContractSubscription.php: n/a
+#  modules/custom/amap/src/Form/ContractSubscriptionTableForm.php: n/a
+#  modules/custom/amap/src/Form/ContractDeleteForm.php: n/a
+#  modules/custom/amap/src/Form/ContractForm.php: n/a
+#  modules/custom/amap/src/Form/ContractSubscriptionForm.php: n/a
+#  modules/custom/amap/src/Form/ContractTypeForm.php: n/a
+#  modules/custom/amap/src/Form/DistributionDateForm.php: n/a
+#  modules/custom/amap/src/Form/DistributionDateTableForm.php: n/a
+#  modules/custom/amap/src/Form/DistributionInscriptionManyForm.php: n/a
+#  modules/custom/amap/src/Form/DistributionInscriptionOneForm.php: n/a
+#  modules/custom/amap/src/Form/DistributionInscriptionForm.php: n/a
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AMAP (8.x)\n"
+"POT-Creation-Date: 2020-03-21 15:15+0000\n"
+"PO-Revision-Date: 2020-03-21 16:26+0100\n"
+"Last-Translator: \n"
+"Language-Team: nOzlAf\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: modules/custom/amap/amap.module:28
+msgid "About"
+msgstr "À propos de"
+
+#: modules/custom/amap/amap.module:29 modules/custom/amap/amap.info.yml:0
+msgid "To manage the AMAP of the Jardin de Poissy."
+msgstr "Pour gérer l’AMAP du Jardin de Poissy."
+
+#: modules/custom/amap/amap.module:420
+msgid "email 'Rappel pour les étourdis': nothing to do."
+msgstr "Courriel ‘Rappel pour les étourdis’: rien à faire."
+
+#: modules/custom/amap/amap.module:482
+msgid "email 'Rappel pour les étourdis' : sent."
+msgstr "Courriel ‘Rappel pour les étourdis’: envoyé."
+
+#: modules/custom/amap/amap.install:41
+#: modules/custom/amap/src/Entity/ContractType.php:161;181
+msgid "Header for Form"
+msgstr "Entête du formulaire"
+
+#: modules/custom/amap/amap.install:58
+msgid "Header for Export"
+msgstr "Entête de l'export"
+
+#: modules/custom/amap/amap.info.yml:0
+msgid "AMAP"
+msgstr "AMAP"
+
+#: modules/custom/amap/amap.info.yml:0
+msgid "Association"
+msgstr "Association"
+
+#: modules/custom/amap/amap.links.action.yml:0
+msgid "Add Contract type"
+msgstr "Ajouter un type de contrat"
+
+#: modules/custom/amap/amap.links.action.yml:0
+msgid "Add Contract"
+msgstr "Ajouter un contrat"
+
+#: modules/custom/amap/amap.links.action.yml:0
+msgid "Add Contract subscription"
+msgstr "Ajouter une souscription de contrat"
+
+#: modules/custom/amap/amap.links.action.yml:0
+msgid "Add Distribution date"
+msgstr "Ajouter une date de distribution"
+
+#: modules/custom/amap/amap.links.action.yml:0
+msgid "Add Distribution inscription"
+msgstr "Ajouter une inscription"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract type list"
+msgstr "Liste des types de contrats"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract type settings"
+msgstr "Paramètres Type de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract list"
+msgstr "Liste des contrats"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract settings"
+msgstr "Paramètres Contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract subscription list"
+msgstr "Liste des souscriptions de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Contract subscription settings"
+msgstr "Paramètres Souscription de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Distribution date list"
+msgstr "Liste des dates de distribution"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Distribution date settings"
+msgstr "Paramètres Date de distribution"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Distribution inscription list"
+msgstr "Liste des inscriptions aux distributions"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Distribution inscription settings"
+msgstr "Paramètres Inscription aux distributions"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "List Contract type entities"
+msgstr "Lister les entités Type de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Configure Contract type entities"
+msgstr "Configurer les entités Type de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "List Contract entities"
+msgstr "Lister les entités Contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Configure Contract entities"
+msgstr "Configurer les entités Contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "List Contract subscription entities"
+msgstr "Lister les entités Souscription de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Configure Contract subscription entities"
+msgstr "Configurer les entités Souscription de contrat"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "List Distribution date entities"
+msgstr "Lister les entités Date de distribution"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Configure Distribution date entities"
+msgstr "Configurer les entités Date de distribution"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "List Distribution inscription entities"
+msgstr "Lister les entités Inscription aux distributions"
+
+#: modules/custom/amap/amap.links.menu.yml:0
+msgid "Configure Distribution inscription entities"
+msgstr "Configurer les entités Inscription aux distributions"
+
+#: modules/custom/amap/amap.links.task.yml:0;0;0;0;0
+msgid "Settings"
+msgstr "Paramètres"
+
+#: modules/custom/amap/amap.links.task.yml:0;0;0;0;0
+msgid "View"
+msgstr "Voir"
+
+#: modules/custom/amap/amap.links.task.yml:0;0;0;0;0
+msgid "Edit"
+msgstr "Éditer"
+
+#: modules/custom/amap/amap.links.task.yml:0;0;0;0;0
+msgid "Delete"
+msgstr "Supprimer"
+
+#: modules/custom/amap/amap.links.task.yml:0
+#: modules/custom/amap/amap.routing.yml:0
+msgid "Update Calendar"
+msgstr "Mettre à jour le calendrier"
+
+#: modules/custom/amap/amap.links.task.yml:0
+msgid "Sign up for Planning"
+msgstr "S'inscrire sur le Planning"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Create new Contract type entities"
+msgstr "Créer de nouvelles entités Type de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Administer Contract type entities"
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid ""
+"Allow to access the administration form to configure Contract type entities."
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Delete Contract type entities"
+msgstr "Supprimer les entités Type de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Edit Contract type entities"
+msgstr "Éditer les entités Type de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "View Contract type entities"
+msgstr "Voir les entités Type de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Create new Contract entities"
+msgstr "Créer de nouvelles entités Contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Administer Contract entities"
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Allow to access the administration form to configure Contract entities."
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Delete Contract entities"
+msgstr "Supprimer les entités Contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Edit Contract entities"
+msgstr "Éditer les entités Contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "View Contract entities"
+msgstr "Voir les entités Contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Create new Contract subscription entities"
+msgstr "Créer de nouvelles entités Souscription"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Administer Contract subscription entities"
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid ""
+"Allow to access the administration form to configure Contract subscription "
+"entities."
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Delete Contract subscription entities"
+msgstr "Supprimer les entités Souscription de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Edit Contract subscription entities"
+msgstr "Éditer les entités Souscription de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "View Contract subscription entities"
+msgstr "Voir les entités Souscription de contrat"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Create new Distribution date entities"
+msgstr "Créer de nouvelles entités Date de distribution"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Administer Distribution date entities"
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid ""
+"Allow to access the administration form to configure Distribution date "
+"entities."
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Delete Distribution date entities"
+msgstr "Supprimer les entités Date de distribution"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Edit Distribution date entities"
+msgstr "Éditer les entités Date de distribution"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "View Distribution date entities"
+msgstr "Voir les entités Date de distribution"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Create new Distribution inscription entities"
+msgstr "Créer de nouvelles entités Inscription à la distribution"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Administer Distribution inscription entities"
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid ""
+"Allow to access the administration form to configure Distribution "
+"inscription entities."
+msgstr ""
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Delete Distribution inscription entities"
+msgstr "Supprimer les entités Inscription aux distributions"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "Edit Distribution inscription entities"
+msgstr "Éditer les entités Inscription aux distributions"
+
+#: modules/custom/amap/amap.permissions.yml:0
+msgid "View Distribution inscription entities"
+msgstr "Voir les entités Inscription aux distributions"
+
+#: modules/custom/amap/amap.routing.yml:0
+msgid "Contracts"
+msgstr "Contrats"
+
+#: modules/custom/amap/amap.routing.yml:0
+msgid "Enter subscriptions"
+msgstr "Entrer les souscriptions"
+
+#: modules/custom/amap/amap.routing.yml:0
+msgid "Export Subscriptions"
+msgstr "Exporter les souscriptions"
+
+#: modules/custom/amap/src/ContractListBuilder.php:23
+#: modules/custom/amap/src/ContractSubscriptionListBuilder.php:24
+msgid "Contract id"
+msgstr "Id Contrat"
+
+#: modules/custom/amap/src/ContractListBuilder.php:24
+#: modules/custom/amap/src/ContractTypeListBuilder.php:24
+#: modules/custom/amap/src/Entity/Contract.php:168
+#: modules/custom/amap/src/Entity/ContractType.php:103
+msgid "Name"
+msgstr "Nom"
+
+#: modules/custom/amap/src/ContractSubscriptionListBuilder.php:23
+msgid "Contract subscription id"
+msgstr "Id Souscription de contrat"
+
+#: modules/custom/amap/src/ContractSubscriptionListBuilder.php:25
+msgid "Member id"
+msgstr "Id Adhérent"
+
+#: modules/custom/amap/src/ContractTypeListBuilder.php:23
+msgid "Contract type id"
+msgstr "Id Type de contrat"
+
+#: modules/custom/amap/src/ContractTypeListBuilder.php:25
+#: modules/custom/amap/src/Entity/ContractType.php:124
+msgid "Displayed Name"
+msgstr "Nom affiché"
+
+#: modules/custom/amap/src/ContractTypeListBuilder.php:26
+#: modules/custom/amap/src/Entity/ContractType.php:145
+msgid "Number of quantities"
+msgstr "Nombre de quantités"
+
+#: modules/custom/amap/src/ContractTypeListBuilder.php:27
+msgid "Form header"
+msgstr "Entête du formulaire"
+
+#: modules/custom/amap/src/ContractTypeListBuilder.php:28
+msgid "Export header"
+msgstr "Entête de l'export"
+
+#: modules/custom/amap/src/DistributionDateListBuilder.php:23
+msgid "Distribution date ID"
+msgstr "Id Date de distribution"
+
+#: modules/custom/amap/src/DistributionDateListBuilder.php:24
+#: modules/custom/amap/src/DistributionInscriptionListBuilder.php:24
+#: modules/custom/amap/src/Entity/DistributionDate.php:139;12
+msgid "Distribution date"
+msgstr "Date de distribution"
+
+#: modules/custom/amap/src/DistributionDateListBuilder.php:25
+#: modules/custom/amap/src/Entity/DistributionDate.php:557
+msgid "Number of products"
+msgstr "Nombre de produits"
+
+#: modules/custom/amap/src/DistributionInscriptionListBuilder.php:23
+msgid "Distribution inscription ID"
+msgstr "Id Inscription"
+
+#: modules/custom/amap/src/DistributionInscriptionListBuilder.php:25
+msgid "AMAPien"
+msgstr "AMAPien"
+
+#: modules/custom/amap/src/DistributionInscriptionListBuilder.php:26
+#: modules/custom/amap/src/Entity/DistributionInscription.php:169
+msgid "Role"
+msgstr "Rôle"
+
+#: modules/custom/amap/src/Controller/TitleController.php:18
+msgid ""
+"Sign up for Planning <a class=\"form-submit\" href=\"/amap/"
+"signupForPlanningOne\">Little screen</a>"
+msgstr ""
+"S'inscrire sur le Planning <a class=\"form-submit\" href=\"/amap/"
+"signupForPlanningOne\">Petit écran</a>"
+
+#: modules/custom/amap/src/Controller/TitleController.php:26
+msgid ""
+"Sign up for Planning <a class=\"form-submit\" href=\"/amap/"
+"signupForPlanningMany\">Big screen</a>"
+msgstr ""
+"S'inscrire sur le Planning <a class=\"form-submit\" href=\"/amap/"
+"signupForPlanningMany\">Grand écran</a>"
+
+#: modules/custom/amap/src/Entity/Contract.php:147
+msgid "Type of contract"
+msgstr "Type de contrat"
+
+#: modules/custom/amap/src/Entity/Contract.php:188
+msgid "Start date of contract"
+msgstr "Date de début du contrat"
+
+#: modules/custom/amap/src/Entity/Contract.php:205
+msgid "End date of contract"
+msgstr "Date de fin du contrat"
+
+#: modules/custom/amap/src/Entity/Contract.php:223
+msgid "Referent of contract"
+msgstr "Référent de contrat"
+
+#: modules/custom/amap/src/Entity/Contract.php:244
+msgid "Visible"
+msgstr "Visible"
+
+#: modules/custom/amap/src/Entity/Contract.php:264
+msgid "Source file"
+msgstr "Fichier Source"
+
+#: modules/custom/amap/src/Entity/Contract.php:265
+msgid "Source file (may be modified)"
+msgstr "Fichier Source (pour modification)"
+
+#: modules/custom/amap/src/Entity/Contract.php:288
+#: modules/custom/amap/src/Entity/ContractSubscription.php:209
+msgid "pdf file"
+msgstr "Fichier pdf"
+
+#: modules/custom/amap/src/Entity/Contract.php:289
+msgid "To be downloaded by AMAPiens"
+msgstr "Pour être téléchargé par les AMAPiens"
+
+#: modules/custom/amap/src/Entity/Contract.php:312
+msgid "Open for subscription"
+msgstr "Ouvert pour souscription"
+
+#: modules/custom/amap/src/Entity/Contract.php:331
+#: modules/custom/amap/src/Entity/ContractSubscription.php:708
+#: modules/custom/amap/src/Entity/DistributionDate.php:561
+#: modules/custom/amap/src/Entity/DistributionInscription.php:185
+msgid "Authored by"
+msgstr ""
+
+#: modules/custom/amap/src/Entity/Contract.php:338
+#: modules/custom/amap/src/Entity/ContractSubscription.php:716
+#: modules/custom/amap/src/Entity/ContractType.php:200
+#: modules/custom/amap/src/Entity/DistributionDate.php:568
+#: modules/custom/amap/src/Entity/DistributionInscription.php:192
+msgid "Created"
+msgstr "Date de création"
+
+#: modules/custom/amap/src/Entity/Contract.php:341
+#: modules/custom/amap/src/Entity/ContractSubscription.php:720
+#: modules/custom/amap/src/Entity/ContractType.php:203
+#: modules/custom/amap/src/Entity/DistributionDate.php:571
+#: modules/custom/amap/src/Entity/DistributionInscription.php:195
+msgid "Changed"
+msgstr "Date de modification"
+
+#: modules/custom/amap/src/Entity/Contract.php:12
+#: modules/custom/amap/src/Entity/ContractSubscription.php:129
+msgid "Contract"
+msgstr "Contrat"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:149
+#: modules/custom/amap/src/Form/ContractSubscriptionTableForm.php:51
+msgid "Member"
+msgstr "Adhérent"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:169
+#: modules/custom/amap/src/Form/ContractSubscriptionTableForm.php:54
+msgid "Shared with"
+msgstr "Partagé avec"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:189
+#: modules/custom/amap/src/Form/ContractSubscriptionTableForm.php:55
+msgid "Comment"
+msgstr "Commentaire"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:232
+msgid "Quantity 01"
+msgstr "Quantity 01"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:249
+msgid "Quantity 02"
+msgstr "Quantity 02"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:266
+msgid "Quantity 03"
+msgstr "Quantity 03"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:283
+msgid "Quantity 04"
+msgstr "Quantity 04"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:300
+msgid "Quantity 05"
+msgstr "Quantity 05"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:317
+msgid "Quantity 06"
+msgstr "Quantity 06"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:334
+msgid "Quantity 07"
+msgstr "Quantity 07"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:351
+msgid "Quantity 08"
+msgstr "Quantity 08"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:368
+msgid "Quantity 09"
+msgstr "Quantity 09"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:385
+msgid "Quantity 10"
+msgstr "Quantity 10"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:402
+msgid "Quantity 11"
+msgstr "Quantity 11"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:419
+msgid "Quantity 12"
+msgstr "Quantity 12"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:436
+msgid "Quantity 13"
+msgstr "Quantity 13"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:453
+msgid "Quantity 14"
+msgstr "Quantity 14"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:470
+msgid "Quantity 15"
+msgstr "Quantity 15"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:487
+msgid "Quantity 16"
+msgstr "Quantity 16"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:504
+msgid "Quantity 17"
+msgstr "Quantity 17"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:521
+msgid "Quantity 18"
+msgstr "Quantity 18"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:538
+msgid "Quantity 19"
+msgstr "Quantity 19"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:555
+msgid "Quantity 20"
+msgstr "Quantity 20"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:572
+msgid "Quantity 21"
+msgstr "Quantity 21"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:589
+msgid "Quantity 22"
+msgstr "Quantity 22"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:606
+msgid "Quantity 23"
+msgstr "Quantity 23"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:623
+msgid "Quantity 24"
+msgstr "Quantity 24"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:640
+msgid "Quantity 25"
+msgstr "Quantity 25"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:657
+msgid "Quantity 26"
+msgstr "Quantity 26"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:674
+msgid "Quantity 27"
+msgstr "Quantity 27"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:691
+msgid "Quantity 28"
+msgstr "Quantity 28"
+
+#: modules/custom/amap/src/Entity/ContractSubscription.php:12
+msgid "Contract subscription"
+msgstr "Souscription de contrat"
+
+#: modules/custom/amap/src/Entity/ContractType.php:12
+msgid "Contract type"
+msgstr "Type de contrat"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:157
+msgid "Product 01"
+msgstr "Product 01"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:177
+msgid "Product 02"
+msgstr "Product 02"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:197
+msgid "Product 03"
+msgstr "Product 03"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:217
+msgid "Product 04"
+msgstr "Product 04"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:237
+msgid "Product 05"
+msgstr "Product 05"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:257
+msgid "Product 06"
+msgstr "Product 06"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:277
+msgid "Product 07"
+msgstr "Product 07"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:297
+msgid "Product 08"
+msgstr "Product 08"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:317
+msgid "Product 09"
+msgstr "Product 09"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:337
+msgid "Product 10"
+msgstr "Product 10"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:357
+msgid "Product 11"
+msgstr "Product 11"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:377
+msgid "Product 12"
+msgstr "Product 12"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:397
+msgid "Product 13"
+msgstr "Product 13"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:417
+msgid "Product 14"
+msgstr "Product 14"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:437
+msgid "Product 15"
+msgstr "Product 15"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:457
+msgid "Product 16"
+msgstr "Product 16"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:477
+msgid "Product 17"
+msgstr "Product 17"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:497
+msgid "Product 18"
+msgstr "Product 18"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:517
+msgid "Product 19"
+msgstr "Product 19"
+
+#: modules/custom/amap/src/Entity/DistributionDate.php:537
+msgid "Product 20"
+msgstr "Product 20"
+
+#: modules/custom/amap/src/Entity/DistributionInscription.php:129
+msgid "Distribution Date ID"
+msgstr "Id Date de distribution"
+
+#: modules/custom/amap/src/Entity/DistributionInscription.php:149
+msgid "AMAPien ID"
+msgstr "Id AMAPien"
+
+#: modules/custom/amap/src/Entity/DistributionInscription.php:12
+msgid "Distribution inscription"
+msgstr "Inscription aux distributions"
+
+#: modules/custom/amap/src/Form/ContractDeleteForm.php:30
+msgid "Are you sure you want to delete contract « %label »?"
+msgstr "Êtes-vous certain(e) de vouloir supprimer le contrat « %label » ?"
+
+#: modules/custom/amap/src/Form/ContractDeleteForm.php:43
+msgid "Contract « %label » has been deleted."
+msgstr "Le contrat « %label » a été supprimé."
+
+#: modules/custom/amap/src/Form/ContractForm.php:40
+msgid "Contract « %label » has been added."
+msgstr "Le contrat « %label » a été ajouté."
+
+#: modules/custom/amap/src/Form/ContractForm.php:46
+msgid "Contract « %label » has been updated."
+msgstr "Le contrat « %label » a été mis à jour."
+
+#: modules/custom/amap/src/Form/ContractSubscriptionForm.php:40
+msgid "Contract subscription« %label » has been added."
+msgstr "La souscription au contrat « %label » a été ajoutée."
+
+#: modules/custom/amap/src/Form/ContractSubscriptionForm.php:46
+msgid "Contract subscription« %label » has been updated."
+msgstr "La souscription au contrat « %label » a été mise à jour."
+
+#: modules/custom/amap/src/Form/ContractSubscriptionTableForm.php:56
+msgid "•••"
+msgstr "•••"
+
+#: modules/custom/amap/src/Form/ContractSubscriptionTableForm.php:162
+msgid "Submit"
+msgstr "Soumettre"
+
+#: modules/custom/amap/src/Form/ContractTypeForm.php:40
+msgid "Contract type « %label » has been added."
+msgstr "Le type de contrat « %label » a été ajouté."
+
+#: modules/custom/amap/src/Form/ContractTypeForm.php:46
+msgid "Contract type « %label » has been updated."
+msgstr "Le type de contrat « %label » a été mis à jour."
+
+#: modules/custom/amap/src/Form/DistributionDateForm.php:47
+msgid "Distribution date « %label » has been added."
+msgstr "La date de distribution « %label » a été ajoutée."
+
+#: modules/custom/amap/src/Form/DistributionDateForm.php:53
+msgid "Distribution date « %label » has been updated."
+msgstr "La date de distribution « %label » a été ajoutée."
+
+#: modules/custom/amap/src/Form/DistributionDateTableForm.php:80
+#: modules/custom/amap/src/Form/DistributionInscriptionManyForm.php:147
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:157
+msgid "Save"
+msgstr "Enregistrer"
+
+#: modules/custom/amap/src/Form/DistributionDateTableForm.php:115
+#: modules/custom/amap/src/Form/DistributionInscriptionManyForm.php:207
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:223
+msgid "The changes have been saved."
+msgstr "Les modifications ont été enregistrées."
+
+#: modules/custom/amap/src/Form/DistributionInscriptionForm.php:40
+msgid "Distribution inscription « %label » has been added."
+msgstr "L’inscription à la distribution « %label » a été ajoutée."
+
+#: modules/custom/amap/src/Form/DistributionInscriptionForm.php:46
+msgid "Distribution inscription « %label » has been updated."
+msgstr "L’inscription à la distribution « %label » a été modifée."
+
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:64
+msgid "Distribution Date"
+msgstr "Date de distribution"
+
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:85
+msgid "Distribution"
+msgstr "Distribution"
+
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:106
+msgid "Reserve"
+msgstr "Réserve"
+
+#: modules/custom/amap/src/Form/DistributionInscriptionOneForm.php:127
+msgid "Referent"
+msgstr "Référent"
+
+#, fuzzy
+#~ msgid "Created the %label Distribution inscription."
+#~ msgstr "Liste des inscriptions aux distributions"
+
+#, fuzzy
+#~ msgid "Saved the %label Distribution inscription."
+#~ msgstr "Liste des inscriptions aux distributions"

@@ -156,7 +156,7 @@ class Person extends ContentEntityBase implements PersonInterface
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['lastname'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Last name'))
+      ->setLabel(t('Last Name'))
       ->setRequired(TRUE)
       ->setSettings(array(
         'max_length' => 50,
@@ -218,7 +218,7 @@ class Person extends ContentEntityBase implements PersonInterface
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['email'] = BaseFieldDefinition::create('email')
-      ->setLabel(t('email address'))
+      ->setLabel(t('Email Address'))
       ->setDefaultValue('')
       ->setDisplayOptions('view', array(
         'label' => 'above',
