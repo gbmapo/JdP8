@@ -233,3 +233,15 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
   }
 
 }
+
+function shared_user_login($account) {
+
+  $currentUrl = \Drupal::service('path.current')->getPath();
+  if ($currentUrl && (substr($currentUrl, 0, 12) == '/user/reset/')) {
+    return;
+  }
+  $response = new RedirectResponse('/');
+  $response->send();
+  exit;
+
+}

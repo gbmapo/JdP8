@@ -48,10 +48,13 @@ class DistributionDateTableForm extends FormBase
     $currentDay = date('Y-m-d');
     $sNextWed = strftime("%Y-%m-%d", strtotime("next Wednesday", strtotime("Yesterday")));
 
-    $storage = \Drupal::entityManager()->getStorage('distribution_date');
-    $ids = \Drupal::entityQuery('distribution_date')
+    $storage  = \Drupal::entityManager()->getStorage('distribution_date');
+    $database = \Drupal::database();
+    $query    = $database->select('distribution_date', 'amdd');
+    $query->fields('amdd', ['id', 'distributiondate'])
       ->condition('distributiondate', $sNextWed, '>=')
-      ->execute();
+      ->orderBy('distributiondate', 'ASC');
+    $ids = $query->execute()->fetchCol(0);
     $dates = $storage->loadMultiple($ids);
     foreach ($dates as $id => $date) {
       foreach ($date as $key => $value) {

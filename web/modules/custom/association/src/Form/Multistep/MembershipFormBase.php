@@ -187,7 +187,7 @@ abstract class MembershipFormBase extends FormBase {
         //      $res     = $user->save();
         $user->save();
         $uid[$i] = $user->id();
-        $mail    = _user_mail_notify('register_admin_created', $user);
+        $mail    = _user_mail_notify('register_no_approval_required', $user);
       }
 
       // Prepare Member

@@ -13,6 +13,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\user\Entity\User;
 use Drupal\Core\Url;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 
 /**
  * Implements hook_help().
@@ -63,31 +64,6 @@ function association_allowed_values_function(FieldStorageDefinitionInterface $de
     }
   }
 }
-
-function association_views_pre_render(ViewExecutable $view) {
-
-  switch ($view->id()) {
-    case 'association_members':
-      switch ($view->current_display) {
-        case 'page_1':
-          $view->element['#attached']['library'][] = 'association/LoM';
-          break;
-        default:
-      }
-      break;
-    case 'association_persons':
-      switch ($view->current_display) {
-        case 'page_1':
-          $view->element['#attached']['library'][] = 'association/LoP';
-          break;
-        default:
-      }
-      break;
-    default:
-  }
-
-}
-
 
 function _setListOfRecipients($status = 4) {
 
@@ -245,6 +221,52 @@ function association_menu_local_tasks_alter(&$data, $route_name) {
           ],
           '#weight' => 4,
         ];
+      }
+      break;
+    default:
+  }
+
+}
+
+function association_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+
+  switch ($view->id()) {
+    case 'association_persons':
+      if ($view->current_display == 'page_2') {
+        $roles = \Drupal::currentUser()->getRoles();
+        if (in_array('administrator', $roles)) {
+          foreach ($query->where as $condition_group_key => &$condition_group) {
+            foreach ($condition_group['conditions'] as $condition_key => &$condition) {
+              if ($condition['field'] == 'member_person.status') {
+                unset($query->where[$condition_group_key]['conditions'][$condition_key]);
+              }
+            }
+          }
+        }
+      }
+      break;
+    default:
+  }
+
+}
+
+function association_views_pre_render(ViewExecutable $view) {
+
+  switch ($view->id()) {
+    case 'association_members':
+      switch ($view->current_display) {
+        case 'page_1':
+          $view->element['#attached']['library'][] = 'association/LoM';
+          break;
+        default:
+      }
+      break;
+    case 'association_persons':
+      switch ($view->current_display) {
+        case 'page_1':
+          $view->element['#attached']['library'][] = 'association/LoP';
+          break;
+        default:
       }
       break;
     default:

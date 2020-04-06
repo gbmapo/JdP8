@@ -2822,8 +2822,8 @@ display:
           relationship: member_id
           group_type: group
           admin_label: ''
-          label: ''
-          exclude: true
+          label: 'Complément d''adresse'
+          exclude: false
           alter:
             alter_text: false
             text: ''

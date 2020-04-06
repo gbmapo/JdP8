@@ -21,3 +21,8 @@ LoP:
   dependencies:
     - core/jquery
     - shared/shared
+
+membership:
+  version: 1.x
+  js:
+      js/membership.js: {}

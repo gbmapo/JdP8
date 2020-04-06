@@ -43,6 +43,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#size'          => 64,
       '#default_value' => $this->store->get('addresssupplement') ? $this->store->get('addresssupplement') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['address']['street'] = [
@@ -52,6 +53,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#required'      => TRUE,
       '#default_value' => $this->store->get('street') ? $this->store->get('street') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['address']['postalcode'] = [
@@ -70,6 +72,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#required'      => TRUE,
       '#default_value' => $this->store->get('city') ? $this->store->get('city') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['telephone'] = [
@@ -91,6 +94,8 @@ class MembershipStep2 extends MembershipFormBase {
     ];
 
     $form['actions']['submit']['#value'] = $this->t('Next');
+
+    $form['#attached']['library'][] = 'association/membership';
 
     return $form;
   }

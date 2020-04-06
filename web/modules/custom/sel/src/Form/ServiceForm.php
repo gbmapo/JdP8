@@ -86,7 +86,7 @@ class ServiceForm extends ContentEntityForm
       $iSeliste = $entity->owner_id->target_id;
       $oSeliste = \Drupal::entityTypeManager()->getStorage('person')->load($iSeliste);
       $sSeliste = $oSeliste->firstname->value . " " . $oSeliste->lastname->value;
-      $sAction = ($values['action'][0]['value'] == 0) ? "offre" : "demande";
+      $sAction = ($values['action'][0]['value'] == 'O') ? "offre" : "demande";
       $sDueDate = $values['duedate'][0]['value']->format("d/m/Y");
       _sendEmailForUrgentService($sSeliste, $sAction, $sDueDate);
     }

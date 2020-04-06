@@ -440,12 +440,18 @@ display:
           search_fields:
             lastname: lastname
             firstname: '0'
+      access:
+        type: perm
+        options:
+          perm: 'add exchange entities'
+      defaults:
+        access: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - user.roles
+        - user.permissions
       tags: {  }
   page_1:
     display_plugin: page

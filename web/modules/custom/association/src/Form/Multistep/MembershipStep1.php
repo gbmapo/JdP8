@@ -34,6 +34,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#required'      => TRUE,
       '#default_value' => $this->store->get('lastname1') ? $this->store->get('lastname1') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person1']['firstname1'] = [
@@ -43,6 +44,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#required'      => TRUE,
       '#default_value' => $this->store->get('firstname1') ? $this->store->get('firstname1') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person1']['email1'] = [
@@ -52,6 +54,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#required'      => TRUE,
       '#default_value' => $this->store->get('email1') ? $this->store->get('email1') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person1']['cellphone1'] = [
@@ -81,6 +84,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#size'          => 32,
       '#default_value' => $this->store->get('lastname2') ? $this->store->get('lastname2') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person2']['firstname2'] = [
@@ -89,6 +93,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#size'          => 32,
       '#default_value' => $this->store->get('firstname2') ? $this->store->get('firstname2') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person2']['email2'] = [
@@ -97,6 +102,7 @@ class MembershipStep1 extends MembershipFormBase {
       '#size'          => 64,
       '#default_value' => $this->store->get('email2') ? $this->store->get('email2') : '',
       '#weight'        => $weight,
+      '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
     $weight++;
     $form['person2']['cellphone2'] = [
@@ -125,6 +131,8 @@ class MembershipStep1 extends MembershipFormBase {
     ];
 
     $form['actions']['submit']['#value'] = $this->t('Next');
+
+    $form['#attached']['library'][] = 'association/membership';
 
     return $form;
   }

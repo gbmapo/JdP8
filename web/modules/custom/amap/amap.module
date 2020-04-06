@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 
-const AMAP_AMAPIEN_PER_DISTRIBUTION  = 4;
+const AMAP_AMAPIEN_PER_DISTRIBUTION  = 6;
 const AMAP_RESERVE_PER_DISTRIBUTION  = 1;
 const AMAP_REFERENT_PER_DISTRIBUTION = 1;
 
@@ -195,8 +195,8 @@ function amap_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
 function amap_views_pre_render(ViewExecutable $view) {
 
   switch ($view->id()) {
-    case 'amap_calendrier_des_distributions':
-      switch ($display_id) {
+    case 'amap_distributions':
+      switch ($view->current_display) {
         case 'page_1':
           $view->element['#attached']['library'][] = 'amap/amap';
           break;

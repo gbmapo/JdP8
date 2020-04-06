@@ -232,6 +232,8 @@ class ContractSubscriptionTableForm extends FormBase
 
     _export_amap_CSV('amap_contracts_subscriptions', 'rest_export_1', $args[0]);
 
+    \Drupal::messenger()->addMessage($this->t('The changes have been saved.'));
+
     $form_state->setRedirect('amap.contracts');
   }
 

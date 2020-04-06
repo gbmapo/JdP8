@@ -15,9 +15,8 @@ class MembersAndPersonsController extends ControllerBase
   public function export_membersformaps()
   {
 
-    _export_association_CSV('association_members', 'rest_export_2');
-
-    $sFileName = 'export_membersformaps.csv';
+    _export_association_CSV('association_persons', 'rest_export_3');
+    $sFileName = 'export_personsformaps.csv';
     $sFileNameWithPath = 'sites/default/files/_private/' . $sFileName;
     $response = new BinaryFileResponse($sFileNameWithPath);
     $response->setContentDisposition(
