@@ -216,6 +216,7 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
     case 'evenement':
 
       if ($op == 'view') {
+
         $tags = $node->get('field_tags')->referencedEntities();
         foreach ($tags as $tag) {
           if ($tag->tid->value == 7) { // 7=Privé
@@ -227,6 +228,7 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
             }
           }
         }
+
       }
       break;
     default:
@@ -245,3 +247,12 @@ function shared_user_login($account) {
   exit;
 
 }
+
+function shared_preprocess_node__page(array &$variables) {
+
+  if ($variables['node']->nid->value == 25) {
+    $variables['#attached']['library'][] = 'shared/modal';
+  }
+
+}
+

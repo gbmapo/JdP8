@@ -7,21 +7,34 @@ sel:
 echange:
   version: 1.x
   js:
-      js/echange.js: {}
+    js/echange.js: {}
 
 person:
   version: 1.x
   js:
-      js/person.js: {}
+    js/person.js: {}
 
 LoS:
   version: 1.x
   header: true
   css:
     theme:
-      css/ahover.css: {}
+      css/datatable.css: {}
   js:
     js/LoS.js: {}
+  dependencies:
+    - core/jquery
+    - shared/shared
+    - core/drupal.dialog.ajax
+
+LomyS:
+  version: 1.x
+  header: true
+  css:
+    theme:
+      css/datatable.css: {}
+  js:
+    js/LomyS.js: {}
   dependencies:
     - core/jquery
     - shared/shared

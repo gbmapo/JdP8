@@ -484,8 +484,8 @@ msgstr ""
 "votre paiement."
 
 #: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:337
-msgid "An email has been sent with your login information."
-msgstr "Un courriel a été envoyé avec vos informations de connexion."
+msgid "A confimation email has been sent."
+msgstr "Un courriel de confirmation a été envoyé."
 
 #: modules/custom/association/src/Form/Multistep/MembershipFormBase.php:343
 msgid "Your wish has been recorded."

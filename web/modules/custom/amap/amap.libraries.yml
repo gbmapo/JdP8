@@ -7,3 +7,13 @@ amap:
     js/amap.js: {}
   dependencies:
     - core/drupalSettings
+
+LoD:
+ version: 1.x
+ header: true
+ js:
+   js/LoD.js: {}
+ dependencies:
+   - core/jquery
+   - shared/shared
+

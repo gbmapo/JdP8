@@ -323,6 +323,9 @@ function sel_views_pre_render(ViewExecutable $view)
         case 'page_1':
           $view->element['#attached']['library'][] = 'sel/LoS';
           break;
+        case 'page_2':
+          $view->element['#attached']['library'][] = 'sel/LomyS';
+          break;
         default:
       }
       break;

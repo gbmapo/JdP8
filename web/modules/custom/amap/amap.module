@@ -198,7 +198,7 @@ function amap_views_pre_render(ViewExecutable $view) {
     case 'amap_distributions':
       switch ($view->current_display) {
         case 'page_1':
-          $view->element['#attached']['library'][] = 'amap/amap';
+          $view->element['#attached']['library'][] = 'amap/LoD';
           break;
         default:
       }

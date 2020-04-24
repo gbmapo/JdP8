@@ -4,6 +4,7 @@ LoM:
   css:
     theme:
       css/ahover.css: {}
+      css/datatable.css: {}
   js:
     js/LoM.js: {}
   dependencies:
@@ -16,6 +17,7 @@ LoP:
   css:
     theme:
       css/ahover.css: {}
+      css/datatable.css: {}
   js:
     js/LoP.js: {}
   dependencies:

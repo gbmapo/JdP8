@@ -177,17 +177,16 @@ abstract class MembershipFormBase extends FormBase {
         $user->enforceIsNew();
         $user->setEmail($this->store->get('email' . $i));
         $user->setUsername($this->generateName($this->store->get('firstname' . $i), $this->store->get('lastname' . $i)));
-        $user->activate();
+        $user->block();
         if ($i == 1) {
           $user->addRole('contact_for_member');
         }
         if ($this->store->get('seliste' . $i) == 1) {
           $user->addRole('seliste');
         }
-        //      $res     = $user->save();
         $user->save();
         $uid[$i] = $user->id();
-        $mail    = _user_mail_notify('register_no_approval_required', $user);
+        $mail    = _user_mail_notify('register_pending_approval', $user);
       }
 
       // Prepare Member
@@ -246,7 +245,7 @@ abstract class MembershipFormBase extends FormBase {
         $insertFieldsP[$i] = [
           'comment'   => NULL,
           'created'   => $now,
-          'isactive'  => 1,
+          'isactive'  => 0,
           'iscontact' => $i == 1 ? 1 : 0,
           'member_id' => $idMnew,
           'owner_id'  => $uid['1'],
@@ -334,7 +333,7 @@ abstract class MembershipFormBase extends FormBase {
       $str      = $this->t('membership request');
       $sMessage = $this->t('Your @str has been registered.<BR>It will be effective after reception of your payment.', ['@str' => $str]);
       Drupal::messenger()->addMessage($sMessage);
-      $sMessage = $this->t('An email has been sent with your login information.');
+      $sMessage = $this->t('A confimation email has been sent.');
       Drupal::messenger()->addMessage($sMessage);
     }
     else {

@@ -2556,7 +2556,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Action
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -2598,7 +2598,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: list_default
+          type: list_key
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -3218,9 +3218,9 @@ display:
           label: SEListe
           exclude: false
           alter:
-            alter_text: false
-            text: ''
-            make_link: true
+            alter_text: true
+            text: "<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ owner_id__target_id }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Personne à contacter&quot;}\">{{ owner_id }}</a>\r\n\r\n "
+            make_link: false
             path: 'association/person/{{ owner_id__target_id }}/view'
             absolute: false
             external: false
@@ -3453,7 +3453,7 @@ display:
             action:
               sortable: false
               default_sort_order: asc
-              align: views-align-left
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -3549,26 +3549,9 @@ display:
           hide_empty: false
           default_field_elements: true
       pager:
-        type: full
+        type: none
         options:
-          items_per_page: 20
           offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: Précédent
-            next: Suivant
-            first: Premier
-            last: Dernier
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Éléments par page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tout -'
-            offset: false
-            offset_label: Décalage
-          quantity: 3
       sorts:
         additiondate:
           id: additiondate
@@ -3589,7 +3572,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
       tags: {  }
   page_2:
     display_plugin: page
@@ -3785,7 +3767,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Action
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -3827,7 +3809,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: list_default
+          type: list_key
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -4102,139 +4084,6 @@ display:
           field_api_classes: false
           entity_type: service
           entity_field: isurgent
-          plugin_id: field
-        duedate:
-          id: duedate
-          table: service
-          field: duedate
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Validité
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: datetime_custom
-          settings:
-            timezone_override: ''
-            date_format: d/m/y
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: service
-          entity_field: duedate
-          plugin_id: field
-        status:
-          id: status
-          table: service
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Publié
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: boolean
-          settings:
-            format: yes-no
-            format_custom_true: ''
-            format_custom_false: ''
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: service
-          entity_field: status
           plugin_id: field
         picture_target_id:
           id: picture_target_id
@@ -4570,6 +4419,139 @@ display:
           entity_type: service
           entity_field: additiondate
           plugin_id: field
+        duedate:
+          id: duedate
+          table: service
+          field: duedate
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Validité
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_custom
+          settings:
+            timezone_override: ''
+            date_format: d/m/y
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: service
+          entity_field: duedate
+          plugin_id: field
+        status:
+          id: status
+          table: service
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Publié
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_true: ''
+            format_custom_false: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: service
+          entity_field: status
+          plugin_id: field
         nothing_1:
           id: nothing_1
           table: views
@@ -4661,13 +4643,13 @@ display:
             service: service
             comment: comment
             isurgent: isurgent
-            duedate: duedate
-            status: status
             picture_target_id: picture_target_id
             file__target_id: file__target_id
             link__uri: link__uri
             owner_id_1: owner_id_1
             additiondate: additiondate
+            duedate: duedate
+            status: status
             nothing_1: nothing_1
           info:
             id:
@@ -4680,7 +4662,7 @@ display:
             action:
               sortable: false
               default_sort_order: asc
-              align: views-align-left
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -4706,20 +4688,6 @@ display:
               empty_column: false
               responsive: ''
             isurgent:
-              sortable: false
-              default_sort_order: asc
-              align: views-align-center
-              separator: ''
-              empty_column: false
-              responsive: ''
-            duedate:
-              sortable: false
-              default_sort_order: asc
-              align: views-align-center
-              separator: ''
-              empty_column: false
-              responsive: ''
-            status:
               sortable: false
               default_sort_order: asc
               align: views-align-center
@@ -4753,6 +4721,20 @@ display:
               empty_column: false
               responsive: ''
             additiondate:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            duedate:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
               sortable: false
               default_sort_order: asc
               align: views-align-center

@@ -1,0 +1,14 @@
+uuid: cb25537e-499c-4543-a3c0-fcd9c52ab460
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.producteur
+  module:
+    - user
+id: user_remove_role_action.producteur
+label: 'Enlever le rôle Producteur des utilisateurs sélectionnés'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: producteur

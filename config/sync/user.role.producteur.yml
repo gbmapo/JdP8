@@ -1,0 +1,9 @@
+uuid: 76ca124b-3769-4470-b525-b6dfc946b119
+langcode: fr
+status: true
+dependencies: {  }
+id: producteur
+label: Producteur
+weight: -2
+is_admin: null
+permissions: {  }

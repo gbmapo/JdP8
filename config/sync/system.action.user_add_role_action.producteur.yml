@@ -1,0 +1,14 @@
+uuid: 13407041-20e5-416b-957d-1c48b98a9305
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.producteur
+  module:
+    - user
+id: user_add_role_action.producteur
+label: 'Ajouter le rôle Producteur aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: producteur

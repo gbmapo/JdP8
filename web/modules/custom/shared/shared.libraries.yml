@@ -13,4 +13,12 @@ shared:
 masscontact:
   version: 1.x
   js:
-      js/masscontact.js: {}
+    js/masscontact.js: {}
+
+modal:
+  version: 1.x
+  js:
+    js/modal.js: {}
+  dependencies:
+    - core/drupal.dialog.ajax
+    - core/jquery
