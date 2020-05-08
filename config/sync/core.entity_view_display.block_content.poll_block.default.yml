@@ -1,0 +1,15 @@
+uuid: 78d89ae6-882e-4f88-8b19-6d87e593cda8
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.poll_block
+    - field.field.block_content.poll_block.body
+id: block_content.poll_block.default
+targetEntityType: block_content
+bundle: poll_block
+mode: default
+content: {  }
+hidden:
+  body: true
+  langcode: true

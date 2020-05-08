@@ -162,14 +162,14 @@ function _sendEmailForServicesExtraction($sCase)
       $iCategory = rand(1, $query->count()->execute());
       $sCategory = \Drupal::entityManager()->getStorage('service_category')->load($iCategory)->name->value;
       $view = views_embed_view('sel_services', 'embed_1', $iCategory);
-      $view = \Drupal::service('renderer')->render($view);
+      $view = \Drupal::service('renderer')->renderPlain($view);
       $aParams = array($sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction of services per category: Email sent.', $sCategory);
       break;
     case 'emailfornewservices':
       $query = \Drupal::entityQuery('service_category');
       $dLastExtractionDate = strftime("%Y-%m-%d", strtotime("- 1 week", strtotime(\Drupal::state()->get('sel.NextEmailForNewServices'))));
       $view = views_embed_view('sel_services', 'embed_2', $dLastExtractionDate);
-      $view = \Drupal::service('renderer')->render($view);
+      $view = \Drupal::service('renderer')->renderPlain($view);
       $aParams = array($sBcc, $view, 'sel.NextEmailForNewServices', 'Last additions to Catalog of Services : Email sent.');
       break;
   }

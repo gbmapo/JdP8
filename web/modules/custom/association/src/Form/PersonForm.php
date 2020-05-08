@@ -72,7 +72,7 @@ class PersonForm extends ContentEntityForm
 //     }
 
     if ($entity->iscontact->value) {
-      // List all persons for the current member
+      // List all other persons for the current member
       $member_id = $entity->member_id->target_id;
       $iId = $entity->id->value;
       $database = \Drupal::database();

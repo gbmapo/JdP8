@@ -41,10 +41,14 @@ class EventSubscriber implements EventSubscriberInterface {
   public function redirectIf(FilterResponseEvent $event) {
 
     $node = $event->getRequest()->attributes->get('node');
-    if ($node && $node->get('nid')->value == 1) {
-      if (!$this->currentUser->isAnonymous()) {
-        $path = Url::fromUserInput('/node/25')->toString();
-        $event->setResponse(new RedirectResponse($path));
+    if ($node) {
+      if (is_object($node)) {
+        if ($node->get('nid')->value == 1) {
+          if (!$this->currentUser->isAnonymous()) {
+            $path = Url::fromUserInput('/node/25')->toString();
+            $event->setResponse(new RedirectResponse($path));
+          }
+        }
       }
     }
 
@@ -57,7 +61,8 @@ class EventSubscriber implements EventSubscriberInterface {
    *   The dispatched event.
    */
   public function eventSubscriber(Event $event) {
-    \Drupal::messenger()->addMessage('Event event_subscriber thrown by Subscriber in module shared.', 'status', TRUE);
+    \Drupal::messenger()
+      ->addMessage('Event event_subscriber thrown by Subscriber in module shared.', 'status', TRUE);
   }
 
 }

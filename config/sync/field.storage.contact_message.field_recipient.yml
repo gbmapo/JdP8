@@ -30,6 +30,9 @@ settings:
       value: 'Farine <charpcel@hotmail.com>'
       label: 'AMAP Farine'
     -
+      value: 'Fruits rouges <eric.falzon@free.fr>'
+      label: 'AMAP Fruits rouges'
+    -
       value: 'Jus de pommes Hutrel <pommesduhutrel@gmail.com>'
       label: 'AMAP Jus de pommes Hutrel'
     -
@@ -44,6 +47,9 @@ settings:
     -
       value: 'Pain <elodie.chorin@hotmail.fr>'
       label: 'AMAP Pain'
+    -
+      value: 'Pain Quatre saisons <eric.falzon@free.fr>'
+      label: 'AMAP Pain Quatre saisons'
     -
       value: 'Pommes de terre <jeannine@massiaux.net>'
       label: 'AMAP Pommes de terre'

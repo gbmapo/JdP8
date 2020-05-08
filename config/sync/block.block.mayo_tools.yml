@@ -27,6 +27,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/amap/contract/subscribe/*\r\n/amap/distributions\r\n/amap/editCalendar"
+    pages: "/amap/contract/subscribe/*\r\n/amap/distributions\r\n/amap/editCalendar\r\n/sel/services*"
     negate: true
     context_mapping: {  }

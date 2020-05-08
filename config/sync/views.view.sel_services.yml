@@ -249,6 +249,7 @@ display:
         style: false
         row: false
         sorts: false
+        empty: false
       filter_groups:
         operator: AND
         groups:
@@ -921,7 +922,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: SEListe
+          label: SÉListe
           exclude: false
           alter:
             alter_text: false
@@ -1242,6 +1243,18 @@ display:
           entity_type: service
           entity_field: additiondate
           plugin_id: standard
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content: 'Aucun service publié dans cette catégorie en ce moment. Dommage !'
+          plugin_id: text_custom
     cache_metadata:
       max-age: -1
       contexts:
@@ -2020,7 +2033,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: SEListe
+          label: SÉListe
           exclude: false
           alter:
             alter_text: false
@@ -2355,7 +2368,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'Rien à afficher. Dommage !'
+          content: 'Aucun service récemment publié. Dommage !'
           plugin_id: text_custom
     cache_metadata:
       max-age: -1
@@ -3215,11 +3228,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: SEListe
+          label: SÉListe
           exclude: false
           alter:
             alter_text: true
-            text: "<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ owner_id__target_id }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;Personne à contacter&quot;}\">{{ owner_id }}</a>\r\n\r\n "
+            text: "<a class=\"use-ajax\" data-dialog-type=\"modal\" href=\"/association/person/{{ owner_id__target_id }}/view\" data-dialog-options=\"{&quot;title&quot;:&quot;SÉListe à contacter&quot;}\">{{ owner_id }}</a>\r\n\r\n "
             make_link: false
             path: 'association/person/{{ owner_id__target_id }}/view'
             absolute: false

@@ -30,3 +30,5 @@
 
 # Ignore temporary files
 temporary/
+
+web/modules/custom/module4testing/

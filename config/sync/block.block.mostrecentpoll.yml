@@ -1,0 +1,20 @@
+uuid: dd081ceb-ff76-40c9-a38f-0793960a7dcc
+langcode: fr
+status: true
+dependencies:
+  module:
+    - poll
+  theme:
+    - mayo
+id: mostrecentpoll
+theme: mayo
+region: sidebar_first
+weight: 0
+provider: null
+plugin: poll_recent_block
+settings:
+  id: poll_recent_block
+  label: 'Most recent poll'
+  provider: poll
+  label_display: visible
+visibility: {  }

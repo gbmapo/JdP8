@@ -5,6 +5,7 @@ dependencies:
   config:
     - user.role.administrator
     - user.role.amapien
+    - user.role.authenticated
     - user.role.contact_for_member
     - user.role.referent_of_contract
     - user.role.referent_of_distribution
@@ -2217,7 +2218,7 @@ display:
         type: role
         options:
           role:
-            seliste: seliste
+            authenticated: authenticated
     cache_metadata:
       max-age: -1
       contexts:

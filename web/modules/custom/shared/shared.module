@@ -84,12 +84,12 @@ function shared_mail_alter(&$message) {
       break;
     //----------------------------------------------------------------------
     case "user_register_admin_created":
+    case "user_register_pending_approval":
       $bcc                       = \Drupal::config('system.site')->get('mail');
       $message['headers']['Bcc'] = $bcc;
       break;
     case "user_password_reset":
     case "user_register_no_approval_required":
-    case "user_register_pending_approval":
     case "user_status_activated":
     case "user_status_blocked":
     case "user_status_deleted":
