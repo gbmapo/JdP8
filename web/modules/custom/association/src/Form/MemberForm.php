@@ -33,6 +33,27 @@ class MemberForm extends ContentEntityForm
   {
     $entity = $this->entity;
 
+    if ($entity->status->value == 0) {
+      // List all Persons for this Member
+      $id       = $entity->id->value;
+      $database = \Drupal::database();
+      $query    = $database->select('person', 'ap');
+      $query->fields('ap', ['id', 'member_id'])
+        ->condition('member_id', $id, '=');
+      $results = $query->execute();
+      // Make all these Persons Inactive
+      $storage = \Drupal::entityTypeManager()->getStorage('person');
+      foreach ($results as $key => $result) {
+        $person = $storage->load($result->id);
+        if ($person->iscontact->value) {
+          $person->set("iscontact", 0);
+        }
+        $person->set("isactive", 0);
+        $person->set("member_id", null);
+        $person->save();
+      }
+    }
+
     $status = parent::save($form, $form_state);
     switch ($status) {
       case SAVED_NEW:

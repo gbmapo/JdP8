@@ -339,23 +339,25 @@ function _setReferentOfContract() {
     $user->removeRole('referent_of_contract');
     $user->save();
   }
-
-  $prefix        = 'AMAP';
+  $prefix        = '2. AMAP';
   $fieldStorage  = \Drupal\field\Entity\FieldStorageConfig::loadByName('contact_message', 'field_recipient');
   $allowedValues = $fieldStorage->getSetting('allowed_values');
   foreach ($allowedValues as $key => $value) {
     if (strncmp($value, $prefix, strlen($prefix)) == 0) {
-      unset($allowedValues[$key]);
+      if ($value != $prefix) {
+        unset($allowedValues[$key]);
+      }
     }
   }
-  $allowedValues['amap@lejardindepoissy.org'] = 'AMAP';
 
   $database = \Drupal::database();
   $query    = $database->select('contract', 'co');
   $query->leftJoin('contract_type', 'ct', 'ct.id = co.type');
   $query->leftJoin('users_field_data', 'us', 'us.uid = co.referent_id');
+  $query->fields('co', ['isvisible']);
   $query->fields('ct', ['displayedname']);
   $query->fields('us', ['uid', 'mail']);
+  $query->condition('isvisible', 1);
   $query->orderBy('displayedname', 'ASC');
   $query->distinct();
   $results = $query->execute();
@@ -414,6 +416,17 @@ function _list_distribution_products(&$aProducts, &$sMin, &$sMax) {
 }
 
 function amap_cron() {
+
+  // ----------------------------------------------------------------------------
+  // Ajout de l'adresse de l'AMAP au formulaire de contact
+  // ----------------------------------------------------------------------------
+  $fieldStorage  = \Drupal\field\Entity\FieldStorageConfig::loadByName('contact_message', 'field_recipient');
+  $allowedValues = $fieldStorage->getSetting('allowed_values');
+  if (array_key_exists('amap@lejardindepoissy.org', $allowedValues) == FALSE) {
+    $allowedValues['amap@lejardindepoissy.org'] = '2. AMAP';
+    $fieldStorage->setSetting('allowed_values', $allowedValues);
+    $fieldStorage->save();
+  }
 
   // ----------------------------------------------------------------------------
   // Envoi du courriel 'Rappel pour les étourdis'

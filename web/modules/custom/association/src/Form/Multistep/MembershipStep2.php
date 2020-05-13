@@ -42,6 +42,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#title'         => $this->t('Address supplement'),
       '#size'          => 64,
       '#default_value' => $this->store->get('addresssupplement') ? $this->store->get('addresssupplement') : '',
+      '#placeholder'   => 'Batiment B',
       '#weight'        => $weight,
       '#attributes'    => ['onchange' => 'hasChanged(this)',],
     ];
@@ -51,6 +52,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#title'         => $this->t('Street'),
       '#size'          => 64,
       '#required'      => TRUE,
+      '#placeholder'   => '28 bis boulevard Victor Hugo',
       '#default_value' => $this->store->get('street') ? $this->store->get('street') : '',
       '#weight'        => $weight,
       '#attributes'    => ['onchange' => 'hasChanged(this)',],
@@ -61,6 +63,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#title'         => $this->t('Postal Code'),
       '#size'          => 10,
       '#required'      => TRUE,
+      '#placeholder'   => '78300',
       '#default_value' => $this->store->get('postalcode') ? $this->store->get('postalcode') : '',
       '#weight'        => $weight,
     ];
@@ -70,6 +73,7 @@ class MembershipStep2 extends MembershipFormBase {
       '#title'         => $this->t('City'),
       '#size'          => 64,
       '#required'      => TRUE,
+      '#placeholder'   => 'Poissy',
       '#default_value' => $this->store->get('city') ? $this->store->get('city') : '',
       '#weight'        => $weight,
       '#attributes'    => ['onchange' => 'hasChanged(this)',],

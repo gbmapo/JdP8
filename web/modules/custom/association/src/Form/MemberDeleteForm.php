@@ -26,11 +26,10 @@ class MemberDeleteForm extends ContentEntityDeleteForm
     $query->fields('ap', ['id', 'member_id'])
       ->condition('member_id', $id, '=');
     $results = $query->execute();
-    // Undefine "Contact for Member" for these Persons
     $storage = \Drupal::entityTypeManager()->getStorage('person');
     foreach ($results as $key => $result) {
       $person = $storage->load($result->id);
-      $person->set("member_id", "");
+      $person->set("member_id", null);
       if ($person->iscontact->value) {
         $person->set("iscontact", 0);
         $usertemp = User::load($result->id);

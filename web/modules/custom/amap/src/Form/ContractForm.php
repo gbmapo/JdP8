@@ -23,6 +23,8 @@ class ContractForm extends ContentEntityForm
 
     $entity = $this->entity;
 
+    $form['type']['widget']['#sort_options']  = TRUE;
+
     return $form;
   }
 

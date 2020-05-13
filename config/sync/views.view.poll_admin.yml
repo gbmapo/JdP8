@@ -557,11 +557,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: 'Yes'
+                title: Oui
                 operator: '='
                 value: '1'
               2:
-                title: 'No'
+                title: Non
                 operator: '='
                 value: '0'
           entity_type: poll

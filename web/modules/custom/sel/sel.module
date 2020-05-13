@@ -58,7 +58,7 @@ function sel_cron()
   $fieldStorage = \Drupal\field\Entity\FieldStorageConfig::loadByName('contact_message', 'field_recipient');
   $allowedValues = $fieldStorage->getSetting('allowed_values');
   if (array_key_exists('sel@lejardindepoissy.org', $allowedValues) == FALSE) {
-    $allowedValues['sel@lejardindepoissy.org'] = 'SÉL';
+    $allowedValues['sel@lejardindepoissy.org'] = '3. SÉL';
     $fieldStorage->setSetting('allowed_values', $allowedValues);
     $fieldStorage->save();
   }

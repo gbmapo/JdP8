@@ -54,11 +54,14 @@ function shared_theme() {
  */
 function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
 
+  // ----------------------------------------------------------------------------
+  // Ajout de l'adresse de l'association au formulaire de contact
+  // ----------------------------------------------------------------------------
   if ($definition->get('entity_type') == 'contact_message' && $definition->get('field_name') == 'field_recipient') {
     $allowedValues = $definition->getSetting('allowed_values');
     $mail          = \Drupal::config('system.site')->get('mail');
     if (!array_key_exists($mail, $allowedValues)) {
-      $allowedValues[$mail] = 'Association';
+      $allowedValues[$mail] = '1. Association';
     }
     return $allowedValues;
   }
@@ -68,6 +71,7 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state) {
 
   $form['field_recipient']['widget']['#title'] = t('Choose a topic for your message');
+  $form['field_recipient']['widget']['#sort_options']  = TRUE;
   $form['actions']['preview']['#access']       = FALSE;
 
 }
