@@ -1,4 +1,4 @@
-uuid: c7e7ec95-759e-4b36-b276-0de6d7a651c5
+uuid: 15dfff24-ff3e-41f9-8cbd-1a40490b9a4e
 langcode: fr
 status: true
 dependencies:
@@ -12,67 +12,81 @@ bundle: contract
 mode: default
 content:
   enddate:
+    label: above
     weight: 3
     region: content
-    settings: {  }
+    settings:
+      format_type: medium
+      timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
   file1:
-    type: file_generic
+    label: above
+    type: file_default
     weight: 7
     region: content
     settings:
-      progress_indicator: throbber
+      use_description_as_link_text: true
     third_party_settings: {  }
   file2:
-    type: file_generic
+    label: above
+    type: file_default
     weight: 8
     region: content
     settings:
-      progress_indicator: throbber
+      use_description_as_link_text: true
     third_party_settings: {  }
   isopenforsubscription:
-    type: boolean_checkbox
+    settings:
+      format: yes-no
+      format_custom_false: ''
+      format_custom_true: ''
     weight: 6
     region: content
-    settings:
-      display_label: true
+    label: above
     third_party_settings: {  }
+    type: boolean
   isvisible:
     settings:
-      display_label: true
-    type: boolean_checkbox
+      format: yes-no
+      format_custom_false: ''
+      format_custom_true: ''
     weight: 5
     region: content
+    label: above
     third_party_settings: {  }
+    type: boolean
   name:
-    type: string_textfield
+    label: above
+    type: string
     weight: 1
     region: content
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
   referent_id:
-    type: entity_reference_autocomplete
     weight: 4
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
     region: content
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
+    type: entity_reference_label
   startdate:
+    label: above
     weight: 2
     region: content
-    settings: {  }
+    settings:
+      format_type: medium
+      timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
   type:
-    type: options_select
     weight: 0
-    settings: {  }
     region: content
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
+    type: entity_reference_label
 hidden: {  }

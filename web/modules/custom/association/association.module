@@ -18,7 +18,8 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
 /**
  * Implements hook_help().
  */
-function association_help($route_name, RouteMatchInterface $route_match) {
+function association_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     // Main module help for the association module.
     case 'help.page.association':
@@ -34,7 +35,8 @@ function association_help($route_name, RouteMatchInterface $route_match) {
 /**
  * Implements hook_theme().
  */
-function association_theme() {
+function association_theme()
+{
   return [
     'association'      => [
       'render element' => 'children',
@@ -46,7 +48,8 @@ function association_theme() {
   ];
 }
 
-function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE) {
+function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE)
+{
 
   \Drupal::moduleHandler()
     ->loadInclude('association', 'inc', 'association.allowed.values');
@@ -65,11 +68,12 @@ function association_allowed_values_function(FieldStorageDefinitionInterface $de
   }
 }
 
-function _setListOfRecipients($status = 4) {
+function _setListOfRecipients($status = 4)
+{
 
-  $sBcc     = '';
+  $sBcc = '';
   $database = \Drupal::database();
-  $query    = $database->select('member', 'am');
+  $query = $database->select('member', 'am');
   $query->leftJoin('person', 'ap', 'ap.id = am.contact_id');
   $query->fields('am', ['id', 'status'])->fields('ap', [
     'id',
@@ -85,11 +89,12 @@ function _setListOfRecipients($status = 4) {
 
 }
 
-function association_mail($key, &$message, $aParams) {
+function association_mail($key, &$message, $aParams)
+{
 
   $sFrom = \Drupal::config('system.site')->get('mail');
 
-  $message['from']    = $sFrom;
+  $message['from'] = $sFrom;
   $message['headers'] = [
     'Content-Type' => 'text/html',
     'bcc'          => $aParams[0],
@@ -100,19 +105,20 @@ function association_mail($key, &$message, $aParams) {
   switch ($key) {
     case 'membershipfirstemail':
       $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion';
-      $sBody              = "<b>" . $aParams[1] . "</b>";
-      $message['body'][]  = check_markup(nl2br($sBody), 'full_html');
+      $sBody = "<b>" . $aParams[1] . "</b>";
+      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
       break;
     case 'membershipreminderemail':
       $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion - Relance ' . $aParams[2];
-      $sBody              = "<b>" . $aParams[1] . "</b>";
-      $message['body'][]  = check_markup(nl2br($sBody), 'full_html');
+      $sBody = "<b>" . $aParams[1] . "</b>";
+      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
       break;
   }
 }
 
-function association_entity_insert(EntityInterface $entity) {
-  $mode       = 'insert';
+function association_entity_insert(EntityInterface $entity)
+{
+  $mode = 'insert';
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
@@ -124,8 +130,45 @@ function association_entity_insert(EntityInterface $entity) {
   _export_association($entityType);
 }
 
-function association_entity_update(EntityInterface $entity) {
-  $mode       = 'update';
+function association_entity_update(EntityInterface $entity)
+{
+  $mode = 'update';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      /*
+       * This code is here to be executed either from Update in CRUD form or from MemberImportStatus
+       */
+      if ($entity->status->value == 0) {
+        // List all Persons for this Member
+        $id = $entity->id->value;
+        $database = \Drupal::database();
+        $query = $database->select('person', 'ap');
+        $query->fields('ap', ['id', 'member_id'])
+          ->condition('member_id', $id, '=');
+        $results = $query->execute();
+        // Remove membership for all these Persons
+        $storage = \Drupal::entityTypeManager()->getStorage('person');
+        foreach ($results as $key => $result) {
+          $person = $storage->load($result->id);
+          if ($person->iscontact->value) {
+            $person->set("iscontact", 0);
+          }
+          $person->set("member_id", null);
+          $person->save();
+        }
+      }
+      break;
+    case "person":
+      break;
+    default:
+  }
+  _export_association($entityType);
+}
+
+function association_entity_delete(EntityInterface $entity)
+{
+  $mode = 'delete';
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
@@ -137,20 +180,8 @@ function association_entity_update(EntityInterface $entity) {
   _export_association($entityType);
 }
 
-function association_entity_delete(EntityInterface $entity) {
-  $mode       = 'delete';
-  $entityType = $entity->getEntityType()->id();
-  switch ($entityType) {
-    case "member":
-      break;
-    case "person":
-      break;
-    default:
-  }
-  _export_association($entityType);
-}
-
-function _export_association($entityType) {
+function _export_association($entityType)
+{
 
   switch ($entityType) {
     case "member":
@@ -166,7 +197,8 @@ function _export_association($entityType) {
   _export_association_CSV('association_members_and_persons', 'rest_export_1');
 }
 
-function _export_association_CSV($view, $page) {
+function _export_association_CSV($view, $page)
+{
 
   $view = \Drupal\views\Views::getView($view);
   $view->setDisplay($page);
@@ -177,7 +209,8 @@ function _export_association_CSV($view, $page) {
 
 }
 
-function association_menu_local_tasks_alter(&$data, $route_name) {
+function association_menu_local_tasks_alter(&$data, $route_name)
+{
 
   $oCurrentUser = \Drupal::currentUser();
   switch ($route_name) {
@@ -200,7 +233,8 @@ function association_menu_local_tasks_alter(&$data, $route_name) {
 
 }
 
-function association_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+function association_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
+{
 
   switch ($view->id()) {
     case 'association_persons':
@@ -222,7 +256,8 @@ function association_views_query_alter(ViewExecutable $view, QueryPluginBase $qu
 
 }
 
-function association_views_pre_render(ViewExecutable $view) {
+function association_views_pre_render(ViewExecutable $view)
+{
 
   switch ($view->id()) {
     case 'association_members':

@@ -1,5 +1,5 @@
 custom:
-  style: example3
+  style: default
   activate: 0
   transition_type: elastic
   transition_speed: 350
@@ -7,7 +7,7 @@ custom:
   text_current: '{current} sur {total}'
   text_previous: '« Préc.'
   text_next: 'Suivant »'
-  text_close: Close
+  text_close: Fermer
   maxwidth: 98%
   maxheight: 98%
   initialwidth: '300'

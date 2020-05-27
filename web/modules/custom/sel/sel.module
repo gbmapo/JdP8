@@ -321,6 +321,7 @@ function sel_views_pre_render(ViewExecutable $view)
     case 'sel_services':
       switch ($view->current_display) {
         case 'page_1':
+          $view->element['#attached']['library'][] = 'sel/sel';
           $view->element['#attached']['library'][] = 'sel/LoS';
           break;
         case 'page_2':

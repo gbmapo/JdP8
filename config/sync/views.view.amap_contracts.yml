@@ -175,6 +175,7 @@ display:
             referent_id: referent_id
             referent_id_1: referent_id_1
             isvisible: isvisible
+            isopenforsubscription: isopenforsubscription
             nothing: nothing
             nothing_1: nothing
             nothing_2: nothing
@@ -247,6 +248,13 @@ display:
               empty_column: false
               responsive: ''
             isvisible:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
+            isopenforsubscription:
               sortable: false
               default_sort_order: asc
               align: views-align-center
@@ -974,6 +982,73 @@ display:
           entity_type: contract
           entity_field: isvisible
           plugin_id: field
+        isopenforsubscription:
+          id: isopenforsubscription
+          table: contract
+          field: isopenforsubscription
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Souscription
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: custom
+            format_custom_true: Ouverte
+            format_custom_false: Fermée
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: contract
+          entity_field: isopenforsubscription
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -1413,9 +1488,9 @@ display:
             name: name
             startdate: startdate
             enddate: enddate
+            isopenforsubscription: isopenforsubscription
             referent_id: referent_id
             referent_id_1: referent_id_1
-            nothing: nothing
           info:
             id:
               sortable: false
@@ -1459,6 +1534,13 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            isopenforsubscription:
+              sortable: false
+              default_sort_order: asc
+              align: views-align-center
+              separator: ''
+              empty_column: false
+              responsive: ''
             referent_id:
               sortable: false
               default_sort_order: asc
@@ -1467,13 +1549,6 @@ display:
               empty_column: false
               responsive: ''
             referent_id_1:
-              sortable: false
-              default_sort_order: asc
-              align: views-align-left
-              separator: ''
-              empty_column: false
-              responsive: ''
-            nothing:
               sortable: false
               default_sort_order: asc
               align: views-align-left
@@ -1893,6 +1968,73 @@ display:
           field_api_classes: false
           entity_type: contract
           entity_field: enddate
+          plugin_id: field
+        isopenforsubscription:
+          id: isopenforsubscription
+          table: contract
+          field: isopenforsubscription
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Souscription
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: custom
+            format_custom_true: Ouverte
+            format_custom_false: Fermée
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: contract
+          entity_field: isopenforsubscription
           plugin_id: field
         referent_id:
           id: referent_id
@@ -2165,8 +2307,7 @@ display:
             name: name
             startdate: startdate
             enddate: enddate
-            referent_id: referent_id
-            referent_id_1: referent_id_1
+            isopenforsubscription: isopenforsubscription
             nothing: nothing
           info:
             id:
@@ -2211,17 +2352,10 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            referent_id:
+            isopenforsubscription:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            referent_id_1:
-              sortable: false
-              default_sort_order: asc
-              align: views-align-left
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -2645,6 +2779,73 @@ display:
           field_api_classes: false
           entity_type: contract
           entity_field: enddate
+          plugin_id: field
+        isopenforsubscription:
+          id: isopenforsubscription
+          table: contract
+          field: isopenforsubscription
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Souscription
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: custom
+            format_custom_true: Ouverte
+            format_custom_false: Fermée
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: contract
+          entity_field: isopenforsubscription
           plugin_id: field
         nothing:
           id: nothing
