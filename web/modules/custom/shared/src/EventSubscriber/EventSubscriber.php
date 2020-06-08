@@ -13,7 +13,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * Class EventSubscriber.
  */
-class EventSubscriber implements EventSubscriberInterface {
+class EventSubscriber implements EventSubscriberInterface
+{
 
   protected $currentUser;
 
@@ -22,7 +23,8 @@ class EventSubscriber implements EventSubscriberInterface {
    *
    * @param \Drupal\Core\Session\AccountInterface $current_user
    */
-  public function __construct(AccountInterface $current_user) {
+  public function __construct(AccountInterface $current_user)
+  {
 
     $this->currentUser = $current_user;
 
@@ -31,15 +33,16 @@ class EventSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents()
+  {
 
     $events[KernelEvents::RESPONSE][] = ['redirectIf'];
     return $events;
 
   }
 
-  public function redirectIf(FilterResponseEvent $event) {
-
+  public function redirectIf(FilterResponseEvent $event)
+  {
     $node = $event->getRequest()->attributes->get('node');
     if ($node) {
       if (is_object($node)) {
@@ -51,7 +54,6 @@ class EventSubscriber implements EventSubscriberInterface {
         }
       }
     }
-
   }
 
   /**
@@ -60,7 +62,8 @@ class EventSubscriber implements EventSubscriberInterface {
    * @param \Symfony\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
-  public function eventSubscriber(Event $event) {
+  public function eventSubscriber(Event $event)
+  {
     \Drupal::messenger()
       ->addMessage('Event event_subscriber thrown by Subscriber in module shared.', 'status', TRUE);
   }

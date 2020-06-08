@@ -5,6 +5,12 @@ definitions:
     weight: 3
     expanded: false
     enabled: true
+  node__add_page:
+    enabled: false
+    menu_name: tools
+    parent: ''
+    expanded: false
+    weight: 0
 _core:
   default_config_hash: o4bYR9ZupWb3AsOIizTUG4g-nu1mdJqA59UB7QT-ifQ
 langcode: fr

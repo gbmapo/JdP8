@@ -1,0 +1,23 @@
+uuid: 10c5dc99-af1c-4884-8601-411f3c385435
+langcode: fr
+status: true
+dependencies:
+  config:
+    - comment.type.comment_forum
+    - field.storage.comment.comment_body
+  module:
+    - text
+_core:
+  default_config_hash: WuaSPL5QS8oJbnd1mPGSSJ-Pt7arUBnbMHXGNm1BjS8
+id: comment.comment_forum.comment_body
+field_name: comment_body
+entity_type: comment
+bundle: comment_forum
+label: Commentaire
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
