@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_event_date_end
     - field.storage.node.field_event_date_start
     - node.type.evenement
+    - user.role.authenticated
   module:
     - datetime
     - fullcalendar_view
@@ -539,11 +540,13 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 3
+          items_per_page: 4
           offset: 0
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            authenticated: authenticated
       title: 'À venir'
       display_description: ''
     cache_metadata:
@@ -552,6 +555,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
+        - user.roles
       tags:
         - 'config:field.storage.node.field_event_date_start'
   page_1:

@@ -18,7 +18,10 @@ function amap_distribution_products()
     13 => 'Patates',
     14 => 'Pommes Poires',
     15 => 'Porc',
-    16 => 'Volaille'
+    16 => 'Volaille',
+    17 => 'Jus de pomme',
+    18 => 'Agneau',
+    19 => 'Cidre',
   ];
   return $values;
 }

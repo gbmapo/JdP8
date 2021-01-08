@@ -11,7 +11,8 @@ use Drupal\user\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\user\Entity\User;
 
-abstract class MembershipFormBase extends FormBase {
+abstract class MembershipFormBase extends FormBase
+{
 
   /**
    * @var \Drupal\user\PrivateTempStoreFactory
@@ -40,10 +41,11 @@ abstract class MembershipFormBase extends FormBase {
    * @param \Drupal\Core\Session\SessionManagerInterface $session_manager
    * @param \Drupal\Core\Session\AccountInterface $current_user
    */
-  public function __construct(PrivateTempStoreFactory $temp_store_factory, SessionManagerInterface $session_manager, AccountInterface $current_user) {
+  public function __construct(PrivateTempStoreFactory $temp_store_factory, SessionManagerInterface $session_manager, AccountInterface $current_user)
+  {
     $this->tempStoreFactory = $temp_store_factory;
-    $this->sessionManager   = $session_manager;
-    $this->currentUser      = $current_user;
+    $this->sessionManager = $session_manager;
+    $this->currentUser = $current_user;
 
     $this->store = $this->tempStoreFactory->get('multistep_data');
   }
@@ -51,14 +53,16 @@ abstract class MembershipFormBase extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container)
+  {
     return new static($container->get('user.private_tempstore'), $container->get('session_manager'), $container->get('current_user'));
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state)
+  {
 
     // Start a manual session for anonymous users.
     if ($this->currentUser->isAnonymous() && !isset($_SESSION['multistep_form_holds_session'])) {
@@ -66,20 +70,18 @@ abstract class MembershipFormBase extends FormBase {
       $this->sessionManager->start();
     }
 
-
-    if ($this->store->get('firstTime') == '') {
-      $this->store->set('firstTime', 'NO');
+    if ($this->getFormId() == 'membership_step0') {
 
       if ($this->currentUser->isAnonymous()) {
       }
       else {
 
-        $storage   = Drupal::entityTypeManager()->getStorage('person');
-        $person    = $storage->load($this->currentUser->id());
+        $storage = Drupal::entityTypeManager()->getStorage('person');
+        $person = $storage->load($this->currentUser->id());
         $member_id = $person->get("member_id")->target_id;
 
         $database = Drupal::database();
-        $query    = $database->select('member', 'am');
+        $query = $database->select('member', 'am');
         $query->leftJoin('person', 'ap', 'ap.member_id = am.id');
         $query->leftJoin('person__field_sel_isseliste', 'ps', 'ap.id = ps.entity_id');
         $query->leftJoin('users_field_data', 'us', 'us.uid = ps.entity_id');
@@ -146,8 +148,8 @@ abstract class MembershipFormBase extends FormBase {
       }
     }
 
-    $form                      = [];
-    $form['actions']['#type']  = 'actions';
+    $form = [];
+    $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type'        => 'submit',
       '#value'       => $this->t('Submit'),
@@ -161,17 +163,18 @@ abstract class MembershipFormBase extends FormBase {
   /**
    * Saves the data from the multistep form.
    */
-  protected function saveData() {
+  protected function saveData()
+  {
 
     $numberOfPersons = $this->store->get('lastname2') ? 2 : 1;
-    $now             = \Drupal::time()->getRequestTime();
-    $database        = \Drupal::database();
+    $now = \Drupal::time()->getRequestTime();
+    $database = \Drupal::database();
+    $anon = $this->currentUser->isAnonymous();
 
-    if ($this->currentUser->isAnonymous()) {
-
-      // Create user(s)
-      $uid = [];
-      for ($i = 1; $i <= $numberOfPersons; $i++) {
+    // Create user(s)
+    $uid = [];
+    for ($i = 1; $i <= $numberOfPersons; $i++) {
+      if ($anon || ($i == 2 && is_null($this->store->get('ap_id2')))) {
         $user = \Drupal\user\Entity\User::create();
         $user->setPassword('passwordtobechanged');
         $user->enforceIsNew();
@@ -186,12 +189,17 @@ abstract class MembershipFormBase extends FormBase {
         }
         $user->save();
         $uid[$i] = $user->id();
-        $mail    = _user_mail_notify('register_pending_approval', $user);
+        $mail = _user_mail_notify('register_pending_approval', $user);
       }
+      else {
+        $uid[$i] = $this->store->get('ap_id1');
+      }
+    }
 
-      // Prepare Member
-      $idM           = NULL;
-      $comment    = ($this->store->get('contracts') ? $this->store->get('contracts') . ' ' : '') . $this->store->get('payment');
+    // Prepare Member
+    if ($anon) {
+      $idM = NULL;
+      $comment = ($this->store->get('contracts') ? $this->store->get('contracts') . ' ' : '') . $this->store->get('payment');
       $insertFieldsM = [
         'comment'    => $comment,
         'contact_id' => $uid['1'],
@@ -201,16 +209,14 @@ abstract class MembershipFormBase extends FormBase {
         'startdate'  => date('Y-m-d'),
       ];
       $this->store->set('status', 5);
-
     }
     else {
       $insertFieldsM = [];
-      $idM           = $this->store->get('am_id');
+      $idM = $this->store->get('am_id');
     }
 
-    // Member fields
     $updateFieldsM = [];
-    $fieldsM       = [
+    $fieldsM = [
       'addresssupplement' => $this->store->get('addresssupplement'),
       'changed'           => $now,
       'city'              => $this->store->get('city'),
@@ -222,7 +228,7 @@ abstract class MembershipFormBase extends FormBase {
       'status'            => $this->store->get('status'),
     ];
 
-    // Insert or Update member
+// Insert or Update member
     $insertFieldsM = array_merge($insertFieldsM, $fieldsM);
     $updateFieldsM = array_merge($updateFieldsM, $fieldsM);
     $database->merge('member')
@@ -230,42 +236,40 @@ abstract class MembershipFormBase extends FormBase {
       ->updateFields($updateFieldsM)
       ->key('id', $idM)
       ->execute();
+    if ($anon) {
+      $query = $database->select('member', 'am');
+      $query->fields('am', ['id', 'created']);
+      $query->condition('created', $now, '=');
+      $idM = $query->execute()->fetchCol()[0];
+    }
 
-    $query = $database->select('member', 'am');
-    $query->fields('am', ['id', 'created']);
-    $query->condition('created', $now, '=');
-    $idMnew = $query->execute()->fetchCol()[0];
-
-    // Prepare Person(s)
-    if ($this->currentUser->isAnonymous()) {
-      $idP           = [];
-      $insertFieldsP = [];
-      for ($i = 1; $i <= $numberOfPersons; $i++) {
-        $idP[$i]           = $uid[$i];
+// Prepare Person(s)
+    $idP = [];
+    $insertFieldsP = [];
+    for ($i = 1; $i <= $numberOfPersons; $i++) {
+      if ($anon || ($i == 2 && is_null($this->store->get('ap_id2')))) {
+        $idP[$i] = $uid[$i];
         $insertFieldsP[$i] = [
           'comment'   => NULL,
           'created'   => $now,
           'isactive'  => 0,
           'iscontact' => $i == 1 ? 1 : 0,
-          'member_id' => $idMnew,
+          'member_id' => $idM,
           'owner_id'  => $uid['1'],
           'user_id'   => $uid[$i],
         ];
       }
-    }
-    else {
-      $insertFieldsP[1] = [];
-      $insertFieldsP[2] = [];
-      $idP[1]           = $this->store->get('ap_id1');
-      $idP[2]           = $this->store->get('ap_id2');
+      else {
+        $insertFieldsP[$i] = [];
+        $idP[$i] = $this->store->get('ap_id' . $i);
+      }
     }
 
-    // Person(s) fields
     $updateFieldsP = [];
-    $fieldsP       = [];
+    $fieldsP = [];
     for ($i = 1; $i <= $numberOfPersons; $i++) {
       $updateFieldsP[$i] = [];
-      $fieldsP[$i]       = [
+      $fieldsP[$i] = [
         'cellphone' => $this->store->get('cellphone' . $i),
         'changed'   => $now,
         'email'     => $this->store->get('email' . $i),
@@ -274,7 +278,7 @@ abstract class MembershipFormBase extends FormBase {
       ];
     }
 
-    // Insert or Update person(s), Update user(s)
+// Insert or Update person(s), Update user(s)
     for ($i = 1; $i <= $numberOfPersons; $i++) {
 
       $insertFieldsP[$i] = array_merge($insertFieldsP[$i], $fieldsP[$i]);
@@ -323,14 +327,14 @@ abstract class MembershipFormBase extends FormBase {
 
     }
 
-    $_SESSION['association']['anonymous']   = $this->currentUser->isAnonymous();
+    $_SESSION['association']['anonymous'] = $this->currentUser->isAnonymous();
     $_SESSION['association']['designation'] = $this->store->get('designation');
-    $_SESSION['association']['lastname']    = $this->store->get('lastname');
-    $_SESSION['association']['firstname']   = $this->store->get('firstname');
-    $_SESSION['association']['email']       = $this->store->get('email');
+    $_SESSION['association']['lastname'] = $this->store->get('lastname');
+    $_SESSION['association']['firstname'] = $this->store->get('firstname');
+    $_SESSION['association']['email'] = $this->store->get('email');
 
     if ($this->currentUser->isAnonymous()) {
-      $str      = $this->t('membership request');
+      $str = $this->t('membership request');
       $sMessage = $this->t('Your @str has been registered.<BR>It will be effective after reception of your payment.', ['@str' => $str]);
       Drupal::messenger()->addMessage($sMessage);
       $sMessage = $this->t('A confimation email has been sent.');
@@ -342,7 +346,7 @@ abstract class MembershipFormBase extends FormBase {
           $sMessage = $this->t('Your wish has been recorded.');
           break;
         case 3:
-          $str      = $this->t('membership renewal request');
+          $str = $this->t('membership renewal request');
           $sMessage = $this->t('Your @str has been registered.<BR>It will be effective after reception of your payment.', ['@str' => $str]);
           break;
         default:
@@ -355,16 +359,18 @@ abstract class MembershipFormBase extends FormBase {
 
   }
 
-  public function generateName($firstname, $lastname) {
+  public
+  function generateName($firstname, $lastname)
+  {
 
     $database = \Drupal::database();
-    $query    = $database->select('users_field_data', 'us');
+    $query = $database->select('users_field_data', 'us');
     $query->fields('us', ['name']);
     $query->condition('name', $firstname . '%', 'like');
     $results = $query->execute()->fetchCol();
     for ($i = 0; $i <= strlen($lastname); $i++) {
       $temp = $firstname . strtoupper(substr($lastname, 0, $i));
-      $key  = array_search($temp, $results);
+      $key = array_search($temp, $results);
       if ($key === FALSE) {
         break;
       }
@@ -377,9 +383,10 @@ abstract class MembershipFormBase extends FormBase {
    * Helper method that removes all the keys from the store collection used
    * for the multistep form.
    */
-  protected function deleteStore() {
+  protected
+  function deleteStore()
+  {
     $keys = [
-      'firstTime',
       'ap_id1',
       'lastname1',
       'firstname1',

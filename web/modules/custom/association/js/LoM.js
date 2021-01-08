@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
     "order": [],
     "paging": false,
     "columnDefs": [{
-      "targets": [0, 2, 4, 8, 9],
+      "targets": [2, 4, 8, 9],
       "orderable": false
     }],
     orderCellsTop: true,

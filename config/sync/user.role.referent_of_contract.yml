@@ -20,6 +20,7 @@ permissions:
   - 'edit contract subscription entities'
   - 'edit distribution date entities'
   - 'mass mailing with views_send'
+  - 'use text format restricted_html'
   - 'view contract entities'
   - 'view contract subscription entities'
   - 'view contract type entities'

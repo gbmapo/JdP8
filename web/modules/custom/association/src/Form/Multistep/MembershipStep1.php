@@ -5,23 +5,26 @@ namespace Drupal\association\Form\Multistep;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
-class MembershipStep1 extends MembershipFormBase {
+class MembershipStep1 extends MembershipFormBase
+{
 
   /**
    * {@inheritdoc}
    */
-  public function getFormId() {
+  public function getFormId()
+  {
     return 'membership_step1';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state)
+  {
 
     $form = parent::buildForm($form, $form_state);
 
-    $weight          = 0;
+    $weight = 0;
     $form['person1'] = [
       '#type'  => 'fieldset',
       '#title' => t('Person') . ' 1 ' . t('(Contact)'),
@@ -140,7 +143,8 @@ class MembershipStep1 extends MembershipFormBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
+  public function validateForm(array &$form, FormStateInterface $form_state)
+  {
 
     $values = $form_state->cleanValues()->getValues();
 
@@ -161,22 +165,36 @@ class MembershipStep1 extends MembershipFormBase {
       }
     }
 
+    $email1 = $form_state->getValue('email1');
     if ($this->currentUser()->isAnonymous()) {
-
-      $email = $form_state->getValue('email1');
-      $sTemp = $this->_existsEmail($email);
+      $sTemp = $this->_existsEmail($email1);
       if ($sTemp) {
         $form_state->setErrorByName('email1', $sTemp);
       }
+    }
 
-      $email = $form_state->getValue('email2');
-      if ($email) {
-        $sTemp = $this->_existsEmail($email);
-        if ($sTemp) {
-          $form_state->setErrorByName('email2', $sTemp);
+    $email2 = $form_state->getValue('email2');
+    if ($email2) {
+      if ($email2 == $email1) {
+        $message = $this->t('The two persons can\'t have the same email address.');
+        $form_state->setErrorByName('email2', $message);
+      }
+      else {
+        if ($this->currentUser()->isAnonymous() || (is_null($this->store->get('ap_id2')))) {
+          $sTemp = $this->_existsEmail($email2);
+          if ($sTemp) {
+            $form_state->setErrorByName('email2', $sTemp);
+          }
         }
       }
+    }
 
+    $cellphone2 = $form_state->getValue('cellphone2');
+    if ($cellphone2) {
+      if ($cellphone2 == $form_state->getValue('cellphone1')) {
+        $message = $this->t('The two persons can\'t have the same cellphone number.');
+        $form_state->setErrorByName('cellphone2', $message);
+      }
     }
 
   }
@@ -184,10 +202,11 @@ class MembershipStep1 extends MembershipFormBase {
   /**
    *
    */
-  public function _existsEmail($email) {
+  public function _existsEmail($email)
+  {
 
     $database = \Drupal::database();
-    $query    = $database->select('users_field_data', 'us');
+    $query = $database->select('users_field_data', 'us');
     $query->fields('us', ['uid', 'name', 'mail'])
       ->condition('us.mail', $email, '=');
     $results = $query->execute()->fetchAll();
@@ -195,8 +214,8 @@ class MembershipStep1 extends MembershipFormBase {
       $output = FALSE;
     }
     else {
-      $url    = Url::fromUri('base:/user/login');
-      $link   = \Drupal\Core\Link::fromTextAndUrl($this->t('here'), $url)
+      $url = Url::fromUri('base:/user/login');
+      $link = \Drupal\Core\Link::fromTextAndUrl($this->t('here'), $url)
         ->toString();
       $output = $this->t('This email is already registered for « %user ».<BR>If you are already a member, please log in %link.', [
         '%user' => $results[0]->name,
@@ -210,7 +229,8 @@ class MembershipStep1 extends MembershipFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state)
+  {
 
     $keys = [
       'lastname1',

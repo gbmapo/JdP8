@@ -401,9 +401,11 @@ function _setAmapien() {
 
   $toBeAdded = array_diff($usersWhoShouldBeAmapien, $usersWhoAreAmapien);
   foreach ($toBeAdded as $item) {
-    $user = User::load($item);
-    $user->addRole('amapien');
-    $user->save();
+    if (!is_null($item)) {
+      $user = User::load($item);
+      $user->addRole('amapien');
+      $user->save();
+    }
   }
 
 }

@@ -35,7 +35,10 @@ class MembershipStep4 extends FormBase {
       '#markup' => $markup,
     ];
 
-    $thisMonth     = $_SESSION['association']['anonymous'] ? date('Y-m') : date('Y-').'00';
+    $config       = \Drupal::service('config.factory')
+      ->getEditable('association.renewalperiod');
+    $rpYear       = $config->get('year');
+    $thisMonth     = $_SESSION['association']['anonymous'] ? date('Y-m') : $rpYear . '-00';
     $form['hello'] = [
       '#type'     => 'inline_template',
       '#template' => '<iframe id="haWidget" allowtransparency="true" scrolling="auto" src="https://www.helloasso.com/associations/le-jardin-de-poissy/adhesions/adhesion-' . $thisMonth . '/widget" style="width:100%;height:750px;border:none;" onload="window.scroll(0, this.offsetTop)"></iframe>',

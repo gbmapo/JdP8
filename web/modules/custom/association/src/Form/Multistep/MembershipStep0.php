@@ -6,26 +6,47 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Url;
 
-class MembershipStep0 extends MembershipFormBase {
+class MembershipStep0 extends MembershipFormBase
+{
 
   /**
    * {@inheritdoc}
    */
-  public function getFormId() {
+  public function getFormId()
+  {
     return 'membership_step0';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state)
+  {
 
     $form = parent::buildForm($form, $form_state);
 
     if ($this->currentUser()->isAnonymous()) {
 
+      $form['areyousure'] = [
+        '#type'    => 'radios',
+        '#title'   => $this->t('Are you sure about this?'),
+        '#options' => [
+          0 => $this->t('No'),
+          1 => $this->t('Yes'),
+        ],
+      ];
+
+      $form['didyoumeet'] = [
+        '#type'    => 'radios',
+        '#title'   => $this->t('Did you meet someone of the organisation?'),
+        '#options' => [
+          0 => $this->t('No'),
+          1 => $this->t('Yes'),
+        ],
+      ];
+
       $nextStepNotice = $this->t('enter');
-      $markup         = $this->t('After submitting this form, you will be redirected to the membership process where you can @str your personal information then choose your subscription payment mode.', [
+      $markup = $this->t('After submitting this form, you will be redirected to the membership process where you can @str your personal information then choose your subscription payment mode.', [
           '@str' => $nextStepNotice,
         ]) . '<BR>';
       $form['header'] = [
@@ -39,8 +60,8 @@ class MembershipStep0 extends MembershipFormBase {
 
       $nextStepNotice = $this->t('correct, if needed,');
 
-      $config   = \Drupal::config('association.renewalperiod');
-      $rpYear   = $config->get('year');
+      $config = \Drupal::config('association.renewalperiod');
+      $rpYear = $config->get('year');
       $rpStatus = $config->get('status');
 
       if ($rpStatus == 'Closed') {
@@ -73,7 +94,7 @@ class MembershipStep0 extends MembershipFormBase {
         $sPerson = new FormattableMarkup('<span style="color: #0000ff;">' . $this->store->get('firstname') . ' ' . $this->store->get('lastname') . '</span>', []);
         if ($this->store->get('status') == 4) {
 
-          $sTemp          = '<BR>' . $this->t('The member «&nbsp;%member&nbsp;» has already renewed his membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
+          $sTemp = '<BR>' . $this->t('The member «&nbsp;%member&nbsp;» has already renewed his membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
               '%member' => $sMember,
               '%year'   => $rpYear,
             ]);
@@ -85,14 +106,14 @@ class MembershipStep0 extends MembershipFormBase {
         }
         else {
 
-          $sTemp          = $this->t("Here’s your wish as recorded. You can change it as many times as you like: only the last change will be taken into account.<BR><BR>");
-          $sTemp          = ($iWish == -1) ? "" : $sTemp;
-          $sTemp2         = $this->t('I, the undersigned «&nbsp;%person&nbsp;», representing the member «&nbsp;%member&nbsp;», wishes to renew my membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
+          $sTemp = $this->t("Here’s your wish as recorded. You can change it as many times as you like: only the last change will be taken into account.<BR><BR>");
+          $sTemp = ($iWish == -1) ? "" : $sTemp;
+          $sTemp2 = $this->t('I, the undersigned «&nbsp;%person&nbsp;», representing the member «&nbsp;%member&nbsp;», wishes to renew my membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
             '%person' => $sPerson,
             '%member' => $sMember,
             '%year'   => $rpYear,
           ]);
-          $sTemp          = $sTemp . $sTemp2;
+          $sTemp = $sTemp . $sTemp2;
           $form['header'] = [
             '#type'     => 'inline_template',
             '#template' => $sTemp,
@@ -109,7 +130,7 @@ class MembershipStep0 extends MembershipFormBase {
             '#validated'     => TRUE,
           ];
 
-          $markup              = $this->t('After submitting this form, you will be redirected to the membership process where you can @str your personal information then choose your subscription payment mode.', [
+          $markup = $this->t('After submitting this form, you will be redirected to the membership process where you can @str your personal information then choose your subscription payment mode.', [
               '@str' => $nextStepNotice,
             ]) . '<BR>';
           $form['suscribeyes'] = [
@@ -133,10 +154,27 @@ class MembershipStep0 extends MembershipFormBase {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
+  public function validateForm(array &$form, FormStateInterface $form_state)
+  {
 
-    if ($form_state->getValue('suscribe') == -1) {
-      $form_state->setErrorByName('suscribe', $this->t('Please choose one option.'));
+    if ($this->currentUser()->isAnonymous()) {
+      if (is_null($form_state->getValue('areyousure'))) {
+        $form_state->setErrorByName('areyousure', $this->t('Please choose one option.'));
+      }
+      if (is_null($form_state->getValue('didyoumeet'))) {
+        $form_state->setErrorByName('didyoumeet', $this->t('Please choose one option.'));
+      }
+      if ($form_state->getValue('areyousure') == '0') {
+        $form_state->setErrorByName('areyousure', $this->t('If you\'re not sure, maybe you should not apply now.'));
+      }
+      if ($form_state->getValue('didyoumeet') == '0') {
+        $form_state->setErrorByName('didyoumeet', $this->t('Without meeting someone of our organsation, maybe you should not apply now.'));
+      }
+    }
+    else {
+      if ($form_state->getValue('suscribe') == -1) {
+        $form_state->setErrorByName('suscribe', $this->t('Please choose one option.'));
+      }
     }
 
   }
@@ -144,7 +182,8 @@ class MembershipStep0 extends MembershipFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state)
+  {
 
     if ($this->currentUser()->isAnonymous()) {
 

@@ -139,7 +139,10 @@ function association_entity_update(EntityInterface $entity)
       /*
        * This code is here to be executed either from Update in CRUD form or from MemberImportStatus
        */
-      if ($entity->status->value == 0) {
+      if ($entity->status->value == -1) {
+        $entity->delete();
+      }
+      elseif ($entity->status->value == 0) {
         // List all Persons for this Member
         $id = $entity->id->value;
         $database = \Drupal::database();
@@ -147,19 +150,23 @@ function association_entity_update(EntityInterface $entity)
         $query->fields('ap', ['id', 'member_id'])
           ->condition('member_id', $id, '=');
         $results = $query->execute();
-        // Remove membership for all these Persons
+        // Deactivate all these Persons
         $storage = \Drupal::entityTypeManager()->getStorage('person');
         foreach ($results as $key => $result) {
           $person = $storage->load($result->id);
-          if ($person->iscontact->value) {
-            $person->set("iscontact", 0);
-          }
-          $person->set("member_id", null);
+          $person->set("isactive", 0);
           $person->save();
         }
       }
       break;
     case "person":
+      if ($entity->isactive->value == 0) {
+        //Block the corresponding user
+        $user_id = $entity->user_id->target_id;
+        $userofperson = User::load($user_id);
+        $userofperson->set("status", 0);
+        $userofperson->save();
+      }
       break;
     default:
   }
@@ -172,8 +179,25 @@ function association_entity_delete(EntityInterface $entity)
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
+      // List all Persons for this Member
+      $id = $entity->id->value;
+      $database = \Drupal::database();
+      $query = $database->select('person', 'ap');
+      $query->fields('ap', ['id', 'member_id'])
+        ->condition('member_id', $id, '=');
+      $results = $query->execute();
+      // Delete all these Persons
+      $storage = \Drupal::entityTypeManager()->getStorage('person');
+      foreach ($results as $key => $result) {
+        $person = $storage->load($result->id);
+        $person->delete();
+      }
       break;
     case "person":
+      //Delete the corresponding user
+      $user_id = $entity->user_id->target_id;
+      $userofperson = User::load($user_id);
+      $userofperson->delete();
       break;
     default:
   }

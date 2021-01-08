@@ -96,7 +96,7 @@ class ContractSubscriptionTableForm extends FormBase
         . $sTemp2 .
         "    ''
           FROM {member} as am
-      WHERE status >= 2 AND designation NOT IN (
+      WHERE status IN (2, 3, 4) AND designation NOT IN (
       SELECT
           designation
           FROM {member} as am

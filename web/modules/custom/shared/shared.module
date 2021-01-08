@@ -110,7 +110,7 @@ function shared_views_plugins_field_alter(array &$plugins) {
 
 function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
-  if ($form_id == 'views_form_association_persons_page_2') {
+  if ($form_id == 'views_form_association_persons_page_2' || $form_id == 'views_form_association_persons_page_4') {
     $views_send_to_name = 'nothing_pos_2';
   }
   elseif (substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_') {
@@ -123,6 +123,7 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   switch ($form_id) {
     case 'views_form_amap_contracts_subscriptions_page_1_':
     case 'views_form_association_persons_page_2':
+    case 'views_form_association_persons_page_4':
 
       switch ($form_state->get('step')) {
 
