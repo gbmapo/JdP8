@@ -26,11 +26,11 @@ class ServiceForm extends ContentEntityForm
 
     $form['picture']['widget']['#open'] = FALSE;
 
-    $form['fileDetails'] = array(
-      '#type' => 'details',
-      '#title' => $this->t('File'),
+    $form['fileDetails'] = [
+      '#type'   => 'details',
+      '#title'  => $this->t('File'),
       '#weight' => 8,
-    );
+    ];
     $form['file']['#group'] = 'fileDetails';
 
     $form['link']['widget']['0']['#type'] = 'details';
@@ -48,25 +48,33 @@ class ServiceForm extends ContentEntityForm
   public function validateForm(array &$form, FormStateInterface $form_state)
   {
     parent::validateForm($form, $form_state);
-    $values = $form_state->getValues();
-    $sDueDate = $values['duedate'][0]['value']->format("Y-m-d");
-    $sToday = strftime("%Y-%m-%d");
-    $sIn2Weeks = strftime("%Y-%m-%d", strtotime("+ 2 weeks"));
-    $sIn3Months = strftime("%Y-%m-%d", strtotime("+ 3 months"));
+    if ($form_state->hasAnyErrors()) {
+    }
+    else {
 
-    if ($values['status']['value'] == 0) {
-      //Pas de contrôle si le service n'est pas publié
-    } else {
-      if ($sDueDate <= $sToday) {
-        $form_state->setErrorByName('duedate', $this->t('Due date must be in the future.'));
-      } else {
-        if ($values['isurgent']['value'] == 1) {
-          if ($sDueDate > $sIn2Weeks) {
-            $form_state->setErrorByName('duedate', $this->t('It is no longer quite urgent!<BR>Please change the due date or uncheck \'Urgent\'.'));
+      $values = $form_state->getValues();
+      $sDueDate = $values['duedate'][0]['value']->format("Y-m-d");
+      $sToday = strftime("%Y-%m-%d");
+      $sIn2Weeks = strftime("%Y-%m-%d", strtotime("+ 2 weeks"));
+      $sIn3Months = strftime("%Y-%m-%d", strtotime("+ 3 months"));
+
+      if ($values['status']['value'] == 0) {
+        //Pas de contrôle si le service n'est pas publié
+      }
+      else {
+        if ($sDueDate <= $sToday) {
+          $form_state->setErrorByName('duedate', $this->t('Due date must be in the future.'));
+        }
+        else {
+          if ($values['isurgent']['value'] == 1) {
+            if ($sDueDate > $sIn2Weeks) {
+              $form_state->setErrorByName('duedate', $this->t('It is no longer quite urgent!<BR>Please change the due date or uncheck \'Urgent\'.'));
+            }
           }
-        } else {
-          if ($sDueDate > $sIn3Months) {
-            $form_state->setErrorByName('duedate', $this->t('Validity period cannot exceed three months!'));
+          else {
+            if ($sDueDate > $sIn3Months) {
+              $form_state->setErrorByName('duedate', $this->t('Validity period cannot exceed three months!'));
+            }
           }
         }
       }

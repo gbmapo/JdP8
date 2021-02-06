@@ -29,7 +29,7 @@ class PersonSettingsForm extends FormBase
    *
    * @param array $form
    *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param FormStateInterface $form_state
    *   The current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
@@ -42,7 +42,7 @@ class PersonSettingsForm extends FormBase
    *
    * @param array $form
    *   An associative array containing the structure of the form.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   * @param FormStateInterface $form_state
    *   The current state of the form.
    *
    * @return array

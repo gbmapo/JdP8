@@ -34,6 +34,7 @@ class ContractSubscriptionTableForm extends FormBase
 
     $oContract = \Drupal::entityTypeManager()->getStorage('contract')->load($contract);
     $sContractIsVisible = $oContract->get('isvisible')->getString();
+    $sContractIsOpenForSubscription = $oContract->get('isopenforsubscription')->getString();
     $sContractType = $oContract->get('type')->getString();
 
     $aContractType = _detail_contract_type($sContractType);
@@ -60,7 +61,7 @@ class ContractSubscriptionTableForm extends FormBase
 //  Liste des Adhérents pour 'Partagé avec'
     $query_am = \Drupal::database()->select('member', 'am');
     $query_am->fields('am', ['id', 'designation']);
-    $query_am->condition('status', 2, '>=')
+    $query_am->condition('status', [2, 3, 4], 'IN')
       ->orderBy('designation', 'ASC');
     $results_am = $query_am->execute()->fetchAllKeyed();
     $results_am = array("0" => "") + $results_am;
@@ -84,7 +85,8 @@ class ContractSubscriptionTableForm extends FormBase
           FROM {member} as am
           LEFT JOIN {contract_subscription} as cs ON member_id = am.id
         WHERE cs.contract_id = " . $contract;
-    if ($sContractIsVisible) {
+
+    if ($sContractIsOpenForSubscription) {
       $query .= "
       UNION
           SELECT
@@ -157,10 +159,12 @@ class ContractSubscriptionTableForm extends FormBase
       $form['subscriptions'][$key]['cs_id'] = array('#type' => 'hidden', '#default_value' => $value->cs_id);
     }
 
-    $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Submit'),
-    ];
+    if ($sContractIsOpenForSubscription) {
+      $form['submit'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Submit'),
+      ];
+    }
 
     $form['#attached']['library'][] = 'amap/amap';
     $form['#attached']['library'][] = 'core/drupal.dialog.ajax';

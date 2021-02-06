@@ -15,7 +15,11 @@ function hasChanged(oTemp) {
     case "edit-street":
       oTemp.value = oTemp.value.toLowerCase();
       break;
-
+    case "edit-cellphone1":
+    case "edit-cellphone2":
+    case "edit-telephone":
+      oTemp.value = oTemp.value.replace(/[\D]/g, '');
+      break;
   }
 }
 

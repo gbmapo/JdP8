@@ -2,7 +2,7 @@
 
 function association_member_country()
 {
-  $countries = \Drupal::service('country_manager')->getList();
+  $countries = Drupal::service('country_manager')->getList();
   return $countries;
 }
 

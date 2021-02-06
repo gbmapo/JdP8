@@ -2,6 +2,7 @@
 
 namespace Drupal\association;
 
+use Drupal\association\Entity\Member;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
@@ -31,7 +32,7 @@ class MemberListBuilder extends EntityListBuilder
    */
   public function buildRow(EntityInterface $entity)
   {
-    /* @var $entity \Drupal\association\Entity\Member */
+    /* @var $entity Member */
     $row['id'] = $entity->id();
     $row['designation'] = $entity->designation->value;
     $row['status'] = $entity->status->value;

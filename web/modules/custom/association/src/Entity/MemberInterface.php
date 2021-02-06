@@ -30,7 +30,7 @@ interface MemberInterface extends ContentEntityInterface, EntityChangedInterface
    * @param string $designation
    *   The Member designation.
    *
-   * @return \Drupal\association\Entity\MemberInterface
+   * @return MemberInterface
    *   The called Member entity.
    */
   public function setDesignation($designation);
@@ -49,7 +49,7 @@ interface MemberInterface extends ContentEntityInterface, EntityChangedInterface
    * @param int $timestamp
    *   The Member creation timestamp.
    *
-   * @return \Drupal\association\Entity\MemberInterface
+   * @return MemberInterface
    *   The called Member entity.
    */
   public function setCreatedTime($timestamp);

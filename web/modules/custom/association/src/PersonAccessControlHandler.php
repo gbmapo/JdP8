@@ -2,6 +2,7 @@
 
 namespace Drupal\association;
 
+use Drupal\association\Entity\PersonInterface;
 use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -20,7 +21,7 @@ class PersonAccessControlHandler extends EntityAccessControlHandler
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account)
   {
-    /** @var \Drupal\association\Entity\PersonInterface $entity */
+    /** @var PersonInterface $entity */
     switch ($operation) {
       case 'view':
         return AccessResult::allowedIfHasPermission($account, 'view person entities');

@@ -2,6 +2,7 @@
 
 namespace Drupal\association\Entity;
 
+use Drupal;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
@@ -71,7 +72,7 @@ class Person extends ContentEntityBase implements PersonInterface
   {
     parent::preCreate($storage_controller, $values);
     $values += [
-      'owner_id' => \Drupal::currentUser()->id(),
+      'owner_id' => Drupal::currentUser()->id(),
     ];
   }
 
@@ -158,20 +159,20 @@ class Person extends ContentEntityBase implements PersonInterface
     $fields['lastname'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Last Name'))
       ->setRequired(TRUE)
-      ->setSettings(array(
-        'max_length' => 50,
+      ->setSettings([
+        'max_length'      => 50,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textfield',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -180,17 +181,17 @@ class Person extends ContentEntityBase implements PersonInterface
       ->setLabel(t('First Name'))
       ->setRequired(TRUE)
       ->setSettings([
-        'max_length' => 50,
+        'max_length'      => 50,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
+        'type'   => 'string_textfield',
         'weight' => $weight,
       ])
       ->setDisplayConfigurable('form', TRUE)
@@ -199,20 +200,20 @@ class Person extends ContentEntityBase implements PersonInterface
     $weight++;
     $fields['cellphone'] = BaseFieldDefinition::create('telephone')
       ->setLabel(t('Cellphone'))
-      ->setSettings(array(
-        'max_length' => 10,
+      ->setSettings([
+        'max_length'      => 10,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'telephone_default',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'telephone_default',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'telephone_default',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'telephone_default',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -220,30 +221,30 @@ class Person extends ContentEntityBase implements PersonInterface
     $fields['email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Email Address'))
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
+      ])
       ->setReadOnly(TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['iscontact'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Contact?'))
       ->setDefaultValue(FALSE)
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'settings' => [
           'format' => 'yes-no',
         ],
-        'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
+        'weight'   => $weight,
+      ])
+      ->setDisplayOptions('form', [
         'settings' => [
           'display_label' => TRUE,
         ],
-        'type' => 'boolean_checkbox',
-        'weight' => $weight,
-      ))
+        'type'     => 'boolean_checkbox',
+        'weight'   => $weight,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -251,19 +252,19 @@ class Person extends ContentEntityBase implements PersonInterface
     $fields['isactive'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Active?'))
       ->setDefaultValue(FALSE)
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'settings' => [
           'format' => 'yes-no',
         ],
-        'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
+        'weight'   => $weight,
+      ])
+      ->setDisplayOptions('form', [
         'settings' => [
           'display_label' => TRUE,
         ],
-        'type' => 'boolean_checkbox',
-        'weight' => $weight,
-      ))
+        'type'     => 'boolean_checkbox',
+        'weight'   => $weight,
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -272,19 +273,19 @@ class Person extends ContentEntityBase implements PersonInterface
       ->setLabel(t('Member'))
       ->setRequired(TRUE)
       ->setSetting('target_type', 'member')
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'weight' => $weight,
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
+      ])
+      ->setDisplayOptions('form', [
+        'type'     => 'entity_reference_autocomplete',
+        'weight'   => $weight,
+        'settings' => [
+          'match_operator'    => 'CONTAINS',
+          'size'              => '60',
           'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-      ))
+          'placeholder'       => '',
+        ],
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -294,39 +295,39 @@ class Person extends ContentEntityBase implements PersonInterface
       ->setRequired(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'weight' => $weight,
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
+      ])
+      ->setDisplayOptions('form', [
+        'type'     => 'entity_reference_autocomplete',
+        'weight'   => $weight,
+        'settings' => [
+          'match_operator'    => 'CONTAINS',
+          'size'              => '60',
           'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-      ))
+          'placeholder'       => '',
+        ],
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['comment'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Comment'))
-      ->setSettings(array(
-        'max_length' => 1024,
+      ->setSettings([
+        'max_length'      => 1024,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string_long',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string_long',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textarea',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textarea',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -350,6 +351,6 @@ class Person extends ContentEntityBase implements PersonInterface
 
   public static function getCurrentUserId()
   {
-    return [\Drupal::currentUser()->id()];
+    return [Drupal::currentUser()->id()];
   }
 }

@@ -14,6 +14,7 @@ use Drupal\views\ViewExecutable;
 use Drupal\user\Entity\User;
 use Drupal\Core\Url;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Views;
 
 /**
  * Implements hook_help().
@@ -41,9 +42,10 @@ function association_theme()
     'association'      => [
       'render element' => 'children',
     ],
-    'membership_step3' => [
+
+    'membership_step0' => [
       'render element' => 'form',
-      'template'       => 'membership-step3',
+      'template'       => 'membership-step0',
     ],
   ];
 }
@@ -51,7 +53,7 @@ function association_theme()
 function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE)
 {
 
-  \Drupal::moduleHandler()
+  Drupal::moduleHandler()
     ->loadInclude('association', 'inc', 'association.allowed.values');
 
   if ($definition['entity_type'] == 'member') {
@@ -72,7 +74,7 @@ function _setListOfRecipients($status = 4)
 {
 
   $sBcc = '';
-  $database = \Drupal::database();
+  $database = Drupal::database();
   $query = $database->select('member', 'am');
   $query->leftJoin('person', 'ap', 'ap.id = am.contact_id');
   $query->fields('am', ['id', 'status'])->fields('ap', [
@@ -92,7 +94,7 @@ function _setListOfRecipients($status = 4)
 function association_mail($key, &$message, $aParams)
 {
 
-  $sFrom = \Drupal::config('system.site')->get('mail');
+  $sFrom = Drupal::config('system.site')->get('mail');
 
   $message['from'] = $sFrom;
   $message['headers'] = [
@@ -139,24 +141,28 @@ function association_entity_update(EntityInterface $entity)
       /*
        * This code is here to be executed either from Update in CRUD form or from MemberImportStatus
        */
-      if ($entity->status->value == -1) {
-        $entity->delete();
-      }
-      elseif ($entity->status->value == 0) {
-        // List all Persons for this Member
-        $id = $entity->id->value;
-        $database = \Drupal::database();
-        $query = $database->select('person', 'ap');
-        $query->fields('ap', ['id', 'member_id'])
-          ->condition('member_id', $id, '=');
-        $results = $query->execute();
-        // Deactivate all these Persons
-        $storage = \Drupal::entityTypeManager()->getStorage('person');
-        foreach ($results as $key => $result) {
-          $person = $storage->load($result->id);
-          $person->set("isactive", 0);
-          $person->save();
-        }
+      switch ($entity->status->value) {
+        case -1:
+          $entity->delete();
+          break;
+        case 0:
+        case 1:
+          // List all Persons for this Member
+          $id = $entity->id->value;
+          $database = Drupal::database();
+          $query = $database->select('person', 'ap');
+          $query->fields('ap', ['id', 'member_id'])
+            ->condition('member_id', $id, '=');
+          $results = $query->execute();
+          // Deactivate all these Persons
+          $storage = Drupal::entityTypeManager()->getStorage('person');
+          foreach ($results as $key => $result) {
+            $person = $storage->load($result->id);
+            $person->set("isactive", 0);
+            $person->save();
+          }
+          break;
+        default:
       }
       break;
     case "person":
@@ -181,23 +187,34 @@ function association_entity_delete(EntityInterface $entity)
     case "member":
       // List all Persons for this Member
       $id = $entity->id->value;
-      $database = \Drupal::database();
+      $database = Drupal::database();
       $query = $database->select('person', 'ap');
       $query->fields('ap', ['id', 'member_id'])
         ->condition('member_id', $id, '=');
       $results = $query->execute();
       // Delete all these Persons
-      $storage = \Drupal::entityTypeManager()->getStorage('person');
+      $storage = Drupal::entityTypeManager()->getStorage('person');
       foreach ($results as $key => $result) {
         $person = $storage->load($result->id);
         $person->delete();
       }
       break;
     case "person":
-      //Delete the corresponding user
+      // Reset corresponding Member if is Contact
+      if ($entity->iscontact->value) {
+        $storage = Drupal::entityTypeManager()->getStorage('member');
+        $member = $storage->load($entity->member_id->target_id);
+        if ($member) {
+          $member->set("contact_id", NULL);
+          $member->save();
+        }
+      }
+      // Delete the corresponding user
       $user_id = $entity->user_id->target_id;
       $userofperson = User::load($user_id);
-      $userofperson->delete();
+      if ($userofperson) {
+        $userofperson->delete();
+      }
       break;
     default:
   }
@@ -224,7 +241,7 @@ function _export_association($entityType)
 function _export_association_CSV($view, $page)
 {
 
-  $view = \Drupal\views\Views::getView($view);
+  $view = Views::getView($view);
   $view->setDisplay($page);
   $path = $view->getPath();
 
@@ -236,7 +253,7 @@ function _export_association_CSV($view, $page)
 function association_menu_local_tasks_alter(&$data, $route_name)
 {
 
-  $oCurrentUser = \Drupal::currentUser();
+  $oCurrentUser = Drupal::currentUser();
   switch ($route_name) {
     case 'view.association_members_and_persons.page_1':
     case 'view.association_members.page_1':
@@ -263,7 +280,7 @@ function association_views_query_alter(ViewExecutable $view, QueryPluginBase $qu
   switch ($view->id()) {
     case 'association_persons':
       if ($view->current_display == 'page_2') {
-        $roles = \Drupal::currentUser()->getRoles();
+        $roles = Drupal::currentUser()->getRoles();
         if (in_array('administrator', $roles)) {
           foreach ($query->where as $condition_group_key => &$condition_group) {
             foreach ($condition_group['conditions'] as $condition_key => &$condition) {

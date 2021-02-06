@@ -2,6 +2,7 @@
 
 namespace Drupal\association\Entity;
 
+use Drupal;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
@@ -61,7 +62,7 @@ class Member extends ContentEntityBase implements MemberInterface
   {
     parent::preCreate($storage_controller, $values);
     $values += [
-      'owner_id' => \Drupal::currentUser()->id(),
+      'owner_id' => Drupal::currentUser()->id(),
     ];
   }
 
@@ -148,17 +149,17 @@ class Member extends ContentEntityBase implements MemberInterface
     $fields['designation'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Designation'))
       ->setSettings([
-        'max_length' => 128,
+        'max_length'      => 128,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'string',
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
+        'type'   => 'string_textfield',
         'weight' => $weight,
       ])
       ->setDisplayConfigurable('form', TRUE)
@@ -168,80 +169,80 @@ class Member extends ContentEntityBase implements MemberInterface
     $weight++;
     $fields['addresssupplement'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Address supplement'))
-      ->setSettings(array(
-        'max_length' => 128,
+      ->setSettings([
+        'max_length'      => 128,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textfield',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['street'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Street'))
-      ->setSettings(array(
-        'max_length' => 128,
+      ->setSettings([
+        'max_length'      => 128,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textfield',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['postalcode'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Postal Code'))
-      ->setSettings(array(
-        'max_length' => 10,
+      ->setSettings([
+        'max_length'      => 10,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textfield',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['city'] = BaseFieldDefinition::create('string')
       ->setLabel(t('City'))
-      ->setSettings(array(
-        'max_length' => 128,
+      ->setSettings([
+        'max_length'      => 128,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textfield',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textfield',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -272,35 +273,35 @@ class Member extends ContentEntityBase implements MemberInterface
       ->setLabel(t('Country'))
       ->setSettings(['allowed_values_function' => 'association_allowed_values_function'])
       ->setDefaultValue('FR')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'options_select',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'options_select',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['telephone'] = BaseFieldDefinition::create('telephone')
       ->setLabel(t('Phone'))
-      ->setSettings(array(
-        'max_length' => 10,
+      ->setSettings([
+        'max_length'      => 10,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'telephone_default',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'telephone_default',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'telephone_default',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'telephone_default',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -310,14 +311,14 @@ class Member extends ContentEntityBase implements MemberInterface
       ->setRequired(TRUE)
       ->setSettings(['allowed_values_function' => 'association_allowed_values_function'])
       ->setDefaultValue(2)
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'options_select',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'options_select',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -325,17 +326,17 @@ class Member extends ContentEntityBase implements MemberInterface
     $fields['startdate'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership Start Date'))
       ->setSetting('datetime_type', 'date')
-      ->setDefaultValue(array(0 => array(
+      ->setDefaultValue([0 => [
         'default_date_type' => 'now',
-        'default_date' => 'now',
-      )))
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+        'default_date'      => 'now',
+      ]])
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
+      ])
+      ->setDisplayOptions('form', [
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -343,45 +344,45 @@ class Member extends ContentEntityBase implements MemberInterface
     $fields['enddate'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Membership End Date'))
       ->setSetting('datetime_type', 'date')
-      ->setDefaultValue(array(0 => array(
+      ->setDefaultValue([0 => [
         'default_date_type' => 'now',
-        'default_date' => '2037-12-31',
-      )))
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+        'default_date'      => '2037-12-31',
+      ]])
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
+      ])
+      ->setDisplayOptions('form', [
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['contact_id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Contact'))
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'weight' => $weight,
-      ))
+      ])
       ->setReadOnly(TRUE);
 // ----------------------------------------------------------------------------
     $weight++;
     $fields['comment'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Comment'))
-      ->setSettings(array(
-        'max_length' => 1024,
+      ->setSettings([
+        'max_length'      => 1024,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string_long',
+      ->setDisplayOptions('view', [
+        'label'  => 'above',
+        'type'   => 'string_long',
         'weight' => $weight,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string_textarea',
+      ])
+      ->setDisplayOptions('form', [
+        'type'   => 'string_textarea',
         'weight' => $weight,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 // ----------------------------------------------------------------------------
@@ -405,6 +406,6 @@ class Member extends ContentEntityBase implements MemberInterface
 
   public static function getCurrentUserId()
   {
-    return [\Drupal::currentUser()->id()];
+    return [Drupal::currentUser()->id()];
   }
 }

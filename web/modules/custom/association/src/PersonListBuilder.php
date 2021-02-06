@@ -2,6 +2,7 @@
 
 namespace Drupal\association;
 
+use Drupal\association\Entity\Person;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
@@ -31,7 +32,7 @@ class PersonListBuilder extends EntityListBuilder
    */
   public function buildRow(EntityInterface $entity)
   {
-    /* @var $entity \Drupal\association\Entity\Person */
+    /* @var $entity Person */
     $row['id'] = $entity->id();
     $row['lastname'] = $entity->lastname->value;
     $row['firstname'] = $entity->firstname->value;

@@ -222,6 +222,7 @@ class Service extends ContentEntityBase implements ServiceInterface
     $weight++;
     $fields['duedate'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Due Date'))
+      ->setRequired(TRUE)
       ->setSetting('datetime_type', 'date')
       ->setDefaultValue(array(0 => array(
         'default_date_type' => 'now',

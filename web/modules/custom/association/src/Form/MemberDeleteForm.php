@@ -2,6 +2,7 @@
 
 namespace Drupal\association\Form;
 
+use Drupal;
 use Drupal\Core\Entity\ContentEntityDeleteForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\Entity\User;
@@ -21,7 +22,7 @@ class MemberDeleteForm extends ContentEntityDeleteForm
     $entity->delete();
 
     $form_state->setRedirect('view.association_members.page_1');
-    \Drupal::messenger()->addMessage($this->getDeletionMessage());
+    Drupal::messenger()->addMessage($this->getDeletionMessage());
 
   }
 
@@ -40,7 +41,7 @@ class MemberDeleteForm extends ContentEntityDeleteForm
   protected function getDeletionMessage()
   {
     $entity = $this->getEntity();
-    \Drupal::messenger()->addMessage($this->t('Member « %label » has been deleted.', [
+    Drupal::messenger()->addMessage($this->t('Member « %label » has been deleted.', [
       '%label' => $entity->label(),
     ]));
 

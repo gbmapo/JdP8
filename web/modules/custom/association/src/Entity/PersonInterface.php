@@ -30,7 +30,7 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
    * @param string $lastname
    *   The Person last name.
    *
-   * @return \Drupal\association\Entity\PersonInterface
+   * @return PersonInterface
    *   The called Person entity.
    */
   public function setLastname($lastname);
@@ -49,7 +49,7 @@ interface PersonInterface extends ContentEntityInterface, EntityChangedInterface
    * @param int $timestamp
    *   The Person creation timestamp.
    *
-   * @return \Drupal\association\Entity\PersonInterface
+   * @return PersonInterface
    *   The called Person entity.
    */
   public function setCreatedTime($timestamp);

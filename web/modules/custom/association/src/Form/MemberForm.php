@@ -2,6 +2,8 @@
 
 namespace Drupal\association\Form;
 
+use Drupal;
+use Drupal\association\Entity\Member;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -18,7 +20,7 @@ class MemberForm extends ContentEntityForm
    */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
-    /* @var $entity \Drupal\association\Entity\Member */
+    /* @var $entity Member */
     $form = parent::buildForm($form, $form_state);
 
     $entity = $this->entity;
@@ -36,13 +38,13 @@ class MemberForm extends ContentEntityForm
     $status = parent::save($form, $form_state);
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Member « %label » has been added.', [
+        Drupal::messenger()->addMessage($this->t('Member « %label » has been added.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Member « %label » has been updated.', [
+        Drupal::messenger()->addMessage($this->t('Member « %label » has been updated.', [
           '%label' => $entity->label(),
         ]));
     }

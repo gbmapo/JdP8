@@ -1,10 +1,16 @@
 <form{{ attributes }}> {{ form.form_build_id }} {{ form.form_token }} {{ form.form_id }}
 
   <style>
-    table tr td {padding: 0px 4px;}
+    table tr td {
+      padding: 0px 4px;
+    }
   </style>
 
   <div>
+{% if form.step['#value'][0] != 3 %}
+  {{ form }}
+{% else %}
+
     Je, soussigné(e)
     <span style="color: #0000ff;">{{ form.person1 }}</span>
     déclare vouloir adhérer à l’association « <b>Le Jardin de Poissy</b> » sous la désignation suivante :
@@ -16,20 +22,26 @@
     <span style="color: #0000ff;">{{ form.address }}</span>
 
     <br>
-    <input type="checkbox" id="edit-statutes" name="statutes" class="form-checkbox required" required="required">
-    <label for="edit-statutes">
+    <input type="checkbox" id="edit-commitment1" name="commitment1" class="form-checkbox required" required="required">
+	  <label for="edit-commitment1">
 	<span style="font-weight: normal;">
 	Je m’engage à respecter les statuts disponibles sur le site de l’association.
 	</span>
     </label>
 
     <br>
-    <br>
-    <input type="checkbox" id="edit-authorization" name="authorization" class="form-checkbox required"
-           required="required">
-    <label for="edit-authorization">
+    <input type="checkbox" id="edit-authorisation" name="authorisation" class="form-checkbox required" required="required">
+    <label for="edit-authorisation">
 	<span style="font-weight: normal;">
-	J’autorise l’association à utiliser mes coordonnées à des fins de communication interne et je m’engage à ne pas utiliser les coordonnées des autres adhérents à des fins personnelles, notamment commerciales, ou dans un but qui serait contraire aux statuts de l’association.
+	J’autorise l’association à utiliser mes informations personnelles à des fins de communication interne.
+	</span>
+    </label>
+
+    <br>
+    <input type="checkbox" id="edit-commitment2" name="commitment2" class="form-checkbox required" required="required">
+    <label for="edit-commitment2">
+	<span style="font-weight: normal;">
+	Je m’engage à ne pas utiliser les coordonnées des autres adhérents à des fins personnelles, notamment commerciales, ou dans un but qui serait contraire aux statuts de l’association.
 	</span>
     </label>
 
@@ -94,14 +106,15 @@
             <td>{{ form.amap_jusdepomme }}</td>
             <td> jus de pomme</td>
           </tr>
+          <tr style="text-align: left;">
+            <td>{{ form.amap_cidre }}</td>
+            <td> cidre</td>
+          </tr>
           </tbody>
         </table>
-        <div
-          class="js-form-item form-item js-form-type-checkbox form-item-amap-subscription js-form-item-amap-subscription form-no-label"
-          style="">
-          <input data-drupal-selector="edit-amap-contract" type="checkbox" id="edit-amap-contract" name="amap_contract"
-                 class="form-checkbox"
-                 data-drupal-states="{&quot;required&quot;:{&quot;:input[name=\u0022amap\u0022]&quot;:{&quot;checked&quot;:true}}}">
+
+        <div class="js-form-item form-item js-form-type-checkbox form-item-ifbasket js-form-item-ifbasket form-no-label">
+          <input data-drupal-selector="edit-ifbasket" type="checkbox" id="edit-ifbasket" name="ifbasket" class="form-checkbox">
           Si je souscris à au moins un panier (quel que soit le contrat), <br>
           <div style="margin-left: 20px;">
             - je m’engage à participer aux distributions <br>
@@ -149,17 +162,9 @@
          data-drupal-states="{&quot;visible&quot;:{&quot;:input[name=\u0022payment\u0022]&quot;:{&quot;value&quot;:0}}}"
          style="">
       Votre chèque doit être envoyé à :<br>
-      <table style="width: auto;">
-        <tr>
-          <td style="padding: 0px 6px;">Le Jardin de Poissy</td>
-        </tr>
-        <tr>
-          <td>28 bis boulevard Victor Hugo</td>
-        </tr>
-        <tr>
-          <td>78300 Poissy</td>
-        </tr>
-      </table>
+      Le Jardin de Poissy<br>
+      28 bis boulevard Victor Hugo<br>
+      78300 Poissy<br>
       Ne pas oublier d’indiquer votre désignation d’adhérent (<span
         style="color: #0000ff;">{{ form.member['#markup'] }}</span>) au verso.
     </div>
@@ -196,7 +201,7 @@
       Après la soumission de ce formulaire, vous serez redirigé vers le processus de paiement en ligne.
     </div>
 
-    {# Renders the rest of the form #} {{ form | without('person1', 'member', 'person2', 'address', 'sel', 'amap', 'amap_legumes', 'amap_fruits', 'amap_pain', 'amap_viandedebœuf', 'amap_œufs', 'amap_volaille', 'amap_champignons', 'amap_lentilles', 'amap_viandedeporc', 'amap_produitslaitiersvache', 'amap_pommesdeterre', 'amap_produitslaitiersbrebis', 'amap_farine', 'amap_miel', 'amap_jusdepomme', 'contract', 'payment') }}
+    {# Renders the rest of the form #} {{ form | without('person1', 'member', 'person2', 'address', 'commitment1', 'authorisation', 'commitment2', 'sel', 'amap', 'amap_legumes', 'amap_fruits', 'amap_pain', 'amap_viandedebœuf', 'amap_œufs', 'amap_volaille', 'amap_champignons', 'amap_lentilles', 'amap_viandedeporc', 'amap_produitslaitiersvache', 'amap_pommesdeterre', 'amap_produitslaitiersbrebis', 'amap_farine', 'amap_miel', 'amap_jusdepomme', 'amap_cidre', 'ifbasket', 'payment') }}
 
-
+{% endif %}
   </div>

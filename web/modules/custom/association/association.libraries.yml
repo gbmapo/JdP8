@@ -27,4 +27,4 @@ LoP:
 membership:
   version: 1.x
   js:
-      js/membership.js: {}
+    js/membership.js: {}

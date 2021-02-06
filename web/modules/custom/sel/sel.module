@@ -75,13 +75,30 @@ function sel_cron()
     ->condition('duedate', $dToday, '<');
   $results = $query->execute();
   $iNumber = 0;
+  $aServiceOwners = [];
   foreach ($results as $key => $result) {
     $entity = $storage->load($result->id);
     $entity->status = 0;
     $entity->save();
     $iNumber++;
+    $id = $entity->owner_id->target_id;
+    $aServiceOwners[] = $id;
   }
   \Drupal::logger('sel')->info('Number of cleaned out-of-date services: @number.', ['@number' => $iNumber]);
+  if ($iNumber != 0) {
+    $aServiceOwners = array_unique($aServiceOwners);
+    $sTo = 'sel@lejardindepoissy.org';
+    $sBcc = '';
+    $results = _setListOfSelistes();
+    foreach ($results as $key => $result) {
+      if (in_array($result->id, $aServiceOwners)) {
+        $sBcc .= $result->email . ", ";
+      }
+    }
+    $aParams = [$sBcc];
+//                                MailManager::mail($module, $key,                        $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
+    \Drupal::service('plugin.manager.mail')->mail('sel', 'emailfordeactivatedservices', $sTo, 'fr', $aParams);
+  }
 
 // ----------------------------------------------------------------------------
 // Envoi d'un extrait par catégorie du Catalogue de Services
@@ -90,7 +107,8 @@ function sel_cron()
   $dToday = date('Y-m-d H:i:s');
   if ($dToday > $dNextEmailForServicesPerCategory) {
     _sendEmailForServicesExtraction('emailforservicespercategory');
-  } else {
+  }
+  else {
     \Drupal::logger('sel')->info('Extraction of services per category: nothing to do.');
   }
 
@@ -101,7 +119,8 @@ function sel_cron()
   $dToday = date('Y-m-d H:i:s');
   if ($dToday > $dNextEmailForNewServices) {
     _sendEmailForServicesExtraction('emailfornewservices');
-  } else {
+  }
+  else {
     \Drupal::logger('sel')->info('Last additions to Catalog of Services: nothing to do.');
   }
 
@@ -121,7 +140,7 @@ function _sendEmailForUrgentService($sSeliste, $sAction, $sDueDate)
   foreach ($results as $key => $result) {
     $sBcc .= $result->email . ", ";
   }
-  $aParams = array($sBcc, $sSeliste, $sAction, $sDueDate);
+  $aParams = [$sBcc, $sSeliste, $sAction, $sDueDate];
 //                            MailManager::mail($module, $key,                  $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
   \Drupal::service('plugin.manager.mail')->mail('sel', 'emailforurgentservice', $sTo, 'fr', $aParams);
 
@@ -134,9 +153,11 @@ function _setListOfSelistes()
 
   $database = \Drupal::database();
   $query = $database->select('person', 'ap');
+  $query->leftJoin('member', 'am', 'am.id = ap.member_id');
   $query->leftJoin('user__roles', 'ur', 'ur.entity_id = ap.user_id');
   $query->fields('ap', ['id', 'lastname', 'firstname', 'email'])
     ->fields('ur', ['entity_id', 'deleted', 'roles_target_id'])
+    ->condition('status', [2, 3, 4], 'IN')
     ->condition('deleted', '0', '=')
     ->condition('roles_target_id', 'seliste', '=')
     ->orderBy('id', 'ASC');
@@ -163,14 +184,14 @@ function _sendEmailForServicesExtraction($sCase)
       $sCategory = \Drupal::entityManager()->getStorage('service_category')->load($iCategory)->name->value;
       $view = views_embed_view('sel_services', 'embed_1', $iCategory);
       $view = \Drupal::service('renderer')->renderPlain($view);
-      $aParams = array($sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction of services per category: Email sent.', $sCategory);
+      $aParams = [$sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction of services per category: Email sent.', $sCategory];
       break;
     case 'emailfornewservices':
       $query = \Drupal::entityQuery('service_category');
       $dLastExtractionDate = strftime("%Y-%m-%d", strtotime("- 1 week", strtotime(\Drupal::state()->get('sel.NextEmailForNewServices'))));
       $view = views_embed_view('sel_services', 'embed_2', $dLastExtractionDate);
       $view = \Drupal::service('renderer')->renderPlain($view);
-      $aParams = array($sBcc, $view, 'sel.NextEmailForNewServices', 'Last additions to Catalog of Services : Email sent.');
+      $aParams = [$sBcc, $view, 'sel.NextEmailForNewServices', 'Last additions to Catalog of Services : Email sent.'];
       break;
   }
 
@@ -197,7 +218,7 @@ function _sendEmailForExchange($aParams)
       $sTemp .= $result->firstname . ", ";
     }
   }
-  $aParams = array($sBcc, $aParams[0], $aParams[1], $sTemp);
+  $aParams = [$sBcc, $aParams[0], $aParams[1], $sTemp];
   //                          MailManager::mail($module, $key,             $to,  $langcode, $params = [], $reply = NULL, $send = TRUE)
   \Drupal::service('plugin.manager.mail')->mail('sel', 'emailforexchange', $sTo, 'fr', $aParams);
 
@@ -210,13 +231,13 @@ function sel_mail($key, &$message, $aParams)
 
   $sFrom = 'sel@lejardindepoissy.org';
   $message['from'] = $sFrom;
-  $message['headers'] = array(
+  $message['headers'] = [
     'Content-Type' => 'text/html',
-    'bcc' => $aParams[0],
-    'From' => $sFrom,
-    'Sender' => $sFrom,
-    'Return-Path' => $sFrom,
-  );
+    'bcc'          => $aParams[0],
+    'From'         => $sFrom,
+    'Sender'       => $sFrom,
+    'Return-Path'  => $sFrom,
+  ];
   switch ($key) {
     case 'emailforurgentservice':
       $message['subject'] = '[Le Grenier à SÉL] Un service urgent requiert votre attention...';
@@ -238,6 +259,9 @@ function sel_mail($key, &$message, $aParams)
       $message['subject'] = '[Le Grenier à SÉL] Votre échange du ' . $aParams[1] . ' a été ' . $aParams[2] . '.';
       $sBody = $aParams[3] . "<br><br>";
       $message['body'][] = \Drupal\Core\Render\Markup::create($sBody);
+      break;
+    case 'emailfordeactivatedservices':
+      $message['subject'] = '[Le Grenier à SÉL] Au moins un de vos services vient d\'être désactivé...';
       break;
   }
 }
@@ -264,7 +288,8 @@ function sel_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
         $pid = $view->args[0];
         if ($pid == \Drupal::currentUser()->id()) {
           $title = 'Mes échanges';
-        } else {
+        }
+        else {
           $person = \Drupal::entityTypeManager()->getStorage('person')->load($pid);
           $sNomPrenom = $person->label();
           $title = 'Les échanges de ' . $sNomPrenom;
@@ -349,9 +374,9 @@ function sel_form_alter(&$form, FormStateInterface $form_state, $form_id)
   switch ($form_id) {
     case 'person_add_form':
     case 'person_edit_form':
-      $form['field_sel_isseliste']['#attributes'] = array(
-        'onchange' => "hasChanged(this)"
-      );
+      $form['field_sel_isseliste']['#attributes'] = [
+        'onchange' => "hasChanged(this)",
+      ];
       $form['#attached']['library'][] = 'sel/person';
       array_unshift($form['actions']['submit']['#submit'], 'sel_person_form_submit');
       break;
@@ -370,7 +395,8 @@ function sel_person_form_submit(&$form, FormStateInterface $form_state)
 
   if ($values['field_sel_isseliste']['value']) {
     $userofperson->addRole('seliste');
-  } else {
+  }
+  else {
     $userofperson->removeRole('seliste');
   }
 

@@ -2,6 +2,8 @@
 
 namespace Drupal\association\Form;
 
+use Drupal;
+use Drupal\association\Entity\Person;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\Entity\User;
@@ -19,7 +21,7 @@ class PersonForm extends ContentEntityForm
    */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
-    /* @var $entity \Drupal\association\Entity\Person */
+    /* @var $entity Person */
     $form = parent::buildForm($form, $form_state);
 
     $entity = $this->entity;
@@ -36,7 +38,7 @@ class PersonForm extends ContentEntityForm
 
     $person_id = $this->entity->id->value;
     $user_id = $form_state->getValue('user_id')['0']['target_id'];
-    $storage = \Drupal::entityTypeManager()->getStorage('person');
+    $storage = Drupal::entityTypeManager()->getStorage('person');
     $person = $storage->load($user_id);
     if ($user_id == $person_id) {
     }
@@ -59,7 +61,7 @@ class PersonForm extends ContentEntityForm
     $user_id = $entity->user_id->target_id;
     $userofperson = User::load($user_id);
 
-    $storageM = \Drupal::entityTypeManager()->getStorage('member');
+    $storageM = Drupal::entityTypeManager()->getStorage('member');
     $member = $storageM->load($entity->member_id->target_id);
 
     $entity->set('id', $user_id);
@@ -71,14 +73,14 @@ class PersonForm extends ContentEntityForm
         // List all other persons for the current member
         $member_id = $entity->member_id->target_id;
         $iId = $entity->id->value;
-        $database = \Drupal::database();
+        $database = Drupal::database();
         $query = $database->select('person', 'ap');
         $query->fields('ap', ['id', 'member_id'])
           ->condition('id', $iId, '<>')
           ->condition('member_id', $member_id, '=');
         $results = $query->execute();
         // Undefine "Contact for Member" for these persons
-        $storageP = \Drupal::entityTypeManager()->getStorage('person');
+        $storageP = Drupal::entityTypeManager()->getStorage('person');
         foreach ($results as $key => $result) {
           $person = $storageP->load($result->id);
           $person->iscontact = 0;
@@ -113,13 +115,13 @@ class PersonForm extends ContentEntityForm
     $status = parent::save($form, $form_state);
     switch ($status) {
       case SAVED_NEW:
-        \Drupal::messenger()->addMessage($this->t('Person « %label » has been added.', [
+        Drupal::messenger()->addMessage($this->t('Person « %label » has been added.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        \Drupal::messenger()->addMessage($this->t('Person « %label » has been updated.', [
+        Drupal::messenger()->addMessage($this->t('Person « %label » has been updated.', [
           '%label' => $entity->label(),
         ]));
     }
