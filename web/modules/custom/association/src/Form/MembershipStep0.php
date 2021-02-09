@@ -22,17 +22,11 @@ class MembershipStep0 extends FormBase
 
   protected $step = 0;
 
-  /**
-   * {@inheritdoc}
-   */
   public function getFormId()
   {
     return 'membership_step0';
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
 
@@ -40,6 +34,7 @@ class MembershipStep0 extends FormBase
       '#type'  => 'hidden',
       '#value' => [$this->step],
     ];
+
     switch ($this->step) {
       case 0:
         if ($this->currentUser()->isAnonymous()) {
@@ -556,18 +551,37 @@ class MembershipStep0 extends FormBase
       ];
     }
 
-    $label = $this->t('Next');
-    if (($this->step == 0 && !$this->currentUser()->isAnonymous()) || ($this->step == 3)) {
-      $label = $this->t('Submit');
+    switch ($this->step) {
+      case 0:
+        if (!$this->currentUser()->isAnonymous()) {
+          if ($form_state->getStorage()['status'] == 4) {
+            $label = '';
+            $type = 'hidden';
+          }
+          else {
+            $label = $this->t('Submit');
+            $type = 'submit';
+          }
+        }
+        else {
+          $label = $this->t('Submit');
+          $type = 'submit';
+        }
+        break;
+      case 1:
+      case 2:
+        $label = $this->t('Next');
+        $type = 'submit';
+        break;
+      case 3:
+        $label = $this->t('Submit');
+        $type = 'button';
+        break;
+      default:
     }
-    $form['submit'] = [
-      '#type'   => 'submit',
-      '#value'  => $label,
-      '#weight' => 99,
-    ];
     if ($this->step == 3) {
       $form['submit'] = [
-        '#type'   => 'button',
+        '#type'   => $type,
         '#value'  => $label,
         '#weight' => 99,
         '#ajax'   => [
@@ -575,7 +589,13 @@ class MembershipStep0 extends FormBase
           'callback' => '::ajaxSubmit',
         ],
       ];
-
+    }
+    else {
+      $form['submit'] = [
+        '#type'   => $type,
+        '#value'  => $label,
+        '#weight' => 99,
+      ];
     }
 
     $form['#attached']['library'][] = 'association/membership';
@@ -589,9 +609,6 @@ class MembershipStep0 extends FormBase
     $this->step = $this->step - 1;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function validateForm(array &$form, FormStateInterface $form_state)
   {
     switch ($this->step) {

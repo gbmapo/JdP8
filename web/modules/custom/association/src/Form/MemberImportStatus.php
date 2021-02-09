@@ -6,8 +6,11 @@ use Drupal;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/*
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
+ */
+use Drupal\file\Entity\File;
 
 /**
  * Class MemberImportStatus.
@@ -15,17 +18,11 @@ use Drupal\migrate\MigrateMessage;
 class MemberImportStatus extends FormBase
 {
 
-  /**
-   * {@inheritdoc}
-   */
   public function getFormId()
   {
     return 'member_import_status';
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
 
@@ -57,9 +54,6 @@ class MemberImportStatus extends FormBase
     return $form;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function validateForm(array &$form, FormStateInterface $form_state)
   {
 
@@ -73,18 +67,16 @@ class MemberImportStatus extends FormBase
 
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
 
     if ($form_state->getTriggeringElement()['#name'] == 'submit') {
 
       $fileId = $form_state->getValue('file_to_import')[0];
-      $file = file_load($fileId);
-      $uri = $file->uri->value;
+      $file = File::load($fileId);
       $filename = $file->filename->value;
+/*
+      $uri = $file->uri->value;
       $filenamenew = 'migration_UpdateMembers.csv';
       $urinew = 'private://migration_UpdateMembers.csv';
       $file->setFilename($filenamenew);
@@ -96,12 +88,61 @@ class MemberImportStatus extends FormBase
       $migration = Drupal::service('plugin.manager.migration')->createInstance($migration_id);
       $executable = new MigrateExecutable($migration, new MigrateMessage());
       $executable->import();
+ */
 
+      $members = file('sites/default/files/_private/' . $filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
       $file->delete();
+      $temp = array_shift($members);
+      $operations = [];
+      foreach ($members as $member) {
+        $operations[] = ['\Drupal\association\Form\MemberImportStatus::updateMember', [$member]];
+      }
+
+      $batch = [
+        'operations'       => $operations,
+        'title'            => t('Members Status Import'),
+        'init_message'     => t('Members status import is starting.'),
+        'progress_message' => t('Processed @current out of @total. Estimated time: @estimate.'),
+        'error_message'    => t('The importation process has encountered an error.'),
+        'finished'         => '\Drupal\association\Form\MemberImportStatus::end_of_update',
+      ];
+      batch_set($batch);
 
     }
 
     $form_state->setRedirect('view.association_members.page_1');
+
+  }
+
+  public static function updateMember($member, &$context)
+  {
+
+    $aTemp = explode(";", $member);
+    $storage = \Drupal::entityTypeManager()->getStorage('member');
+    $member = $storage->load($aTemp[0]);
+    if ($member) {
+      $member->set("status", $aTemp[1]);
+      $member->set("enddate", $aTemp[2]);
+      $member->save();
+      $context['results'][] = $aTemp[0];
+      $context['message'] = t('Updating status for member @id', array('@id' => $aTemp[0]));
+    }
+
+  }
+
+  public static function end_of_update($success, $results, $operations)
+  {
+
+    if ($success) {
+      $sType = 'status';
+      $sMessage = \Drupal::translation()
+        ->formatPlural(count($results), 'One member updated.', '@count members updated.');
+    }
+    else {
+      $sType = 'warning';
+      $sMessage = t('Members status import finished with an error.');
+    }
+    Drupal::messenger()->addMessage($sMessage, $sType);
 
   }
 
