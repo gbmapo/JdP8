@@ -117,6 +117,8 @@ class DistributionDateTableForm extends FormBase
 
     \Drupal::messenger()->addMessage($this->t('The changes have been saved.'));
 
+    $form_state->setRedirect('view.amap_distributions.page_1');
+
   }
 
 }

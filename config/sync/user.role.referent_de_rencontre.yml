@@ -7,4 +7,6 @@ label: 'Référent de Rencontre'
 weight: -4
 is_admin: null
 permissions:
+  - 'attachments with views_send'
   - 'mass mailing with views_send'
+  - 'use text format restricted_html'

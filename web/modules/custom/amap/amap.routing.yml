@@ -26,6 +26,16 @@ amap.export_subscriptions:
     _permission: 'add contract subscription entities'
 
 # -------------------------------------------------------------------
+amap.duplicate_contract:
+  path: '/amap/contract/duplicate/{id}'
+  defaults:
+    _form: '\Drupal\amap\Form\ContractDuplicateForm'
+    _title: 'Duplicate Contract'
+  requirements:
+    _permission: 'add contract entities'
+    id: ^\d+$
+
+# -------------------------------------------------------------------
 amap.distribution_date_table_form:
   path: '/amap/editCalendar'
   defaults:

@@ -14,6 +14,7 @@ is_admin: false
 permissions:
   - 'add contract entities'
   - 'add contract subscription entities'
+  - 'attachments with views_send'
   - 'delete contract entities'
   - 'delete contract subscription entities'
   - 'edit contract entities'

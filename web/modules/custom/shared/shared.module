@@ -17,7 +17,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * Implements hook_help().
  */
-function shared_help($route_name, RouteMatchInterface $route_match) {
+function shared_help($route_name, RouteMatchInterface $route_match)
+{
   switch ($route_name) {
     // Main module help for the shared module.
     case 'help.page.shared':
@@ -33,7 +34,8 @@ function shared_help($route_name, RouteMatchInterface $route_match) {
 /**
  * Implements hook_theme().
  */
-function shared_theme() {
+function shared_theme()
+{
   return [
     'shared' => [
       'render element' => 'children',
@@ -52,14 +54,15 @@ function shared_theme() {
  *   allowed_values: {  }
  *   allowed_values_function: 'mymodule_allowed_values_function'
  */
-function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+function shared_allowed_values_function(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable)
+{
 
   // ----------------------------------------------------------------------------
   // Ajout de l'adresse de l'association au formulaire de contact
   // ----------------------------------------------------------------------------
   if ($definition->get('entity_type') == 'contact_message' && $definition->get('field_name') == 'field_recipient') {
     $allowedValues = $definition->getSetting('allowed_values');
-    $mail          = \Drupal::config('system.site')->get('mail');
+    $mail = \Drupal::config('system.site')->get('mail');
     if (!array_key_exists($mail, $allowedValues)) {
       $allowedValues[$mail] = '1. Association';
     }
@@ -68,28 +71,31 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 
 }
 
-function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state) {
+function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state)
+{
 
   $form['field_recipient']['widget']['#title'] = t('Choose a topic for your message');
-  $form['field_recipient']['widget']['#sort_options']  = TRUE;
-  $form['actions']['preview']['#access']       = FALSE;
+  $form['field_recipient']['widget']['#sort_options'] = TRUE;
+//$form['field_recipient']['#validated'] = TRUE;
+  $form['actions']['preview']['#access'] = FALSE;
 
 }
 
 
-function shared_mail_alter(&$message) {
+function shared_mail_alter(&$message)
+{
 
   switch ($message['id']) {
 
     case "contact_page_mail":
       $contact_message = $message['params']['contact_message'];
-      $recipient       = $contact_message->get('field_recipient')->getString();
-      $message['to']   = $recipient;
+      $recipient = $contact_message->get('field_recipient')->getString();
+      $message['to'] = $recipient;
       break;
     //----------------------------------------------------------------------
     case "user_register_admin_created":
     case "user_register_pending_approval":
-      $bcc                       = \Drupal::config('system.site')->get('mail');
+      $bcc = \Drupal::config('system.site')->get('mail');
       $message['headers']['Bcc'] = $bcc;
       break;
     case "user_password_reset":
@@ -102,20 +108,22 @@ function shared_mail_alter(&$message) {
 
 }
 
-function shared_views_plugins_field_alter(array &$plugins) {
+function shared_views_plugins_field_alter(array &$plugins)
+{
 
   $plugins['custom']['class'] = 'Drupal\shared\Plugin\views\field\CustomToken';
 
 }
 
-function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
+{
 
   if ($form_id == 'views_form_association_persons_page_2' || $form_id == 'views_form_association_persons_page_4') {
     $views_send_to_name = 'nothing_pos_2';
   }
   elseif (substr($form_id, 0, 47) == 'views_form_amap_contracts_subscriptions_page_1_') {
     $views_send_to_name = 'designation_pos_3';
-    $form_id            = 'views_form_amap_contracts_subscriptions_page_1_';
+    $form_id = 'views_form_amap_contracts_subscriptions_page_1_';
   }
   else {
   }
@@ -131,20 +139,20 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
           break;
 
         case 'views_send_config_form':
-          $person                                             = \Drupal::entityTypeManager()
+          $person = \Drupal::entityTypeManager()
             ->getStorage('person')
             ->load(\Drupal::currentUser()->id());
-          $sNomPrenom                                         = $person->label();
-          $sMail                                              = $person->get('email')
+          $sNomPrenom = $person->label();
+          $sMail = $person->get('email')
             ->getString();
-          $aFromName                                          = [
+          $aFromName = [
             0 => '<Veuillez choisir une valeur dans la liste>',
             1 => $sNomPrenom,
             2 => 'Le Jardin de Poissy',
             3 => 'L\'AMAP du Jardin de Poissy',
             4 => 'Le Grenier à SEL',
           ];
-          $form['from']['views_send_from_name_bis']           = [
+          $form['from']['views_send_from_name_bis'] = [
             '#attributes'    => [
               'onchange' => 'hasChanged(this)',
             ],
@@ -154,20 +162,20 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
             '#required'      => TRUE,
             '#weight'        => -99,
           ];
-          $form['from']['views_send_from_name']               = [
+          $form['from']['views_send_from_name'] = [
             '#attributes' => [
               'id' => 'edit-views-send-from-name',
             ],
             '#type'       => 'hidden',
           ];
-          $form['from']['views_send_from_mail']               = [
+          $form['from']['views_send_from_mail'] = [
             '#attributes'    => [
               'readonly' => 'readonly',
             ],
             '#type'          => 'textfield',
             '#default_value' => '',
           ];
-          $form['from']['views_send_from_mail_currentuser']   = [
+          $form['from']['views_send_from_mail_currentuser'] = [
             '#attributes'    => [
               'id' => 'edit-views-send-from-mail-currentuser',
             ],
@@ -175,17 +183,17 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
             '#maxlength'     => 255,
             '#default_value' => $sMail,
           ];
-          $form['to']['#type']                                = 'hidden';
+          $form['to']['#type'] = 'hidden';
           $form['to']['views_send_to_name']['#default_value'] = $views_send_to_name;
           $form['to']['views_send_to_mail']['#default_value'] = 'email_pos_4';
-          $form['mail']['views_send_subject']                 = [
+          $form['mail']['views_send_subject'] = [
             '#type'          => 'textfield',
             '#maxlength'     => 255,
             '#title'         => t('Subject'),
             '#default_value' => '',
             '#required'      => TRUE,
           ];
-          $form['mail']['views_send_message']                 = [
+          $form['mail']['views_send_message'] = [
             '#type'          => 'text_format',
             '#format'        => "plain_text",
             '#rows'          => 10,
@@ -193,10 +201,10 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
             '#default_value' => '',
             '#required'      => TRUE,
           ];
-          $form['mail']['token']['#type']                     = 'hidden';
-          $form['additional']['#type']                        = 'hidden';
-          $form['views_send_remember']['#type']               = 'hidden';
-          $form['#attached']['library'][]                     = 'shared/masscontact';
+          $form['mail']['token']['#type'] = 'hidden';
+          $form['additional']['#type'] = 'hidden';
+          $form['views_send_remember']['#type'] = 'hidden';
+          $form['#attached']['library'][] = 'shared/masscontact';
           break;
 
         case 'views_send_confirm_form':
@@ -213,7 +221,8 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
 }
 
-function shared_node_access(NodeInterface $node, $op, AccountInterface $account) {
+function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
+{
 
   switch ($node->type->target_id) {
     case 'article':
@@ -241,7 +250,8 @@ function shared_node_access(NodeInterface $node, $op, AccountInterface $account)
 
 }
 
-function shared_user_login($account) {
+function shared_user_login($account)
+{
 
   $currentUrl = \Drupal::service('path.current')->getPath();
   if ($currentUrl && (substr($currentUrl, 0, 12) == '/user/reset/')) {
@@ -253,7 +263,8 @@ function shared_user_login($account) {
 
 }
 
-function shared_preprocess_node__page(array &$variables) {
+function shared_preprocess_node__page(array &$variables)
+{
 
   if ($variables['node']->nid->value == 25) {
     $variables['#attached']['library'][] = 'shared/modal';

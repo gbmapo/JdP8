@@ -75,7 +75,10 @@ class MemberImportStatus extends FormBase
       $fileId = $form_state->getValue('file_to_import')[0];
       $file = File::load($fileId);
       $filename = $file->filename->value;
-/*
+
+/**
+ * First version using Migration
+ *
       $uri = $file->uri->value;
       $filenamenew = 'migration_UpdateMembers.csv';
       $urinew = 'private://migration_UpdateMembers.csv';
@@ -88,6 +91,7 @@ class MemberImportStatus extends FormBase
       $migration = Drupal::service('plugin.manager.migration')->createInstance($migration_id);
       $executable = new MigrateExecutable($migration, new MigrateMessage());
       $executable->import();
+ *
  */
 
       $members = file('sites/default/files/_private/' . $filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

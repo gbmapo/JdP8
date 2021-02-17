@@ -12,6 +12,7 @@ permissions:
   - 'access content'
   - 'access kint'
   - 'access site-wide contact form'
+  - 'generate spam master'
   - 'view contract entities'
   - 'view contract type entities'
   - 'view service category entities'

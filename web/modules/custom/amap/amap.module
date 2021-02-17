@@ -123,17 +123,19 @@ function amap_entity_delete(EntityInterface $entity)
   }
 }
 
-// function amap_file_download($uri) {
-//
-//   $pathinfo = pathinfo($uri);
-//   if ($pathinfo['extension'] != 'pdf') {
-//     $sFileName = \Drupal::service('file_system')->basename($uri);
-//     return [
-//       'Content-disposition' => 'attachment; filename="' . $sFileName . '"',
-//     ];
-//   }
-//
-// }
+/*
+function amap_file_download($uri) {
+
+  $pathinfo = pathinfo($uri);
+  if ($pathinfo['extension'] != 'pdf') {
+    $sFileName = \Drupal::service('file_system')->basename($uri);
+    return [
+      'Content-disposition' => 'attachment; filename="' . $sFileName . '"',
+    ];
+  }
+
+}
+ */
 
 
 function amap_views_pre_view(ViewExecutable $view, $display_id, array &$args)
@@ -233,8 +235,7 @@ function _detail_contract_type($sContractType)
   $name = $oContractType->name->value;
   $numberofquantities = $oContractType->numberofquantities->value;
 
-  $aContractTypeHeader = explode('£', $oContractType->get('formheader')
-    ->getString());
+  $aContractTypeHeader = explode('£', $oContractType->get('formheader')->getString());
   $iMax = count($aContractTypeHeader);
   for ($i = 0; $i < $iMax; $i++) {
     if (strpos($aContractTypeHeader[$i], '|')) {
@@ -245,8 +246,7 @@ function _detail_contract_type($sContractType)
       ];
     }
   }
-  $aContractExportHeader = explode('£', $oContractType->get('exportheader')
-    ->getString());
+  $aContractExportHeader = explode('£', $oContractType->get('exportheader')->getString());
 
   return [
     $name,
@@ -381,14 +381,14 @@ function _setReferentOfContract()
   $query->condition('isvisible', 1);
   $query->orderBy('displayedname', 'ASC');
   $query->distinct();
-
   $results = $query->execute();
-  $usersWhoShouldBeReferentOfContract = $results->fetchCol();
 
+  $usersWhoShouldBeReferentOfContract = [];
   foreach ($results as $result) {
-    $temp = $result->displayedname . ' <' . $result->mail . '>';
-    $allowedValues[$temp] = $prefix . ' ' . $result->displayedname;
+    $allowedValues[$result->mail] = $prefix . ' ' . $result->displayedname;
+    $usersWhoShouldBeReferentOfContract[] = $result->uid;
   }
+
   $fieldStorage->setSetting('allowed_values', $allowedValues);
   $fieldStorage->save();
 

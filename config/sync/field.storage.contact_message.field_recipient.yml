@@ -12,64 +12,55 @@ type: list_string
 settings:
   allowed_values:
     -
+      value: contact@lejardindepoissy.org
+      label: '1. Association'
+    -
       value: amap@lejardindepoissy.org
       label: '2. AMAP'
     -
       value: sel@lejardindepoissy.org
       label: '3. SÉL'
     -
-      value: 'Agneau <isabelletauty@hotmail.fr>'
-      label: '2. AMAP Agneau'
-    -
-      value: 'Bœuf <cecile.chevalier@laposte.net>'
-      label: '2. AMAP Bœuf'
-    -
-      value: 'Champignons <helene.vidalis@gmail.com>'
-      label: '2. AMAP Champignons'
-    -
-      value: 'Cidre <isabelletauty@hotmail.fr>'
-      label: '2. AMAP Cidre'
-    -
-      value: 'Farine <charpcel@hotmail.com>'
-      label: '2. AMAP Farine'
-    -
-      value: 'Fruits rouges <eric.falzon@free.fr>'
-      label: '2. AMAP Fruits rouges'
-    -
-      value: 'Jus de pommes Hutrel <pommesduhutrel@gmail.com>'
-      label: '2. AMAP Jus de pommes Hutrel'
-    -
-      value: 'Légumes <jeannine@massiaux.net>'
-      label: '2. AMAP Légumes'
-    -
-      value: 'Lentilles Épeautre <laetitiablondel@outlook.fr>'
-      label: '2. AMAP Lentilles Épeautre'
-    -
-      value: 'Miel <dominique.falzon@free.fr>'
-      label: '2. AMAP Miel'
-    -
-      value: 'Pain <elodie.chorin@hotmail.fr>'
-      label: '2. AMAP Pain'
-    -
-      value: 'Pommes de terre <jeannine@massiaux.net>'
-      label: '2. AMAP Pommes de terre'
-    -
-      value: 'Pommes-Poires <eric.falzon@free.fr>'
-      label: '2. AMAP Pommes-Poires'
-    -
-      value: 'Porc <isabelletauty@hotmail.fr>'
+      value: isabelletauty@hotmail.fr
       label: '2. AMAP Porc'
     -
-      value: 'Produits laitiers (Brebis) <pascal.cavillot@gmail.com>'
+      value: cecile.chevalier@laposte.net
+      label: '2. AMAP Bœuf'
+    -
+      value: helene.vidalis@gmail.com
+      label: '2. AMAP Champignons'
+    -
+      value: charpcel@hotmail.com
+      label: '2. AMAP Farine'
+    -
+      value: eric.falzon@free.fr
+      label: '2. AMAP Produits transformés'
+    -
+      value: pommesduhutrel@gmail.com
+      label: '2. AMAP Jus de pommes Hutrel'
+    -
+      value: jeannine@massiaux.net
+      label: '2. AMAP Pommes de terre'
+    -
+      value: laetitiablondel@outlook.fr
+      label: '2. AMAP Lentilles Épeautre'
+    -
+      value: dominique.falzon@free.fr
+      label: '2. AMAP Miel'
+    -
+      value: svolckro@me.com
+      label: '2. AMAP Pain'
+    -
+      value: pascal.cavillot@gmail.com
       label: '2. AMAP Produits laitiers (Brebis)'
     -
-      value: 'Produits laitiers (Vache) <gislawaro@gmail.com>'
+      value: gislawaro@gmail.com
       label: '2. AMAP Produits laitiers (Vache)'
     -
-      value: 'Volaille <lrolland78@gmail.com>'
+      value: lrolland78@gmail.com
       label: '2. AMAP Volaille'
     -
-      value: 'Œufs <florence.loup@ntymail.com>'
+      value: florence.loup@ntymail.com
       label: '2. AMAP Œufs'
   allowed_values_function: shared_allowed_values_function
 module: options

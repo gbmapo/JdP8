@@ -183,6 +183,7 @@ display:
             nothing_4: nothing
             nothing_5: nothing
             nothing_6: nothing
+            nothing_7: nothing
           info:
             id:
               sortable: false
@@ -310,6 +311,13 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            nothing_7:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           default: '-1'
           empty_table: false
       defaults:
@@ -321,6 +329,7 @@ display:
         sorts: false
         header: false
         empty: false
+        cache: false
       row:
         type: fields
         options:
@@ -1109,7 +1118,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if file1__target_id %}\r\n<img src=\"/sites/default/files/images/arrow-down.gif\" alt=\"\" title=\"Télécharger l'original\">\r\n{% else %}\r\n<img src=\"/sites/default/files/images/arrow-down-missing.gif\" title=\"Pas d'original à télécharger\">\r\n{% endif %}"
+            text: "{% if file1__target_id %}\r\n<img src=\"/sites/default/files/images/download.svg\" alt=\"\" title=\"Télécharger l'original\">\r\n{% else %}\r\n<img src=\"/sites/default/files/images/frown.svg\" title=\"Pas d'original à télécharger\">\r\n{% endif %}"
             make_link: true
             path: '{{ file1__target_id }}'
             absolute: false
@@ -1158,9 +1167,58 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/document-edit.gif" title="Modifier le contrat">'
+            text: '<img src="/sites/default/files/images/edit.svg" title="Modifier le contrat">'
             make_link: true
             path: '/amap/contract/{{ id }}/edit'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+        nothing_7:
+          id: nothing_7
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Duplicate
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<img src=\"/sites/default/files/images/copy.svg\" title=\"Dupliquer le contrat\">\r\n"
+            make_link: true
+            path: '/amap/contract/duplicate/{{ id }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -1207,7 +1265,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/trash.gif" title="Supprimer le contrat">'
+            text: '<img src="/sites/default/files/images/trash-2.svg" title="Supprimer le contrat">'
             make_link: true
             path: '/amap/contract/{{ id }}/delete'
             absolute: false
@@ -1256,7 +1314,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/options-edit.gif" title="Entrer les souscriptions">'
+            text: '<img src="/sites/default/files/images/clipboard.svg" title="Entrer les souscriptions">'
             make_link: true
             path: '/amap/contract/subscribe/{{ id }}'
             absolute: false
@@ -1305,7 +1363,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/document.gif" title="Exporter le contrat">'
+            text: '<img src="/sites/default/files/images/file-text.svg" title="Exporter les souscriptions">'
             make_link: true
             path: '/amap/contract/export/{{ id }}'
             absolute: false
@@ -1354,7 +1412,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/mail.gif" title="Contacter en masse">'
+            text: '<img src="/sites/default/files/images/mail.svg" title="Contacter en masse">'
             make_link: true
             path: '/amap/sendemailstosubsriptors/{{ id }}'
             absolute: false
@@ -1456,6 +1514,9 @@ display:
             value: 'Il n''y a aucun contrat à afficher.'
             format: full_html
           plugin_id: text
+      cache:
+        type: none
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:

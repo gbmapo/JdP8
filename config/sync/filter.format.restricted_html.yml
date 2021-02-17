@@ -1,7 +1,9 @@
 uuid: 16b7b790-9752-4303-951f-d90618094e01
 langcode: fr
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - editor
 _core:
   default_config_hash: oz6NyPDAB4HB6N9hgH2LwNVtCd-sXbMG1fbn5KsRIDI
 name: 'HTML restreint'
@@ -30,3 +32,27 @@ filters:
     weight: 0
     settings:
       filter_url_length: 72
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 0
+    settings: {  }
+  filter_html_image_secure:
+    id: filter_html_image_secure
+    provider: filter
+    status: true
+    weight: 9
+    settings: {  }
+  filter_align:
+    id: filter_align
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_caption:
+    id: filter_caption
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
