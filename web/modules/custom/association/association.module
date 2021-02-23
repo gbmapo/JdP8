@@ -39,7 +39,7 @@ function association_help($route_name, RouteMatchInterface $route_match)
 function association_theme()
 {
   return [
-    'association'      => [
+    'association' => [
       'render element' => 'children',
     ],
 
@@ -118,6 +118,30 @@ function association_mail($key, &$message, $aParams)
   }
 }
 
+function association_entity_presave(EntityInterface $entity)
+{
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      if ($entity->status->value == -1) {
+        $entity->designation = t('Member').sprintf("%03d", $entity->id->value);
+        $entity->addresssupplement = null;
+        $entity->street = null;
+        $entity->city = null;
+        $entity->country = null;
+        $entity->telephone = null;
+        $entity->status = 0;
+        $entity->contact_id = null;
+        $entity->comment = null;
+        $entity->owner_id = null;
+        _deletePersonsOfMember($entity);
+      }
+      break;
+    default:
+  }
+}
+
+
 function association_entity_insert(EntityInterface $entity)
 {
   $mode = 'insert';
@@ -142,7 +166,8 @@ function association_entity_update(EntityInterface $entity)
        * This code is here to be executed either from Update in CRUD form or from MemberImportStatus
        */
       switch ($entity->status->value) {
-        case -1:
+        case -2:
+          _deletePersonsOfMember($entity);
           $entity->delete();
           break;
         case 0:
@@ -185,19 +210,7 @@ function association_entity_delete(EntityInterface $entity)
   $entityType = $entity->getEntityType()->id();
   switch ($entityType) {
     case "member":
-      // List all Persons for this Member
-      $id = $entity->id->value;
-      $database = Drupal::database();
-      $query = $database->select('person', 'ap');
-      $query->fields('ap', ['id', 'member_id'])
-        ->condition('member_id', $id, '=');
-      $results = $query->execute();
-      // Delete all these Persons
-      $storage = Drupal::entityTypeManager()->getStorage('person');
-      foreach ($results as $key => $result) {
-        $person = $storage->load($result->id);
-        $person->delete();
-      }
+      _deletePersonsOfMember($entity);
       break;
     case "person":
       // Reset corresponding Member if is Contact
@@ -219,6 +232,23 @@ function association_entity_delete(EntityInterface $entity)
     default:
   }
   _export_association($entityType);
+}
+
+function _deletePersonsOfMember($entity)
+{
+  // List all Persons for this Member
+  $id = $entity->id->value;
+  $database = Drupal::database();
+  $query = $database->select('person', 'ap');
+  $query->fields('ap', ['id', 'member_id'])
+    ->condition('member_id', $id, '=');
+  $results = $query->execute();
+  // Delete all these Persons
+  $storage = Drupal::entityTypeManager()->getStorage('person');
+  foreach ($results as $key => $result) {
+    $person = $storage->load($result->id);
+    $person->delete();
+  }
 }
 
 function _export_association($entityType)

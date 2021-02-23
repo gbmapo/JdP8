@@ -21,7 +21,6 @@ permissions:
   - 'create forum content'
   - 'delete distribution inscription entities'
   - 'delete own forum content'
-  - 'display eu cookie compliance popup'
   - 'edit distribution inscription entities'
   - 'edit own forum content'
   - 'post comments'

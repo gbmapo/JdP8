@@ -4,11 +4,10 @@ namespace Drupal\amap\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\OpenModalDialogCommand;
-use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\Core\Url;
 
 
 /**
@@ -18,17 +17,11 @@ class ContractSubscriptionTableForm extends FormBase
 {
 
 
-  /**
-   * {@inheritdoc}
-   */
   public function getFormId()
   {
     return 'contract_subscription_table_form';
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function buildForm(array $form, FormStateInterface $form_state, $contract = NULL)
   {
 
@@ -41,21 +34,22 @@ class ContractSubscriptionTableForm extends FormBase
     $iNumberOfQuantities = $aContractType[1];
     $aContractTypeHeader = $aContractType[2];
 
-    $form['subscriptions'] = array(
-      '#type' => 'table',
-      '#sticky' => TRUE,
+    $form['subscriptions'] = [
+      '#type'       => 'table',
+      '#sticky'     => TRUE,
       '#responsive' => TRUE,
-      '#id' => 'subscriptions',
+      '#id'         => 'subscriptions',
       '#quantities' => $iNumberOfQuantities,
-    );
+    ];
 
-    $form['subscriptions']['#header'] = array('member' => t('Member'),);
+    $form['subscriptions']['#header'] = ['member' => t('Member'),];
     $form['subscriptions']['#header'] = array_merge($form['subscriptions']['#header'], $aContractTypeHeader);
-    $aContractStandardHeader = array(
+    $aContractStandardHeader = [
       'sharedwith' => t('Shared with'),
-      'comment' => t('Comment'),
-      'file' => t('•••'),
-    );
+      'comment'    => t('Comment'),
+      'file'       => '•••',
+      'addRow'     => '',
+    ];
     $form['subscriptions']['#header'] = array_merge($form['subscriptions']['#header'], $aContractStandardHeader);
 
 //  Liste des Adhérents pour 'Partagé avec'
@@ -64,7 +58,7 @@ class ContractSubscriptionTableForm extends FormBase
     $query_am->condition('status', [2, 3, 4], 'IN')
       ->orderBy('designation', 'ASC');
     $results_am = $query_am->execute()->fetchAllKeyed();
-    $results_am = array("0" => "") + $results_am;
+    $results_am = ["0" => ""] + $results_am;
 
 //  Liste des Adhérents avec leur souscription éventuelle
     $sTemp1 = "";
@@ -92,7 +86,7 @@ class ContractSubscriptionTableForm extends FormBase
           SELECT
           am.id as am_id,
           designation,
-          '',
+          '0',
           '',
           '',"
         . $sTemp2 .
@@ -106,6 +100,7 @@ class ContractSubscriptionTableForm extends FormBase
         WHERE cs.contract_id = " . $contract . "
       )";
     }
+
     $query .= "
       ORDER BY designation ASC
       ";
@@ -113,132 +108,233 @@ class ContractSubscriptionTableForm extends FormBase
 
 //  Génération des lignes du tableau
     foreach ($results as $key => $value) {
-      if ($value->sharedwith_member_id != "") {
-        $iKey = array_search($results_am[$value->sharedwith_member_id], $results_am);
-      } else {
+      $myKey = 10 + $key * 10;
+      $sharedwith_id = $value->sharedwith_member_id;
+      if ($sharedwith_id == "0") {
         $iKey = 0;
       }
-      $form['subscriptions'][$key]['member'] = array('#markup' => $value->designation);
-      for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
-        $sTemp = 'quantity' . sprintf("%02d", $i);
-        $form['subscriptions'][$key][$sTemp] = array(
-          '#type' => 'number',
-          '#min' => 0.00,
-          '#max' => 99.95,
-          '#step' => 0.05,
-          '#default_value' => $value->$sTemp,
-        );
+      else {
+        if (!array_search($sharedwith_id, $results_am)) {
+          $results_am = $results_am + [$sharedwith_id => t('Member').sprintf("%03d", $sharedwith_id)];
+        }
+        $iKey = array_search($results_am[$sharedwith_id], $results_am);
       }
-      $form['subscriptions'][$key]['sharedwith'] = array(
-        '#type' => 'select',
-        '#options' => $results_am,
-        '#default_value' => $iKey
-      );
-      $form['subscriptions'][$key]['comment'] = array(
-        '#type' => 'textarea',
-        '#rows' => 1,
-        '#default_value' => $value->comment,
-      );
 
+      $wrapper = 'formWrapper';
+      $form['#prefix'] = '<div id="' . $wrapper . '">';
+      $form['#suffix'] = '</div>';
+
+      $form['subscriptions'][$myKey]['member'] = ['#markup' => $value->designation];
+      for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
+        $sField = 'quantity' . sprintf("%02d", $i);
+        $default_value = $value->$sField;
+        if ($default_value == 0) {
+          $default_value = "";
+        }
+        elseif ((int)$default_value == (float)$default_value) {
+          $default_value = sprintf("%d", $default_value);
+        }
+        else {
+          $default_value = sprintf("%01.2f", $value->$sField);
+        }
+        $form['subscriptions'][$myKey][$sField] = [
+          '#type'          => 'number',
+          '#min'           => 0.00,
+          '#max'           => 99.95,
+          '#step'          => 0.05,
+          '#default_value' => $default_value,
+        ];
+      }
+      $form['subscriptions'][$myKey]['sharedwith'] = [
+        '#type'          => 'select',
+        '#options'       => $results_am,
+        '#default_value' => $iKey,
+      ];
+      $form['subscriptions'][$myKey]['comment'] = [
+        '#type'          => 'textarea',
+        '#rows'          => 1,
+        '#default_value' => $value->comment,
+      ];
       $fileId = (int)$value->file__target_id;
       $title = ($fileId == 0) ? '000' : sprintf("%03d", $fileId);
-      $form['subscriptions'][$key]['filehead'] = array(
-        '#type' => 'details',
+      $form['subscriptions'][$myKey]['filehead'] = [
+        '#type'  => 'details',
         '#title' => $title,
-      );
-      $form['subscriptions'][$key]['filehead']['file'] = array(
-        '#type' => 'managed_file',
-        '#upload_location' => 'private://contracts/subscriptions/',
-        '#upload_validators' => array(
-          'file_validate_extensions' => array('pdf'),
-        ),
-        '#default_value' => array($fileId),
-      );
+      ];
+      $form['subscriptions'][$myKey]['filehead']['file'] = [
+        '#type'              => 'managed_file',
+        '#upload_location'   => 'private://contracts/subscriptions/',
+        '#upload_validators' => [
+          'file_validate_extensions' => ['pdf'],
+        ],
+        '#default_value'     => [$fileId],
+      ];
+      if ($sContractIsOpenForSubscription) {
+        $form['subscriptions'][$myKey]['addRow'] = [
+          '#type'  => 'submit',
+          '#name'  => $myKey,
+          '#value' => '+',
+          '#ajax'  => [
+            'callback' => '::ajaxAddRow',
+            'wrapper'  => $wrapper,
+            'progress' => [
+              'type'    => 'throbber',
+              'message' => NULL,
+            ],
+          ],
+        ];
+      }
+      $form['subscriptions'][$myKey]['am_id'] = ['#type' => 'hidden', '#default_value' => $value->am_id];
+      $form['subscriptions'][$myKey]['cs_id'] = ['#type' => 'hidden', '#default_value' => $value->cs_id];
 
-      $form['subscriptions'][$key]['am_id'] = array('#type' => 'hidden', '#default_value' => $value->am_id);
-      $form['subscriptions'][$key]['cs_id'] = array('#type' => 'hidden', '#default_value' => $value->cs_id);
     }
 
     if ($sContractIsOpenForSubscription) {
       $form['submit'] = [
-        '#type' => 'submit',
+        '#type'  => 'submit',
+        '#name'  => 'submit',
         '#value' => $this->t('Submit'),
+        '#ajax'  => [
+          'wrapper'  => $wrapper,
+          'callback' => '::ajaxSubmit',
+        ],
       ];
     }
 
     $form['#attached']['library'][] = 'amap/amap';
-    $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
 
     return $form;
   }
 
-  /**
-   * {@inheritdoc}
-   */
   public function validateForm(array &$form, FormStateInterface $form_state)
   {
     parent::validateForm($form, $form_state);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state)
+  public function ajaxAddRow(array &$form, FormStateInterface $form_state)
   {
-    $args = $form_state->getBuildInfo()['args'];
-    $storage = \Drupal::entityTypeManager()->getStorage('contract_subscription');
-    $iNumberOfQuantities = $form['subscriptions']['#quantities'];
-
-    foreach ($form_state->getValue('subscriptions') as $key => $value) {
-      $sQuantities = "";
-      for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
-        $sTemp = 'quantity' . sprintf("%02d", $i);
-        $sQuantities .= $value[$sTemp];
-      }
-      $id = $value['cs_id'];
-
-      if ($id == "") {
-        if ($sQuantities != "") {
-          $entity = $storage->create();
-          $sAction = 'C';
-        } else {
-          $sAction = '0';
-        }
-      } else {
-        $entity = $storage->load($id);
-        if ($sQuantities != "") {
-          $sAction = 'M';
-        } else {
-          $sAction = 'S';
-        }
-      }
-      switch ($sAction) {
-        case 'C':
-        case 'M':
-          $entity->contract_id = $args;
-          $entity->member_id = $value['am_id'];
-          $entity->sharedwith_member_id = $value['sharedwith'];
-          $entity->comment = $value['comment'];
-          $entity->file = $value['filehead']['file'];
-          for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
-            $sTemp = 'quantity' . sprintf("%02d", $i);
-            $entity->$sTemp = $value[$sTemp];
+    $myKey = $form_state->getTriggeringElement()['#name'];
+    $formBis = [];
+    foreach ($form as $key => $value) {
+      switch ($key) {
+        case 'subscriptions':
+          foreach ($form['subscriptions'] as $key2 => $value2) {
+            $formBis['subscriptions'][$key2] = $form['subscriptions'][$key2];
+            if (is_numeric($key2)) {
+              if ($form['subscriptions'][$key2]['filehead']['#title'] == '000') {
+                $aTemp = $form['subscriptions'][$key2]['filehead'];
+              }
+              if ($key2 == $myKey) {
+                $keyfornewrow = $key2 + 5;
+                $formBis['subscriptions'][$keyfornewrow] = $form['subscriptions'][$key2];
+                foreach ($formBis['subscriptions'][$keyfornewrow] as $key3 => $value3) {
+                  switch ($key3) {
+                    case 'sharedwith':
+                      $formBis['subscriptions'][$keyfornewrow][$key3]['#value'] = 0;
+                      break;
+                    case 'comment':
+                      $formBis['subscriptions'][$keyfornewrow][$key3]['#value'] = NULL;
+                      break;
+                    case 'filehead':
+                      break;
+                    case 'addRow':
+                      $formBis['subscriptions'][$keyfornewrow][$key3] = ['#type' => 'hidden',];
+                      break;
+                    case 'cs_id':
+                      $formBis['subscriptions'][$keyfornewrow][$key3]['#value'] = NULL;
+                      break;
+                    default:
+                      if (substr($key3, 0, 8) == 'quantity') {
+                        $formBis['subscriptions'][$keyfornewrow][$key3]['#value'] = NULL;
+                      }
+                  }
+                }
+              }
+              else {
+              }
+            }
           }
-          $entity->save();
-          break;
-        case 'S':
-          $entity->delete();
+          $formBis['subscriptions'][$keyfornewrow]['filehead'] = $aTemp;
           break;
         default:
+          $formBis[$key] = $form[$key];
       }
+    }
+    return $formBis;
+
+  }
+
+  public function ajaxSubmit(array &$form, FormStateInterface $form_state)
+  {
+    $response = new AjaxResponse();
+    $response->addCommand(new \Drupal\Core\Ajax\RedirectCommand(Url::fromRoute('amap.contracts')->toString()));
+    return $response;
+  }
+
+  public function submitForm(array &$form, FormStateInterface $form_state)
+  {
+    if ($form_state->getTriggeringElement()['#name'] == 'submit') {
+
+      $args = $form_state->getBuildInfo()['args'];
+      $storage = \Drupal::entityTypeManager()->getStorage('contract_subscription');
+      $iNumberOfQuantities = $form['subscriptions']['#quantities'];
+
+      foreach ($form_state->getValue('subscriptions') as $key => $value) {
+        $sQuantities = "";
+        for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
+          $sTemp = 'quantity' . sprintf("%02d", $i);
+          $sQuantities .= $value[$sTemp];
+        }
+        $id = $value['cs_id'];
+
+        if ($id == "") {
+          if ($sQuantities != "") {
+            $entity = $storage->create();
+            $sAction = 'C';
+          }
+          else {
+            $sAction = '0';
+          }
+        }
+        else {
+          $entity = $storage->load($id);
+          if ($sQuantities != "") {
+            $sAction = 'M';
+          }
+          else {
+            $sAction = 'S';
+          }
+        }
+        switch ($sAction) {
+          case 'C':
+          case 'M':
+            $entity->contract_id = $args;
+            $entity->member_id = $value['am_id'];
+            $entity->sharedwith_member_id = $value['sharedwith'];
+            $entity->comment = $value['comment'];
+            $entity->file = $value['filehead']['file'];
+            for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
+              $sTemp = 'quantity' . sprintf("%02d", $i);
+              $entity->$sTemp = $value[$sTemp];
+            }
+            $entity->save();
+            break;
+          case 'S':
+            $entity->delete();
+            break;
+          default:
+        }
+      }
+
+      _export_amap_CSV('amap_contracts_subscriptions', 'rest_export_1', $args[0]);
+      \Drupal::messenger()->addMessage($this->t('The changes have been saved.'));
+//    $form_state->setRedirect('amap.contracts');
 
     }
 
-    _export_amap_CSV('amap_contracts_subscriptions', 'rest_export_1', $args[0]);
-
-    \Drupal::messenger()->addMessage($this->t('The changes have been saved.'));
-
-    $form_state->setRedirect('amap.contracts');
+    else {
+      $form_state->setRebuild();
+    }
   }
 
 }

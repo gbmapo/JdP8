@@ -27,18 +27,16 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 input[type=number] {
     -moz-appearance: textfield;
 }
 
 #subscriptions .form-number {
-    width: 40px;
-}
-
-td#subscriptions .form-number {
+    width: 35px;
     padding-right: 2px;
-    padding-left: 2px;
+}
+#subscriptions .form-select {
+    width: 120px;
 }
 
 table#calendarofdistributions {
