@@ -50,7 +50,6 @@ module:
   poll: 0
   quickedit: 0
   rdf: 0
-  reroute_email: 0
   rest: 0
   search: 0
   sel: 0

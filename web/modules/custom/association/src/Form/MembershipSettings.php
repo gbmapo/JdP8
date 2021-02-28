@@ -153,8 +153,8 @@ class MembershipSettings extends FormBase
         $config->set('firstemail', FALSE);
         $config->set('reminder', 0);
         // Autoriser les adhérents à accéder au formulaire
-        $role = Role::create(['id' => 'member', 'label' => 'Adhérent']);
-        $role->grantPermission('renew membership');
+        $role = Role::create(['id' => 'member', 'label' => t('Member')]);
+        $role->grantPermission('Renew membership');
         $role->save();
         $database = Drupal::database();
         $query = $database->select('person', 'pe');
@@ -225,6 +225,8 @@ class MembershipSettings extends FormBase
         $sType = 'warning';
     }
 
+    $config->save();
+
     if ($form_state->getValue('4B') == "1") {
 
       $config->set('step', 0);
@@ -233,49 +235,143 @@ class MembershipSettings extends FormBase
       $config->set('firstemail', FALSE);
       $config->set('reminder', 0);
 
-      // Mettre le statut de tous les adhérents en attente à 'Ancien adhérent'
-      $storage = Drupal::entityTypeManager()->getStorage('member');
+      $operations = [];
+
+      // Mettre le statut de tous les adhérents 'Adhésion non renouvelée' à 'Ancien adhérent'
       $database = Drupal::database();
       $query = $database->select('member', 'am');
-      $query->fields('am', ['id', 'status'])->condition('am.status', 2, '=');
+      $query->fields('am', ['id', 'status'])->condition('am.status', 1, '=');
       $results = $query->execute();
-      $iNumber = 0;
       $enddate = ($rpYear - 1) . '-12-31';
       foreach ($results as $key => $result) {
-        $entity = $storage->load($result->id);
-        $entity->status = 0;
-        $entity->enddate = $enddate;
-        $comment = $entity->comment->getString();
-        $comment = ($comment ? $comment . "\r" : '') . $this->t('Status changed when Renew Membership period was closed.');
-        $entity->comment = $comment;
-        $entity->save();
-        $iNumber++;
+        $operations[] = ['\Drupal\association\Form\MembershipSettings::updateMember', [$result, $enddate]];
       }
 
       // Enlever l'accès au formulaire aux adhérents
-      $ids = Drupal::entityQuery('user')
-        ->condition('roles', 'member')
-        ->execute();
-      $users = User::loadMultiple($ids);
-      foreach ($users as $user) {
-        $user->removeRole('member');
-        $user->save();
-      }
-      $role = Role::load('member');
-      $role->delete();
+      $operations[] = ['\Drupal\association\Form\MembershipSettings::updateUsers', []];
 
-      Drupal::logger('association')
-        ->info('Renew membership: Period has been closed.');
-      $sMessage = $this->t('Renew membership: Period has been closed.');
-      Drupal::logger('association')
-        ->info('Renew membership: Number of members: @number.', ['@number' => $iNumber]);
+      $operations[] = ['\Drupal\association\Form\MembershipSettings::removeRole', []];
+
+      $operations[] = ['\Drupal\association\Form\MembershipSettings::saveConfig', [$config]];
+
+      $batch = [
+        'operations'       => $operations,
+        'title'            => t('Membership: Renewal Period Closure'),
+        'init_message'     => t('Process is starting...'),
+        'progress_message' => t('Processed @current out of @total. Estimated remaining time: @estimate.'),
+        'finished'         => '\Drupal\association\Form\MembershipSettings::endofPeriodClosure',
+      ];
+      batch_set($batch);
+
     }
-
-    $config->save();
 
     if ($sMessage != '') {
       Drupal::messenger()->addMessage($sMessage, $sType);
+    }
+  }
 
+  public static function updateMember($result, $enddate, &$context)
+  {
+    $error = FALSE;
+    try {
+      $id = $result->id;
+      $storage = \Drupal::entityTypeManager()->getStorage('member');
+      $member = $storage->load($id);
+      if ($member) {
+        $member->set("status", -1);
+        $member->set("enddate", $enddate);
+        $member->save();
+        $context['results']['member'][] = $id;
+        $context['message'] = t('Updated member @id.', ['@id' => $id]);
+      }
+    } catch (PDOException $e) {
+      $error = TRUE;
+    }
+    if ($error) {
+      $context['finished'] = 1;
+    }
+  }
+
+  public static function updateUsers(&$context)
+  {
+    if (empty($context['sandbox'])) {
+      $uids = Drupal::entityQuery('user')
+        ->condition('roles', 'member')
+        ->execute();
+      $context['sandbox']['progress'] = 0;
+      $context['sandbox']['max'] = count($uids);
+      $context['sandbox']['$uids'] = array_values($uids);
+    }
+
+    $error = FALSE;
+    try {
+      $uid = $context['sandbox']['$uids'][$context['sandbox']['progress']];
+      $user = User::load($uid);
+      if ($user) {
+        $user->removeRole('member');
+        $user->save();
+        $context['results']['user'][] = $uid;
+        $context['sandbox']['progress']++;
+        $context['message'] = t('Updated user @num of @max.', ['@num' => $context['sandbox']['progress'], '@max' => $context['sandbox']['max']]);
+      }
+      if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+        $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+      }
+    } catch (PDOException $e) {
+      $error = TRUE;
+    }
+    if ($error) {
+      $context['finished'] = 1;
+    }
+  }
+
+  public static function removeRole(&$context)
+  {
+    $role = Role::load('member');
+    $role->delete();
+    $context['results']['role'] = 'role';
+    $context['message'] = t('Removing role @id', ['@id' => 'member']);
+  }
+
+  public static function saveConfig($config, &$context)
+  {
+    $config->save();
+    $context['results']['config'] = 'config';
+    $context['message'] = t('Saving configuration');
+  }
+
+  public static function endofPeriodClosure($success, $results, $operations)
+  {
+    if ($success) {
+      if (isset($results['member'])) {
+        $sMessage = \Drupal::translation()->formatPlural(count($results['member']), 'One member updated.', '@count members updated.');
+        Drupal::messenger()->addMessage($sMessage, 'status');
+        Drupal::logger('association')->info('Renew membership: Number of members: @number.', ['@number' => count($results['member'])]);
+      }
+      if (isset($results['user'])) {
+        $sMessage = \Drupal::translation()->formatPlural(count($results['user']), 'One user updated.', '@count users updated.');
+        Drupal::messenger()->addMessage($sMessage, 'status');
+      }
+      if (isset($results['role'])) {
+        Drupal::messenger()->addMessage(t('Role « %label » has been removed.', ['%label' => t('Member')]), 'status');
+      }
+      if (isset($results['config'])) {
+        Drupal::messenger()->addMessage(t('Renew membership: Period has been closed.'), 'status');
+      }
+      Drupal::logger('association')->info('Renew membership: Period has been closed.');
+    }
+    else {
+      // $operations contains the operations that remained unprocessed.
+      $remaining_operations = reset($operations);
+      Drupal::messenger()->addMessage(
+        t('An error occurred while processing @operation with parameters: @parms.',
+          [
+            '@operation' => $remaining_operations[0],
+            '@parms'     => print_r($remaining_operations[1], TRUE),
+          ]
+        )
+      );
+      Drupal::messenger()->addMessage(t('Renew membership: Period Closure has encountered an error.'), 'warning');
     }
   }
 

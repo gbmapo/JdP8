@@ -4044,10 +4044,10 @@ display:
           relationship: member_id
           group_type: group
           admin_label: ''
-          operator: '>='
+          operator: between
           value:
-            min: ''
-            max: ''
+            min: '3'
+            max: '4'
             value: '3'
           group: 1
           exposed: false

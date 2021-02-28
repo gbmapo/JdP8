@@ -124,7 +124,7 @@ function association_entity_presave(EntityInterface $entity)
   switch ($entityType) {
     case "member":
       if ($entity->status->value == -1) {
-        $entity->designation = t('Member').sprintf("%03d", $entity->id->value);
+        $entity->designation = t('Member') . sprintf("%03d", $entity->id->value);
         $entity->addresssupplement = null;
         $entity->street = null;
         $entity->city = null;
@@ -167,7 +167,6 @@ function association_entity_update(EntityInterface $entity)
        */
       switch ($entity->status->value) {
         case -2:
-          _deletePersonsOfMember($entity);
           $entity->delete();
           break;
         case 0:
