@@ -90,6 +90,16 @@ function shared_mail_alter(&$message)
     case "contact_page_mail":
       $contact_message = $message['params']['contact_message'];
       $recipient = $contact_message->get('field_recipient')->getString();
+      if (is_numeric($recipient)) {
+        $database = \Drupal::database();
+        $query = $database->select('contract', 'co');
+        $query->leftJoin('users_field_data', 'us', 'us.uid = co.referent_id');
+        $query->fields('us', ['mail']);
+        $query->fields('co', ['id']);
+        $query->condition('co.id', $recipient);
+        $results = $query->execute()->fetchCol();
+        $recipient = $results[0];
+      }
       $message['to'] = $recipient;
       break;
     //----------------------------------------------------------------------
@@ -202,8 +212,10 @@ function shared_form_alter(&$form, FormStateInterface $form_state, $form_id)
             '#required'      => TRUE,
           ];
           $form['mail']['token']['#type'] = 'hidden';
+          $form['mail']['views_send_attachments']['#description'] = null;
           $form['additional']['#type'] = 'hidden';
           $form['views_send_remember']['#type'] = 'hidden';
+          $form['views_send_direct']['#disabled'] = TRUE;
           $form['#attached']['library'][] = 'shared/masscontact';
           break;
 

@@ -376,7 +376,7 @@ function _setReferentOfContract()
   $query->leftJoin('contract_type', 'ct', 'ct.id = co.type');
   $query->leftJoin('users_field_data', 'us', 'us.uid = co.referent_id');
   $query->fields('us', ['uid', 'mail']);
-  $query->fields('co', ['isvisible']);
+  $query->fields('co', ['id', 'isvisible']);
   $query->fields('ct', ['displayedname']);
   $query->condition('isvisible', 1);
   $query->orderBy('displayedname', 'ASC');
@@ -385,7 +385,7 @@ function _setReferentOfContract()
 
   $usersWhoShouldBeReferentOfContract = [];
   foreach ($results as $result) {
-    $allowedValues[$result->mail] = $prefix . ' ' . $result->displayedname;
+    $allowedValues[$result->id] = $prefix . ' ' . $result->displayedname;
     $usersWhoShouldBeReferentOfContract[] = $result->uid;
   }
 

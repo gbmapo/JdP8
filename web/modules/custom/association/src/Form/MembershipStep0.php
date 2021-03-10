@@ -78,143 +78,150 @@ class MembershipStep0 extends FormBase
           $storage = Drupal::entityTypeManager()->getStorage('person');
           $person = $storage->load($this->currentUser()->id());
           $member_id = $person->get("member_id")->target_id;
-          $database = Drupal::database();
-          $query = $database->select('member', 'am');
-          $query->leftJoin('person', 'ap', 'ap.member_id = am.id');
-          $query->leftJoin('person__field_sel_isseliste', 'ps', 'ap.id = ps.entity_id');
-          $query->leftJoin('users_field_data', 'us', 'us.uid = ps.entity_id');
-          $query->fields('am', [
-            'id',
-            'designation',
-            'addresssupplement',
-            'street',
-            'postalcode',
-            'city',
-            'contact_id',
-            'telephone',
-            'status',
-          ]);
-          $query->fields('ap', [
-            'id',
-            'lastname',
-            'firstname',
-            'email',
-            'cellphone',
-            'iscontact',
-          ]);
-          $query->fields('ps', ['field_sel_isseliste_value',]);
-          $query->fields('us', ['uid', 'name']);
-          $query->condition('am.id', $member_id, '=');
-          $query->orderBy('iscontact', 'DESC');
-          $results = $query->execute()->fetchAll();
-          $form_state->set('am_id', $results[0]->id);
-          $form_state->set('designation', $results[0]->designation);
-          $form_state->set('addresssupplement', $results[0]->addresssupplement);
-          $form_state->set('street', $results[0]->street);
-          $form_state->set('postalcode', $results[0]->postalcode);
-          $form_state->set('city', $results[0]->city);
-          $form_state->set('telephone', $results[0]->telephone);
-          $form_state->set('status', $results[0]->status);
-          $form_state->set('ap_id1', $results[0]->ap_id);
-          $form_state->set('lastname1', $results[0]->lastname);
-          $form_state->set('firstname1', $results[0]->firstname);
-          $form_state->set('email1', $results[0]->email);
-          $form_state->set('cellphone1', $results[0]->cellphone);
-          $form_state->set('seliste1', $results[0]->field_sel_isseliste_value);
-          $form_state->set('name1', $results[0]->name);
-          if (count($results) > 1) {
-            $form_state->set('ap_id2', $results[1]->ap_id);
-            $form_state->set('lastname2', $results[1]->lastname);
-            $form_state->set('firstname2', $results[1]->firstname);
-            $form_state->set('email2', $results[1]->email);
-            $form_state->set('cellphone2', $results[1]->cellphone);
-            $form_state->set('seliste2', $results[1]->field_sel_isseliste_value);
-            $form_state->set('name2', $results[1]->name);
+          if ($member_id) {
+            $database = Drupal::database();
+            $query = $database->select('member', 'am');
+            $query->leftJoin('person', 'ap', 'ap.member_id = am.id');
+            $query->leftJoin('person__field_sel_isseliste', 'ps', 'ap.id = ps.entity_id');
+            $query->leftJoin('users_field_data', 'us', 'us.uid = ps.entity_id');
+            $query->fields('am', [
+              'id',
+              'designation',
+              'addresssupplement',
+              'street',
+              'postalcode',
+              'city',
+              'contact_id',
+              'telephone',
+              'status',
+            ]);
+            $query->fields('ap', [
+              'id',
+              'lastname',
+              'firstname',
+              'email',
+              'cellphone',
+              'iscontact',
+            ]);
+            $query->fields('ps', ['field_sel_isseliste_value',]);
+            $query->fields('us', ['uid', 'name']);
+            $query->condition('am.id', $member_id, '=');
+            $query->orderBy('iscontact', 'DESC');
+            $results = $query->execute()->fetchAll();
+            $form_state->set('am_id', $results[0]->id);
+            $form_state->set('designation', $results[0]->designation);
+            $form_state->set('addresssupplement', $results[0]->addresssupplement);
+            $form_state->set('street', $results[0]->street);
+            $form_state->set('postalcode', $results[0]->postalcode);
+            $form_state->set('city', $results[0]->city);
+            $form_state->set('telephone', $results[0]->telephone);
+            $form_state->set('status', $results[0]->status);
+            $form_state->set('ap_id1', $results[0]->ap_id);
+            $form_state->set('lastname1', $results[0]->lastname);
+            $form_state->set('firstname1', $results[0]->firstname);
+            $form_state->set('email1', $results[0]->email);
+            $form_state->set('cellphone1', $results[0]->cellphone);
+            $form_state->set('seliste1', $results[0]->field_sel_isseliste_value);
+            $form_state->set('name1', $results[0]->name);
+            if (count($results) > 1) {
+              $form_state->set('ap_id2', $results[1]->ap_id);
+              $form_state->set('lastname2', $results[1]->lastname);
+              $form_state->set('firstname2', $results[1]->firstname);
+              $form_state->set('email2', $results[1]->email);
+              $form_state->set('cellphone2', $results[1]->cellphone);
+              $form_state->set('seliste2', $results[1]->field_sel_isseliste_value);
+              $form_state->set('name2', $results[1]->name);
+            }
+            $iTemp = ($this->currentUser()->getDisplayName() == $results[0]->name) ? 0 : 1;
+            $form_state->set('undersigned', $iTemp);
+            $form_state->set('lastname', $results[$iTemp]->lastname);
+            $form_state->set('firstname', $results[$iTemp]->firstname);
+            $form_state->set('email', $results[$iTemp]->email);
           }
-          $iTemp = ($this->currentUser()->getDisplayName() == $results[0]->name) ? 0 : 1;
-          $form_state->set('undersigned', $iTemp);
-          $form_state->set('lastname', $results[$iTemp]->lastname);
-          $form_state->set('firstname', $results[$iTemp]->firstname);
-          $form_state->set('email', $results[$iTemp]->email);
+          else {
+            $form_state->set('status', 4);
+          }
           $nextStepNotice = $this->t('correct, if needed,');
           $config = \Drupal::config('association.renewalperiod');
           $rpYear = $config->get('year');
           $rpStatus = $config->get('status');
-          if ($rpStatus == 'Closed') {
-            $form['footer'] = [
-              '#markup' => '<BR>' . $this->t("There is currently no renewal period opened.") . '<BR>',
-            ];
-          }
-          elseif (!$this->currentUser()->hasPermission("renew membership")) {
-            $form['footer'] = [
-              '#markup' => $this->t("You're not allowed to renew membership. Only the person(s) associated to the member is(are) allowed to do it.") . '<BR>',
-            ];
-          }
-          else {
-            switch ($form_state->getStorage()['status']) {
-              case 2:
-                $iWish = null;
-                break;
-              case 1:
-                $iWish = 0;
-                break;
-              case 3:
-                $iWish = 1;
-                break;
-              default:
-                $iWish = null;
-                break;
-            }
-            $sMember = new FormattableMarkup('<span style="color: #0000ff;">' . $form_state->getStorage()['designation'] . '</span>', []);
-            $sPerson = new FormattableMarkup('<span style="color: #0000ff;">' . $form_state->getStorage()['firstname'] . ' ' . $form_state->getStorage()['lastname'] . '</span>', []);
-            if ($form_state->getStorage()['status'] == 4) {
-              $sTemp = '<BR>' . $this->t('The member «&nbsp;%member&nbsp;» has already renewed his membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
+
+          switch (TRUE) {
+            case ($rpStatus == 'Closed'):
+              $form['footer'] = [
+                '#markup' => $this->t("There is currently no renewal period opened.") . '<BR>',
+              ];
+              break;
+            case (!$member_id):
+            case (!$this->currentUser()->hasPermission("renew membership")):
+              $form['footer'] = [
+                '#markup' => $this->t("You're not allowed to renew membership. Only the persons associated to a member are allowed to do it.") . '<BR>',
+              ];
+              break;
+            default:
+              switch ($form_state->getStorage()['status']) {
+                case 2:
+                  $iWish = null;
+                  break;
+                case 1:
+                  $iWish = 0;
+                  break;
+                case 3:
+                  $iWish = 1;
+                  break;
+                default:
+                  $iWish = null;
+                  break;
+              }
+              $sMember = new FormattableMarkup('<span style="color: #0000ff;">' . $form_state->getStorage()['designation'] . '</span>', []);
+              $sPerson = new FormattableMarkup('<span style="color: #0000ff;">' . $form_state->getStorage()['firstname'] . ' ' . $form_state->getStorage()['lastname'] . '</span>', []);
+              if ($form_state->getStorage()['status'] == 4) {
+                $sTemp = $this->t('The member «&nbsp;%member&nbsp;» has already renewed his membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
+                    '%member' => $sMember,
+                    '%year'   => $rpYear,
+                  ]);
+                $form['header'] = [
+                  '#type'     => 'inline_template',
+                  '#template' => $sTemp,
+                ];
+              }
+              else {
+                $sTemp = $this->t("Here’s your wish as recorded. You can change it as many times as you like: only the last change will be taken into account.<BR><BR>");
+                $sTemp = ($iWish == -1) ? "" : $sTemp;
+                $sTemp2 = $this->t('I, the undersigned «&nbsp;%person&nbsp;», representing the member «&nbsp;%member&nbsp;», wishes to renew my membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
+                  '%person' => $sPerson,
                   '%member' => $sMember,
                   '%year'   => $rpYear,
                 ]);
-              $form['header'] = [
-                '#type'     => 'inline_template',
-                '#template' => $sTemp,
-              ];
-            }
-            else {
-              $sTemp = $this->t("Here’s your wish as recorded. You can change it as many times as you like: only the last change will be taken into account.<BR><BR>");
-              $sTemp = ($iWish == -1) ? "" : $sTemp;
-              $sTemp2 = $this->t('I, the undersigned «&nbsp;%person&nbsp;», representing the member «&nbsp;%member&nbsp;», wishes to renew my membership to the association <I>Le Jardin de Poissy</I> for year « %year ».', [
-                '%person' => $sPerson,
-                '%member' => $sMember,
-                '%year'   => $rpYear,
-              ]);
-              $sTemp = $sTemp . $sTemp2;
-              $form['header'] = [
-                '#type'     => 'inline_template',
-                '#template' => $sTemp,
-              ];
-              $form['suscribe'] = [
-                '#type'          => 'radios',
-                '#title'         => '',
-                '#options'       => [
-                  0 => $this->t('No'),
-                  1 => $this->t('Yes'),
-                ],
-                '#default_value' => $iWish,
-                '#validated'     => TRUE,
-              ];
-              $markup = $this->t('After submitting this form, you will be able to @str your personal information then choose your subscription payment mode.', [
-                  '@str' => $nextStepNotice,
-                ]) . '<BR>';
-              $form['suscribedyes'] = [
-                '#type'   => 'item',
-                '#markup' => $markup,
-                '#states' => [
-                  'visible' => [
-                    ':input[name="suscribe"]' => ['value' => 1],
+                $sTemp = $sTemp . $sTemp2;
+                $form['header'] = [
+                  '#type'     => 'inline_template',
+                  '#template' => $sTemp,
+                ];
+                $form['suscribe'] = [
+                  '#type'          => 'radios',
+                  '#title'         => '',
+                  '#options'       => [
+                    0 => $this->t('No'),
+                    1 => $this->t('Yes'),
                   ],
-                ],
-              ];
-            }
+                  '#default_value' => $iWish,
+                  '#validated'     => TRUE,
+                ];
+                $markup = $this->t('After submitting this form, you will be able to @str your personal information then choose your subscription payment mode.', [
+                    '@str' => $nextStepNotice,
+                  ]) . '<BR>';
+                $form['suscribedyes'] = [
+                  '#type'   => 'item',
+                  '#markup' => $markup,
+                  '#states' => [
+                    'visible' => [
+                      ':input[name="suscribe"]' => ['value' => 1],
+                    ],
+                  ],
+                ];
+              }
           }
-
         }
         break;
 

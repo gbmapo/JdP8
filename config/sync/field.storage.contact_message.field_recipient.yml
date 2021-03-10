@@ -21,48 +21,63 @@ settings:
       value: sel@lejardindepoissy.org
       label: '3. SÉL'
     -
-      value: isabelletauty@hotmail.fr
-      label: '2. AMAP Porc'
+      value: '135'
+      label: '2. AMAP Agneau'
     -
-      value: cecile.chevalier@laposte.net
+      value: '127'
       label: '2. AMAP Bœuf'
     -
-      value: helene.vidalis@gmail.com
+      value: '136'
       label: '2. AMAP Champignons'
     -
-      value: charpcel@hotmail.com
+      value: '153'
+      label: '2. AMAP Cidre'
+    -
+      value: '152'
       label: '2. AMAP Farine'
     -
-      value: eric.falzon@free.fr
-      label: '2. AMAP Produits transformés'
+      value: '134'
+      label: '2. AMAP Fruits rouges'
     -
-      value: pommesduhutrel@gmail.com
+      value: '157'
       label: '2. AMAP Jus de pommes Hutrel'
     -
-      value: jeannine@massiaux.net
-      label: '2. AMAP Pommes de terre'
+      value: '147'
+      label: '2. AMAP Légumes'
     -
-      value: laetitiablondel@outlook.fr
+      value: '146'
       label: '2. AMAP Lentilles Épeautre'
     -
-      value: dominique.falzon@free.fr
+      value: '154'
       label: '2. AMAP Miel'
     -
-      value: svolckro@me.com
+      value: '149'
       label: '2. AMAP Pain'
     -
-      value: pascal.cavillot@gmail.com
+      value: '138'
+      label: '2. AMAP Pommes de terre'
+    -
+      value: '144'
+      label: '2. AMAP Pommes-Poires'
+    -
+      value: '145'
+      label: '2. AMAP Porc'
+    -
+      value: '132'
       label: '2. AMAP Produits laitiers (Brebis)'
     -
-      value: gislawaro@gmail.com
+      value: '158'
       label: '2. AMAP Produits laitiers (Vache)'
     -
-      value: lrolland78@gmail.com
+      value: '155'
+      label: '2. AMAP Produits transformés'
+    -
+      value: '150'
       label: '2. AMAP Volaille'
     -
-      value: florence.loup@ntymail.com
+      value: '131'
       label: '2. AMAP Œufs'
-  allowed_values_function: shared_allowed_values_function
+  allowed_values_function: ''
 module: options
 locked: false
 cardinality: 1
