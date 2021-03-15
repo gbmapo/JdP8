@@ -353,7 +353,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<BR><a href=\"/association/member/add\" title=\"Ajouter un adhérent\" class=\"form-submit\">Ajouter</a>&nbsp;<a href=\"/association/export_membersformaps\" title=\"Télécharger pour Google Maps\" class=\"form-submit\">Télécharger</a>\r\n"
+            value: "<BR><a href=\"/association/member/add\" title=\"Ajouter un adhérent\" class=\"form-submit\">Ajouter</a>&nbsp;<a href=\"/association/export_personsformaps\" title=\"Télécharger pour Google Maps\" class=\"form-submit\">Télécharger</a>\r\n"
             format: full_html
           plugin_id: text
       fields:
@@ -1934,7 +1934,7 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-      path: export_membersformaps.csv
+      path: export_personsformaps.csv
       auth:
         - cookie
       access:

@@ -231,6 +231,8 @@ display:
         title: false
         empty: false
         sorts: false
+        filters: false
+        filter_groups: false
       row:
         type: fields
         options:
@@ -692,6 +694,57 @@ display:
           entity_type: person
           entity_field: lastname
           plugin_id: standard
+      filters:
+        status:
+          id: status
+          table: member
+          field: status
+          relationship: member_id
+          group_type: group
+          admin_label: ''
+          operator: between
+          value:
+            min: '2'
+            max: '4'
+            value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: member
+          entity_field: status
+          plugin_id: numeric
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:

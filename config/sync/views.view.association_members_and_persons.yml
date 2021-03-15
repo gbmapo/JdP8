@@ -13,6 +13,7 @@ dependencies:
     - rest
     - serialization
     - user
+    - views_data_export
 _core:
   default_config_hash: WaGpUF__-gnOLe63EWGP_AkcXlRU9WZZV27_XEIpNqU
 id: association_members_and_persons
@@ -2108,11 +2109,19 @@ display:
         options:
           offset: 0
       style:
-        type: serializer
+        type: data_export
         options:
-          uses_fields: false
           formats:
             csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
       row:
         type: data_field
         options:

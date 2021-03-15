@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class MembersAndPersonsController extends ControllerBase
 {
 
-  public function export_membersformaps()
+  public function export_personsformaps()
   {
 
     _export_association_CSV('association_persons', 'rest_export_3');

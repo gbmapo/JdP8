@@ -63,7 +63,7 @@ settings:
       value: '145'
       label: '2. AMAP Porc'
     -
-      value: '132'
+      value: '160'
       label: '2. AMAP Produits laitiers (Brebis)'
     -
       value: '158'
@@ -75,9 +75,12 @@ settings:
       value: '150'
       label: '2. AMAP Volaille'
     -
+      value: '159'
+      label: '2. AMAP Œufs'
+    -
       value: '131'
       label: '2. AMAP Œufs'
-  allowed_values_function: ''
+  allowed_values_function: shared_allowed_values_function
 module: options
 locked: false
 cardinality: 1

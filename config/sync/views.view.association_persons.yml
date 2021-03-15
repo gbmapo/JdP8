@@ -19,6 +19,7 @@ dependencies:
     - serialization
     - telephone
     - user
+    - views_data_export
     - views_send
 _core:
   default_config_hash: Qy2EvoTity2apqVaVnW8lQjcA5u9Anez5DBBRqjOwl0
@@ -2832,11 +2833,20 @@ display:
       auth:
         - cookie
       style:
-        type: serializer
+        type: data_export
         options:
           uses_fields: false
           formats:
             csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
       access:
         type: role
         options:
@@ -2869,11 +2879,19 @@ display:
       auth:
         - cookie
       style:
-        type: serializer
+        type: data_export
         options:
-          uses_fields: false
           formats:
             csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
       access:
         type: role
         options:
@@ -3304,11 +3322,19 @@ display:
       auth:
         - cookie
       style:
-        type: serializer
+        type: data_export
         options:
-          uses_fields: false
           formats:
             csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+            utf8_bom: '0'
+            use_serializer_encode_only: false
       access:
         type: role
         options:

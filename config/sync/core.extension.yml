@@ -68,6 +68,7 @@ module:
   update: 0
   user: 0
   views_accordion: 0
+  views_data_export: 0
   views_send: 0
   views_ui: 0
   forum: 1

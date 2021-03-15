@@ -74,7 +74,7 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state)
 {
 
-  $form['field_recipient']['widget']['#title'] = t('Choose a topic for your message');
+  $form['field_recipient']['widget']['#title'] = t('Choose a category for your message');
   $form['field_recipient']['widget']['#sort_options'] = TRUE;
 //$form['field_recipient']['#validated'] = TRUE;
   $form['actions']['preview']['#access'] = FALSE;
