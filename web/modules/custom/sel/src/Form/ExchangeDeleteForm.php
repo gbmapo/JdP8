@@ -33,7 +33,7 @@ class ExchangeDeleteForm extends ContentEntityDeleteForm
     $entity->delete();
     $id = \Drupal::currentUser()->id();
     $form_state->setRedirect('view.sel_echanges.page_1');
-    drupal_set_message($this->getDeletionMessage());
+    \Drupal::messenger()->addMessage($this->getDeletionMessage());
 
   }
 

@@ -1,5 +1,5 @@
 name: 'Association'
 type: module
 description: 'To manage members and persons of the association'
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 package: 'Association'

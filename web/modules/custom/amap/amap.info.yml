@@ -1,7 +1,7 @@
 name: 'AMAP'
 type: module
 description: 'To manage the AMAP of the Jardin de Poissy.'
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 package: 'Association'
 dependencies:
   - association

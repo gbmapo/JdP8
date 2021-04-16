@@ -3,6 +3,12 @@
 function association_member_country()
 {
   $countries = Drupal::service('country_manager')->getList();
+
+  $key = 'FR';
+  $data = $countries[$key];
+  unset($countries[$key]);
+  $countries = array_merge(array($key=>$data),$countries);
+
   return $countries;
 }
 

@@ -211,7 +211,7 @@ class DistributionInscriptionOneForm extends FormBase
               'amapien_id' => $iCurrentUserId,
               'role' => $key
             );
-            $entity = \Drupal::entityManager()
+            $entity =  \Drupal::entityTypeManager()
               ->getStorage('distribution_inscription')
               ->create($data);
             $entity->save();

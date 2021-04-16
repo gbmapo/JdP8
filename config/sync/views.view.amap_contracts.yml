@@ -1496,7 +1496,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: '<a href="/amap/contract/add" class="form-submit">Ajouter</a>'
+            value: '<a href="/amap/contract/add" class="form-submit">Ajouter</a> <a href="/sites/default/files/amap/GestionDesContrats.pdf" class="form-submit" target="_blank">Aide</a>'
             format: full_html
           plugin_id: text
       display_description: ''

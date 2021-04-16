@@ -74,6 +74,14 @@ function shared_allowed_values_function(FieldStorageConfig $definition, ContentE
 function shared_form_contact_message_feedback_form_alter(&$form, FormStateInterface $form_state)
 {
 
+  $markup = '<p style="border:2px; border-style:solid; border-color:#FF0000; padding: 1em;">';
+  $markup .= t('Before sending your question, are you sure that the answer is not in our Frequently Asked Questions (see FAQ at the bottom of the page)?');
+  $markup .= '</p>';
+
+  $form['warning'] = [
+        '#markup' => check_markup($markup, 'full_html'),
+        '#weight' => -1,
+        ];
   $form['field_recipient']['widget']['#title'] = t('Choose a category for your message');
   $form['field_recipient']['widget']['#sort_options'] = TRUE;
 //$form['field_recipient']['#validated'] = TRUE;

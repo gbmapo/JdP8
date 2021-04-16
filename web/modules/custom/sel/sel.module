@@ -10,6 +10,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\user\Entity\User;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_help().
@@ -181,7 +182,7 @@ function _sendEmailForServicesExtraction($sCase)
     case 'emailforservicespercategory':
       $query = \Drupal::entityQuery('service_category');
       $iCategory = rand(1, $query->count()->execute());
-      $sCategory = \Drupal::entityManager()->getStorage('service_category')->load($iCategory)->name->value;
+      $sCategory = \Drupal::entityTypeManager()->getStorage('service_category')->load($iCategory)->name->value;
       $view = views_embed_view('sel_services', 'embed_1', $iCategory);
       $view = \Drupal::service('renderer')->renderPlain($view);
       $aParams = [$sBcc, $view, 'sel.NextEmailForServicesPerCategory', 'Extraction of services per category: Email sent.', $sCategory];
@@ -401,3 +402,19 @@ function sel_person_form_submit(&$form, FormStateInterface $form_state)
   }
 
 }
+
+/*
+function sel_entity_presave(EntityInterface $entity)
+{
+  switch ($entity->getEntityType()->id()) {
+    case "service":
+      $fileId = $entity->get('file')->target_id;
+      if ($fileId != 0) {
+        $file = \Drupal\file\Entity\File::load($fileId);
+      }
+      break;
+    default:
+  }
+
+}
+ */

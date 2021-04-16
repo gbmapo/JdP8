@@ -21,6 +21,9 @@ function hasChanged(oTemp) {
       oTemp.value = oTemp.value.replace(/[\D]/g, '');
       break;
   }
+  if (oTemp.form.id == 'member-and-person' && (oTemp.id=="edit-lastname1" || oTemp.id=="edit-firstname1")){
+    document.getElementById("edit-designation").value = document.getElementById("edit-lastname1").value + ' ' + document.getElementById("edit-firstname1").value;
+  }
 }
 
 function capitalizeWords(str) {

@@ -38,8 +38,8 @@ class PersonForm extends ContentEntityForm
 
     $person_id = $this->entity->id->value;
     $user_id = $form_state->getValue('user_id')['0']['target_id'];
-    $storage = Drupal::entityTypeManager()->getStorage('person');
-    $person = $storage->load($user_id);
+//  $storage = Drupal::entityTypeManager()->getStorage('person');
+//  $person = $storage->load($user_id);
     if ($user_id == $person_id) {
     }
     else {

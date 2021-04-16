@@ -8,17 +8,15 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\views\ViewExecutable;
-use Drupal\user\Entity\User;
 use Drupal\Core\Url;
+use Drupal\user\Entity\User;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
-/**
- * Implements hook_help().
- */
 function association_help($route_name, RouteMatchInterface $route_match)
 {
   switch ($route_name) {
@@ -26,16 +24,13 @@ function association_help($route_name, RouteMatchInterface $route_match)
     case 'help.page.association':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('To manage members and persons of the association') . '</p>';
+      $output .= '<p>' . t('To manage members and persons of the association.') . '</p>';
       return $output;
 
     default:
   }
 }
 
-/**
- * Implements hook_theme().
- */
 function association_theme()
 {
   return [
@@ -52,9 +47,7 @@ function association_theme()
 
 function association_allowed_values_function(FieldStorageDefinitionInterface $definition, FieldableEntityInterface $entity = NULL, &$cacheable = TRUE)
 {
-
-  Drupal::moduleHandler()
-    ->loadInclude('association', 'inc', 'association.allowed.values');
+  \Drupal::moduleHandler()->loadInclude('association', 'inc', 'association.allowed.values');
 
   if ($definition['entity_type'] == 'member') {
     switch ($definition['field_name']) {
@@ -70,52 +63,48 @@ function association_allowed_values_function(FieldStorageDefinitionInterface $de
   }
 }
 
-function _setListOfRecipients($status = 4)
+function association_entity_delete(EntityInterface $entity)
 {
-
-  $sBcc = '';
-  $database = Drupal::database();
-  $query = $database->select('member', 'am');
-  $query->leftJoin('person', 'ap', 'ap.id = am.contact_id');
-  $query->fields('am', ['id', 'status'])->fields('ap', [
-    'id',
-    'lastname',
-    'firstname',
-    'email',
-  ])->condition('status', $status, '=');
-  $results = $query->execute();
-  foreach ($results as $key => $result) {
-    $sBcc .= $result->email . ", ";
+  $mode = 'delete';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
+      _deletePersonsOfMember($entity);
+      break;
+    case "person":
+      // Reset corresponding Member if is Contact
+      if ($entity->iscontact->value) {
+        $storage = Drupal::entityTypeManager()->getStorage('member');
+        $member = $storage->load($entity->member_id->target_id);
+        if ($member) {
+          $member->set("contact_id", NULL);
+          $member->save();
+        }
+      }
+      // Delete the corresponding user
+      $user_id = $entity->user_id->target_id;
+      $userofperson = User::load($user_id);
+      if ($userofperson) {
+        $userofperson->delete();
+      }
+      break;
+    default:
   }
-  return $sBcc;
-
+  _export_association($entityType);
 }
 
-function association_mail($key, &$message, $aParams)
+function association_entity_insert(EntityInterface $entity)
 {
-
-  $sFrom = Drupal::config('system.site')->get('mail');
-
-  $message['from'] = $sFrom;
-  $message['headers'] = [
-    'Content-Type' => 'text/html',
-    'bcc'          => $aParams[0],
-    'From'         => $sFrom,
-    'Sender'       => $sFrom,
-    'Return-Path'  => '',
-  ];
-  switch ($key) {
-    case 'membershipfirstemail':
-      $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion';
-      $sBody = "<b>" . $aParams[1] . "</b>";
-      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
+  $mode = 'insert';
+  $entityType = $entity->getEntityType()->id();
+  switch ($entityType) {
+    case "member":
       break;
-    case 'membershipreminderemail':
-      $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion - Relance ' . $aParams[2];
-      $sBody = "<b>" . $aParams[1] . "</b>";
-      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
+    case "person":
       break;
+    default:
   }
+  _export_association($entityType);
 }
 
 function association_entity_presave(EntityInterface $entity)
@@ -139,21 +128,6 @@ function association_entity_presave(EntityInterface $entity)
       break;
     default:
   }
-}
-
-
-function association_entity_insert(EntityInterface $entity)
-{
-  $mode = 'insert';
-  $entityType = $entity->getEntityType()->id();
-  switch ($entityType) {
-    case "member":
-      break;
-    case "person":
-      break;
-    default:
-  }
-  _export_association($entityType);
 }
 
 function association_entity_update(EntityInterface $entity)
@@ -203,85 +177,34 @@ function association_entity_update(EntityInterface $entity)
   _export_association($entityType);
 }
 
-function association_entity_delete(EntityInterface $entity)
+function association_mail($key, &$message, $aParams)
 {
-  $mode = 'delete';
-  $entityType = $entity->getEntityType()->id();
-  switch ($entityType) {
-    case "member":
-      _deletePersonsOfMember($entity);
+  $sFrom = Drupal::config('system.site')->get('mail');
+
+  $message['from'] = $sFrom;
+  $message['headers'] = [
+    'Content-Type' => 'text/html',
+    'bcc'          => $aParams[0],
+    'From'         => $sFrom,
+    'Sender'       => $sFrom,
+    'Return-Path'  => '',
+  ];
+  switch ($key) {
+    case 'membershipfirstemail':
+      $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion';
+      $sBody = "<b>" . $aParams[1] . "</b>";
+      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
       break;
-    case "person":
-      // Reset corresponding Member if is Contact
-      if ($entity->iscontact->value) {
-        $storage = Drupal::entityTypeManager()->getStorage('member');
-        $member = $storage->load($entity->member_id->target_id);
-        if ($member) {
-          $member->set("contact_id", NULL);
-          $member->save();
-        }
-      }
-      // Delete the corresponding user
-      $user_id = $entity->user_id->target_id;
-      $userofperson = User::load($user_id);
-      if ($userofperson) {
-        $userofperson->delete();
-      }
+    case 'membershipreminderemail':
+      $message['subject'] = '[le Jardin de Poissy] Renouvellement d\'adhésion - Relance ' . $aParams[2];
+      $sBody = "<b>" . $aParams[1] . "</b>";
+      $message['body'][] = check_markup(nl2br($sBody), 'full_html');
       break;
-    default:
   }
-  _export_association($entityType);
-}
-
-function _deletePersonsOfMember($entity)
-{
-  // List all Persons for this Member
-  $id = $entity->id->value;
-  $database = Drupal::database();
-  $query = $database->select('person', 'ap');
-  $query->fields('ap', ['id', 'member_id'])
-    ->condition('member_id', $id, '=');
-  $results = $query->execute();
-  // Delete all these Persons
-  $storage = Drupal::entityTypeManager()->getStorage('person');
-  foreach ($results as $key => $result) {
-    $person = $storage->load($result->id);
-    $person->delete();
-  }
-}
-
-function _export_association($entityType)
-{
-
-  switch ($entityType) {
-    case "member":
-      _export_association_CSV('association_members', 'rest_export_1');
-      _export_association_CSV('association_persons', 'rest_export_3');
-      break;
-    case "person":
-      _export_association_CSV('association_persons', 'rest_export_1');
-      _export_association_CSV('association_persons', 'rest_export_2');
-      break;
-    default:
-  }
-  _export_association_CSV('association_members_and_persons', 'rest_export_1');
-}
-
-function _export_association_CSV($view, $page)
-{
-
-  $view = Views::getView($view);
-  $view->setDisplay($page);
-  $path = $view->getPath();
-
-  $data = $view->preview($page)['#markup'];
-  file_unmanaged_save_data($data, 'private://' . $path, FILE_EXISTS_REPLACE);
-
 }
 
 function association_menu_local_tasks_alter(&$data, $route_name)
 {
-
   $oCurrentUser = Drupal::currentUser();
   switch ($route_name) {
     case 'view.association_members_and_persons.page_1':
@@ -300,35 +223,10 @@ function association_menu_local_tasks_alter(&$data, $route_name)
       break;
     default:
   }
-
-}
-
-function association_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
-{
-
-  switch ($view->id()) {
-    case 'association_persons':
-      if ($view->current_display == 'page_2') {
-        $roles = Drupal::currentUser()->getRoles();
-        if (in_array('administrator', $roles)) {
-          foreach ($query->where as $condition_group_key => &$condition_group) {
-            foreach ($condition_group['conditions'] as $condition_key => &$condition) {
-              if ($condition['field'] == 'member_person.status') {
-                unset($query->where[$condition_group_key]['conditions'][$condition_key]);
-              }
-            }
-          }
-        }
-      }
-      break;
-    default:
-  }
-
 }
 
 function association_views_pre_render(ViewExecutable $view)
 {
-
   switch ($view->id()) {
     case 'association_members':
       switch ($view->current_display) {
@@ -348,5 +246,88 @@ function association_views_pre_render(ViewExecutable $view)
       break;
     default:
   }
-
 }
+
+function association_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
+{
+  switch ($view->id()) {
+    case 'association_persons':
+      if ($view->current_display == 'page_2') {
+        $roles = Drupal::currentUser()->getRoles();
+        if (in_array('administrator', $roles)) {
+          foreach ($query->where as $condition_group_key => &$condition_group) {
+            foreach ($condition_group['conditions'] as $condition_key => &$condition) {
+              if ($condition['field'] == 'member_person.status') {
+                unset($query->where[$condition_group_key]['conditions'][$condition_key]);
+              }
+            }
+          }
+        }
+      }
+      break;
+    default:
+  }
+}
+
+function _deletePersonsOfMember($entity)
+{
+  // List all Persons for this Member
+  $id = $entity->id->value;
+  $database = Drupal::database();
+  $query = $database->select('person', 'ap');
+  $query->fields('ap', ['id', 'member_id'])
+    ->condition('member_id', $id, '=');
+  $results = $query->execute();
+  // Delete all these Persons
+  $storage = Drupal::entityTypeManager()->getStorage('person');
+  foreach ($results as $key => $result) {
+    $person = $storage->load($result->id);
+    $person->delete();
+  }
+}
+
+function _export_association_CSV($view, $page)
+{
+  $view = Views::getView($view);
+  $view->setDisplay($page);
+  $path = $view->getPath();
+  $data = $view->preview($page)['#markup'];
+  \Drupal::service('file_system')->saveData($data, 'private://' . $path, FileSystemInterface::EXISTS_REPLACE);
+}
+
+function _export_association($entityType)
+{
+  switch ($entityType) {
+    case "member":
+      _export_association_CSV('association_members', 'rest_export_1');
+      _export_association_CSV('association_persons', 'rest_export_3');
+      _export_association_CSV('association_members_and_persons', 'rest_export_1');
+      break;
+    case "person":
+      _export_association_CSV('association_persons', 'rest_export_1');
+      _export_association_CSV('association_persons', 'rest_export_2');
+      _export_association_CSV('association_members_and_persons', 'rest_export_1');
+      break;
+    default:
+  }
+}
+
+function _setListOfRecipients($status = 4)
+{
+  $sBcc = '';
+  $database = Drupal::database();
+  $query = $database->select('member', 'am');
+  $query->leftJoin('person', 'ap', 'ap.id = am.contact_id');
+  $query->fields('am', ['id', 'status'])->fields('ap', [
+    'id',
+    'lastname',
+    'firstname',
+    'email',
+  ])->condition('status', $status, '=');
+  $results = $query->execute();
+  foreach ($results as $key => $result) {
+    $sBcc .= $result->email . ", ";
+  }
+  return $sBcc;
+}
+

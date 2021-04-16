@@ -730,7 +730,7 @@ display:
             alter_text: true
             text: •
             make_link: true
-            path: '{{ file__target_id }}'
+            path: '{{ file__target_id|replace({''%20'': " "}) }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -1841,7 +1841,7 @@ display:
             alter_text: true
             text: •
             make_link: true
-            path: '{{ file__target_id }}'
+            path: '{{ file__target_id|replace({''%20'': " "}) }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -3037,7 +3037,7 @@ display:
             alter_text: true
             text: •
             make_link: true
-            path: '{{ file__target_id }}'
+            path: '{{ file__target_id|replace({''%20'': " "}) }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -4182,7 +4182,7 @@ display:
             alter_text: true
             text: •
             make_link: true
-            path: '{{ file__target_id }}'
+            path: '{{ file__target_id|replace({''%20'': " "}) }}'
             absolute: false
             external: false
             replace_spaces: false

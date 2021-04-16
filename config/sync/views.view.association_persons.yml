@@ -933,8 +933,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: false
-            path: ''
+            make_link: true
+            path: '/user/{{ user_id__target_id }}/edit'
             absolute: false
             external: false
             replace_spaces: false
@@ -972,7 +972,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -1110,7 +1110,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/document-edit.gif" title="Modifier la personne">'
+            text: '<img src="/sites/default/files/images/edit.svg" title="Modifier la personne">'
             make_link: true
             path: '/association/person/{{ id }}/edit'
             absolute: false
@@ -1159,7 +1159,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/trash.gif" title="Supprimer la personne">'
+            text: '<img src="/sites/default/files/images/trash-2.svg" title="Supprimer la personne">'
             make_link: true
             path: '/association/person/{{ id }}/delete'
             absolute: false

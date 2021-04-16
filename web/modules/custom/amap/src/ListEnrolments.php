@@ -8,12 +8,19 @@ namespace Drupal\amap;
 class ListEnrolments
 {
 
+  private $filter;
+
   /**
    * Constructs a new ListEnrolments object.
    */
   public function __construct()
   {
+  }
 
+  public function setFilter($value)
+  {
+    $this->filter = $value;
+    return $this;
   }
 
   public function list()
@@ -21,7 +28,7 @@ class ListEnrolments
 
     $iCurrentUserId = \Drupal::currentUser()->id();
 
-    $sNextWed = strftime("%Y-%m-%d", strtotime("next Wednesday", strtotime("Yesterday")));
+    $sNextWed = ($this->filter == 'all') ? '' : strftime("%Y-%m-%d", strtotime("next Wednesday", strtotime("Yesterday")));
     $database = \Drupal::database();
     $query = $database->select('distribution_date', 'amdd');
     $query->leftJoin('distribution_inscription', 'amdi', 'amdi.distributiondate_id = amdd.id');
@@ -36,19 +43,18 @@ class ListEnrolments
       ->orderBy('lastname', 'ASC')
       ->orderBy('firstname', 'ASC');
     $results = $query->execute();
-    $rows = array();
+    $rows = [];
     $sDateSav = '';
     foreach ($results as $key => $result) {
       $sDate = $result->distributiondate;
+      $sNomPrenom = "";
       $amapienid = $result->amapien_id;
       if ($amapienid) {
         $amapien = \Drupal::entityTypeManager()->getStorage('person')->load($amapienid);
-        $sNomPrenom = $amapien->label();
-      } else {
-        $sNomPrenom = "";
+        $sNomPrenom = (!is_null($amapien)) ? $amapien->label() : $amapienid;
       }
       if ($sDate != $sDateSav) {
-        $row = array();
+        $row = [];
         $row[0] = $sDate;       // Date de distribution
         $row[1] = 0;            // Nombre d'inscrits Distribution
         $row[2] = 0;            // Nombre d'inscrits Réserve

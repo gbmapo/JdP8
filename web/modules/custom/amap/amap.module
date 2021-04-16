@@ -15,6 +15,7 @@ use Drupal\views\ViewExecutable;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\Core\File\FileSystemInterface;
 
 const AMAP_AMAPIEN_PER_DISTRIBUTION = 6;
 const AMAP_RESERVE_PER_DISTRIBUTION = 1;
@@ -267,7 +268,7 @@ function _export_amap_CSV($view, $page, $contract)
   $view->setArguments([$contract]);
 
   $data = $view->preview($page)['#markup'];
-  file_unmanaged_save_data($data, 'private://contracts/' . $sFileName, FILE_EXISTS_REPLACE);
+  \Drupal::service('file_system')->saveData($data, 'private://contracts/' . $sFileName, FileSystemInterface::EXISTS_REPLACE);
 }
 
 function _handleContractFiles(EntityInterface $entity, $mode)
@@ -279,7 +280,7 @@ function _handleContractFiles(EntityInterface $entity, $mode)
       $sTemp = 'Contract-' . $entity->id() . '-' . str_replace("-", "", $entity->startdate->value);
       $file1Id = $entity->get('file1')->target_id;
       if ($file1Id != 0) {
-        $file1 = file_load($file1Id);
+        $file1 = \Drupal\file\Entity\File::load($file1Id);
         $uri1 = $file1->uri->value;
         $filename1 = $file1->filename->value;
         $pathinfo = pathinfo($uri1);
@@ -292,7 +293,7 @@ function _handleContractFiles(EntityInterface $entity, $mode)
       }
       $file2Id = $entity->get('file2')->target_id;
       if ($file2Id != 0) {
-        $file2 = file_load($file2Id);
+        $file2 = \Drupal\file\Entity\File::load($file2Id);
         $uri2 = $file2->uri->value;
         $filename2 = $file2->filename->value;
         $pathinfo = pathinfo($uri2);
@@ -316,7 +317,7 @@ function _deleteUnusedFiles()
     ->fields('fm', ['fid'])
     ->condition('fm.status', 0);
   $fids = $query->execute()->fetchCol();
-  $files = file_load_multiple($fids);
+  $files = \Drupal\file\Entity\File::loadMultiple($fids);
   foreach ($files as $file) {
     $references = \Drupal::service('file.usage')->listUsage($file);
     if (empty($references)) {
@@ -332,12 +333,12 @@ function _handleContractSubscriptionFiles(EntityInterface $entity, $mode)
     case 'update':
       $fileId = $entity->get('file')->target_id;
       if ($fileId != 0) {
-        $file = file_load($fileId);
+        $file = \Drupal\file\Entity\File::load($fileId);
         $uri = $file->uri->value;
         $filename = $file->filename->value;
         $pathinfo = pathinfo($uri);
         $directory = 'private://contracts/subscriptions/' . $entity->contract_id->target_id;
-        file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+        \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
         $filenamenew = $entity->member_id->target_id . '.' . $pathinfo['extension'];
         $urinew = $directory . '/' . $filenamenew;
         rename($uri, $urinew);
@@ -355,7 +356,6 @@ function _handleContractSubscriptionFiles(EntityInterface $entity, $mode)
 
 function _setReferentOfContract()
 {
-
   $prefix = '2. AMAP';
   $fieldStorage = \Drupal\field\Entity\FieldStorageConfig::loadByName('contact_message', 'field_recipient');
   $allowedValues = $fieldStorage->getSetting('allowed_values');

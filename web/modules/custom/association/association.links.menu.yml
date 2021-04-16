@@ -29,4 +29,3 @@ person.admin.structure.settings:
   description: 'Configure Person entities'
   route_name: person.settings
   parent: system.admin_structure
-

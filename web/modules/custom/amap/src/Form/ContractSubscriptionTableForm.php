@@ -104,7 +104,7 @@ class ContractSubscriptionTableForm extends FormBase
     $query .= "
       ORDER BY designation ASC
       ";
-    $results = db_query($query);
+    $results = \Drupal::database()->query($query);
 
 //  Génération des lignes du tableau
     foreach ($results as $key => $value) {
@@ -115,7 +115,7 @@ class ContractSubscriptionTableForm extends FormBase
       }
       else {
         if (!array_search($sharedwith_id, $results_am)) {
-          $results_am = $results_am + [$sharedwith_id => t('Member').sprintf("%03d", $sharedwith_id)];
+          $results_am = $results_am + [$sharedwith_id => t('Member') . sprintf("%03d", $sharedwith_id)];
         }
         $iKey = array_search($results_am[$sharedwith_id], $results_am);
       }
@@ -125,6 +125,7 @@ class ContractSubscriptionTableForm extends FormBase
       $form['#suffix'] = '</div>';
 
       $form['subscriptions'][$myKey]['member'] = ['#markup' => $value->designation];
+      $sQuantities = "";
       for ($i = 1; $i <= $iNumberOfQuantities; $i++) {
         $sField = 'quantity' . sprintf("%02d", $i);
         $default_value = $value->$sField;
@@ -137,6 +138,7 @@ class ContractSubscriptionTableForm extends FormBase
         else {
           $default_value = sprintf("%01.2f", $value->$sField);
         }
+        $sQuantities .= $default_value;
         $form['subscriptions'][$myKey][$sField] = [
           '#type'          => 'number',
           '#min'           => 0.00,
@@ -186,6 +188,7 @@ class ContractSubscriptionTableForm extends FormBase
       }
       $form['subscriptions'][$myKey]['am_id'] = ['#type' => 'hidden', '#default_value' => $value->am_id];
       $form['subscriptions'][$myKey]['cs_id'] = ['#type' => 'hidden', '#default_value' => $value->cs_id];
+      $form['subscriptions'][$myKey]['hash'] = ['#type' => 'hidden', '#default_value' => $sQuantities . $fileId];
 
     }
 
@@ -200,6 +203,12 @@ class ContractSubscriptionTableForm extends FormBase
         ],
       ];
     }
+
+    $form['cancel'] = [
+      '#type'  => 'submit',
+      '#name'  => 'cancel',
+      '#value' => $this->t('Cancel'),
+    ];
 
     $form['#attached']['library'][] = 'amap/amap';
 
@@ -299,7 +308,12 @@ class ContractSubscriptionTableForm extends FormBase
         else {
           $entity = $storage->load($id);
           if ($sQuantities != "") {
-            $sAction = 'M';
+            if ($sQuantities . $value['filehead']['file'][0] == $value['hash']) {
+              $sAction = '0';
+            }
+            else {
+              $sAction = 'M';
+            }
           }
           else {
             $sAction = 'S';
@@ -328,10 +342,11 @@ class ContractSubscriptionTableForm extends FormBase
 
       _export_amap_CSV('amap_contracts_subscriptions', 'rest_export_1', $args[0]);
       \Drupal::messenger()->addMessage($this->t('The changes have been saved.'));
-//    $form_state->setRedirect('amap.contracts');
 
     }
-
+    elseif ($form_state->getTriggeringElement()['#name'] == 'cancel') {
+      $form_state->setRedirect('amap.contracts');
+    }
     else {
       $form_state->setRebuild();
     }

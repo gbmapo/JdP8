@@ -1269,7 +1269,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/document-edit.gif" title="Modifier l''adhérent">'
+            text: '<img src="/sites/default/files/images/edit.svg" title="Modifier l''adhérent">'
             make_link: true
             path: '/association/member/{{ id }}/edit'
             absolute: false
@@ -1318,7 +1318,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<img src="/sites/default/files/images/trash.gif" title="Supprimer l''adhérent">'
+            text: '<img src="/sites/default/files/images/trash-2.svg" title="Supprimer l''adhérent">'
             make_link: true
             path: '/association/member/{{ id }}/delete'
             absolute: false
@@ -1367,7 +1367,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if id_1 != \"\" %}\r\n<img src=\"/sites/default/files/images/user-green.gif\" title=\"Modifier le contact\">\r\n{% endif %}"
+            text: "{% if id_1 != \"\" %}\r\n<img src=\"/sites/default/files/images/user.svg\" title=\"Modifier le contact\">\r\n{% endif %}"
             make_link: true
             path: '/association/person/{{ id_1 }}'
             absolute: false

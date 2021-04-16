@@ -16,7 +16,8 @@ modules:
       sender: swiftmailer
   user:
     none:
-      formatter: php_mail
+      formatter: swiftmailer
+      sender: swiftmailer
   views_send:
     direct:
       formatter: mime_mail

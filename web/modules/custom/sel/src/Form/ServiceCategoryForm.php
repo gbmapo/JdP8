@@ -37,13 +37,13 @@ class ServiceCategoryForm extends ContentEntityForm
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Service category « %label » has been added.', [
+        \Drupal::messenger()->addMessage($this->t('Service category « %label » has been added.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Service category « %label » has been updated.', [
+        \Drupal::messenger()->addMessage($this->t('Service category « %label » has been updated.', [
           '%label' => $entity->label(),
         ]));
     }

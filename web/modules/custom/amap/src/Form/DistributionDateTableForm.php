@@ -35,7 +35,7 @@ class DistributionDateTableForm extends FormBase
     ];
 
     _list_distribution_products($aProducts, $sMin, $sMax);
-    $fields = \Drupal::entityManager()->getBaseFieldDefinitions('distribution_date');
+    $fields =  \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('distribution_date');
     foreach ($fields as $key => $value) {
       if ($key >= $sMin && $key <= $sMax) {
         // Remplacer le nom des champs product
@@ -48,7 +48,7 @@ class DistributionDateTableForm extends FormBase
     $currentDay = date('Y-m-d');
     $sNextWed = strftime("%Y-%m-%d", strtotime("next Wednesday", strtotime("Yesterday")));
 
-    $storage  = \Drupal::entityManager()->getStorage('distribution_date');
+    $storage  = \Drupal::entityTypeManager()->getStorage('distribution_date');
     $database = \Drupal::database();
     $query    = $database->select('distribution_date', 'amdd');
     $query->fields('amdd', ['id', 'distributiondate'])
@@ -104,7 +104,7 @@ class DistributionDateTableForm extends FormBase
 
     _list_distribution_products($aProducts, $sMin, $sMax);
     foreach ($form_state->getValue('distributions') as $key => $value) {
-      $entity = \Drupal::entityManager()->getStorage('distribution_date')->load($key);
+      $entity = \Drupal::entityTypeManager()->getStorage('distribution_date')->load($key);
       $entity->numberofproducts->value = 0;
       foreach ($entity as $key2 => $value2) {
         if ($key2 >= $sMin && $key2 <= $sMax) {

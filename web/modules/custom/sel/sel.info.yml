@@ -1,7 +1,7 @@
 name: 'SEL'
 type: module
 description: 'To manage the Grenier à SÉL (services, exchanges, etc.)'
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 package: 'Association'
 dependencies:
   - association

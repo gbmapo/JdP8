@@ -773,7 +773,7 @@ class MembershipStep0 extends FormBase
 
   /**
    * {@inheritdoc}
-   * $form_state->set('key', 'value'). The value ends up in $form_state['storage']['value'].
+   * $form_state->set('key', 'value'). The value ends up in $form_state->getStorage()['value'].
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
